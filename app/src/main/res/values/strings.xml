@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">SCB App</string>
+
+    <!-- Strings related to login-->
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_field_required">This field is required</string>
 </resources>
