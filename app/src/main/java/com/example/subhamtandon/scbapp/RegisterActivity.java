@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         if (firebaseAuth.getCurrentUser() != null) {
             //profile activity here
             finish();
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            startActivity(new Intent(getApplicationContext(), UserProfile.class));
         }
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -143,7 +143,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                             Log.d("pass", "createUserWithEmail:success");
                                             Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                                             finish();
-                                            startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                                            startActivity(new Intent(getApplicationContext(),UserProfile.class));
 
                                         }else {
 
