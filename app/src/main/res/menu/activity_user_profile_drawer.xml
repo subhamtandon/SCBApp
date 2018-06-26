@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_doctor"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Doctors" />
+        <item
+            android:id="@+id/nav_study"
+            android:icon="@drawable/ic_book_black"
+            android:title="Study" />
+        <item
+            android:id="@+id/nav_question_bank"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Question Bank" />
+    </group>
+
+</menu>

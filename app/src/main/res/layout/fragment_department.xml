@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".DepartmentFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Departments"
+        android:gravity="center_horizontal"
+        android:textSize="40dp"
+        android:textStyle="bold"
+        android:textAppearance="@style/Theme.AppCompat"
+        android:id="@+id/headingDepartment"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollViewOfDepartments"
+        android:layout_below="@id/headingDepartment">
+
+        <GridLayout
+            android:id="@+id/gdView"
+            android:layout_width="match_parent"
+            android:layout_height="332dp"
+            android:layout_below="@+id/title"
+            android:layout_weight="8"
+            android:padding="14dp"
+            android:columnCount="1"
+            android:columnOrderPreserved="false"
+            android:rowCount="15"
+            android:rowOrderPreserved="true"
+            android:alignmentMode="alignMargins"
+            android:layout_marginTop="10dp"
+            >
+
+            <!--row 1-->
+            <!--col 1-->
+            <android.support.v7.widget.CardView
+                android:id="@+id/anatomyDeptCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:clickable="true"
+                app:cardBackgroundColor="#4c97e7"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="Anatomy Department"
+                        android:textAlignment="center"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/anatomyDeptView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:text="0 number of Doctor"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--col 2-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#57df2a"
+                android:layout_margin="16dp"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/anaesthesioloyDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Anaesthesioloy Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/anaesthesioloyDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--row 2-->
+            <!--col 1-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="16dp"
+                app:cardBackgroundColor="#e18012"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:id="@+id/biochemistryDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="14dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Biochemistry Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/biochemistryDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <!--col 2-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#d71f1f"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/dentistryDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Dentistry Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/dentistryDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#1fd772"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/forensicMedicineDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Forensic Medicine Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/forensicMedicineDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#512dd4"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/generalSurgeryDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="General Surgery Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/generalSurgeryDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#6a7870"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/medicineDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Medicine Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/medicineDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#e723a3"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/microbiologyDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Microbiology Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/microbiologyDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#d73c20"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/obstetricsAndGynaecologyDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Obstetrics And Gynaecology Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/obstetricsAndGynaecologyDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#76b624"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/ophthalmologyDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Ophthalmology Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/ophthalmologyDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                app:cardBackgroundColor="#1fa6d7"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:layout_margin="16dp"
+                android:id="@+id/orthopaedicsDeptCard"
+                android:clickable="true">
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_margin="14dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Orthopaedics Department"
+                        android:textSize="18dp"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:layout_gravity="center"
+                        android:id="@+id/orthopaedicsDeptView"
+                        android:text="0 number of Doctor"
+                        android:layout_marginTop="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+
+        </GridLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
