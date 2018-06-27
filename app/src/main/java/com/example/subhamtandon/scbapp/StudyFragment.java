@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -17,7 +18,7 @@ import android.view.ViewGroup;
  */
 public class StudyFragment extends Fragment {
 
-    CardView anatomyCard, physiologyCard, biochemistryCard, pathalogyCard;
+    CardView Professional1stCard, Professional2ndCard, Professional3rdCard, Professional4thCard;
 
     public StudyFragment() {
         // Required empty public constructor
@@ -29,44 +30,43 @@ public class StudyFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_study, container, false);
 
-        anatomyCard =(CardView)view.findViewById(R.id.anatomyCard);
-        physiologyCard=(CardView)view.findViewById(R.id.physiologyCard);
-        biochemistryCard=(CardView)view.findViewById(R.id.biochemistryCard);
-        pathalogyCard=(CardView)view.findViewById(R.id.pathologyCard);
+        //((AppCompatActivity)getActivity()).getSupportActionBar().setTitle("Study Section");
+        //((AppCompatActivity)getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        anatomyCard.setOnClickListener(new View.OnClickListener() {
+        Professional1stCard =(CardView)view.findViewById(R.id.Professional1stCard);
+        Professional2ndCard=(CardView)view.findViewById(R.id.Professional2ndCard);
+        Professional3rdCard=(CardView)view.findViewById(R.id.Professional3rdCard);
+        Professional4thCard=(CardView)view.findViewById(R.id.Professional4thCard);
+
+        Professional1stCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
-                //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
+                startActivity(new Intent(getContext(),Professional1stActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
-        physiologyCard.setOnClickListener(new View.OnClickListener() {
+        Professional2ndCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
-                //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
+                startActivity(new Intent(getContext(),Professional2ndActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
-        biochemistryCard.setOnClickListener(new View.OnClickListener() {
+        Professional3rdCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
-                //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
+                startActivity(new Intent(getContext(),Professional3rdActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
-        pathalogyCard.setOnClickListener(new View.OnClickListener() {
+        Professional4thCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
-                //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
+                startActivity(new Intent(getContext(),Professional4thActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
