@@ -38,6 +38,7 @@ public class StudyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
                 //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
@@ -46,6 +47,7 @@ public class StudyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
                 //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
@@ -54,6 +56,7 @@ public class StudyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
                 //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
@@ -62,6 +65,7 @@ public class StudyFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                startActivity(new Intent(getContext(),QuestionPracticeActivity.class));
                 //startActivity(new Intent(getContext(),QuestionsPracticeActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
