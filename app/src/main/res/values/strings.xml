@@ -21,4 +21,31 @@
         <item>3rd Professional</item>
         <item>4th Professional</item>
     </string-array>
+    <string-array name="from1stProfessional">
+        <item>-Select-</item>
+        <item>2nd Professional</item>
+        <item>3rd Professional</item>
+        <item>4th Professional</item>
+    </string-array>
+    <string-array name="from2ndProfessional">
+        <item>-Select-</item>
+        <item>1st Professional</item>
+        <item>3rd Professional</item>
+        <item>4th Professional</item>
+    </string-array>
+    <string-array name="from3rdProfessional">
+        <item>-Select-</item>
+        <item>1st Professional</item>
+        <item>2nd Professional</item>
+        <item>4th Professional</item>
+    </string-array>
+    <string-array name="from4thProfessional">
+        <item>-Select-</item>
+        <item>1st Professional</item>
+        <item>2nd Professional</item>
+        <item>3rd Professional</item>
+    </string-array>
+
+
+
 </resources>
