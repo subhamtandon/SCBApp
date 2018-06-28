@@ -29,7 +29,8 @@
         <activity android:name=".Professional1stActivity" />
         <activity android:name=".Professional2ndActivity" />
         <activity android:name=".Professional3rdActivity" />
-        <activity android:name=".Professional4thActivity"></activity>
+        <activity android:name=".Professional4thActivity" />
+        <activity android:name=".ProfessionalsSpinnerActivity"></activity>
     </application>
 
 </manifest>
