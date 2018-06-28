@@ -11,10 +11,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.support.v7.widget.CardView;
 
 public class Professional1stActivity extends AppCompatActivity {
 
     FloatingActionButton changeProfession;
+
+    CardView AnatomyCard, PhysiologyCard, BiochemistryCard, MockTestCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +81,44 @@ public class Professional1stActivity extends AppCompatActivity {
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
+            }
+        });
+
+        AnatomyCard =(CardView) findViewById(R.id.AnatomyCard);
+        PhysiologyCard=(CardView) findViewById(R.id.PhysiologyCard);
+        BiochemistryCard=(CardView) findViewById(R.id.BiochemistryCard);
+        MockTestCard=(CardView) findViewById(R.id.MockTestCard);
+
+        AnatomyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Link new fragment
+                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+        PhysiologyCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Link new fragment
+                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+        BiochemistryCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Link new fragment
+                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+            }
+        });
+        MockTestCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: Link new fragment
+                //startActivity(new Intent(getApplicationContext(),Professional4thActivity.class));
+                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
 
