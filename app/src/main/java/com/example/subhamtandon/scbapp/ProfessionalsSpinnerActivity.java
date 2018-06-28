@@ -1,9 +1,10 @@
 package com.example.subhamtandon.scbapp;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class ProfessionalsSpinnerActivity extends AppCompatActivity {
+public class ProfessionalsSpinnerActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

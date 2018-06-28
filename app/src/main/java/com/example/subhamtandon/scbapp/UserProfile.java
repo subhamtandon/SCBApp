@@ -1,9 +1,11 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +15,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -108,9 +114,63 @@ public class UserProfile extends AppCompatActivity
             ft.replace(R.id.flMain, new DepartmentFragment());
             ft.commit();
         } else if (id == R.id.nav_study) {
-            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new StudyFragment());
-            ft.commit();
+            //FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            //ft.replace(R.id.flMain, new StudyFragment());
+            //ft.commit();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+
+            builder.setTitle("Choose your Professional");
+
+            final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                    android.R.layout.simple_spinner_item,
+                    getResources().getStringArray(R.array.professionalsList));
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+            mSpinner.setAdapter(adapter);
+
+            mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    final Intent intent;
+                    switch (position){
+                        case 1:
+                            intent = new Intent(getApplicationContext(), Professional1stActivity.class);
+                            startActivity(intent);
+                            break;
+                        case 2:
+                            intent = new Intent(getApplicationContext(), Professional2ndActivity.class);
+                            startActivity(intent);
+                            break;
+                        case 3:
+                            intent = new Intent(getApplicationContext(), Professional3rdActivity.class);
+                            startActivity(intent);
+                            break;
+                        case 4:
+                            intent = new Intent(getApplicationContext(), Professional4thActivity.class);
+                            startActivity(intent);
+                            break;
+                        default:
+                            Toast.makeText(getApplicationContext(), "Choose Your Professional", Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                    Toast.makeText(getApplicationContext(), "Choose Your Professional", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            builder.setView(mView);
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
         } else if (id == R.id.nav_question_bank) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new QuestionBankFragment());
