@@ -26,10 +26,14 @@
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Professional1stActivity" />
-        <activity android:name=".Professional2ndActivity" />
-        <activity android:name=".Professional3rdActivity" />
-        <activity android:name=".Professional4thActivity" />
+        <activity android:name=".Professional1stActivity"
+            android:parentActivityName=".UserProfile"/>
+        <activity android:name=".Professional2ndActivity"
+            android:parentActivityName=".UserProfile"/>
+        <activity android:name=".Professional3rdActivity"
+            android:parentActivityName=".UserProfile"/>
+        <activity android:name=".Professional4thActivity"
+            android:parentActivityName=".UserProfile"/>
         <activity android:name=".ProfessionalsSpinnerActivity" />
         <activity
             android:name=".DifferentMaterialsActivity"

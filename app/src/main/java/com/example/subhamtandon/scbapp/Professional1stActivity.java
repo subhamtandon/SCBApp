@@ -24,7 +24,7 @@ public class Professional1stActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional1st);
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("1st Professional");
 
         changeProfession = (FloatingActionButton)findViewById(R.id.changeProfession);
