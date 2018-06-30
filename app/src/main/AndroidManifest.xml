@@ -26,19 +26,27 @@
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Professional1stActivity"
-            android:parentActivityName=".UserProfile"/>
-        <activity android:name=".Professional2ndActivity"
-            android:parentActivityName=".UserProfile"/>
-        <activity android:name=".Professional3rdActivity"
-            android:parentActivityName=".UserProfile"/>
-        <activity android:name=".Professional4thActivity"
-            android:parentActivityName=".UserProfile"/>
+        <activity
+            android:name=".Professional1stActivity"
+            android:parentActivityName=".UserProfile" />
+        <activity
+            android:name=".Professional2ndActivity"
+            android:parentActivityName=".UserProfile" />
+        <activity
+            android:name=".Professional3rdActivity"
+            android:parentActivityName=".UserProfile" />
+        <activity
+            android:name=".Professional4thActivity"
+            android:parentActivityName=".UserProfile" />
         <activity android:name=".ProfessionalsSpinnerActivity" />
         <activity
             android:name=".DifferentMaterialsActivity"
             android:label="@string/title_activity_different_materials"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EasyQuestionSetActivity" />
+        <activity android:name=".MediumQuestionSetActivity" />
+        <activity android:name=".HardQuestionSetActivity" />
+        <activity android:name=".RandomQuestionSetActivity"></activity>
     </application>
 
 </manifest>

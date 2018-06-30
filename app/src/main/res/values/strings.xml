@@ -45,6 +45,15 @@
         <item>2nd Professional</item>
         <item>3rd Professional</item>
     </string-array>
+
+    <string-array name="modeList">
+        <item>-Select-</item>
+        <item>Easy Questions</item>
+        <item>Medium Questions</item>
+        <item>Hard Questions</item>
+        <item>Random Questions</item>
+    </string-array>
+
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
     <string name="tab_text_1">MCQs</string>
     <string name="tab_text_2">Record</string>
