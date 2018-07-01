@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import android.support.v7.widget.CardView;
 
-public class Professional1stActivity extends AppCompatActivity {
+public class    Professional1stActivity extends AppCompatActivity {
 
     FloatingActionButton changeProfession;
 
