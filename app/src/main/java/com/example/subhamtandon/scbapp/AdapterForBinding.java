@@ -74,7 +74,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                         switch (position){
                             case 1:
                                 intent = new Intent(context, EasyQuestionSetActivity.class);
-                                context.startActivity(intent);
+                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Easy", Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
