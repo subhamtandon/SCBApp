@@ -93,6 +93,11 @@ public class UserProfile extends AppCompatActivity
         }
         if(id == R.id.action_logout){
 
+            firebaseAuth.signOut();
+            firebaseAuth.getInstance().signOut();
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+
         }
 
         return super.onOptionsItemSelected(item);
