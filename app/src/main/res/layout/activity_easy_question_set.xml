@@ -40,7 +40,8 @@
             android:clickable="true"
             app:cardBackgroundColor="#4c97e7"
             app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            app:cardElevation="8dp"
+            android:onClick="setOneClicked">
 
             <LinearLayout
                 android:layout_width="wrap_content"
