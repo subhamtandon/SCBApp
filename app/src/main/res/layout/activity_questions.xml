@@ -45,6 +45,7 @@
                 android:layout_alignParentRight="true"
                 android:text="EXIT"
                 android:id="@+id/exitQuestions"
+                android:onClick="exitQuestions"
                 />
 
             <LinearLayout
