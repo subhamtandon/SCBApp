@@ -47,7 +47,8 @@
         <activity android:name=".MediumQuestionSetActivity" />
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
-        <activity android:name=".QuestionsActivity"></activity>
+        <activity android:name=".QuestionsActivity" />
+        <activity android:name=".AdminHomeActivity"></activity>
     </application>
 
 </manifest>

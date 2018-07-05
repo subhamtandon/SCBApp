@@ -201,9 +201,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void userLogin(View view){
 
-        String email = editTextEmail .getText().toString().trim();
+        final String email = editTextEmail .getText().toString().trim();
 
-        String password = editTextPassword.getText().toString().trim();
+        final String password = editTextPassword.getText().toString().trim();
 
         String ready= "true";
         if (TextUtils.isEmpty(email)){
@@ -237,9 +237,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             progressDialog.dismiss();
                             if (task.isSuccessful()) {
 
-                                Log.d("pass", "signInWithEmail:success");
-                                finish();
-                                startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                                if (email.equalsIgnoreCase("scbmch2018@gmail.com")  && password.equalsIgnoreCase("scb2018") ){
+
+                                    finish();
+                                    startActivity(new Intent(getApplicationContext(), AdminHomeActivity.class));
+
+                                }else {
+
+                                    Log.d("pass", "signInWithEmail:success");
+                                    finish();
+                                    startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                                }
 
                             } else {
 
