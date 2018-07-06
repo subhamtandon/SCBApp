@@ -100,6 +100,7 @@
                             android:text="A : "
                             android:textSize="25sp"
                             android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -146,6 +147,7 @@
                             android:text="B : "
                             android:textSize="25sp"
                             android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -191,6 +193,7 @@
                             android:text="C : "
                             android:textSize="25sp"
                             android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -236,6 +239,7 @@
                             android:text="D : "
                             android:textSize="25sp"
                             android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
                             android:gravity="center"/>
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -261,6 +265,13 @@
 
 
                 </GridLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Explanation/Hint"
+                    android:textSize="25sp"
+                    android:textAlignment="center"/>
 
 
             </LinearLayout>
