@@ -6,9 +6,12 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminHomeActivity extends AppCompatActivity {
 
     CardView StudyCard,DepartmentCard;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,8 @@ public class AdminHomeActivity extends AppCompatActivity {
 
         StudyCard = (CardView) findViewById(R.id.StudyCard);
         DepartmentCard = (CardView) findViewById(R.id.DepartmentCard);
+
+        firebaseAuth = FirebaseAuth.getInstance();
 
         StudyCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,4 +42,14 @@ public class AdminHomeActivity extends AppCompatActivity {
         });
 
     }
+
+    public void logout(View view){
+
+        firebaseAuth.signOut();
+        firebaseAuth.getInstance().signOut();
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+
+    }
+
 }

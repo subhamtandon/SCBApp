@@ -15,13 +15,21 @@
         android:textStyle="bold"
         android:textAppearance="@style/Theme.AppCompat"
         android:id="@+id/headingAdmin"
-         />
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonLogout"
+        android:layout_below="@+id/headingAdmin"
+        android:text="logout"
+        android:layout_margin="10dp"
+        android:onClick="logout"/>
 
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headingAdmin"
-        android:layout_marginTop="10dp"
+        android:layout_below="@id/buttonLogout"
         android:columnCount="1"
         android:columnOrderPreserved="false"
         android:padding="14dp"

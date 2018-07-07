@@ -26,18 +26,21 @@
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ProfessionalsAutoCompleteTextView"
             android:layout_margin="15dp"
             android:hint="Professional"/>
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/SubjectsAutoCompleteTextView"
             android:layout_margin="15dp"
             android:hint="Subjects"/>
 
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/TypeAutoCompleteTextView"
             android:layout_margin="15dp"
             android:hint="Type"/>
 
@@ -45,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:text="Submit"/>
+            android:text="Submit"
+            android:onClick="SubmitButton"/>
 
     </LinearLayout>
 
