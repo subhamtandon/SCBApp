@@ -52,12 +52,34 @@ public class AdminStudyActivity extends AppCompatActivity {
 
         if(ready.equalsIgnoreCase("true")){
 
-            Intent next = new Intent(AdminStudyActivity.this, StudyAlteringActivity.class);
-            next.putExtra("PROFESSIONAL", whichProfessional);
-            next.putExtra("SUBJECT", whichSubject);
-            next.putExtra("TYPE", whichType);
-            next.putExtra("CHAPTER", whichChapter);
-            startActivity(next);
+            if(whichType.equalsIgnoreCase("MCQs")){
+                Intent next = new Intent(AdminStudyActivity.this, MCQsAlteringActivity.class);
+                next.putExtra("PROFESSIONAL", whichProfessional);
+                next.putExtra("SUBJECT", whichSubject);
+                next.putExtra("CHAPTER", whichChapter);
+                startActivity(next);
+            }
+            else if(whichType.equalsIgnoreCase("Record")){
+                Intent next = new Intent(AdminStudyActivity.this, RecordsAlteringActivity.class);
+                next.putExtra("PROFESSIONAL", whichProfessional);
+                next.putExtra("SUBJECT", whichSubject);
+                startActivity(next);
+            }
+            else if(whichType.equalsIgnoreCase("Practical")){
+                Intent next = new Intent(AdminStudyActivity.this, PracticalAlteringActivity.class);
+                next.putExtra("PROFESSIONAL", whichProfessional);
+                next.putExtra("SUBJECT", whichSubject);
+                startActivity(next);
+            }
+            else if(whichType.equalsIgnoreCase("PYQs")){
+                Intent next = new Intent(AdminStudyActivity.this, PracticalAlteringActivity.class);
+                next.putExtra("PROFESSIONAL", whichProfessional);
+                next.putExtra("SUBJECT", whichSubject);
+                startActivity(next);
+            }
+
+
+
         }
 
     }

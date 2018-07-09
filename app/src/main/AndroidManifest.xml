@@ -55,7 +55,10 @@
         <activity
             android:name=".AdminDepartmentActivity"
             android:parentActivityName=".AdminHomeActivity" />
-        <activity android:name=".StudyAlteringActivity"></activity>
+        <activity android:name=".MCQsAlteringActivity" />
+        <activity android:name=".RecordsAlteringActivity" />
+        <activity android:name=".PracticalAlteringActivity" />
+        <activity android:name=".PYQsActivity"></activity>
     </application>
 
 </manifest>
