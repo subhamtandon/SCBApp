@@ -85,7 +85,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     }
 
     private static final String[] Professionals = new String[]{
-       "1st Professional","2nd Professional","3rd Professional","4th Professional"
+       "First Professional","Second Professional","Third Professional","Fourth Professional"
     };
 
     private static final String[] Subjects = new String[]{
