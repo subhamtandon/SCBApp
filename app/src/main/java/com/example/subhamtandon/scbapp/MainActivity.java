@@ -63,9 +63,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         firebaseAuth = FirebaseAuth.getInstance();
 
         if (firebaseAuth.getCurrentUser() != null) {
-            //profile activity here
-            finish();
-            startActivity(new Intent(getApplicationContext(), UserProfile.class));
+            if (firebaseAuth.getCurrentUser().getEmail().equalsIgnoreCase("scbmch2018@gmail.com")) {
+                finish();
+                startActivity(new Intent(getApplicationContext(), AdminHomeActivity.class));
+            } else {
+                //profile activity here
+                finish();
+                startActivity(new Intent(getApplicationContext(), UserProfile.class));
+            }
         }
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);

@@ -58,7 +58,7 @@ public class AdminStudyActivity extends AppCompatActivity {
         TypeAutoCompleteTextView.setAdapter(TypeAdapter);
 
         ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Type);
-        TypeAutoCompleteTextView.setAdapter(ChaptersAdapter);
+        ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
