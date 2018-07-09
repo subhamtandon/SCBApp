@@ -16,6 +16,7 @@
         android:textAppearance="@style/Theme.AppCompat"
         android:id="@+id/headingStudy"/>
 
+
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -95,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         android:text="Submit"
-        android:onClick="SubmitButton"
+        android:onClick="submitButton"
         android:layout_below="@+id/ChaptersAutoCompleteTextView"/>
 
 </RelativeLayout>

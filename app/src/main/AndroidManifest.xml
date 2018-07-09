@@ -49,10 +49,13 @@
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />
         <activity android:name=".AdminHomeActivity" />
-        <activity android:name=".AdminStudyActivity"
-            android:parentActivityName=".AdminHomeActivity"/>
-        <activity android:name=".AdminDepartmentActivity"
-            android:parentActivityName=".AdminHomeActivity"></activity>
+        <activity
+            android:name=".AdminStudyActivity"
+            android:parentActivityName=".AdminHomeActivity" />
+        <activity
+            android:name=".AdminDepartmentActivity"
+            android:parentActivityName=".AdminHomeActivity" />
+        <activity android:name=".StudyAlteringActivity"></activity>
     </application>
 
 </manifest>
