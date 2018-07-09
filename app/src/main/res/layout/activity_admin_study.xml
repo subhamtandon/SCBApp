@@ -16,41 +16,86 @@
         android:textAppearance="@style/Theme.AppCompat"
         android:id="@+id/headingStudy"/>
 
-    <LinearLayout
+    <AutoCompleteTextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/headingStudy">
+        android:layout_height="wrap_content"
+        android:id="@+id/ProfessionalsAutoCompleteTextView"
+        android:layout_margin="15dp"
+        android:hint="Professional"
+        android:layout_below="@+id/headingStudy" />
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ProfessionalsAutoCompleteTextView"
-            android:layout_margin="15dp"
-            android:hint="Professional"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/ProfessionalsAutoCompleteTextView"
+        android:layout_alignBottom="@id/ProfessionalsAutoCompleteTextView"
+        android:layout_alignRight="@id/ProfessionalsAutoCompleteTextView"
+        android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/SubjectsAutoCompleteTextView"
-            android:layout_margin="15dp"
-            android:hint="Subjects"/>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/SubjectsAutoCompleteTextView"
+        android:layout_margin="15dp"
+        android:hint="Subjects"
+        android:layout_below="@+id/ProfessionalsAutoCompleteTextView"/>
 
-        <AutoCompleteTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/TypeAutoCompleteTextView"
-            android:layout_margin="15dp"
-            android:hint="Type"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image1"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/SubjectsAutoCompleteTextView"
+        android:layout_alignBottom="@id/SubjectsAutoCompleteTextView"
+        android:layout_alignRight="@id/SubjectsAutoCompleteTextView"
+        android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="15dp"
-            android:text="Submit"
-            android:onClick="SubmitButton"/>
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TypeAutoCompleteTextView"
+        android:layout_margin="15dp"
+        android:hint="Type"
+        android:layout_below="@+id/SubjectsAutoCompleteTextView"/>
 
-    </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image2"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/TypeAutoCompleteTextView"
+        android:layout_alignBottom="@id/TypeAutoCompleteTextView"
+        android:layout_alignRight="@id/TypeAutoCompleteTextView"
+        android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
+
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ChaptersAutoCompleteTextView"
+        android:layout_margin="15dp"
+        android:hint="Chapters"
+        android:layout_below="@id/TypeAutoCompleteTextView"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image3"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/ChaptersAutoCompleteTextView"
+        android:layout_alignBottom="@id/ChaptersAutoCompleteTextView"
+        android:layout_alignRight="@id/ChaptersAutoCompleteTextView"
+        android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="Submit"
+        android:onClick="SubmitButton"
+        android:layout_below="@+id/ChaptersAutoCompleteTextView"/>
 
 </RelativeLayout>
