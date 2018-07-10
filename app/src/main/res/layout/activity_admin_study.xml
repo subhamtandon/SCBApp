@@ -117,6 +117,6 @@
         android:layout_margin="15dp"
         android:text="Submit"
         android:onClick="submitButton"
-        android:layout_below="@+id/ChaptersAutoCompleteTextView"/>
+        android:layout_below="@+id/modeAutoCompleteTextView"/>
 
 </RelativeLayout>

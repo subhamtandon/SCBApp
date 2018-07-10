@@ -145,7 +145,7 @@ public class AdminStudyActivity extends AppCompatActivity {
         final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Chapters);
         ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
 
-        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Type);
+        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Modes);
         modeAutoCompleteTextView.setAdapter(ModeAdapter);
 
 
