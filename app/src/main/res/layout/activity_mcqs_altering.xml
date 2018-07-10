@@ -6,105 +6,224 @@
     android:layout_height="match_parent"
     tools:context=".MCQsAlteringActivity">
 
-    <EditText
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Question"
-        android:id="@+id/editTextQuestion"/>
+        android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="image"
-        android:layout_alignTop="@+id/editTextQuestion"
-        android:layout_alignBottom="@+id/editTextQuestion"
-        android:layout_alignRight="@+id/editTextQuestion"
-        android:padding="5dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Option 1"
-        android:id="@+id/editTextOption1"
-        android:layout_below="@+id/editTextQuestion"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Question"
+                android:id="@+id/editTextQuestion"/>
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch1"
-        android:padding="5dp"
-        android:layout_alignTop="@+id/editTextOption1"
-        android:layout_alignBottom="@+id/editTextOption1"
-        android:layout_alignRight="@+id/editTextOption1"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout1"
+                android:layout_below="@+id/editTextQuestion"
+                android:layout_margin="10dp">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Option 2"
-        android:id="@+id/editTextOption2"
-        android:layout_below="@+id/editTextOption1"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch2"
-        android:padding="5dp"
-        android:layout_alignTop="@+id/editTextOption2"
-        android:layout_alignBottom="@+id/editTextOption2"
-        android:layout_alignRight="@+id/editTextOption2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Option 3"
-        android:id="@+id/editTextOption3"
-        android:layout_below="@+id/editTextOption2"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Option 1"
+                android:id="@+id/editTextOption1"
+                android:layout_below="@+id/linearLayout1"/>
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch3"
-        android:padding="5dp"
-        android:layout_alignTop="@+id/editTextOption3"
-        android:layout_alignBottom="@+id/editTextOption3"
-        android:layout_alignRight="@+id/editTextOption3"/>
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch1"
+                android:padding="5dp"
+                android:layout_alignTop="@+id/editTextOption1"
+                android:layout_alignBottom="@+id/editTextOption1"
+                android:layout_alignRight="@+id/editTextOption1"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Option 4"
-        android:id="@+id/editTextOption4"
-        android:layout_below="@+id/editTextOption3"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout2"
+                android:layout_below="@+id/editTextOption1"
+                android:layout_margin="10dp">
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switch4"
-        android:padding="5dp"
-        android:layout_alignTop="@+id/editTextOption4"
-        android:layout_alignBottom="@+id/editTextOption4"
-        android:layout_alignRight="@+id/editTextOption4"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Explanation/Hint"
-        android:id="@+id/editTextExplanation"
-        android:layout_below="@+id/editTextOption4"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="image"
-        android:layout_alignTop="@+id/editTextExplanation"
-        android:layout_alignBottom="@+id/editTextExplanation"
-        android:layout_alignRight="@+id/editTextExplanation"
-        android:padding="5dp"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Option 2"
+                android:id="@+id/editTextOption2"
+                android:layout_below="@+id/linearLayout2"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch2"
+                android:padding="5dp"
+                android:layout_alignTop="@+id/editTextOption2"
+                android:layout_alignBottom="@+id/editTextOption2"
+                android:layout_alignRight="@+id/editTextOption2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout3"
+                android:layout_below="@+id/editTextOption2"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Option 3"
+                android:id="@+id/editTextOption3"
+                android:layout_below="@+id/linearLayout3"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch3"
+                android:padding="5dp"
+                android:layout_alignTop="@+id/editTextOption3"
+                android:layout_alignBottom="@+id/editTextOption3"
+                android:layout_alignRight="@+id/editTextOption3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout4"
+                android:layout_below="@+id/editTextOption3"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Option 4"
+                android:id="@+id/editTextOption4"
+                android:layout_below="@+id/linearLayout4"/>
+
+            <Switch
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/switch4"
+                android:padding="5dp"
+                android:layout_alignTop="@+id/editTextOption4"
+                android:layout_alignBottom="@+id/editTextOption4"
+                android:layout_alignRight="@+id/editTextOption4"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout5"
+                android:layout_below="@+id/editTextOption4"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="Explanation/Hint"
+                android:id="@+id/editTextExplanation"
+                android:layout_below="@+id/linearLayout5"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/linearLayout6"
+                android:layout_below="@+id/editTextExplanation"
+                android:layout_margin="10dp">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="select image" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="No file selected"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>
