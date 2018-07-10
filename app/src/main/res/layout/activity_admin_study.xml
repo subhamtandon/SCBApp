@@ -91,6 +91,26 @@
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
         android:visibility="gone"/>
 
+    <AutoCompleteTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/modeAutoCompleteTextView"
+        android:layout_margin="15dp"
+        android:hint="Mode"
+        android:layout_below="@id/ChaptersAutoCompleteTextView"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/image4"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/modeAutoCompleteTextView"
+        android:layout_alignBottom="@id/modeAutoCompleteTextView"
+        android:layout_alignRight="@id/modeAutoCompleteTextView"
+        android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
+        android:visibility="gone"/>
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

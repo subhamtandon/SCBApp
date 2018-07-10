@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,15 +15,16 @@ public class AdminStudyActivity extends AppCompatActivity {
 
 
 
-    AutoCompleteTextView ProfessionalsAutoCompleteTextView, SubjectsAutoCompleteTextView, TypeAutoCompleteTextView, ChaptersAutoCompleteTextView;
-    ImageView image,image1,image2,image3;
+    AutoCompleteTextView ProfessionalsAutoCompleteTextView, SubjectsAutoCompleteTextView, TypeAutoCompleteTextView, ChaptersAutoCompleteTextView, modeAutoCompleteTextView;
+    ImageView image,image1,image2,image3,image4;
 
     public void submitButton(View view){
 
         String whichProfessional = ProfessionalsAutoCompleteTextView.getText().toString();
         String whichSubject = SubjectsAutoCompleteTextView.getText().toString();
         String whichType = TypeAutoCompleteTextView.getText().toString();
-        String whichChapter = null;
+        String whichChapter = ChaptersAutoCompleteTextView.getText().toString();
+        String whichMode = null;
 
         String ready= "true";
         if (TextUtils.isEmpty(whichProfessional)){
@@ -100,6 +102,10 @@ public class AdminStudyActivity extends AppCompatActivity {
       "Chapter 1","Chapter 2","Chapter 3","Chapter 4"
     };
 
+    private static final String[] Modes = new String[]{
+      "Easy","Medium","Hard","Random"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,11 +118,13 @@ public class AdminStudyActivity extends AppCompatActivity {
         SubjectsAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.SubjectsAutoCompleteTextView);
         TypeAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.TypeAutoCompleteTextView);
         ChaptersAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.ChaptersAutoCompleteTextView);
+        modeAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.modeAutoCompleteTextView);
 
         image = (ImageView) findViewById(R.id.image);
         image1 = (ImageView) findViewById(R.id.image1);
         image2 = (ImageView) findViewById(R.id.image2);
         image3 = (ImageView) findViewById(R.id.image3);
+        image4 = (ImageView) findViewById(R.id.image4);
 
         ArrayAdapter<String> ProfessionalsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Professionals);
         ProfessionalsAutoCompleteTextView.setAdapter(ProfessionalsAdapter);
@@ -129,6 +137,10 @@ public class AdminStudyActivity extends AppCompatActivity {
 
         final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Chapters);
         ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
+
+        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Type);
+        modeAutoCompleteTextView.setAdapter(ModeAdapter);
+
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,17 +170,28 @@ public class AdminStudyActivity extends AppCompatActivity {
             }
         });
 
+        image4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                modeAutoCompleteTextView.showDropDown();
+            }
+        });
+
         TypeAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (TypeAutoCompleteTextView.getText().toString().equalsIgnoreCase("MCQs")){
                     ChaptersAutoCompleteTextView.setVisibility(View.VISIBLE);
                     image3.setVisibility(View.VISIBLE);
+                    modeAutoCompleteTextView.setVisibility(View.VISIBLE);
+                    image4.setVisibility(View.VISIBLE);
                 }
                 else
                 {
                     ChaptersAutoCompleteTextView.setVisibility(View.GONE);
                     image3.setVisibility(View.GONE);
+                    modeAutoCompleteTextView.setVisibility(View.GONE);
+                    image4.setVisibility(View.GONE);
                 }
             }
         });
