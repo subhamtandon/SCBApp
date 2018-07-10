@@ -14,7 +14,8 @@ public class MCQsAlteringActivity extends AppCompatActivity {
         String professional = getIntent().getStringExtra("PROFESSIONAL");
         String subject = getIntent().getStringExtra("SUBJECT");
         String chapter = getIntent().getStringExtra("CHAPTER");
+        String mode = getIntent().getStringExtra("MODE");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " "+ mode, Toast.LENGTH_SHORT).show();
     }
 }

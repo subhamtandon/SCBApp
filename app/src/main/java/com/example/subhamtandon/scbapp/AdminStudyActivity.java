@@ -23,7 +23,7 @@ public class AdminStudyActivity extends AppCompatActivity {
         String whichProfessional = ProfessionalsAutoCompleteTextView.getText().toString();
         String whichSubject = SubjectsAutoCompleteTextView.getText().toString();
         String whichType = TypeAutoCompleteTextView.getText().toString();
-        String whichChapter = ChaptersAutoCompleteTextView.getText().toString();
+        String whichChapter = null;
         String whichMode = null;
 
         String ready= "true";
@@ -45,9 +45,15 @@ public class AdminStudyActivity extends AppCompatActivity {
 
         if(whichType.equalsIgnoreCase("MCQs")){
             whichChapter = ChaptersAutoCompleteTextView.getText().toString();
+            whichMode = modeAutoCompleteTextView.getText().toString();
             if (TextUtils.isEmpty(whichChapter)){
 
                 ChaptersAutoCompleteTextView.setError(getString(R.string.error_field_required));
+                ready = "false";
+            }
+            if (TextUtils.isEmpty(whichMode)){
+
+                modeAutoCompleteTextView.setError(getString(R.string.error_field_required));
                 ready = "false";
             }
         }
@@ -59,6 +65,7 @@ public class AdminStudyActivity extends AppCompatActivity {
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 next.putExtra("CHAPTER", whichChapter);
+                next.putExtra("MODE",whichMode);
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("Record")){
