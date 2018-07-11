@@ -59,7 +59,8 @@
         <activity android:name=".MCQsAlteringActivity" />
         <activity android:name=".RecordsAlteringActivity" />
         <activity android:name=".PracticalAlteringActivity" />
-        <activity android:name=".PYQsActivity"></activity>
+        <activity android:name=".PYQsAlteringActivity" />
+        <activity android:name=".SetsAlteringActivity"></activity>
     </application>
 
 </manifest>

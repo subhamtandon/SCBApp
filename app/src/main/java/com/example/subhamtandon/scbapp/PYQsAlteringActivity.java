@@ -26,7 +26,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class PYQsActivity extends AppCompatActivity {
+public class PYQsAlteringActivity extends AppCompatActivity {
 
     Button selectFile,upload;
     TextView notification;
@@ -39,7 +39,7 @@ public class PYQsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pyqs);
+        setContentView(R.layout.activity_pyqs_altering);
 
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance();
@@ -57,13 +57,13 @@ public class PYQsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (ContextCompat.checkSelfPermission(PYQsActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                if (ContextCompat.checkSelfPermission(PYQsAlteringActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
 
                     selectPdf();
 
                 }else {
 
-                    ActivityCompat.requestPermissions(PYQsActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 9);
+                    ActivityCompat.requestPermissions(PYQsAlteringActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 9);
 
                 }
 
@@ -77,7 +77,7 @@ public class PYQsActivity extends AppCompatActivity {
                 if (pdfUri != null){
                     uploadFile(pdfUri);
                 }else
-                    Toast.makeText(PYQsActivity.this, "Select a file", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PYQsAlteringActivity.this, "Select a file", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -112,9 +112,9 @@ public class PYQsActivity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
 
                                         if (task.isSuccessful())
-                                            Toast.makeText(PYQsActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(PYQsAlteringActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
                                         else
-                                            Toast.makeText(PYQsActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(PYQsAlteringActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
 
                                     }
                                 });
@@ -124,7 +124,7 @@ public class PYQsActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Exception e) {
 
-                Toast.makeText(PYQsActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PYQsAlteringActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
 
             }
         }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -157,7 +157,7 @@ public class PYQsActivity extends AppCompatActivity {
             notification.setText("A file is selected : " + data.getData().getLastPathSegment());
 
         }else
-            Toast.makeText(PYQsActivity.this, "please select a file", Toast.LENGTH_SHORT).show();
+            Toast.makeText(PYQsAlteringActivity.this, "please select a file", Toast.LENGTH_SHORT).show();
 
     }
 }

@@ -61,7 +61,7 @@ public class AdminStudyActivity extends AppCompatActivity {
         if(ready.equalsIgnoreCase("true")){
 
             if(whichType.equalsIgnoreCase("MCQs")){
-                Intent next = new Intent(AdminStudyActivity.this, MCQsAlteringActivity.class);
+                Intent next = new Intent(AdminStudyActivity.this, SetsAlteringActivity.class);
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 next.putExtra("CHAPTER", whichChapter);
