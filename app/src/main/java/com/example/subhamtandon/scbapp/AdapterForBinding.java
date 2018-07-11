@@ -17,13 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.ViewHolder> {
 
     List<ListItemChapters> listItemChapters;
     Context context;
-
 
     public AdapterForBinding(List<ListItemChapters> listItemChapters, Context context) {
         this.listItemChapters = listItemChapters;

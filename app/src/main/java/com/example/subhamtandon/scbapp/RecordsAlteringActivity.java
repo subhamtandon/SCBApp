@@ -99,7 +99,8 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         StorageReference storageReference = storage.getReference();
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
-        final String fileName =  System.currentTimeMillis()+"";
+        final String fileName =  System.currentTimeMillis()+".pdf";
+        final String fileName1 = System.currentTimeMillis()+"";
 
         storageReference.child("Uploads").child(professional).child(subject).child("Records").child(fileName).putFile(pdfUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -110,7 +111,7 @@ public class RecordsAlteringActivity extends AppCompatActivity {
 
                         DatabaseReference reference = database.getReference();
 
-                        reference.child("App").child("Study").child(professional).child(subject).child("Records").child(fileName).setValue(url)
+                        reference.child("App").child("Study").child(professional).child(subject).child("Records").child(fileName1).setValue(url)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
