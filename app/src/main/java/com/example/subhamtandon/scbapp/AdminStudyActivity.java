@@ -69,19 +69,19 @@ public class AdminStudyActivity extends AppCompatActivity {
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("Record")){
-                Intent next = new Intent(AdminStudyActivity.this, RecordsAlteringActivity.class);
+                Intent next = new Intent(AdminStudyActivity.this, ListOfRecordsActivity.class);
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("Practical")){
-                Intent next = new Intent(AdminStudyActivity.this, PracticalAlteringActivity.class);
+                Intent next = new Intent(AdminStudyActivity.this, ListOfPracticalsActivity.class);
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("PYQs")){
-                Intent next = new Intent(AdminStudyActivity.this, PracticalAlteringActivity.class);
+                Intent next = new Intent(AdminStudyActivity.this, ListOfPYQsActivity.class);
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 startActivity(next);

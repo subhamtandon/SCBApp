@@ -60,7 +60,10 @@
         <activity android:name=".RecordsAlteringActivity" />
         <activity android:name=".PracticalAlteringActivity" />
         <activity android:name=".PYQsAlteringActivity" />
-        <activity android:name=".SetsAlteringActivity"></activity>
+        <activity android:name=".SetsAlteringActivity" />
+        <activity android:name=".ListOfRecordsActivity" />
+        <activity android:name=".ListOfPracticalsActivity" />
+        <activity android:name=".ListOfPYQsActivity"></activity>
     </application>
 
 </manifest>
