@@ -78,7 +78,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserQuestion();
 
             }
         });
@@ -87,7 +87,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserOption1();
 
             }
         });
@@ -96,7 +96,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserOption2();
 
             }
         });
@@ -105,7 +105,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserOption3();
 
             }
         });
@@ -114,7 +114,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserOption4();
 
             }
         });
@@ -123,23 +123,52 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                showFileChooser();
+                showFileChooserExplanation();
 
             }
         });
     }
 
-    private void showFileChooser() {
+    private void showFileChooserExplanation() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),6);
+    }
 
+    private void showFileChooserOption4() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),5);
+    }
+
+    private void showFileChooserOption3() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),4);
+    }
+
+    private void showFileChooserOption2() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),3);
+    }
+
+    private void showFileChooserOption1() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),2);
+    }
+
+    private void showFileChooserQuestion() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent, "Select an Image"),1);
-        startActivityForResult(Intent.createChooser(intent, "Select An Image"),2);
-        startActivityForResult(Intent.createChooser(intent, "Select An Image"),3);
-        startActivityForResult(Intent.createChooser(intent, "Select An Image"),4);
-        startActivityForResult(Intent.createChooser(intent, "Select An Image"),5);
-        startActivityForResult(Intent.createChooser(intent, "Select An Image"),6);
     }
 
     @Override
