@@ -32,12 +32,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageQuestion"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationQuestion"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
@@ -70,12 +72,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageOption1"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationOption1"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
@@ -108,12 +112,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageOption2"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationOption2"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
@@ -146,12 +152,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageOption3"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationOption3"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
@@ -184,12 +192,14 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageOption4"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationOption4"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
@@ -213,15 +223,25 @@
                 <Button
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/selectImageExplanation"
                     android:layout_weight="1"
                     android:text="select image" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/notificationExplanation"
                     android:layout_weight="1"
                     android:text="No file selected"/>
             </LinearLayout>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/submitButton"
+                android:layout_margin="10dp"
+                android:layout_below="@+id/linearLayout6"
+                android:text="submit"/>
 
         </RelativeLayout>
     </ScrollView>
