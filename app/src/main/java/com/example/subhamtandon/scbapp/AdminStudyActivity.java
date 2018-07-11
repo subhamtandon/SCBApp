@@ -69,7 +69,7 @@ public class AdminStudyActivity extends AppCompatActivity {
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("Record")){
-                Intent next = new Intent(AdminStudyActivity.this, ListOfRecordsActivity.class);
+                Intent next = new Intent(AdminStudyActivity.this, RecordsAlteringActivity.class);
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 startActivity(next);

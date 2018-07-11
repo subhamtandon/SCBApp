@@ -1,7 +1,10 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -17,6 +20,13 @@ public class MCQsAlteringActivity extends AppCompatActivity {
     Button selectImageQuestion, selectImageOption1,selectImageOption2, selectImageOption3, selectImageOption4, selectImageExplanation, submitButton;
     TextView notificationQuestion, notificationOption1, notificationOption2, notificationOption3, notificationOption4, notificationExplanation;
     Switch switch1, switch2, switch3, switch4;
+    Uri filePathQuestion;
+    Uri filePathOption1;
+    Uri filePathOption2;
+    Uri filePathOption3;
+    Uri filePathOption4;
+    Uri filePathExplanation;
+
 
     FirebaseStorage storage;
     FirebaseDatabase database;
@@ -63,5 +73,115 @@ public class MCQsAlteringActivity extends AppCompatActivity {
         switch2 = (Switch) findViewById(R.id.switch2);
         switch3 = (Switch) findViewById(R.id.switch3);
         switch4 = (Switch) findViewById(R.id.switch4);
+
+        selectImageQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
+
+        selectImageOption1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
+
+        selectImageOption2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
+
+        selectImageOption3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
+
+        selectImageOption4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
+
+        selectImageExplanation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                showFileChooser();
+
+            }
+        });
     }
+
+    private void showFileChooser() {
+
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select an Image"),1);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),2);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),3);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),4);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),5);
+        startActivityForResult(Intent.createChooser(intent, "Select An Image"),6);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathQuestion = data.getData();
+            notificationQuestion.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }else if (requestCode == 2 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathOption1 = data.getData();
+            notificationOption1.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }
+        else if (requestCode == 3 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathOption2 = data.getData();
+            notificationOption2.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }
+        else if (requestCode == 4 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathOption3 = data.getData();
+            notificationOption3.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }
+        else if (requestCode == 5 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathOption4 = data.getData();
+            notificationOption4.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }
+        else if (requestCode == 6 && resultCode == RESULT_OK && data != null && data.getData() != null){
+
+            filePathExplanation = data.getData();
+            notificationExplanation.setText("A file is selected : " + data.getData().getLastPathSegment());
+
+        }
+        else
+            Toast.makeText(MCQsAlteringActivity.this, "please select an image", Toast.LENGTH_SHORT).show();
+    }
+
 }
