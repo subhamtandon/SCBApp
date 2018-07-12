@@ -241,7 +241,7 @@
                 android:id="@+id/submitButton"
                 android:layout_margin="10dp"
                 android:layout_below="@+id/linearLayout6"
-                android:text="submit"/>
+                android:text="submit" />
 
         </RelativeLayout>
     </ScrollView>
