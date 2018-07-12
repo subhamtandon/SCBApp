@@ -146,14 +146,55 @@ public class MCQsAlteringActivity extends AppCompatActivity {
                 //uploadImageOption4(filePathOption4);
                 //uploadImageExplanation(filePathExplanation);
 
-                String question = editTextQuestion.getText().toString();
-                String option1 = editTextOption1.getText().toString();
-                String option2 = editTextOption2.getText().toString();
-                String option3 = editTextOption3.getText().toString();
-                String option4 = editTextOption4.getText().toString();
-                String explanation = editTextExplanation.getText().toString();
+                String questionText = editTextQuestion.getText().toString();
+                String questionImageUrl = filePathQuestion.toString();
+                String explanationText = editTextExplanation.getText().toString();
+                String explanationImageUrl = filePathExplanation.toString();
+                String option1Text = editTextOption1.getText().toString();
+                String option1ImageUrl = filePathOption1.toString();
+                String option2Text = editTextOption2.getText().toString();
+                String option2ImageUrl = filePathOption2.toString();
+                String option3Text = editTextOption3.getText().toString();
+                String option3ImageUrl = filePathOption3.toString();
+                String option4Text = editTextOption4.getText().toString();
+                String option4ImageUrl = filePathOption4.toString();
 
-                //database.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter).child(mode).child(set).setValue(question)
+
+                QuestionDetails questionDetails = new QuestionDetails(
+                        questionText,
+                        questionImageUrl,
+                        explanationText,
+                        explanationImageUrl,
+                        option1Text,
+                        option1ImageUrl,
+                        option2Text,
+                        option2ImageUrl,
+                        option3Text,
+                        option3ImageUrl,
+                        option4Text,
+                        option4ImageUrl,
+                        chapter,
+                        mode,
+                        set
+                );
+
+                database.getInstance().getReference()
+                        .child("App")
+                        .child("Study")
+                        .child(professional)
+                        .child(subject)
+                        .child("MCQs")
+                        .setValue(questionDetails)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+
+                                    Toast.makeText(MCQsAlteringActivity.this, "Question Added successfully", Toast.LENGTH_SHORT).show();
+                                }else
+                                    Toast.makeText(MCQsAlteringActivity.this, "failed to add question", Toast.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
     }

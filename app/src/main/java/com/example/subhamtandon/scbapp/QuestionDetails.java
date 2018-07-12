@@ -99,5 +99,65 @@ public class QuestionDetails {
     public String getSet() {
         return set;
     }
+
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
+    }
+
+    public void setQuestionImageUrl(String questionImageUrl) {
+        this.questionImageUrl = questionImageUrl;
+    }
+
+    public void setExplanationText(String explanationText) {
+        this.explanationText = explanationText;
+    }
+
+    public void setExplanationImageUrl(String explanationImageUrl) {
+        this.explanationImageUrl = explanationImageUrl;
+    }
+
+    public void setOption1Text(String option1Text) {
+        this.option1Text = option1Text;
+    }
+
+    public void setOption1ImageUrl(String option1ImageUrl) {
+        this.option1ImageUrl = option1ImageUrl;
+    }
+
+    public void setOption2Text(String option2Text) {
+        this.option2Text = option2Text;
+    }
+
+    public void setOption2ImageUrl(String option2ImageUrl) {
+        this.option2ImageUrl = option2ImageUrl;
+    }
+
+    public void setOption3Text(String option3Text) {
+        this.option3Text = option3Text;
+    }
+
+    public void setOption3ImageUrl(String option3ImageUrl) {
+        this.option3ImageUrl = option3ImageUrl;
+    }
+
+    public void setOption4Text(String option4Text) {
+        this.option4Text = option4Text;
+    }
+
+    public void setOption4ImageUrl(String option4ImageUrl) {
+        this.option4ImageUrl = option4ImageUrl;
+    }
+
+    public void setChapter(String chapter) {
+        this.chapter = chapter;
+    }
+
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public void setSet(String set) {
+        this.set = set;
+    }
 }
 
