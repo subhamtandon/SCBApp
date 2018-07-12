@@ -9,7 +9,7 @@ public class QuestionDetails {
     String option1Text;
     String option1ImageUrl;
     String option2Text;
-    String option2ImageUrl;
+    String  option2ImageUrl;
     String option3Text;
     String option3ImageUrl;
     String option4Text;
