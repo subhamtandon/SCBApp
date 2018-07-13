@@ -12,7 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/linearLayoutRecords"
+            android:id="@+id/linearLayoutPYQs"
             android:padding="10dp">
 
             <TextView
@@ -20,7 +20,7 @@
                 android:layout_height="wrap_content"
                 android:text="Heading"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                android:id="@+id/textViewRecordName"
+                android:id="@+id/textViewPYQName"
                 android:gravity="center"/>
             <!--
             <TextView

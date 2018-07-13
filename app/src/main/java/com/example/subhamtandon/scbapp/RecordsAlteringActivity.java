@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.renderscript.ScriptIntrinsicYuvToRGB;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class RecordsAlteringActivity extends AppCompatActivity {
 
     Button selectFile,upload;
     TextView notification;
+    TextInputEditText recordFileName;
     Uri pdfUri;
 
     FirebaseStorage storage;
@@ -50,6 +52,7 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         selectFile = findViewById(R.id.selectFile);
         upload = findViewById(R.id.upload);
         notification = findViewById(R.id.notification);
+        recordFileName = findViewById(R.id.recordFileName);
 
         String professional = getIntent().getStringExtra("PROFESSIONAL");
         String subject = getIntent().getStringExtra("SUBJECT");
@@ -99,8 +102,11 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         StorageReference storageReference = storage.getReference();
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
-        final String fileName =  System.currentTimeMillis()+".pdf";
-        final String fileName1 = System.currentTimeMillis()+"";
+        //final String fileName =  System.currentTimeMillis()+".pdf";
+        //final String fileName1 = System.currentTimeMillis()+"";
+
+        final String fileName =  recordFileName.getText().toString()+".pdf";
+        final String fileName1 = recordFileName.getText().toString()+"";
 
         storageReference.child("Uploads").child(professional).child(subject).child("Records").child(fileName).putFile(pdfUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -123,6 +129,14 @@ public class RecordsAlteringActivity extends AppCompatActivity {
 
                                     }
                                 });
+
+                        progressDialog.dismiss();
+
+                        Intent done = new Intent(RecordsAlteringActivity.this, UploadDoneActivity.class);
+                        done.putExtra("TYPE","Records");
+                        done.putExtra("PROFESSIONAL",professional);
+                        done.putExtra("SUBJECT",subject);
+                        startActivity(done);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

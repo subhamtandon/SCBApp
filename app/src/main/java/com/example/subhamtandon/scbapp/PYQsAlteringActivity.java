@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -30,6 +31,7 @@ public class PYQsAlteringActivity extends AppCompatActivity {
 
     Button selectFile,upload;
     TextView notification;
+    TextInputEditText pyqFileName;
     Uri pdfUri;
 
     FirebaseStorage storage;
@@ -47,6 +49,7 @@ public class PYQsAlteringActivity extends AppCompatActivity {
         selectFile = findViewById(R.id.selectFile);
         upload = findViewById(R.id.upload);
         notification = findViewById(R.id.notification);
+        pyqFileName = findViewById(R.id.pyqFileName);
 
         String professional = getIntent().getStringExtra("PROFESSIONAL");
         String subject = getIntent().getStringExtra("SUBJECT");
@@ -95,7 +98,11 @@ public class PYQsAlteringActivity extends AppCompatActivity {
         StorageReference storageReference = storage.getReference();
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
-        final String fileName =  System.currentTimeMillis()+"";
+        //final String fileName =  System.currentTimeMillis()+".pdf";
+        //final String fileName1 = System.currentTimeMillis()+"";
+
+        final String fileName =  pyqFileName.getText().toString()+".pdf";
+        final String fileName1 = pyqFileName.getText().toString()+"";
 
         storageReference.child("Uploads").child(professional).child(subject).child("PYQs").child(fileName).putFile(pdfUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -106,7 +113,7 @@ public class PYQsAlteringActivity extends AppCompatActivity {
 
                         DatabaseReference reference = database.getReference();
 
-                        reference.child("App").child("Study").child(professional).child(subject).child("PYqs").child(fileName).setValue(url)
+                        reference.child("App").child("Study").child(professional).child(subject).child("PYQs").child(fileName1).setValue(url)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -118,6 +125,13 @@ public class PYQsAlteringActivity extends AppCompatActivity {
 
                                     }
                                 });
+                        progressDialog.dismiss();
+
+                        Intent done = new Intent(PYQsAlteringActivity.this, UploadDoneActivity.class);
+                        done.putExtra("TYPE","PYQs");
+                        done.putExtra("PROFESSIONAL",professional);
+                        done.putExtra("SUBJECT",subject);
+                        startActivity(done);
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

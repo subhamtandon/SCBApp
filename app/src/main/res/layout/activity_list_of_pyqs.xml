@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ListOfPYQsActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerViewPYQs">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/recyclerViewPYQs"
+        android:text="More Previous Year Questions Coming Soon"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:gravity="center"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/addPYQ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginBottom="22dp"
+        android:layout_marginRight="22dp"
+        app:srcCompat="@drawable/ic_note_add_black"
+        tools:ignore="VectorDrawableCompat" />
+
 </RelativeLayout>

@@ -81,4 +81,11 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
         AdapterForPracticalsList adapterForPracticalsList = new AdapterForPracticalsList(recyclerViewPracticals, ListOfPracticalsActivity.this,new ArrayList<String>(),new ArrayList<String>());
         recyclerViewPracticals.setAdapter(adapterForPracticalsList);
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back = new Intent(ListOfPracticalsActivity.this, AdminStudyActivity.class);
+        startActivity(back);
+    }
 }

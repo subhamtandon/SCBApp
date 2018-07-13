@@ -83,4 +83,10 @@ public class ListOfRecordsActivity extends AppCompatActivity {
         recyclerViewRecords.setAdapter(adapterForRecordsList);
 
     }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent back = new Intent(ListOfRecordsActivity.this, AdminStudyActivity.class);
+        startActivity(back);
+    }
 }

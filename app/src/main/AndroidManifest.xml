@@ -63,7 +63,8 @@
         <activity android:name=".SetsAlteringActivity" />
         <activity android:name=".ListOfRecordsActivity" />
         <activity android:name=".ListOfPracticalsActivity" />
-        <activity android:name=".ListOfPYQsActivity"></activity>
+        <activity android:name=".ListOfPYQsActivity" />
+        <activity android:name=".UploadDoneActivity"></activity>
     </application>
 
 </manifest>
