@@ -8,7 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,8 +43,34 @@ public class AdapterForPYQsList extends RecyclerView.Adapter<AdapterForPYQsList.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        final int pos = position;
 
         holder.nameOfFile.setText(arrayList.get(position));
+
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Edit clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        holder.nameOfFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //int position = recyclerView.getChildLayoutPosition(v);
+                Intent intent = new Intent();
+                intent.setType(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(urls.get(pos)));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
@@ -53,9 +81,15 @@ public class AdapterForPYQsList extends RecyclerView.Adapter<AdapterForPYQsList.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView nameOfFile;
+        ImageView edit , delete;
+
         public ViewHolder(View itemView) {
             super(itemView);
             nameOfFile = itemView.findViewById(R.id.textViewPYQName);
+            edit = itemView.findViewById(R.id.editPYQ);
+            delete = itemView.findViewById(R.id.deletePYQ);
+
+            /*
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -67,6 +101,7 @@ public class AdapterForPYQsList extends RecyclerView.Adapter<AdapterForPYQsList.
                     context.startActivity(intent);
                 }
             });
+            */
         }
     }
 
