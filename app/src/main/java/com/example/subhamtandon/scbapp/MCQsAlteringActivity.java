@@ -165,47 +165,18 @@ public class MCQsAlteringActivity extends AppCompatActivity {
                 questionCode = professional.substring(0,2) + subject.substring(0,2) + chapter.substring(chapter.length() - 2) + mode.substring(0,1) + set.substring(set.length() - 2);
 
                 questionText = editTextQuestion.getText().toString();
-                if (imagePathQuestion == null){
-                    questionImageUrl = null;
-                }else {
-                    questionImageUrl = uploadImageQuestion(imagePathQuestion);
-                }
-
-                /*explanationText = editTextExplanation.getText().toString();
-                if (imagePathExplanation == null){
-                    explanationImageUrl = null;
-                }else {
-                    explanationImageUrl = uploadImageExplanation(imagePathExplanation);
-                }
-
+                explanationText = editTextExplanation.getText().toString();
                 option1Text = editTextOption1.getText().toString();
-                if (imagePathOption1 == null){
-                    option1ImageUrl = null;
-                }else {
-                   option1ImageUrl = uploadImageOption1(imagePathOption1);
-                }
-
                 option2Text = editTextOption2.getText().toString();
-                if (imagePathOption2 == null){
-                    option2ImageUrl = null;
-                }else {
-                    option2ImageUrl = uploadImageOption2(imagePathOption2);
-                }
-
                 option3Text = editTextOption3.getText().toString();
-                if (imagePathOption3 == null){
-                    option3ImageUrl = null;
-                }else {
-                    option3ImageUrl = uploadImageOption3(imagePathOption3);
-                }
-
                 option4Text = editTextOption4.getText().toString();
-                if (imagePathOption4 == null){
-                    option4ImageUrl = null;
-                }else {
-                    option4ImageUrl = uploadImageOption4(imagePathOption4);
-                }*/
 
+                questionImageUrl = " ";
+                explanationImageUrl = " ";
+                option1ImageUrl = " ";
+                option2ImageUrl = " ";
+                option3ImageUrl = " ";
+                option4ImageUrl = " ";
 
                 QuestionDetails questionDetails = new QuestionDetails(
                         questionText,
@@ -225,7 +196,9 @@ public class MCQsAlteringActivity extends AppCompatActivity {
                         set
                 );
 
-                database.getInstance().getReference()
+                DatabaseReference reference = database.getReference();
+
+                reference
                         .child("App")
                         .child("Study")
                         .child(professional)
@@ -243,8 +216,54 @@ public class MCQsAlteringActivity extends AppCompatActivity {
                                     Toast.makeText(MCQsAlteringActivity.this, "failed to add question", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+                if (imagePathQuestion == null){
+                    questionImageUrl = null;
+                }else {
+                    uploadImageQuestion(imagePathQuestion);
+                }
             }
         });
+
+
+
+                /*
+                if (imagePathExplanation == null){
+                    explanationImageUrl = null;
+                }else {
+                    explanationImageUrl = uploadImageExplanation(imagePathExplanation);
+                }
+
+
+                if (imagePathOption1 == null){
+                    option1ImageUrl = null;
+                }else {
+                   option1ImageUrl = uploadImageOption1(imagePathOption1);
+                }
+
+
+                if (imagePathOption2 == null){
+                    option2ImageUrl = null;
+                }else {
+                    option2ImageUrl = uploadImageOption2(imagePathOption2);
+                }
+
+
+                if (imagePathOption3 == null){
+                    option3ImageUrl = null;
+                }else {
+                    option3ImageUrl = uploadImageOption3(imagePathOption3);
+                }
+
+
+                if (imagePathOption4 == null){
+                    option4ImageUrl = null;
+                }else {
+                    option4ImageUrl = uploadImageOption4(imagePathOption4);
+                }*/
+
+
+
     }
 
     private void showFileChooserExplanation() {
@@ -366,7 +385,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
         return url;
     }*/
 
-    private String uploadImageQuestion(Uri imagePathQuestion) {
+    /*private String uploadImageQuestion(Uri imagePathQuestion) {
 
         StorageReference storageReference = storage.getReference();
 
@@ -378,14 +397,14 @@ public class MCQsAlteringActivity extends AppCompatActivity {
         final String questionCode = professional.substring(0,2) + subject.substring(0,2) + chapter.substring(chapter.length() - 2) + mode.substring(0,1) + set.substring(set.length() - 2);
         //final String fileName =  System.currentTimeMillis()+"";
 
-        final String url = null;
+        final String url;
 
         storageReference.child("Uploads").child(professional).child(subject).child("MCQs").child(questionCode).child("Question").putFile(imagePathQuestion)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                         //url = taskSnapshot.getDownloadUrl().toString();
+                        url = taskSnapshot.getDownloadUrl().toString();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {
@@ -396,14 +415,13 @@ public class MCQsAlteringActivity extends AppCompatActivity {
 
             }
         });
-
+        //url=url1;
         return url;
-    }
+    }*/
 
-    /*private void uploadImageQuestion(Uri filePathQuestion) {
+    private void uploadImageQuestion(Uri imagePathQuestion) {
 
         StorageReference storageReference = storage.getReference();
-
 
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
@@ -411,9 +429,9 @@ public class MCQsAlteringActivity extends AppCompatActivity {
         final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
         final String questionCode = professional.substring(0,2) + subject.substring(0,2) + chapter.substring(chapter.length() - 2) + mode.substring(0,1) + set.substring(set.length() - 2);
-        final String fileName =  System.currentTimeMillis()+"";
+        //final String fileName =  System.currentTimeMillis()+"";
 
-        storageReference.child("Uploads").child(professional).child(subject).child(chapter).child(mode).child(set).child(fileName).putFile(filePathQuestion)
+        storageReference.child("Uploads").child(professional).child(subject).child("MCQs").child(questionCode).child("Question").putFile(imagePathQuestion)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -422,7 +440,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
 
                         DatabaseReference reference = database.getReference();
 
-                        reference.child("App").child("Study").child(professional).child(subject).child("MCQs").child(questionCode).child(mode).child(set).child(fileName).setValue(url)
+                        reference.child("App").child("Study").child(professional).child(subject).child("MCQs").child(questionCode).child(questionImageUrl).setValue(url)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -445,6 +463,6 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
 
 }

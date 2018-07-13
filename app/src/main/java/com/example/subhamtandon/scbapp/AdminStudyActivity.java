@@ -106,7 +106,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     };
 
     private static final String[] Chapters = new String[]{
-      "Chapter 1","Chapter 2","Chapter 3","Chapter 4"
+      "Chapter 01","Chapter 02","Chapter 03","Chapter 04"
     };
 
     private static final String[] Modes = new String[]{
