@@ -78,7 +78,14 @@ public class PYQsAlteringActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (pdfUri != null){
-                    uploadFile(pdfUri);
+                    String ready = "true";
+                    if(pyqFileName.getText().toString().trim().equals("")){
+                        pyqFileName.setError(getString(R.string.error_field_required));
+                        ready="false";
+                    }
+                    if(ready.equals("true")) {
+                        uploadFile(pdfUri);
+                    }
                 }else
                     Toast.makeText(PYQsAlteringActivity.this, "Select a file", Toast.LENGTH_SHORT).show();
 

@@ -81,7 +81,14 @@ public class RecordsAlteringActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (pdfUri != null){
-                    uploadFile(pdfUri);
+                    String ready = "true";
+                    if(recordFileName.getText().toString().trim().equals("")){
+                        recordFileName.setError(getString(R.string.error_field_required));
+                        ready="false";
+                    }
+                    if(ready.equals("true")) {
+                        uploadFile(pdfUri);
+                    }
                 }else
                     Toast.makeText(RecordsAlteringActivity.this, "Select a file", Toast.LENGTH_SHORT).show();
 
@@ -104,6 +111,8 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         final String subject = getIntent().getStringExtra("SUBJECT");
         //final String fileName =  System.currentTimeMillis()+".pdf";
         //final String fileName1 = System.currentTimeMillis()+"";
+
+
 
         final String fileName =  recordFileName.getText().toString()+".pdf";
         final String fileName1 = recordFileName.getText().toString()+"";
