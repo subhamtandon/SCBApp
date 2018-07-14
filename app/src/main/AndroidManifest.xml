@@ -64,7 +64,13 @@
         <activity android:name=".ListOfRecordsActivity" />
         <activity android:name=".ListOfPracticalsActivity" />
         <activity android:name=".ListOfPYQsActivity" />
-        <activity android:name=".UploadDoneActivity"></activity>
+        <activity android:name=".UploadDoneActivity" />
+        <activity android:name=".AddingQuestionActivity" />
+        <activity android:name=".AddingOptionAActivity" />
+        <activity android:name=".AddingOptionBActivity" />
+        <activity android:name=".AddingOptionCActivity" />
+        <activity android:name=".AddingOptionDActivity" />
+        <activity android:name=".AddingExplanationActivity"></activity>
     </application>
 
 </manifest>
