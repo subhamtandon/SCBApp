@@ -50,8 +50,8 @@ public class ListOfRecordsActivity extends AppCompatActivity {
 
                 if(dataSnapshot!=null) {
 
-                    String recordName = dataSnapshot.getKey();
-                    String url = dataSnapshot.getValue(String.class);
+                    String recordName = dataSnapshot.child("mName").getValue(String.class);
+                    String url = dataSnapshot.child("mURL").getValue(String.class);
 
                     ((AdapterForRecordsList) recyclerViewRecords.getAdapter()).update(recordName, url);
                 }

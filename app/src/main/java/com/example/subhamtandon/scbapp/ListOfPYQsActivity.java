@@ -49,8 +49,8 @@ public class ListOfPYQsActivity extends AppCompatActivity {
 
                 if(dataSnapshot!=null) {
 
-                    String PYQName = dataSnapshot.getKey();
-                    String url = dataSnapshot.getValue(String.class);
+                    String PYQName = dataSnapshot.child("mName").getValue(String.class);
+                    String url = dataSnapshot.child("mURL").getValue(String.class);
 
                     ((AdapterForPYQsList) recyclerViewPYQs.getAdapter()).update(PYQName, url);
                 }

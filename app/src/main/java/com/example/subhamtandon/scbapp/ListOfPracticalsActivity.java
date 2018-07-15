@@ -49,8 +49,8 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
 
                 if(dataSnapshot!=null) {
 
-                    String practicalName = dataSnapshot.getKey();
-                    String url = dataSnapshot.getValue(String.class);
+                    String practicalName = dataSnapshot.child("mName").getValue(String.class);
+                    String url = dataSnapshot.child("mURL").getValue(String.class);
 
                     ((AdapterForPracticalsList) recyclerViewPracticals.getAdapter()).update(practicalName, url);
                 }

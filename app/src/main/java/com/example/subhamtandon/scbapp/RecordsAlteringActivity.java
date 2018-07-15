@@ -2,6 +2,7 @@ package com.example.subhamtandon.scbapp;
 
 import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -13,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
@@ -40,6 +43,8 @@ public class RecordsAlteringActivity extends AppCompatActivity {
     FirebaseStorage storage;
     FirebaseDatabase database;
     ProgressDialog progressDialog;
+
+    StorageTask uploadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +92,12 @@ public class RecordsAlteringActivity extends AppCompatActivity {
                         ready="false";
                     }
                     if(ready.equals("true")) {
-                        uploadFile(pdfUri);
+                        if(uploadTask != null && uploadTask.isInProgress()){
+                            Toast.makeText(RecordsAlteringActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                        }
+                        else{
+                            uploadFile(pdfUri);
+                        }
                     }
                 }else
                     Toast.makeText(RecordsAlteringActivity.this, "Select a file", Toast.LENGTH_SHORT).show();
@@ -109,15 +119,15 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         StorageReference storageReference = storage.getReference();
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
-        //final String fileName =  System.currentTimeMillis()+".pdf";
+        final String fileName =  System.currentTimeMillis()+"." + getFileExtension(pdfUri);
         //final String fileName1 = System.currentTimeMillis()+"";
 
 
 
-        final String fileName =  recordFileName.getText().toString()+".pdf";
-        final String fileName1 = recordFileName.getText().toString()+"";
+        //final String fileName =  recordFileName.getText().toString()+".pdf";
+        //final String fileName1 = recordFileName.getText().toString()+"";
 
-        storageReference.child("Uploads").child(professional).child(subject).child("Records").child(fileName).putFile(pdfUri)
+        uploadTask = storageReference.child("Uploads").child(professional).child(subject).child("Records").child(fileName).putFile(pdfUri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -126,7 +136,10 @@ public class RecordsAlteringActivity extends AppCompatActivity {
 
                         DatabaseReference reference = database.getReference();
 
-                        reference.child("App").child("Study").child(professional).child(subject).child("Records").child(fileName1).setValue(url)
+                        UploadPDF uploadPDF = new UploadPDF(recordFileName.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
+                        String uploadPDFID = reference.push().getKey();
+
+                        reference.child("App").child("Study").child(professional).child(subject).child("Records").child(uploadPDFID).setValue(uploadPDF)
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
@@ -201,5 +214,11 @@ public class RecordsAlteringActivity extends AppCompatActivity {
         }else
             Toast.makeText(RecordsAlteringActivity.this, "please select a file", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private String getFileExtension(Uri uri){
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 }
