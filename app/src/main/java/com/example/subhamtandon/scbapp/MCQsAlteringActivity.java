@@ -157,53 +157,7 @@ public class MCQsAlteringActivity extends AppCompatActivity {
             }
         });
 
-        switchOption1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-                if (isChecked)
-                    option1Value = true;
-                else
-                    option1Value = false;
-
-            }
-        });
-
-        switchOption2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option2Value = true;
-                else
-                    option2Value = false;
-
-            }
-        });
-
-        switchOption3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option3Value = true;
-                else
-                    option3Value = false;
-
-            }
-        });
-
-        switchOption4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option4Value = true;
-                else
-                    option4Value = false;
-
-            }
-        });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -225,10 +179,58 @@ public class MCQsAlteringActivity extends AppCompatActivity {
                 option3ImageUrl = " ";
                 option4ImageUrl = " ";
 
-                option1Value = false;
+                switchOption1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        if (isChecked)
+                            option1Value = true;
+                        else
+                            option1Value = false;
+
+                    }
+                });
+
+                switchOption2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        if (isChecked)
+                            option2Value = true;
+                        else
+                            option2Value = false;
+
+                    }
+                });
+
+                switchOption3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        if (isChecked)
+                            option3Value = true;
+                        else
+                            option3Value = false;
+
+                    }
+                });
+
+                switchOption4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        if (isChecked)
+                            option4Value = true;
+                        else
+                            option4Value = false;
+
+                    }
+                });
+
+                /*option1Value = false;
                 option2Value = false;
                 option3Value = false;
-                option4Value = false;
+                option4Value = false;*/
 
                 QuestionDetails questionDetails = new QuestionDetails(
                         questionText,
