@@ -45,7 +45,7 @@ public class SetsAlteringActivity extends AppCompatActivity {
                 }
 
                 if(ready.equalsIgnoreCase("true")){
-                    Intent next = new Intent(SetsAlteringActivity.this, MCQsAlteringActivity.class);
+                    Intent next = new Intent(SetsAlteringActivity.this, AddingQuestionActivity  .class);
                     next.putExtra("PROFESSIONAL", professional);
                     next.putExtra("SUBJECT", subject);
                     next.putExtra("CHAPTER", chapter);
