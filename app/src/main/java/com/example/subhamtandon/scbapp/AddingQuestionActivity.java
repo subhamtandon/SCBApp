@@ -33,7 +33,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
     private final static int PICK_IMAGE_REQUEST = 1;
 
     EditText editTextQuestion;
-    Button buttonChooseImageQuestion, uploadImageQuestion, next;
+    Button buttonChooseImageQuestion, uploadImageQuestion;
     TextView notificationQuestion;
     ImageView showImageQuestion;
     ProgressBar progressBar;
@@ -61,7 +61,6 @@ public class AddingQuestionActivity extends AppCompatActivity {
         editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
         buttonChooseImageQuestion = (Button) findViewById(R.id.buttonChooseImageQuestion);
         uploadImageQuestion = (Button) findViewById(R.id.uploadImageQuestion);
-        next = (Button)findViewById(R.id.next);
         notificationQuestion = (TextView) findViewById(R.id.notificationQuestion);
         showImageQuestion = (ImageView) findViewById(R.id.showImageQuestion);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -93,22 +92,6 @@ public class AddingQuestionActivity extends AppCompatActivity {
                     uploadFile(id);
                 }
 
-            }
-        });
-
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent next = new Intent(AddingQuestionActivity.this, AddingOptionAActivity.class);
-                next.putExtra("PROFESSIONAL", professional);
-                next.putExtra("SUBJECT", subject);
-                next.putExtra("CHAPTER", chapter);
-                next.putExtra("MODE",mode);
-                next.putExtra("SET",set);
-                next.putExtra("ID",id);
-                startActivity(next);
-                
             }
         });
 
@@ -158,6 +141,14 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             //String uploadId = databaseReference.push().getKey();
                             databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Question").setValue(uploadQuestion);
 
+                            Intent next = new Intent(AddingQuestionActivity.this, AddingOptionAActivity.class);
+                            next.putExtra("PROFESSIONAL", professional);
+                            next.putExtra("SUBJECT", subject);
+                            next.putExtra("CHAPTER", chapter);
+                            next.putExtra("MODE",mode);
+                            next.putExtra("SET",set);
+                            next.putExtra("ID",id);
+                            startActivity(next);
 
                         }
                     })

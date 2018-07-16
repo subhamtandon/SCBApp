@@ -35,7 +35,7 @@ public class AddingOptionDActivity extends AppCompatActivity {
     private final static int PICK_IMAGE_REQUEST = 5;
 
     EditText editTextOption4;
-    Button buttonChooseImageOption4, uploadImageOption4, next4;
+    Button buttonChooseImageOption4, uploadImageOption4;
     TextView notificationOption4;
     ImageView showImageOption4;
     ProgressBar progressBar4;
@@ -64,7 +64,6 @@ public class AddingOptionDActivity extends AppCompatActivity {
         editTextOption4 = (EditText) findViewById(R.id.editTextOption4);
         buttonChooseImageOption4 = (Button) findViewById(R.id.buttonChooseImageOption4);
         uploadImageOption4 = (Button) findViewById(R.id.uploadImageOption4);
-        next4 = (Button)findViewById(R.id.next4);
         notificationOption4 = (TextView) findViewById(R.id.notificationOption4);
         showImageOption4 = (ImageView) findViewById(R.id.showImageOption4);
         progressBar4 = (ProgressBar) findViewById(R.id.progressBar4);
@@ -91,22 +90,6 @@ public class AddingOptionDActivity extends AppCompatActivity {
                 }else {
                     uploadFile(id);
                 }
-
-            }
-        });
-
-        next4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent next = new Intent(AddingOptionDActivity.this, AddingExplanationActivity.class);
-                next.putExtra("PROFESSIONAL", professional);
-                next.putExtra("SUBJECT", subject);
-                next.putExtra("CHAPTER", chapter);
-                next.putExtra("MODE",mode);
-                next.putExtra("SET",set);
-                next.putExtra("ID",id);
-                startActivity(next);
 
             }
         });
@@ -173,6 +156,15 @@ public class AddingOptionDActivity extends AppCompatActivity {
                                     .child(id)
                                     .child("Option D")
                                     .setValue(uploadOptionD);
+
+                            Intent next = new Intent(AddingOptionDActivity.this, AddingExplanationActivity.class);
+                            next.putExtra("PROFESSIONAL", professional);
+                            next.putExtra("SUBJECT", subject);
+                            next.putExtra("CHAPTER", chapter);
+                            next.putExtra("MODE",mode);
+                            next.putExtra("SET",set);
+                            next.putExtra("ID",id);
+                            startActivity(next);
 
 
                         }

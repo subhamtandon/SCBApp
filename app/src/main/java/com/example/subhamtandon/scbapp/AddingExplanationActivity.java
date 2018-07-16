@@ -33,7 +33,7 @@ public class AddingExplanationActivity extends AppCompatActivity {
     private final static int PICK_IMAGE_REQUEST = 6;
 
     EditText editTextExplanation;
-    Button buttonChooseImageExplanation, uploadImageExplanation, next5;
+    Button buttonChooseImageExplanation, uploadImageExplanation;
     TextView notificationExplanation;
     ImageView showImageExplanation;
     ProgressBar progressBar5;
@@ -59,7 +59,6 @@ public class AddingExplanationActivity extends AppCompatActivity {
         editTextExplanation = (EditText) findViewById(R.id.editTextExplanation);
         buttonChooseImageExplanation = (Button) findViewById(R.id.buttonChooseImageExplanation);
         uploadImageExplanation = (Button) findViewById(R.id.uploadImageExplanation);
-        next5 = (Button)findViewById(R.id.next5);
         notificationExplanation = (TextView) findViewById(R.id.notificationExplanation);
         showImageExplanation = (ImageView) findViewById(R.id.showImageExplanation);
         progressBar5 = (ProgressBar) findViewById(R.id.progressBar5);
@@ -85,15 +84,6 @@ public class AddingExplanationActivity extends AppCompatActivity {
                 }else {
                     uploadFile(id);
                 }
-
-            }
-        });
-
-        next5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
 
             }
         });
@@ -148,6 +138,8 @@ public class AddingExplanationActivity extends AppCompatActivity {
                                     .child("Explanation")
                                     .setValue(uploadExplanation);
 
+                            Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
+                            startActivity(done);
 
                         }
                     })
@@ -171,6 +163,8 @@ public class AddingExplanationActivity extends AppCompatActivity {
 
         }else {
             imageExplanationUri = null;
+            Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
+            startActivity(done);
         }
     }
 
