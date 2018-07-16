@@ -69,6 +69,11 @@ public class AddingQuestionActivity extends AppCompatActivity {
         storageReference = FirebaseStorage.getInstance().getReference("Uploads");
         databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study");
 
+        final String id = databaseReference.push().getKey();
+        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Chapter").setValue(chapter);
+        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Mode").setValue(mode);
+        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Set").setValue(set);
+
         buttonChooseImageQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,7 +90,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                 if (uploadTask != null && uploadTask.isInProgress()) {
                     Toast.makeText(AddingQuestionActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
                 }else {
-                    uploadFile();
+                    uploadFile(id);
                 }
 
             }
@@ -101,7 +106,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                 next.putExtra("CHAPTER", chapter);
                 next.putExtra("MODE",mode);
                 next.putExtra("SET",set);
-                //next.putExtra("ID",uploadId);
+                next.putExtra("ID",id);
                 startActivity(next);
                 
             }
@@ -115,7 +120,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private void uploadFile() {
+    private void uploadFile(final String id) {
 
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
@@ -129,6 +134,8 @@ public class AddingQuestionActivity extends AppCompatActivity {
                     .child(professional)
                     .child(subject)
                     .child("MCQs")
+                    .child(id)
+                    .child("Question")
                     .child(System.currentTimeMillis() + "." + getFileExtension(imageQuestionUri));
 
             uploadTask = fileReference.putFile(imageQuestionUri)
@@ -148,8 +155,8 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             UploadQuestion uploadQuestion = new UploadQuestion(editTextQuestion.getText().toString(),
                                     taskSnapshot.getDownloadUrl().toString());
 
-                            String uploadId = databaseReference.push().getKey();
-                            databaseReference.child(professional).child(subject).child("MCQs").child(uploadId).child("Question").setValue(uploadQuestion);
+                            //String uploadId = databaseReference.push().getKey();
+                            databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Question").setValue(uploadQuestion);
 
 
                         }

@@ -1,20 +1,32 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
 
@@ -27,24 +39,36 @@ public class AddingOptionCActivity extends AppCompatActivity {
     TextView notificationOption3;
     ImageView showImageOption3;
     ProgressBar progressBar3;
+    Switch switch3;
 
     Uri imageOption3Uri;
 
+    Boolean option3Value;
+
     StorageReference storageReference;
     DatabaseReference databaseReference;
+    StorageTask uploadTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adding_option_c);
 
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        final String subject = getIntent().getStringExtra("SUBJECT");
+        final String chapter = getIntent().getStringExtra("CHAPTER");
+        final String mode = getIntent().getStringExtra("MODE");
+        final String set = getIntent().getStringExtra("SET");
+        final String id = getIntent().getStringExtra("ID");
+
         editTextOption3 = (EditText) findViewById(R.id.editTextOption3);
         buttonChooseImageOption3 = (Button) findViewById(R.id.buttonChooseImageOption3);
         uploadImageOption3= (Button) findViewById(R.id.uploadImageOption3);
         next3 = (Button)findViewById(R.id.next3);
-        notificationOption3 = (TextView) findViewById(R.id.notificationOption2);
+        notificationOption3 = (TextView) findViewById(R.id.notificationOption3);
         showImageOption3 = (ImageView) findViewById(R.id.showImageOption3);
         progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
+        switch3 = (Switch) findViewById(R.id.switch3);
 
         storageReference = FirebaseStorage.getInstance().getReference("Uploads");
         databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study");
@@ -62,6 +86,12 @@ public class AddingOptionCActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (uploadTask != null && uploadTask.isInProgress()) {
+                    Toast.makeText(AddingOptionCActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                }else {
+                    uploadFile(id);
+                }
+
             }
         });
 
@@ -69,10 +99,104 @@ public class AddingOptionCActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getApplicationContext(), AddingOptionDActivity.class));
+                Intent next = new Intent(AddingOptionCActivity.this, AddingOptionDActivity.class);
+                next.putExtra("PROFESSIONAL", professional);
+                next.putExtra("SUBJECT", subject);
+                next.putExtra("CHAPTER", chapter);
+                next.putExtra("MODE",mode);
+                next.putExtra("SET",set);
+                next.putExtra("ID",id);
+                startActivity(next);
 
             }
         });
+
+        switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                if (isChecked)
+                    option3Value = true;
+                else
+                    option3Value = false;
+
+            }
+        });
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
+    private void uploadFile(final String id) {
+
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        final String subject = getIntent().getStringExtra("SUBJECT");
+        final String chapter = getIntent().getStringExtra("CHAPTER");
+        final String mode = getIntent().getStringExtra("MODE");
+        final String set = getIntent().getStringExtra("SET");
+
+        if (imageOption3Uri != null) {
+
+            StorageReference fileReference = storageReference
+                    .child(professional)
+                    .child(subject)
+                    .child("MCQs")
+                    .child(id)
+                    .child("Option C")
+                    .child(System.currentTimeMillis() + "." + getFileExtension(imageOption3Uri));
+
+            uploadTask = fileReference.putFile(imageOption3Uri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    progressBar3.setProgress(0);
+                                }
+                            }, 500);
+
+                            Toast.makeText(AddingOptionCActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            UploadOptionC uploadOptionC = new UploadOptionC(editTextOption3.getText().toString(),
+                                    taskSnapshot.getDownloadUrl().toString(),
+                                    option3Value);
+
+                            //String uploadId = databaseReference.push().getKey();
+                            databaseReference.child(professional)
+                                    .child(subject)
+                                    .child("MCQs")
+                                    .child(id)
+                                    .child("Option C")
+                                    .setValue(uploadOptionC);
+
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                            Toast.makeText(AddingOptionCActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                            progressBar3.setProgress((int) progress);
+
+                        }
+                    });
+        }else {
+            imageOption3Uri = null;
+        }
     }
 
     private void openFileChooser() {
@@ -90,6 +214,7 @@ public class AddingOptionCActivity extends AppCompatActivity {
 
             imageOption3Uri = data.getData();
             showImageOption3.setImageURI(imageOption3Uri);
+            notificationOption3.setText("A file is selected : " + data.getData().getLastPathSegment());
         }
 
     }

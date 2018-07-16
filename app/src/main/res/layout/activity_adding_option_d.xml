@@ -21,6 +21,15 @@
 
     </android.support.design.widget.TextInputLayout>
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch4"
+        android:padding="5dp"
+        android:layout_alignTop="@+id/textInputLayout5"
+        android:layout_alignBottom="@+id/textInputLayout5"
+        android:layout_alignRight="@+id/textInputLayout5"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
