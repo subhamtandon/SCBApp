@@ -33,6 +33,7 @@ import java.net.URI;
 public class AddingOptionAActivity extends AppCompatActivity {
 
     private final static int PICK_IMAGE_REQUEST = 2;
+    private static int flag = 0;
 
     EditText editTextOption1;
     Button buttonChooseImageOption1, uploadImageOption1;
@@ -88,110 +89,126 @@ public class AddingOptionAActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(AddingOptionAActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                }else {
-                    uploadFile(id);
+                String ready = "true";
+                if (editTextOption1.getText().toString().trim().equals("")){
+                    editTextOption1.setError(getString(R.string.error_field_required));
+                    ready="false";
+                }
+                if(ready.equals("true")){
+
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Option A")
+                            .child("optionAText")
+                            .setValue(editTextOption1.getText().toString());
+
+                    if (imageOption1Uri != null){
+
+                        if (uploadTask != null && uploadTask.isInProgress()) {
+                            Toast.makeText(AddingOptionAActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            StorageReference fileReference = storageReference
+                                    .child(professional)
+                                    .child(subject)
+                                    .child("MCQs")
+                                    .child(id)
+                                    .child("Option A")
+                                    .child(System.currentTimeMillis() + "." + getFileExtension(imageOption1Uri));
+
+                            uploadTask = fileReference.putFile(imageOption1Uri)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    progressBar1.setProgress(0);
+                                                }
+                                            }, 500);
+
+                                            Toast.makeText(AddingOptionAActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+                                            databaseReference.child(professional)
+                                                    .child(subject)
+                                                    .child("MCQs")
+                                                    .child(id)
+                                                    .child("Option A")
+                                                    .child("optionAImageUrl")
+                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                            Toast.makeText(AddingOptionAActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    })
+                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                            progressBar1.setProgress((int) progress);
+
+                                        }
+                                    });
+
+                        }
+
+                    }
+                    else {
+
+                        databaseReference.child(professional)
+                                .child(subject)
+                                .child("MCQs")
+                                .child(id)
+                                .child("Option A")
+                                .child("optionAImageUrl")
+                                .setValue("No Image Selected");
+
+                    }
+
+                    Intent next = new Intent(AddingOptionAActivity.this, AddingOptionBActivity.class);
+                    next.putExtra("PROFESSIONAL", professional);
+                    next.putExtra("SUBJECT", subject);
+                    next.putExtra("CHAPTER", chapter);
+                    next.putExtra("MODE",mode);
+                    next.putExtra("SET",set);
+                    next.putExtra("ID",id);
+                    startActivity(next);
                 }
 
             }
         });
 
-        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
                 if (isChecked)
                     option1Value = true;
-                else
+                else{
                     option1Value = false;
+                    flag = 1;
+                }
+
 
             }
-        });
+        });*/
     }
 
     private String getFileExtension(Uri uri) {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    private void uploadFile(final String id) {
-
-        final String professional = getIntent().getStringExtra("PROFESSIONAL");
-        final String subject = getIntent().getStringExtra("SUBJECT");
-        final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
-        final String set = getIntent().getStringExtra("SET");
-
-        if (imageOption1Uri != null) {
-
-            StorageReference fileReference = storageReference
-                    .child(professional)
-                    .child(subject)
-                    .child("MCQs")
-                    .child(id)
-                    .child("Option A")
-                    .child(System.currentTimeMillis() + "." + getFileExtension(imageOption1Uri));
-
-            uploadTask = fileReference.putFile(imageOption1Uri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressBar1.setProgress(0);
-                                }
-                            }, 500);
-
-                            Toast.makeText(AddingOptionAActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            UploadOptionA uploadOptionA = new UploadOptionA(editTextOption1.getText().toString(),
-                                    taskSnapshot.getDownloadUrl().toString(),
-                                    option1Value);
-
-                            //String uploadId = databaseReference.push().getKey();
-                            databaseReference.child(professional)
-                                    .child(subject)
-                                    .child("MCQs")
-                                    .child(id)
-                                    .child("Option A")
-                                    .setValue(uploadOptionA);
-
-                            Intent next = new Intent(AddingOptionAActivity.this, AddingOptionBActivity.class);
-                            next.putExtra("PROFESSIONAL", professional);
-                            next.putExtra("SUBJECT", subject);
-                            next.putExtra("CHAPTER", chapter);
-                            next.putExtra("MODE",mode);
-                            next.putExtra("SET",set);
-                            next.putExtra("ID",id);
-                            startActivity(next);
-
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(AddingOptionAActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            progressBar1.setProgress((int) progress);
-
-                        }
-                    });
-        }else {
-            imageOption1Uri = null;
-        }
     }
 
     private void openFileChooser() {

@@ -86,10 +86,101 @@ public class AddingQuestionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(AddingQuestionActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                }else {
-                    uploadFile(id);
+                String ready = "true";
+                if (editTextQuestion.getText().toString().trim().equals("")){
+                    editTextQuestion.setError(getString(R.string.error_field_required));
+                    ready="false";
+                }
+                if(ready.equals("true")){
+
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Question")
+                            .child("questionText")
+                            .setValue(editTextQuestion.getText().toString());
+
+                    if (imageQuestionUri != null){
+                        if (uploadTask != null && uploadTask.isInProgress()) {
+
+                            Toast.makeText(AddingQuestionActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+
+                        }else {
+
+                            //uploadFile(id);
+                            StorageReference fileReference = storageReference
+                                    .child(professional)
+                                    .child(subject)
+                                    .child("MCQs")
+                                    .child(id)
+                                    .child("Question")
+                                    .child(System.currentTimeMillis() + "." + getFileExtension(imageQuestionUri));
+
+                            uploadTask = fileReference.putFile(imageQuestionUri)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    progressBar.setProgress(0);
+                                                }
+                                            }, 500);
+
+                                            Toast.makeText(AddingQuestionActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+                                            databaseReference.child(professional)
+                                                    .child(subject)
+                                                    .child("MCQs")
+                                                    .child(id)
+                                                    .child("Question")
+                                                    .child("questionImageUrl")
+                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                            Toast.makeText(AddingQuestionActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    })
+                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                            progressBar.setProgress((int) progress);
+
+                                        }
+                                    });
+                        }
+                    }
+                    else{
+
+                        databaseReference.child(professional)
+                                .child(subject)
+                                .child("MCQs")
+                                .child(id)
+                                .child("Question")
+                                .child("questionImageUrl")
+                                .setValue("No Image Selected");
+
+                    }
+
+                    Intent next = new Intent(AddingQuestionActivity.this, AddingOptionAActivity.class);
+                    next.putExtra("PROFESSIONAL", professional);
+                    next.putExtra("SUBJECT", subject);
+                    next.putExtra("CHAPTER", chapter);
+                    next.putExtra("MODE",mode);
+                    next.putExtra("SET",set);
+                    next.putExtra("ID",id);
+                    startActivity(next);
                 }
 
             }
@@ -103,7 +194,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cR.getType(uri));
     }
 
-    private void uploadFile(final String id) {
+    /*private void uploadFile(final String id) {
 
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
@@ -135,11 +226,15 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             }, 500);
 
                             Toast.makeText(AddingQuestionActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            UploadQuestion uploadQuestion = new UploadQuestion(editTextQuestion.getText().toString(),
-                                    taskSnapshot.getDownloadUrl().toString());
 
                             //String uploadId = databaseReference.push().getKey();
-                            databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Question").setValue(uploadQuestion);
+                            databaseReference.child(professional)
+                                    .child(subject)
+                                    .child("MCQs")
+                                    .child(id)
+                                    .child("Question")
+                                    .child("questionImageUrl")
+                                    .setValue(taskSnapshot.getDownloadUrl().toString());
 
                             Intent next = new Intent(AddingQuestionActivity.this, AddingOptionAActivity.class);
                             next.putExtra("PROFESSIONAL", professional);
@@ -172,8 +267,16 @@ public class AddingQuestionActivity extends AppCompatActivity {
 
         }else {
             imageQuestionUri = null;
+            Intent next = new Intent(AddingQuestionActivity.this, AddingOptionAActivity.class);
+            next.putExtra("PROFESSIONAL", professional);
+            next.putExtra("SUBJECT", subject);
+            next.putExtra("CHAPTER", chapter);
+            next.putExtra("MODE",mode);
+            next.putExtra("SET",set);
+            next.putExtra("ID",id);
+            startActivity(next);
         }
-    }
+    }*/
 
     private void openFileChooser() {
 

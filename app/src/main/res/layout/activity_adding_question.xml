@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/uploadImageQuestion"
             android:layout_weight="1"
-            android:text="Upload"/>
+            android:text="submit and next"/>
 
     </LinearLayout>
 

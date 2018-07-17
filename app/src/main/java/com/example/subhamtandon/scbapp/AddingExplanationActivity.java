@@ -79,12 +79,95 @@ public class AddingExplanationActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (uploadTask != null && uploadTask.isInProgress()) {
-                    Toast.makeText(AddingExplanationActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
-                }else {
-                    uploadFile(id);
+                String ready = "true";
+                if (editTextExplanation.getText().toString().trim().equals("")){
+                    editTextExplanation.setError(getString(R.string.error_field_required));
+                    ready="false";
                 }
+                if(ready.equals("true")) {
 
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Explanation")
+                            .child("explanationText")
+                            .setValue(editTextExplanation.getText().toString());
+
+                    if (imageExplanationUri != null){
+
+                        if (uploadTask != null && uploadTask.isInProgress()) {
+                            Toast.makeText(AddingExplanationActivity.this, "Upload in progress", Toast.LENGTH_SHORT).show();
+                        }else {
+
+                            StorageReference fileReference = storageReference
+                                    .child(professional)
+                                    .child(subject)
+                                    .child("MCQs")
+                                    .child(id)
+                                    .child("Explanation")
+                                    .child(System.currentTimeMillis() + "." + getFileExtension(imageExplanationUri));
+
+                            uploadTask = fileReference.putFile(imageExplanationUri)
+                                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            Handler handler = new Handler();
+                                            handler.postDelayed(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    progressBar5.setProgress(0);
+                                                }
+                                            }, 500);
+
+                                            Toast.makeText(AddingExplanationActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
+
+                                            databaseReference.child(professional)
+                                                    .child(subject)
+                                                    .child("MCQs")
+                                                    .child(id)
+                                                    .child("Explanation")
+                                                    .child("explanationImageUrl")
+                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                            Toast.makeText(AddingExplanationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+
+                                        }
+                                    })
+                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                        @Override
+                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                            progressBar5.setProgress((int) progress);
+
+                                        }
+                                    });
+
+                        }
+
+                    }
+                    else {
+
+                        databaseReference.child(professional)
+                                .child(subject)
+                                .child("MCQs")
+                                .child(id)
+                                .child("Explanation")
+                                .child("explanationImageUrl")
+                                .setValue("No Image Selected");
+                    }
+
+                    Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
+                    startActivity(done);
+                }
             }
         });
     }
@@ -93,79 +176,6 @@ public class AddingExplanationActivity extends AppCompatActivity {
         ContentResolver cR = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
         return mime.getExtensionFromMimeType(cR.getType(uri));
-    }
-
-    private void uploadFile(final String id) {
-
-        final String professional = getIntent().getStringExtra("PROFESSIONAL");
-        final String subject = getIntent().getStringExtra("SUBJECT");
-        final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
-        final String set = getIntent().getStringExtra("SET");
-
-        if (imageExplanationUri != null){
-
-            StorageReference fileReference = storageReference
-                    .child(professional)
-                    .child(subject)
-                    .child("MCQs")
-                    .child(id)
-                    .child("Explanation")
-                    .child(System.currentTimeMillis() + "." + getFileExtension(imageExplanationUri));
-
-            uploadTask = fileReference.putFile(imageExplanationUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    progressBar5.setProgress(0);
-                                }
-                            }, 500);
-
-                            Toast.makeText(AddingExplanationActivity.this, "Upload successful", Toast.LENGTH_LONG).show();
-                            UploadExplanation uploadExplanation = new UploadExplanation(editTextExplanation.getText().toString(),
-                                    taskSnapshot.getDownloadUrl().toString());
-
-                            //String uploadId = databaseReference.push().getKey();
-                            databaseReference.child(professional)
-                                    .child(subject)
-                                    .child("MCQs")
-                                    .child(id)
-                                    .child("Explanation")
-                                    .setValue(uploadExplanation);
-
-                            Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
-                            startActivity(done);
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                            Toast.makeText(AddingExplanationActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            progressBar5.setProgress((int) progress);
-
-                        }
-                    });
-
-        }else {
-            imageExplanationUri = null;
-            Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
-            startActivity(done);
-        }
     }
 
     private void openFileChooser() {
