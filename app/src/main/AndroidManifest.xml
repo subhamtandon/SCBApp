@@ -70,7 +70,8 @@
         <activity android:name=".AddingOptionBActivity" />
         <activity android:name=".AddingOptionCActivity" />
         <activity android:name=".AddingOptionDActivity" />
-        <activity android:name=".AddingExplanationActivity"></activity>
+        <activity android:name=".AddingExplanationActivity" />
+        <activity android:name=".PDFEditingActivity"></activity>
     </application>
 
 </manifest>
