@@ -44,7 +44,7 @@ public class AddingOptionCActivity extends AppCompatActivity {
 
     Uri imageOption3Uri;
 
-    Boolean option3Value;
+    Boolean optionCValue;
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -101,6 +101,16 @@ public class AddingOptionCActivity extends AppCompatActivity {
                             .child("Option C")
                             .child("optionCText")
                             .setValue(editTextOption3.getText().toString());
+
+                    optionCValue = switch3.isChecked();
+
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Option C")
+                            .child("optionCValue")
+                            .setValue(optionCValue);
 
                     if (imageOption3Uri != null){
 
@@ -180,20 +190,6 @@ public class AddingOptionCActivity extends AppCompatActivity {
                     next.putExtra("ID",id);
                     startActivity(next);
                 }
-            }
-        });
-
-        switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option3Value = true;
-                else {
-                    option3Value = false;
-                    flag = 1;
-                }
-
             }
         });
     }

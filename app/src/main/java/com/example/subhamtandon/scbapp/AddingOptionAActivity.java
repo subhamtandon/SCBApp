@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -44,7 +45,7 @@ public class AddingOptionAActivity extends AppCompatActivity {
 
     Uri imageOption1Uri;
 
-    Boolean option1Value;
+    Boolean optionAValue;
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -103,6 +104,16 @@ public class AddingOptionAActivity extends AppCompatActivity {
                             .child("Option A")
                             .child("optionAText")
                             .setValue(editTextOption1.getText().toString());
+
+                    optionAValue = switch1.isChecked();
+
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Option A")
+                            .child("optionAValue")
+                            .setValue(optionAValue);
 
                     if (imageOption1Uri != null){
 
@@ -189,16 +200,7 @@ public class AddingOptionAActivity extends AppCompatActivity {
             }
         });
 
-        /*switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option1Value = true;
-                else{
-                    option1Value = false;
-                    flag = 1;
-                }
+        /*
 
 
             }

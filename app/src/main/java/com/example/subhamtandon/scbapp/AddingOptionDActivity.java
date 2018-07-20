@@ -44,7 +44,7 @@ public class AddingOptionDActivity extends AppCompatActivity {
 
     Uri imageOption4Uri;
 
-    Boolean option4Value;
+    Boolean optionDValue;
 
     StorageReference storageReference;
     DatabaseReference databaseReference;
@@ -101,6 +101,16 @@ public class AddingOptionDActivity extends AppCompatActivity {
                             .child("Option D")
                             .child("optionDText")
                             .setValue(editTextOption4.getText().toString());
+
+                    optionDValue = switch4.isChecked();
+
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(id)
+                            .child("Option D")
+                            .child("optionDValue")
+                            .setValue(optionDValue);
 
                     if (imageOption4Uri != null){
 
@@ -183,19 +193,6 @@ public class AddingOptionDActivity extends AppCompatActivity {
             }
         });
 
-        switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
-                if (isChecked)
-                    option4Value = true;
-                else {
-                    option4Value = false;
-                    flag = 1;
-                }
-
-            }
-        });
     }
 
     private String getFileExtension(Uri uri) {
