@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PDFEditingActivity"
+    android:padding="10dp">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/nameChange"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="10dp"
+        android:id="@+id/layoutPDFName">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/pdfName"
+            android:hint="File Name"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Name"
+        android:layout_alignParentRight="true"
+        android:id="@+id/nameChange"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/selectedFileName"
+        android:layout_below="@id/layoutPDFName"
+        android:layout_margin="20dp"
+        android:layout_toLeftOf="@id/selectFile"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select File"
+        android:layout_below="@id/nameChange"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="20dp"
+        android:id="@+id/selectFile"/>
+
+
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/layoutButtonsOfChangeFileAndSubmit"
+        android:layout_below="@id/selectedFileName"
+        android:layout_margin="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/layoutButtonsOfChangeFileAndSubmit"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Change File"
+            android:id="@+id/fileChange"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:id="@+id/submitEditing"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+
+
+</RelativeLayout>

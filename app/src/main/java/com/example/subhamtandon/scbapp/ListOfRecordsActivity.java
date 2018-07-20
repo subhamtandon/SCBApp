@@ -79,7 +79,7 @@ public class ListOfRecordsActivity extends AppCompatActivity {
         });
 
         recyclerViewRecords.setLayoutManager(new LinearLayoutManager(ListOfRecordsActivity.this));
-        AdapterForRecordsList adapterForRecordsList = new AdapterForRecordsList(recyclerViewRecords, ListOfRecordsActivity.this,new ArrayList<String>(),new ArrayList<String>());
+        AdapterForRecordsList adapterForRecordsList = new AdapterForRecordsList(recyclerViewRecords, ListOfRecordsActivity.this,new ArrayList<String>(),new ArrayList<String>(), professional, subject);
         recyclerViewRecords.setAdapter(adapterForRecordsList);
 
     }

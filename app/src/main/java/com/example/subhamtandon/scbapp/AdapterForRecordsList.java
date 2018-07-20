@@ -20,12 +20,17 @@ public class AdapterForRecordsList extends RecyclerView.Adapter<AdapterForRecord
     Context context;
     ArrayList<String > arrayList = new ArrayList<>();
     ArrayList<String> urls = new ArrayList<>();
+    String professional;
+    String subject;
 
-    public AdapterForRecordsList(RecyclerView recyclerView, Context context, ArrayList<String> arrayList, ArrayList<String> urls) {
+
+    public AdapterForRecordsList(RecyclerView recyclerView, Context context, ArrayList<String> arrayList, ArrayList<String> urls, String professional, String subject) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.arrayList = arrayList;
         this.urls = urls;
+        this.professional = professional;
+        this.subject = subject;
     }
 
     public void update(String recordName, String url){
@@ -51,6 +56,10 @@ public class AdapterForRecordsList extends RecyclerView.Adapter<AdapterForRecord
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Edit clicked", Toast.LENGTH_SHORT).show();
+                Intent next = new Intent(context, PDFEditingActivity.class);
+                next.putExtra("PROFESSIONAL",professional);
+                next.putExtra("SUBJECT",subject);
+                context.startActivity(next);
             }
         });
 
