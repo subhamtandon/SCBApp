@@ -20,6 +20,9 @@ public class UploadDoneActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String type = getIntent().getStringExtra("TYPE");
+        final String chapter = getIntent().getStringExtra("CHAPTER");
+        final String mode = getIntent().getStringExtra("MODE");
+        final String set = getIntent().getStringExtra("SET");
 
         doneAdding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +38,7 @@ public class UploadDoneActivity extends AppCompatActivity {
                     backToList.putExtra("PROFESSIONAL", professional);
                     backToList.putExtra("SUBJECT",subject);
                     startActivity(backToList);
+
                 }
                 else if(type.equalsIgnoreCase("PYQs")){
                     Intent backToList = new Intent(UploadDoneActivity.this, ListOfPYQsActivity.class);
@@ -42,9 +46,20 @@ public class UploadDoneActivity extends AppCompatActivity {
                     backToList.putExtra("SUBJECT",subject);
                     startActivity(backToList);
                 }
+                else if (type.equalsIgnoreCase("MCQs")){
+                    Intent backToList = new Intent(UploadDoneActivity.this,ListOfSetsActivity.class);
+                    backToList.putExtra("PROFESSIONAL", professional);
+                    backToList.putExtra("SUBJECT",subject);
+                    backToList.putExtra("CHAPTER", chapter);
+                    backToList.putExtra("MODE", mode);
+                    backToList.putExtra("SET", set);
+                    startActivity(backToList);
+                }
 
             }
         });
 
+
     }
+
 }

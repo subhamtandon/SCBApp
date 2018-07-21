@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,8 +13,8 @@ import android.widget.Toast;
 
 public class SetsAlteringActivity extends AppCompatActivity {
 
-    EditText setEditText;
-    Button submitButton;
+    TextInputEditText setEditText;
+    Button submitSetButton;
     TextView showSetTextView;
 
     @Override
@@ -28,11 +29,10 @@ public class SetsAlteringActivity extends AppCompatActivity {
 
         Toast.makeText(this, professional + " : " + subject + " : " + chapter + " "+ mode, Toast.LENGTH_SHORT).show();
 
-        setEditText = (EditText) findViewById(R.id.setEditText);
-        submitButton = (Button) findViewById(R.id.submitButton);
-        showSetTextView = (TextView) findViewById(R.id.showSetTextView);
+        setEditText = (TextInputEditText) findViewById(R.id.setEditText);
+        submitSetButton = (Button) findViewById(R.id.submitSetButton);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
+        submitSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String whichSet = setEditText.getText().toString();
@@ -45,13 +45,15 @@ public class SetsAlteringActivity extends AppCompatActivity {
                 }
 
                 if(ready.equalsIgnoreCase("true")){
-                    Intent next = new Intent(SetsAlteringActivity.this, AddingQuestionActivity  .class);
-                    next.putExtra("PROFESSIONAL", professional);
-                    next.putExtra("SUBJECT", subject);
-                    next.putExtra("CHAPTER", chapter);
-                    next.putExtra("MODE",mode);
-                    next.putExtra("SET",whichSet);
-                    startActivity(next);
+
+                    Intent done = new Intent(SetsAlteringActivity.this, UploadDoneActivity.class);
+                    done.putExtra("TYPE","MCQs");
+                    done.putExtra("PROFESSIONAL",professional);
+                    done.putExtra("SUBJECT",subject);
+                    done.putExtra("CHAPTER", chapter);
+                    done.putExtra("MODE",mode);
+                    done.putExtra("SET",whichSet);
+                    startActivity(done);
                 }
 
             }

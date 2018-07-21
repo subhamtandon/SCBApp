@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="New Record File"
         android:id="@+id/headingRecordAdding"
-        android:textSize="28dp"
+        android:textSize="28sp"
         android:gravity="center"
         android:textStyle="bold"/>
 
@@ -54,7 +54,7 @@
             android:background="#da4444"
             android:textColor="#ffffff"
             android:textStyle="bold"
-            android:textSize="20dp"/>
+            android:textSize="20sp"/>
 
     </android.support.v7.widget.CardView>
 
