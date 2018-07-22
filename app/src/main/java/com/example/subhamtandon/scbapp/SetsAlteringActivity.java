@@ -11,11 +11,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class SetsAlteringActivity extends AppCompatActivity {
 
     TextInputEditText setEditText;
     Button submitSetButton;
-    TextView showSetTextView;
+
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public class SetsAlteringActivity extends AppCompatActivity {
 
         setEditText = (TextInputEditText) findViewById(R.id.setEditText);
         submitSetButton = (Button) findViewById(R.id.submitSetButton);
+        databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study").child(professional).child(subject).child("MCQs");
 
         submitSetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,8 +51,13 @@ public class SetsAlteringActivity extends AppCompatActivity {
 
                 if(ready.equalsIgnoreCase("true")){
 
-                    Intent done = new Intent(SetsAlteringActivity.this, UploadDoneActivity.class);
-                    done.putExtra("TYPE","MCQs");
+                    databaseReference.child(chapter)
+                            .child(mode)
+                            .child(whichSet)
+                            .setValue(null);
+
+                    Intent done = new Intent(SetsAlteringActivity.this, AddingQuestionActivity.class);
+                    //done.putExtra("TYPE","MCQs");
                     done.putExtra("PROFESSIONAL",professional);
                     done.putExtra("SUBJECT",subject);
                     done.putExtra("CHAPTER", chapter);

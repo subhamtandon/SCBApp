@@ -101,6 +101,15 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             .child("questionText")
                             .setValue(editTextQuestion.getText().toString());
 
+                    databaseReference.child(professional)
+                            .child(subject)
+                            .child("MCQs")
+                            .child(chapter)
+                            .child(mode)
+                            .child(set)
+                            .child(id)
+                            .setValue(editTextQuestion.getText().toString());
+
                     if (imageQuestionUri != null){
                         if (uploadTask != null && uploadTask.isInProgress()) {
 

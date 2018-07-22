@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -32,30 +33,35 @@ public class ListOfSetsActivity extends AppCompatActivity {
         final String chapter = getIntent().getStringExtra("CHAPTER");
         final String mode = getIntent().getStringExtra("MODE");
 
-        addSet = findViewById(R.id.addSet);
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : "+ mode, Toast.LENGTH_SHORT).show();
+
+        addSet = (FloatingActionButton) findViewById(R.id.addSet);
         addSet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("floating button","clicked");
 
                 Intent next = new Intent(ListOfSetsActivity.this, SetsAlteringActivity.class);
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
                 next.putExtra("MODE",mode);
+                startActivity(next);
 
             }
         });
 
         recyclerViewSets = findViewById(R.id.recyclerViewSets);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs");
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter).child(mode);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
                 if (dataSnapshot != null){
 
-                    String setName = dataSnapshot.child("Set").getValue(String.class);
+                    String setName = dataSnapshot.getKey();
 
                     ((AdapterForSetsList) recyclerViewSets.getAdapter()).update(setName);
                 }

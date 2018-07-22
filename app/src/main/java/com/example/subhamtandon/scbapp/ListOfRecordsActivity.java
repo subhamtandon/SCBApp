@@ -42,8 +42,6 @@ public class ListOfRecordsActivity extends AppCompatActivity {
 
         recyclerViewRecords= findViewById(R.id.recyclerViewRecords);
 
-
-
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("Records");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override

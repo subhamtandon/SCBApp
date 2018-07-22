@@ -166,6 +166,12 @@ public class AddingExplanationActivity extends AppCompatActivity {
                     }
 
                     Intent done = new Intent(AddingExplanationActivity.this, UploadDoneActivity.class);
+                    done.putExtra("TYPE","MCQs");
+                    done.putExtra("PROFESSIONAL",professional);
+                    done.putExtra("SUBJECT",subject);
+                    done.putExtra("CHAPTER", chapter);
+                    done.putExtra("MODE",mode);
+                    done.putExtra("SET",set);
                     startActivity(done);
                 }
             }

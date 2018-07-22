@@ -8,7 +8,7 @@ import android.widget.Button;
 
 public class UploadDoneActivity extends AppCompatActivity {
 
-    Button doneAdding;
+    Button doneAdding, addNewQuestion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +16,7 @@ public class UploadDoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload_done);
 
         doneAdding = findViewById(R.id.doneAdding);
+        addNewQuestion = findViewById(R.id.addNewQuestion);
 
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
@@ -23,6 +24,24 @@ public class UploadDoneActivity extends AppCompatActivity {
         final String chapter = getIntent().getStringExtra("CHAPTER");
         final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
+
+        if (type.equalsIgnoreCase("MCQs")){
+            addNewQuestion.setVisibility(View.VISIBLE);
+        }
+
+        addNewQuestion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent newQuestion = new Intent(UploadDoneActivity.this,AddingQuestionActivity.class);
+                newQuestion.putExtra("PROFESSIONAL", professional);
+                newQuestion.putExtra("SUBJECT",subject);
+                newQuestion.putExtra("CHAPTER", chapter);
+                newQuestion.putExtra("MODE", mode);
+                newQuestion.putExtra("SET", set);
+                startActivity(newQuestion);
+            }
+        });
 
         doneAdding.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +71,6 @@ public class UploadDoneActivity extends AppCompatActivity {
                     backToList.putExtra("SUBJECT",subject);
                     backToList.putExtra("CHAPTER", chapter);
                     backToList.putExtra("MODE", mode);
-                    backToList.putExtra("SET", set);
                     startActivity(backToList);
                 }
 
