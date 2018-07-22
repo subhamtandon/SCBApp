@@ -69,9 +69,9 @@ public class AddingQuestionActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study");
 
         final String id = databaseReference.push().getKey();
-        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Chapter").setValue(chapter);
-        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Mode").setValue(mode);
-        databaseReference.child(professional).child(subject).child("MCQs").child(id).child("Set").setValue(set);
+        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Chapter").setValue(chapter);
+        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Mode").setValue(mode);
+        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Set").setValue(set);
 
         buttonChooseImageQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +96,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                     databaseReference.child(professional)
                             .child(subject)
                             .child("MCQs")
+                            .child("Questions")
                             .child(id)
                             .child("Question")
                             .child("questionText")
@@ -122,6 +123,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                                     .child(professional)
                                     .child(subject)
                                     .child("MCQs")
+                                    .child("Questions")
                                     .child(id)
                                     .child("Question")
                                     .child(System.currentTimeMillis() + "." + getFileExtension(imageQuestionUri));
@@ -144,6 +146,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                                             databaseReference.child(professional)
                                                     .child(subject)
                                                     .child("MCQs")
+                                                    .child("Questions")
                                                     .child(id)
                                                     .child("Question")
                                                     .child("questionImageUrl")
@@ -175,6 +178,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                         databaseReference.child(professional)
                                 .child(subject)
                                 .child("MCQs")
+                                .child("Questions")
                                 .child(id)
                                 .child("Question")
                                 .child("questionImageUrl")

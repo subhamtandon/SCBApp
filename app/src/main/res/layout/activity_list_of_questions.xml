@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ListOfSetsActivity">
+    tools:context=".ListOfQuestionsActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerViewSets"
+        android:id="@+id/recyclerViewQuestions"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
@@ -15,14 +15,14 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerViewSets"
-        android:text="More Sets Coming Soon"
+        android:layout_below="@id/recyclerViewQuestions"
+        android:text="More Questions Coming Soon"
         android:layout_marginTop="20dp"
         android:paddingHorizontal="20dp"
         android:gravity="center"/>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/addSet"
+        android:id="@+id/addQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

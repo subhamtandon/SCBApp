@@ -49,12 +49,12 @@ public class AdapterForSetsList extends RecyclerView.Adapter<AdapterForSetsList.
 
         final int pos = position;
 
-        holder.setName.setText(setsArrayList.get(position));
+        holder.setName.setText(setsArrayList.get(position));    
         holder.setName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, AddingQuestionActivity.class);
+                Intent intent = new Intent(context, ListOfQuestionsActivity.class);
                 intent.putExtra("PROFESSIONAL",professional);
                 intent.putExtra("SUBJECT",subject);
                 intent.putExtra("CHAPTER", chapter);
