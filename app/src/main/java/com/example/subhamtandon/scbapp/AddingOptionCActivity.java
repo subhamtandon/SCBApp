@@ -108,6 +108,7 @@ public class AddingOptionCActivity extends AppCompatActivity {
                     databaseReference.child(professional)
                             .child(subject)
                             .child("MCQs")
+                            .child("Questions")
                             .child(id)
                             .child("Option C")
                             .child("optionCValue")
