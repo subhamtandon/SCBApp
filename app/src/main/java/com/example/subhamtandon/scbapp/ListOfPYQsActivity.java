@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,8 @@ public class ListOfPYQsActivity extends AppCompatActivity {
 
     FloatingActionButton addPYQ;
     RecyclerView recyclerViewPYQs;
+
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class ListOfPYQsActivity extends AppCompatActivity {
 
         recyclerViewPYQs= findViewById(R.id.recyclerViewPYQs);
 
+        progressBar = findViewById(R.id.progressBarForPYQList);
+
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("PYQs");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -51,9 +57,12 @@ public class ListOfPYQsActivity extends AppCompatActivity {
 
                     String PYQName = dataSnapshot.child("mName").getValue(String.class);
                     String url = dataSnapshot.child("mURL").getValue(String.class);
+                    String uploadPDFID = dataSnapshot.getKey();
 
-                    ((AdapterForPYQsList) recyclerViewPYQs.getAdapter()).update(PYQName, url);
+                    ((AdapterForPYQsList) recyclerViewPYQs.getAdapter()).update(PYQName, url, uploadPDFID);
+
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -73,19 +82,16 @@ public class ListOfPYQsActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(ListOfPYQsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
         });
 
         recyclerViewPYQs.setLayoutManager(new LinearLayoutManager(ListOfPYQsActivity.this));
-        AdapterForPYQsList adapterForPYQsList = new AdapterForPYQsList(recyclerViewPYQs, ListOfPYQsActivity.this,new ArrayList<String>(),new ArrayList<String>());
+        AdapterForPYQsList adapterForPYQsList = new AdapterForPYQsList(recyclerViewPYQs, ListOfPYQsActivity.this,new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(), professional, subject);
         recyclerViewPYQs.setAdapter(adapterForPYQsList);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent back = new Intent(ListOfPYQsActivity.this, AdminStudyActivity.class);
-        startActivity(back);
-    }
+
 }

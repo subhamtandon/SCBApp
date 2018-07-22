@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -20,6 +22,8 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
 
     FloatingActionButton addPractical;
     RecyclerView recyclerViewPracticals;
+
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,8 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
 
         recyclerViewPracticals= findViewById(R.id.recyclerViewPracticals);
 
+        progressBar = findViewById(R.id.progressBarForPracticalList);
+
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("Practicals");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -51,9 +57,13 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
 
                     String practicalName = dataSnapshot.child("mName").getValue(String.class);
                     String url = dataSnapshot.child("mURL").getValue(String.class);
+                    String uploadPDFID = dataSnapshot.getKey();
 
-                    ((AdapterForPracticalsList) recyclerViewPracticals.getAdapter()).update(practicalName, url);
+                    ((AdapterForPracticalsList) recyclerViewPracticals.getAdapter()).update(practicalName, url, uploadPDFID);
+
+
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -74,18 +84,15 @@ public class ListOfPracticalsActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
+                Toast.makeText(ListOfPracticalsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+
             }
         });
 
         recyclerViewPracticals.setLayoutManager(new LinearLayoutManager(ListOfPracticalsActivity.this));
-        AdapterForPracticalsList adapterForPracticalsList = new AdapterForPracticalsList(recyclerViewPracticals, ListOfPracticalsActivity.this,new ArrayList<String>(),new ArrayList<String>());
+        AdapterForPracticalsList adapterForPracticalsList = new AdapterForPracticalsList(recyclerViewPracticals, ListOfPracticalsActivity.this,new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(), professional, subject);
         recyclerViewPracticals.setAdapter(adapterForPracticalsList);
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent back = new Intent(ListOfPracticalsActivity.this, AdminStudyActivity.class);
-        startActivity(back);
-    }
 }

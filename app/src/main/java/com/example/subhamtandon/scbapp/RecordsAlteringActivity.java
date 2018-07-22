@@ -154,11 +154,15 @@ public class RecordsAlteringActivity extends AppCompatActivity {
 
                         progressDialog.dismiss();
 
+                        /*
+
                         Intent done = new Intent(RecordsAlteringActivity.this, UploadDoneActivity.class);
                         done.putExtra("TYPE","Records");
                         done.putExtra("PROFESSIONAL",professional);
                         done.putExtra("SUBJECT",subject);
                         startActivity(done);
+                        */
+                        onBackPressed();
 
                     }
                 }).addOnFailureListener(new OnFailureListener() {

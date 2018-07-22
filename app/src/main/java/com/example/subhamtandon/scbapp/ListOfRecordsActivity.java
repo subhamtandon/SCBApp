@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
@@ -21,6 +22,8 @@ public class ListOfRecordsActivity extends AppCompatActivity {
 
     FloatingActionButton addRecord;
     RecyclerView recyclerViewRecords;
+
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class ListOfRecordsActivity extends AppCompatActivity {
 
         recyclerViewRecords= findViewById(R.id.recyclerViewRecords);
 
+        progressBar = findViewById(R.id.progressBarForRecordList);
+
         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("Records");
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
@@ -51,9 +56,12 @@ public class ListOfRecordsActivity extends AppCompatActivity {
 
                     String recordName = dataSnapshot.child("mName").getValue(String.class);
                     String url = dataSnapshot.child("mURL").getValue(String.class);
+                    String uploadPDFID = dataSnapshot.getKey();
 
-                    ((AdapterForRecordsList) recyclerViewRecords.getAdapter()).update(recordName, url);
+                    ((AdapterForRecordsList) recyclerViewRecords.getAdapter()).update(recordName, url, uploadPDFID);
+
                 }
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -75,19 +83,17 @@ public class ListOfRecordsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
                 Toast.makeText(ListOfRecordsActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
 
             }
         });
 
         recyclerViewRecords.setLayoutManager(new LinearLayoutManager(ListOfRecordsActivity.this));
-        AdapterForRecordsList adapterForRecordsList = new AdapterForRecordsList(recyclerViewRecords, ListOfRecordsActivity.this,new ArrayList<String>(),new ArrayList<String>(), professional, subject);
+        AdapterForRecordsList adapterForRecordsList = new AdapterForRecordsList(recyclerViewRecords, ListOfRecordsActivity.this,new ArrayList<String>(),new ArrayList<String>(),new ArrayList<String>(), professional, subject);
+        //adapterForRecordsList.notifyDataSetChanged();
         recyclerViewRecords.setAdapter(adapterForRecordsList);
 
+
     }
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent back = new Intent(ListOfRecordsActivity.this, AdminStudyActivity.class);
-        startActivity(back);
-    }
+
 }
