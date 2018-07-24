@@ -28,8 +28,8 @@
                     android:text="Chapter 1"
                     android:textSize="30sp"
                     android:textStyle="bold"
-                    android:id="@+id/pathChap"
-                    />
+                    android:id="@+id/pathChap" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,14 +39,14 @@
                     android:textSize="28sp"/>
 
             </LinearLayout>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:text="EXIT"
                 android:id="@+id/exitQuestions"
-                android:onClick="exitQuestions"
-                />
+                android:onClick="exitQuestions" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,15 +59,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Question Text View"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher_background"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    />
+                    android:layout_marginTop="20dp" />
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -107,19 +107,17 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            >
+                            android:gravity="center">
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:src="@mipmap/ic_launcher"
-                                />
+                                android:src="@mipmap/ic_launcher" />
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="About above image"
-                                />
+                                android:text="About above image" />
 
                         </LinearLayout>
 
@@ -149,23 +147,23 @@
                             android:layout_gravity="start"
                             android:layout_marginLeft="10dp"
                             android:gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            >
+                            android:gravity="center">
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/ic_launcher"/>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="About above image"
-                                />
+                                android:text="About above image" />
 
                         </LinearLayout>
 
@@ -195,23 +193,23 @@
                             android:layout_gravity="start"
                             android:layout_marginLeft="10dp"
                             android:gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            >
+                            android:gravity="center">
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/ic_launcher"/>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="About above image"
-                                />
+                                android:text="About above image" />
 
                         </LinearLayout>
 
@@ -241,23 +239,23 @@
                             android:layout_gravity="start"
                             android:layout_marginLeft="10dp"
                             android:gravity="center"/>
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            >
+                            android:gravity="center">
 
                             <ImageView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:src="@mipmap/ic_launcher"/>
+
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="About above image"
-                                />
+                                android:text="About above image" />
 
                         </LinearLayout>
 

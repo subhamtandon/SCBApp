@@ -61,7 +61,9 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
 
                     String questionName = dataSnapshot.getValue(String.class);
 
-                    ((AdapterForQuestionsList) recyclerViewQuestions.getAdapter()).update(questionName);
+                    String uniqueId = dataSnapshot.getKey();
+
+                    ((AdapterForQuestionsList) recyclerViewQuestions.getAdapter()).update(questionName, uniqueId);
                 }
             }
 
@@ -89,7 +91,7 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
         });
 
         recyclerViewQuestions.setLayoutManager(new LinearLayoutManager(this));
-        AdapterForQuestionsList adapterForQuestionsList = new AdapterForQuestionsList(recyclerViewQuestions, ListOfQuestionsActivity.this, new ArrayList<String>(), professional, subject, chapter, mode, set);
+        AdapterForQuestionsList adapterForQuestionsList = new AdapterForQuestionsList(recyclerViewQuestions, ListOfQuestionsActivity.this, new ArrayList<String>(), new ArrayList<String>(), professional, subject, chapter, mode, set);
         recyclerViewQuestions.setAdapter(adapterForQuestionsList);
     }
 }

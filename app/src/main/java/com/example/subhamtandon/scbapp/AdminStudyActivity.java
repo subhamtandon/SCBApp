@@ -94,7 +94,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     }
 
     private static final String[] Professionals = new String[]{
-       "First Professional","Second Professional","Third Professional","Fourth Professional"
+       "First Professional","Second Professional","Third Professional Part-1","Third Professional Part -2"
     };
 
     private static final String[] Subjects = new String[]{
@@ -110,7 +110,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     };
 
     private static final String[] Modes = new String[]{
-      "Easy","Medium","Hard","Random"
+      "Basic","Advanced"
     };
 
     @Override
