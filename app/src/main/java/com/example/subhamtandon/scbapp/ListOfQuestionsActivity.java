@@ -52,7 +52,16 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
 
         recyclerViewQuestions = (RecyclerView) findViewById(R.id.recyclerViewQuestions);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter).child(mode).child(set);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("App")
+                .child("Study")
+                .child(professional)
+                .child(subject)
+                .child("MCQs")
+                .child(chapter)
+                .child(mode)
+                .child(set);
+
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

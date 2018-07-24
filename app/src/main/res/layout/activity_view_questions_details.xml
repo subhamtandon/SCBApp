@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageViewQuestion"
+                android:visibility="gone"
                 android:src="@drawable/ic_launcher_background"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp" />
@@ -86,6 +87,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageViewOptionA"
+                            android:visibility="gone"
                             android:src="@mipmap/ic_launcher" />
 
                         <TextView
@@ -135,6 +137,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageViewOptionB"
+                            android:visibility="gone"
                             android:src="@mipmap/ic_launcher"/>
 
                         <TextView
@@ -184,6 +187,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageViewOptionC"
+                            android:visibility="gone"
                             android:src="@mipmap/ic_launcher"/>
 
                         <TextView
@@ -233,6 +237,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/imageViewOptionD"
+                            android:visibility="gone"
                             android:src="@mipmap/ic_launcher"/>
 
                         <TextView
