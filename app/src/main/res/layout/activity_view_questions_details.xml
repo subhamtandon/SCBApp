@@ -9,11 +9,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_marginTop="10dp">
 
@@ -54,6 +54,8 @@
                     android:focusable="true"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
+
+                    <!--
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -97,6 +99,56 @@
                             android:text="About above image" />
 
                     </LinearLayout>
+                    -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="A : "
+                            android:textSize="25sp"
+                            android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/optionAText"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/optionAText"
+                            android:layout_toLeftOf="@id/checkOptionA">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imageViewOptionA"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_launcher" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewOptionA"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                android:text="About above image" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_black"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/checkOptionA"
+                            />
+                    </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
 
@@ -110,6 +162,8 @@
                     android:clickable="true"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
+
+                    <!--
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -147,6 +201,56 @@
                             android:text="About above image" />
 
                     </LinearLayout>
+                    -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="B : "
+                            android:textSize="25sp"
+                            android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/optionBText"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/optionBText"
+                            android:layout_toLeftOf="@id/checkOptionB">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imageViewOptionB"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_launcher" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewOptionB"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                android:text="About above image" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_black"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/checkOptionB"
+                            />
+                    </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
 
@@ -160,6 +264,8 @@
                     android:clickable="true"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
+
+                    <!--
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -197,6 +303,56 @@
                             android:text="About above image" />
 
                     </LinearLayout>
+                    -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="C : "
+                            android:textSize="25sp"
+                            android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/optionCText"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/optionCText"
+                            android:layout_toLeftOf="@id/checkOptionC">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imageViewOptionC"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_launcher" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewOptionC"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                android:text="About above image" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_black"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/checkOptionC"
+                            />
+                    </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
 
@@ -210,6 +366,8 @@
                     android:clickable="true"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp">
+
+                    <!--
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -247,6 +405,57 @@
                             android:text="About above image" />
 
                     </LinearLayout>
+                    -->
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        >
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="D : "
+                            android:textSize="25sp"
+                            android:layout_gravity="start"
+                            android:layout_marginLeft="10dp"
+                            android:id="@+id/optionDText"
+                            />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@id/optionDText"
+                            android:layout_toLeftOf="@id/checkOptionD">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imageViewOptionD"
+                                android:visibility="gone"
+                                android:layout_gravity="center"
+                                android:src="@mipmap/ic_launcher" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/textViewOptionD"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                android:text="About above image" />
+
+                        </LinearLayout>
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_check_black"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="10dp"
+                            android:id="@+id/checkOptionD"
+                            />
+                    </RelativeLayout>
 
                 </android.support.v7.widget.CardView>
 
@@ -260,6 +469,11 @@
                 android:text="Explanation/Hint"
                 android:textSize="25sp"
                 android:textAlignment="center"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                android:id="@+id/imageViewExplanation"
+                />
 
         </LinearLayout>
 
