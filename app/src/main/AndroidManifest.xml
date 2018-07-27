@@ -73,8 +73,9 @@
         <activity android:name=".AddingExplanationActivity" />
         <activity android:name=".ListOfSetsActivity" />
         <activity android:name=".ListOfQuestionsActivity" />
-        <activity android:name=".ViewQuestionsDetailsActivity" />
         <activity android:name=".InformationBulletinActivity"></activity>
+        <activity android:name=".CheckQuestionDetails"></activity>
+
     </application>
 
 </manifest>

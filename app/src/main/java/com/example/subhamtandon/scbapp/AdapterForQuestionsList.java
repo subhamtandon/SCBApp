@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,21 +53,27 @@ public class AdapterForQuestionsList extends RecyclerView.Adapter<AdapterForQues
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.questionName.setText(questionsArrayList.get(position));
+        final int pos = position;
+
+        holder.questionName.setText(questionsArrayList.get(pos));
 
         holder.questionName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent next = new Intent(context, ViewQuestionsDetailsActivity.class);
+                //Log.d("unique id", idsArrayList.get(position));
+
+                String id = idsArrayList.get(pos);
+
+                Intent next = new Intent(context, CheckQuestionDetails.class);
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
                 next.putExtra("MODE",mode);
                 next.putExtra("SET",set);
-                next.putExtra("ID",idsArrayList.get(position));
+                next.putExtra("ID",id);
                 context.startActivity(next);
             }
         });

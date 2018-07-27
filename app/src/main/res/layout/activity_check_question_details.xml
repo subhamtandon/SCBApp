@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ViewQuestionsDetailsActivity"
+    tools:context=".CheckQuestionDetails"
     android:padding="15dp">
 
     <ScrollView
@@ -463,16 +463,19 @@
             </GridLayout>
 
             <TextView
-                android:id="@+id/textViewExplanation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/textViewExplanation"
                 android:text="Explanation/Hint"
-                android:textAlignment="center"
-                android:textSize="25sp" />
+                android:textSize="25sp"
+                android:textAlignment="center"/>
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageViewExplanation"
+                android:src="@drawable/ic_launcher_background"
+                android:layout_gravity="center"
+                android:visibility="gone"
                 />
 
         </LinearLayout>
