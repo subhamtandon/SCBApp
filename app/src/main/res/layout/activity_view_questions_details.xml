@@ -463,15 +463,15 @@
             </GridLayout>
 
             <TextView
+                android:id="@+id/textViewExplanation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewExplanation"
                 android:text="Explanation/Hint"
-                android:textSize="25sp"
-                android:textAlignment="center"/>
+                android:textAlignment="center"
+                android:textSize="25sp" />
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" 
+                android:layout_height="wrap_content"
                 android:id="@+id/imageViewExplanation"
                 />
 

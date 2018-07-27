@@ -3,6 +3,7 @@ package com.example.subhamtandon.scbapp;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +49,7 @@ public class ViewQuestionsDetailsActivity extends AppCompatActivity {
         final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
         final String id = getIntent().getStringExtra("ID");
+        Log.d("id",id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
@@ -68,7 +70,13 @@ public class ViewQuestionsDetailsActivity extends AppCompatActivity {
                     textViewQuestion.setText(questionText);
 
                     String questionImageUrl = dataSnapshot.child("Question").child("questionImageUrl").getValue(String.class);
-                    if (questionImageUrl.equalsIgnoreCase("No Image Selected")){
+                    try {
+                        Log.d("question", questionImageUrl);
+                    }
+                    catch (Exception e){
+                        Log.d("error", e.getMessage().toString());
+                    }
+                    if (questionImageUrl.equals("No Image Selected")){
 
                     } else{
                         Uri questionUri = Uri.parse(questionImageUrl);
