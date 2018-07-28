@@ -49,7 +49,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
         addInfo = findViewById(R.id.addInfo);
 
-        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("App").child("Information");
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Information");
         Log.e("see",databaseReference1+"");
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,10 +60,10 @@ public class InformationBulletinActivity extends AppCompatActivity {
                         Log.e("toget",dataSnapshot2.getValue().toString());
                         Log.e("toget2",dataSnapshot2.getKey().toString());
 
-                        //String info = dataSnapshot2.child("InfoText").getValue(String.class);
-                        //Log.d("getting", info);
+                        String info = dataSnapshot2.child("InfoText").getValue(String.class);
+                        Log.d("getting", info);
 
-                        //((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info);
+                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info);
                     }
                     progressBar.setVisibility(View.INVISIBLE);
                 }
