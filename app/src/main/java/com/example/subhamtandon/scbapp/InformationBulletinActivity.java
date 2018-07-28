@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -43,18 +45,48 @@ public class InformationBulletinActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBarForInfoList);
 
         addInfoEditText = findViewById(R.id.addInfoEditText);
-        newInfo = addInfoEditText.getText().toString();
+
 
         addInfo = findViewById(R.id.addInfo);
 
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("App").child("Information");
+        Log.e("see",databaseReference1+"");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null) {
+                    for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()) {
+
+                        Log.e("toget",dataSnapshot2.getValue().toString());
+                        Log.e("toget2",dataSnapshot2.getKey().toString());
+
+                        //String info = dataSnapshot2.child("InfoText").getValue(String.class);
+                        //Log.d("getting", info);
+
+                        //((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info);
+                    }
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+                else
+                    progressBar.setVisibility(View.INVISIBLE);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        /*
         databaseReference1.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 if(dataSnapshot!=null) {
-                    String info = dataSnapshot.child("InfoText").getValue(String.class);
+                    for(DataSnapshot dataSnapshot2:dataSnapshot.getChildren()) {
+                        String info = dataSnapshot2.child("InfoText").getValue(String.class);
+                        Log.d("getting", info);
 
-                    ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info);
+                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info);
+                    }
                     progressBar.setVisibility(View.INVISIBLE);
                 }
                 else
@@ -83,14 +115,20 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
             }
         });
+        */
 
         recyclerViewInfos.setLayoutManager(new LinearLayoutManager(InformationBulletinActivity.this));
         AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>());
         recyclerViewInfos.setAdapter(adapterForInfoList);
 
+
+
         addInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                newInfo = addInfoEditText.getText().toString();
+                Log.d("Info",newInfo);
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
                 String infoKey = databaseReference.push().getKey();
 
