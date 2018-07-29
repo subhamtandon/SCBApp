@@ -1,10 +1,13 @@
 package com.example.subhamtandon.scbapp;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +33,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
     RecyclerView recyclerViewInfos;
     EditText addInfoEditText;
     Button addInfo;
+    FloatingActionButton addInfoFloating;
 
     String newInfo;
 
@@ -44,10 +48,12 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
         progressBar = findViewById(R.id.progressBarForInfoList);
 
-        addInfoEditText = findViewById(R.id.addInfoEditText);
+        addInfoFloating = findViewById(R.id.addInfoFloating);
+
+        //addInfoEditText = findViewById(R.id.addInfoEditText);
 
 
-        addInfo = findViewById(R.id.addInfo);
+        //addInfo = findViewById(R.id.addInfo);
 
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("Information");
         Log.e("see",databaseReference1+"");
@@ -123,25 +129,52 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
 
 
-        addInfo.setOnClickListener(new View.OnClickListener() {
+        addInfoFloating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                newInfo = addInfoEditText.getText().toString();
-                Log.d("Info",newInfo);
-                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
-                String infoKey = databaseReference.push().getKey();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(InformationBulletinActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.alert_dialog_box_add_info, null);
+                addInfoEditText = mView.findViewById(R.id.addInfoEditText);
+                addInfo = mView.findViewById(R.id.addInfo);
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
 
-                databaseReference.child(infoKey).child("InfoText").setValue(newInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                addInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful())
-                            Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
-                        else
-                            Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
+                    public void onClick(View v) {
+                        newInfo = addInfoEditText.getText().toString();
+                        Log.d("Info",newInfo);
+                        String ready = "true";
+                        if(TextUtils.isEmpty(newInfo)){
+                            addInfoEditText.setError(getString(R.string.error_field_required));
+                            ready = "false";
+
+                        }
+                        if(ready.equals("true")){
+                            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
+                            String infoKey = databaseReference.push().getKey();
+
+                            databaseReference.child(infoKey).child("InfoText").setValue(newInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful())
+                                        Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
+                                    else
+                                        Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
+
+                                    dialog.dismiss();
+
+                                }
+                            });
+                        }
 
                     }
+
                 });
+
+
 
             }
         });
