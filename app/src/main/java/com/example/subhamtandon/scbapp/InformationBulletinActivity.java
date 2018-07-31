@@ -78,10 +78,10 @@ public class InformationBulletinActivity extends AppCompatActivity {
                         Log.e("toget",dataSnapshot2.getValue().toString());
                         Log.e("toget2",dataSnapshot2.getKey().toString());
 
-                        String info = dataSnapshot2.child("InfoText").getValue(String.class);
+                        String info = dataSnapshot2.child("infoText").getValue(String.class);
                         String infoKey = dataSnapshot2.getKey();
-                        String dateOfInfo = dataSnapshot2.child("Date").getValue(String.class);
-                        String timeOfInfo = dataSnapshot2.child("Time").getValue(String.class);
+                        String dateOfInfo = dataSnapshot2.child("infoDate").getValue(String.class);
+                        String timeOfInfo = dataSnapshot2.child("infoTime").getValue(String.class);
                         Log.d("getting", info);
 
                         ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo);
@@ -179,14 +179,17 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
                             Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
 
+                            UploadInfo uploadInfo = new UploadInfo(newInfo, date, time);
 
-                            databaseReference.child(infoKey).child("InfoText").setValue(newInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+
+                            databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
-                                        databaseReference.child(infoKey).child("Date").setValue(date);
-                                        databaseReference.child(infoKey).child("Time").setValue(time);
+                                        //databaseReference.child(infoKey).child("Date").setValue(date);
+                                        //databaseReference.child(infoKey).child("Time").setValue(time);
                                     }
                                     else
                                         Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
