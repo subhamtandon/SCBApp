@@ -20,74 +20,111 @@
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ProfessionalsAutoCompleteTextView"
+        android:id="@+id/professionalsAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Professional"
         android:layout_below="@+id/headingStudy" />
+
+    <!--<Spinner
+        android:id="@+id/spinnerProfessionals"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/professionalsAutoCompleteTextView"
+        android:layout_alignBottom="@id/professionalsAutoCompleteTextView"
+        android:layout_alignRight="@id/professionalsAutoCompleteTextView">
+    </Spinner>-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image"
         android:padding="5dp"
-        android:layout_alignTop="@+id/ProfessionalsAutoCompleteTextView"
-        android:layout_alignBottom="@id/ProfessionalsAutoCompleteTextView"
-        android:layout_alignRight="@id/ProfessionalsAutoCompleteTextView"
+        android:layout_alignTop="@+id/professionalsAutoCompleteTextView"
+        android:layout_alignBottom="@id/professionalsAutoCompleteTextView"
+        android:layout_alignRight="@id/professionalsAutoCompleteTextView"
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
 
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/SubjectsAutoCompleteTextView"
+        android:id="@+id/subjectsAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Subjects"
-        android:layout_below="@+id/ProfessionalsAutoCompleteTextView"/>
+        android:layout_below="@+id/professionalsAutoCompleteTextView"/>
+
+    <!--<Spinner
+        android:id="@+id/spinnerSubjects"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/subjectsAutoCompleteTextView"
+        android:layout_alignBottom="@id/subjectsAutoCompleteTextView"
+        android:layout_alignRight="@id/subjectsAutoCompleteTextView">
+    </Spinner>-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image1"
         android:padding="5dp"
-        android:layout_alignTop="@+id/SubjectsAutoCompleteTextView"
-        android:layout_alignBottom="@id/SubjectsAutoCompleteTextView"
-        android:layout_alignRight="@id/SubjectsAutoCompleteTextView"
+        android:layout_alignTop="@+id/subjectsAutoCompleteTextView"
+        android:layout_alignBottom="@id/subjectsAutoCompleteTextView"
+        android:layout_alignRight="@id/subjectsAutoCompleteTextView"
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
 
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/TypeAutoCompleteTextView"
+        android:id="@+id/typeAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Type"
-        android:layout_below="@+id/SubjectsAutoCompleteTextView"/>
+        android:layout_below="@+id/subjectsAutoCompleteTextView"/>
+
+    <!--<Spinner
+        android:id="@+id/spinnerType"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/typeAutoCompleteTextView"
+        android:layout_alignBottom="@id/typeAutoCompleteTextView"
+        android:layout_alignRight="@id/typeAutoCompleteTextView">
+    </Spinner>-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image2"
         android:padding="5dp"
-        android:layout_alignTop="@+id/TypeAutoCompleteTextView"
-        android:layout_alignBottom="@id/TypeAutoCompleteTextView"
-        android:layout_alignRight="@id/TypeAutoCompleteTextView"
+        android:layout_alignTop="@+id/typeAutoCompleteTextView"
+        android:layout_alignBottom="@id/typeAutoCompleteTextView"
+        android:layout_alignRight="@id/typeAutoCompleteTextView"
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"/>
 
     <AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/ChaptersAutoCompleteTextView"
+        android:id="@+id/chaptersAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Chapters"
-        android:layout_below="@id/TypeAutoCompleteTextView"
+        android:layout_below="@id/typeAutoCompleteTextView"
         android:visibility="gone"/>
+
+    <!--<Spinner
+        android:id="@+id/spinnerChapters"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/chaptersAutoCompleteTextView"
+        android:layout_alignBottom="@id/chaptersAutoCompleteTextView"
+        android:layout_alignRight="@id/chaptersAutoCompleteTextView"
+        android:visibility="gone">
+    </Spinner>-->
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image3"
         android:padding="5dp"
-        android:layout_alignTop="@+id/ChaptersAutoCompleteTextView"
-        android:layout_alignBottom="@id/ChaptersAutoCompleteTextView"
-        android:layout_alignRight="@id/ChaptersAutoCompleteTextView"
+        android:layout_alignTop="@+id/chaptersAutoCompleteTextView"
+        android:layout_alignBottom="@id/chaptersAutoCompleteTextView"
+        android:layout_alignRight="@id/chaptersAutoCompleteTextView"
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
         android:visibility="gone"/>
 
@@ -97,8 +134,18 @@
         android:id="@+id/modeAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Mode"
-        android:layout_below="@id/ChaptersAutoCompleteTextView"
+        android:layout_below="@id/chaptersAutoCompleteTextView"
         android:visibility="gone"/>
+
+    <!--<Spinner
+        android:id="@+id/spinnerMode"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/modeAutoCompleteTextView"
+        android:layout_alignBottom="@id/modeAutoCompleteTextView"
+        android:layout_alignRight="@id/modeAutoCompleteTextView"
+        android:visibility="gone">
+    </Spinner>-->
 
     <ImageView
         android:layout_width="wrap_content"

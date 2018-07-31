@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 public class AdminStudyActivity extends AppCompatActivity {
 
@@ -17,26 +19,48 @@ public class AdminStudyActivity extends AppCompatActivity {
 
     AutoCompleteTextView ProfessionalsAutoCompleteTextView, SubjectsAutoCompleteTextView, TypeAutoCompleteTextView, ChaptersAutoCompleteTextView, modeAutoCompleteTextView;
     ImageView image,image1,image2,image3,image4;
+    //Spinner spinnerProfessionals, spinnerSubjects, spinnerType, spinnerChapters, spinnerMode;
+
+    ArrayAdapter<String> SubjectsProfFirstAdapter, SubjectsProfSecondAdapter, SubjectsProfThird1Adapter, SubjectsProfThird2Adapter;
+
+    String whichProfessional, whichSubject, whichType, whichChapter, whichMode;
 
     public void submitButton(View view){
 
-        String whichProfessional = ProfessionalsAutoCompleteTextView.getText().toString();
-        String whichSubject = SubjectsAutoCompleteTextView.getText().toString();
-        String whichType = TypeAutoCompleteTextView.getText().toString();
-        String whichChapter = null;
-        String whichMode = null;
+        whichProfessional = ProfessionalsAutoCompleteTextView.getText().toString();
+        whichSubject = SubjectsAutoCompleteTextView.getText().toString();
+        whichType = TypeAutoCompleteTextView.getText().toString();
+        whichChapter = null;
+        whichMode = null;
 
         String ready= "true";
+
+        /*for (int i = 0 ; i < Professionals.length - 1 ; i++){
+
+            if (!whichProfessional.equalsIgnoreCase(Professionals[i])){
+                ProfessionalsAutoCompleteTextView.setError("Select from dropdown");
+                ready = "false";
+            }
+        }*/
         if (TextUtils.isEmpty(whichProfessional)){
 
             ProfessionalsAutoCompleteTextView.setError(getString(R.string.error_field_required));
             ready = "false";
         }
+
         if (TextUtils.isEmpty(whichSubject)){
 
             SubjectsAutoCompleteTextView.setError(getString(R.string.error_field_required));
             ready = "false";
         }
+
+        /*for (int i = 0 ; i < Type.length - 1 ; i++){
+
+            if (!whichType.equalsIgnoreCase(Type[i])){
+                TypeAutoCompleteTextView.setError("Select from dropdown");
+                ready = "false";
+            }
+        }*/
         if (TextUtils.isEmpty(whichType)){
 
             TypeAutoCompleteTextView.setError(getString(R.string.error_field_required));
@@ -46,11 +70,27 @@ public class AdminStudyActivity extends AppCompatActivity {
         if(whichType.equalsIgnoreCase("MCQs")){
             whichChapter = ChaptersAutoCompleteTextView.getText().toString();
             whichMode = modeAutoCompleteTextView.getText().toString();
+
+            /*for (int i = 0 ; i < Chapters.length - 1 ; i++){
+
+                if (!whichChapter.equalsIgnoreCase(Chapters[i])){
+                    ChaptersAutoCompleteTextView.setError("Select from dropdown");
+                    ready = "false";
+                }
+            }*/
             if (TextUtils.isEmpty(whichChapter)){
 
                 ChaptersAutoCompleteTextView.setError(getString(R.string.error_field_required));
                 ready = "false";
             }
+
+            /*for (int i = 0 ; i < Modes.length - 1 ; i++){
+
+                if (!whichMode.equalsIgnoreCase(Modes[i])){
+                    modeAutoCompleteTextView.setError("Select from dropdown");
+                    ready = "false";
+                }
+            }*/
             if (TextUtils.isEmpty(whichMode)){
 
                 modeAutoCompleteTextView.setError(getString(R.string.error_field_required));
@@ -86,31 +126,39 @@ public class AdminStudyActivity extends AppCompatActivity {
                 next.putExtra("SUBJECT", whichSubject);
                 startActivity(next);
             }
-
-
-
         }
-
     }
 
     private static final String[] Professionals = new String[]{
-       "First Professional","Second Professional","Third Professional Part-1","Third Professional Part -2"
+            "First Professional","Second Professional","Third Professional Part-1","Third Professional Part-2"
     };
 
-    private static final String[] Subjects = new String[]{
-      "Anatomy","Physiology","BioChemistry","Mock Test"
+    private static final String[] SubjectsProfFirst = new String[]{
+            "Anatomy","Physiology","BioChemistry","Mock Test"
+    };
+
+    private static final String[] SubjectsProfSecond = new String[]{
+            "2Subject1","2Subject2","2Subject3","2Mock Test"
+    };
+
+    private static final String[] SubjectsProfThird1 = new String[]{
+            "3Subject1","3Subject2","3Subject3","3Mock Test"
+    };
+
+    private static final String[] SubjectsProfThird2 = new String[]{
+            "4Subject1","4Subject2","4Subject3","4Mock Test"
     };
 
     private static final String[] Type = new String[]{
-      "MCQs","Record","Practical","PYQs"
+            "MCQs","Record","Practical","PYQs"
     };
 
     private static final String[] Chapters = new String[]{
-      "Chapter 01","Chapter 02","Chapter 03","Chapter 04"
+            "Chapter 01","Chapter 02","Chapter 03","Chapter 04"
     };
 
     private static final String[] Modes = new String[]{
-      "Basic","Advanced"
+            "Basic","Advanced"
     };
 
     @Override
@@ -121,11 +169,11 @@ public class AdminStudyActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Study");
 
-        ProfessionalsAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.ProfessionalsAutoCompleteTextView);
-        SubjectsAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.SubjectsAutoCompleteTextView);
-        TypeAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.TypeAutoCompleteTextView);
-        ChaptersAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.ChaptersAutoCompleteTextView);
-        modeAutoCompleteTextView = (AutoCompleteTextView) findViewById(R.id.modeAutoCompleteTextView);
+        ProfessionalsAutoCompleteTextView = findViewById(R.id.professionalsAutoCompleteTextView);
+        SubjectsAutoCompleteTextView = findViewById(R.id.subjectsAutoCompleteTextView);
+        TypeAutoCompleteTextView = findViewById(R.id.typeAutoCompleteTextView);
+        ChaptersAutoCompleteTextView = findViewById(R.id.chaptersAutoCompleteTextView);
+        modeAutoCompleteTextView = findViewById(R.id.modeAutoCompleteTextView);
 
         image = (ImageView) findViewById(R.id.image);
         image1 = (ImageView) findViewById(R.id.image1);
@@ -133,19 +181,30 @@ public class AdminStudyActivity extends AppCompatActivity {
         image3 = (ImageView) findViewById(R.id.image3);
         image4 = (ImageView) findViewById(R.id.image4);
 
-        ArrayAdapter<String> ProfessionalsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Professionals);
+        //spinnerProfessionals = findViewById(R.id.spinnerProfessionals);
+        //spinnerSubjects = findViewById(R.id.spinnerSubjects);
+        //spinnerType = findViewById(R.id.spinnerType);
+        //spinnerChapters = findViewById(R.id.spinnerChapters);
+        //spinnerMode = findViewById(R.id.spinnerMode);
+
+        ArrayAdapter<String> ProfessionalsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Professionals);
         ProfessionalsAutoCompleteTextView.setAdapter(ProfessionalsAdapter);
 
-        ArrayAdapter<String> SubjectsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Subjects);
-        SubjectsAutoCompleteTextView.setAdapter(SubjectsAdapter);
+        SubjectsProfFirstAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,SubjectsProfFirst);
 
-        ArrayAdapter<String> TypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Type);
+        SubjectsProfSecondAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,SubjectsProfSecond);
+
+        SubjectsProfThird1Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,SubjectsProfThird1);
+
+        SubjectsProfThird2Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,SubjectsProfThird2);
+
+        ArrayAdapter<String> TypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Type);
         TypeAutoCompleteTextView.setAdapter(TypeAdapter);
 
-        final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Chapters);
+        final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Chapters);
         ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
 
-        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,Modes);
+        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Modes);
         modeAutoCompleteTextView.setAdapter(ModeAdapter);
 
 
@@ -159,6 +218,21 @@ public class AdminStudyActivity extends AppCompatActivity {
         image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                whichProfessional = ProfessionalsAutoCompleteTextView.getText().toString();
+                //whichSubject = SubjectsAutoCompleteTextView.getText().toString();
+
+                if (whichProfessional.equalsIgnoreCase("First Professional")){
+                    SubjectsAutoCompleteTextView.setAdapter(SubjectsProfFirstAdapter);
+                }
+                if (whichProfessional.equalsIgnoreCase("Second Professional")){
+                    SubjectsAutoCompleteTextView.setAdapter(SubjectsProfSecondAdapter);
+                }
+                if (whichProfessional.equalsIgnoreCase("Third Professional Part-1")){
+                    SubjectsAutoCompleteTextView.setAdapter(SubjectsProfThird1Adapter);
+                }
+                if (whichProfessional.equalsIgnoreCase("Third Professional Part-2")){
+                    SubjectsAutoCompleteTextView.setAdapter(SubjectsProfThird2Adapter);
+                }
                 SubjectsAutoCompleteTextView.showDropDown();
             }
         });
@@ -166,6 +240,7 @@ public class AdminStudyActivity extends AppCompatActivity {
         image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 TypeAutoCompleteTextView.showDropDown();
             }
         });
