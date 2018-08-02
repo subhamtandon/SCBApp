@@ -140,7 +140,10 @@ public class InformationBulletinActivity extends AppCompatActivity {
         });
         */
 
-        recyclerViewInfos.setLayoutManager(new LinearLayoutManager(InformationBulletinActivity.this));
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(InformationBulletinActivity.this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+        recyclerViewInfos.setLayoutManager(mLayoutManager);
         AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         recyclerViewInfos.setAdapter(adapterForInfoList);
 
