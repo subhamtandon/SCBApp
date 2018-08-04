@@ -108,18 +108,37 @@ public class DifferentMaterialsActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             //returning the current tabs
+            final String professional = getIntent().getStringExtra("PROFESSIONAL");
+            final String subject = getIntent().getStringExtra("SUBJECT");
+
             switch (position){
                 case 0:
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("PROFESSIONAL",professional);
+                    bundle1.putString("SUBJECT",subject);
                     MCQsFragment mcqs = new MCQsFragment();
+                    mcqs.setArguments(bundle1);
                     return mcqs;
                 case 1:
+                    Bundle bundle2 = new Bundle();
+                    bundle2.putString("PROFESSIONAL",professional);
+                    bundle2.putString("SUBJECT",subject);
                     RecordsFragment records = new RecordsFragment();
+                    records.setArguments(bundle2);
                     return records;
                 case 2:
+                    Bundle bundle3 = new Bundle();
+                    bundle3.putString("PROFESSIONAL",professional);
+                    bundle3.putString("SUBJECT",subject);
                     PracticalsFragment practicals = new PracticalsFragment();
+                    practicals.setArguments(bundle3);
                     return practicals;
                 case 3:
+                    Bundle bundle4 = new Bundle();
+                    bundle4.putString("PROFESSIONAL",professional);
+                    bundle4.putString("SUBJECT",subject);
                     PYQFragment pyq = new PYQFragment();
+                    pyq.setArguments(bundle4);
                     return pyq;
                 default:
                     return null;

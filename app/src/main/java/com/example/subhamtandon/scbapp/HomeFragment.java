@@ -84,18 +84,22 @@ public class HomeFragment extends Fragment {
                         switch (position){
                             case 1:
                                 intent = new Intent(getContext(), Professional1stActivity.class);
+                                intent.putExtra("PROFESSIONAL","1st Professional");
                                 startActivity(intent);
                                 break;
                             case 2:
                                 intent = new Intent(getContext(), Professional2ndActivity.class);
+                                intent.putExtra("PROFESSIONAL","2nd Professional");
                                 startActivity(intent);
                                 break;
                             case 3:
                                 intent = new Intent(getContext(), Professional3rdActivity.class);
+                                intent.putExtra("PROFESSIONAL","3rd Professional part 1");
                                 startActivity(intent);
                                 break;
                             case 4:
                                 intent = new Intent(getContext(), Professional4thActivity.class);
+                                intent.putExtra("PROFESSIONAL","3rd Professional part 2");
                                 startActivity(intent);
                                 break;
                             default:
