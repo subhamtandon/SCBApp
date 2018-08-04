@@ -145,19 +145,23 @@ public class UserProfile extends AppCompatActivity
                     switch (position){
                         case 1:
                             intent = new Intent(getApplicationContext(), Professional1stActivity.class);
+                            intent.putExtra("PROFESSIONAL", "First Professional");
                             startActivity(intent);
                             break;
                         case 2:
                             intent = new Intent(getApplicationContext(), Professional2ndActivity.class);
+                            intent.putExtra("PROFESSIONAL", "Second Professional");
                             startActivity(intent);
                             break;
                         case 3:
                             intent = new Intent(getApplicationContext(), Professional3rdActivity.class);
+                            intent.putExtra("PROFESSIONAL", "Third Professional Part-1");
                             startActivity(intent);
                             break;
                         case 4:
                             intent = new Intent(getApplicationContext(), Professional4thActivity.class);
                             startActivity(intent);
+                            intent.putExtra("PROFESSIONAL", "Third Professional Part-2");
                             break;
                         default:
                             Toast.makeText(getApplicationContext(), "Choose Your Professional", Toast.LENGTH_SHORT).show();

@@ -24,8 +24,10 @@ public class    Professional1stActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_professional1st);
 
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("1st Professional");
+        getSupportActionBar().setTitle("First Professional");
 
         changeProfession = (FloatingActionButton)findViewById(R.id.changeProfession);
         changeProfession.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +95,10 @@ public class    Professional1stActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                Intent intent = new Intent(getApplicationContext(),DifferentMaterialsActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Anatomy");
+                startActivity(intent);
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
@@ -101,7 +106,7 @@ public class    Professional1stActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
@@ -109,7 +114,7 @@ public class    Professional1stActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
+                //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });

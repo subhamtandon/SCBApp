@@ -16,10 +16,10 @@
     <string name="action_editProfile">Edit Profile</string>
     <string-array name="professionalsList">
         <item>-Select-</item>
-        <item>1st Professional</item>
-        <item>2nd Professional</item>
-        <item>3rd Professional</item>
-        <item>4th Professional</item>
+        <item>First Professional</item>
+        <item>Second Professional</item>
+        <item>Third Professional Part-1</item>
+        <item>Third Professional Part-2</item>
     </string-array>
     <string-array name="from1stProfessional">
         <item>-Select-</item>
@@ -48,10 +48,8 @@
 
     <string-array name="modeList">
         <item>-Select-</item>
-        <item>Easy Questions</item>
-        <item>Medium Questions</item>
-        <item>Hard Questions</item>
-        <item>Random Questions</item>
+        <item>Basic</item>
+        <item>Advanced</item>
     </string-array>
 
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>

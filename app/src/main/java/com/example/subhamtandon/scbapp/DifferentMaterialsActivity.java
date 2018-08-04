@@ -41,6 +41,9 @@ public class DifferentMaterialsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_different_materials);
 
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        final String subject = getIntent().getStringExtra("SUBJECT");
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three

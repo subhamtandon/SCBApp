@@ -82,7 +82,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Medium", Toast.LENGTH_SHORT).show();
                                 break;
-                            case 3:
+                            /*case 3:
                                 intent = new Intent(context, HardQuestionSetActivity.class);
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Hard", Toast.LENGTH_SHORT).show();
@@ -91,7 +91,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 intent = new Intent(context, RandomQuestionSetActivity.class);
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Random", Toast.LENGTH_SHORT).show();
-                                break;
+                                break;*/
                             default:
                                 Toast.makeText(context, "Choose Your Mode", Toast.LENGTH_SHORT).show();
                         }
