@@ -225,7 +225,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                     .setValue(mSpinner.getSelectedItem().toString());
 
                                             Intent intent = new Intent(getApplicationContext(), UserProfile.class);
-                                            intent.putExtra("COLLEGE NAME", mSpinner.getSelectedItem().toString());
                                             startActivity(intent);
                                         }else {
 
@@ -241,14 +240,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             }
                             else {
                                 finish();
-
                                 startActivity(new Intent(getApplicationContext(), UserProfile.class));
-
                             }
-
-
-
-
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("info", "signInWithCredential:failure", task.getException());

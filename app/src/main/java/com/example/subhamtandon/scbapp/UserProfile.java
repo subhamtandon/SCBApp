@@ -23,6 +23,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class UserProfile extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -30,6 +35,8 @@ public class UserProfile extends AppCompatActivity
     FirebaseAuth firebaseAuth;
 
     TextView textViewUserName, textViewUserEmail;
+
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +64,27 @@ public class UserProfile extends AppCompatActivity
 
         textViewUserName.setText(user.getDisplayName());
         textViewUserEmail.setText(user.getEmail());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("College Name");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null){
+                    String collegeName = dataSnapshot.getValue(String.class);
+
+                    Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
         ft.replace(R.id.flMain, new HomeFragment());
