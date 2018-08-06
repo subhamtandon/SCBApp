@@ -21,7 +21,7 @@ import android.widget.Toast;
  */
 public class HomeFragment extends Fragment {
 
-    CardView scorecardCard, doctorCard, studyCard, questionBankCard;
+    CardView scorecardCard, mcqCard, studyCard, questionBankCard;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
-        doctorCard =(CardView)view.findViewById(R.id.doctorCard);
+        mcqCard =(CardView)view.findViewById(R.id.mcqCard);
         studyCard =(CardView)view.findViewById(R.id.studyCard);
         questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
 
@@ -46,11 +46,11 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        doctorCard.setOnClickListener(new View.OnClickListener() {
+        mcqCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentTransaction ft= getFragmentManager().beginTransaction();
-                ft.replace(R.id.flMain, new DepartmentFragment());
+                ft.replace(R.id.flMain, new ProfessionalFragment());
                 ft.commit();
             }
         });
