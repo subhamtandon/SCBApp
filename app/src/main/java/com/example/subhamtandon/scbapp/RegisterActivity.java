@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,8 +34,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private Button buttonRegister;
     private TextView textViewSignin;
     private ProgressDialog progressDialog;
+    Spinner mSpinner;
 
     private FirebaseAuth firebaseAuth;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,12 +61,19 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
+        mSpinner = findViewById(R.id.spinnerCollegeList);
+
         progressDialog = new ProgressDialog(this);
 
         buttonRegister.setOnClickListener(this);
 
         textViewSignin.setOnClickListener(this);
 
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.collegeList));
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpinner.setAdapter(adapter);
     }
 
     private boolean isEmailValid(String email) {
@@ -79,7 +91,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         String password = editTextPassword.getText().toString();
 
+        final String collegeName = mSpinner.getSelectedItem().toString();
+
         String ready= "true";
+
+        if (collegeName.equalsIgnoreCase("-Select-")){
+            ready = "false";
+            Toast.makeText(RegisterActivity.this, "Select College name", Toast.LENGTH_SHORT).show();
+        }
         if (TextUtils.isEmpty(email)){
 
             //email is empty
@@ -124,13 +143,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            progressDialog.dismiss();
                             if (task.isSuccessful()) {
 
                                 UserInformation user = new UserInformation(
                                         firstName,
                                         lastName,
-                                        email
+                                        email,
+                                        collegeName
                                 );
 
                                 FirebaseDatabase.getInstance().getReference("Users")
@@ -142,7 +161,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                             Log.d("pass", "createUserWithEmail:success");
                                             Toast.makeText(RegisterActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                                            finish();
+                                            //finish();
+                                            progressDialog.dismiss();
                                             startActivity(new Intent(getApplicationContext(),UserProfile.class));
 
                                         }else {
@@ -177,7 +197,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                 }
                             }
-                            progressDialog.dismiss();
+
 
                         }
                     });

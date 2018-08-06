@@ -30,14 +30,9 @@ public class MCQsFragment extends Fragment{
         listItemChapters = new ArrayList<>();
 
         for(int i =0; i<=10; i++){
-            ListItemChapters listItemChapter = new ListItemChapters("Chapter "+ (i+1), "Description is coming soon");
+            ListItemChapters listItemChapter = new ListItemChapters("Chapter 0"+ (i+1), "Description is coming soon");
             listItemChapters.add(listItemChapter);
         }
-
-        adapterChapters = new AdapterForBinding(listItemChapters, getContext());
-
-        recyclerViewChapters.setAdapter(adapterChapters);
-
 
         Bundle bundle = getArguments();
         if(bundle!=null){
@@ -47,6 +42,10 @@ public class MCQsFragment extends Fragment{
 
             Toast.makeText(getActivity(), professional, Toast.LENGTH_SHORT).show();
             Toast.makeText(getActivity(), subject , Toast.LENGTH_SHORT).show();
+
+            adapterChapters = new AdapterForBinding(listItemChapters, getContext(), professional, subject);
+
+            recyclerViewChapters.setAdapter(adapterChapters);
         }
 
 

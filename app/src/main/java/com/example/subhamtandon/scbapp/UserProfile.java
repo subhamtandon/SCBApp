@@ -69,7 +69,7 @@ public class UserProfile extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+           //super.onBackPressed();
         }
     }
 
@@ -122,7 +122,7 @@ public class UserProfile extends AppCompatActivity
             //FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             //ft.replace(R.id.flMain, new StudyFragment());
             //ft.commit();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
 

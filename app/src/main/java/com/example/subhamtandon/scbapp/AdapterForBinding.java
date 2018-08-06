@@ -24,10 +24,14 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
 
     List<ListItemChapters> listItemChapters;
     Context context;
+    String professional;
+    String subject;
 
-    public AdapterForBinding(List<ListItemChapters> listItemChapters, Context context) {
+    public AdapterForBinding(List<ListItemChapters> listItemChapters, Context context, String professional, String subject) {
         this.listItemChapters = listItemChapters;
         this.context = context;
+        this.professional = professional;
+        this.subject = subject;
     }
 
     @NonNull
@@ -74,11 +78,21 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                         switch (position){
                             case 1:
                                 intent = new Intent(context, EasyQuestionSetActivity.class);
-                                 context.startActivity(intent);
+                                intent.putExtra("PROFESSIONAL", professional);
+                                intent.putExtra("SUBJECT", subject);
+                                intent.putExtra("TYPE", "MCQs");
+                                intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
+                                intent.putExtra("MODE", "Basic");
+                                context.startActivity(intent);
                                 //Toast.makeText(context, "Easy", Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
                                 intent = new Intent(context, MediumQuestionSetActivity.class);
+                                intent.putExtra("PROFESSIONAL", professional);
+                                intent.putExtra("SUBJECT", subject);
+                                intent.putExtra("TYPE", "MCQs");
+                                intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
+                                intent.putExtra("MODE", "Advanced");
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Medium", Toast.LENGTH_SHORT).show();
                                 break;

@@ -13,8 +13,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -48,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static final int RC_SIGN_IN = 1;
 
     private GoogleApiClient mGoogleApiClient;
+
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -189,9 +195,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("info", "signInWithCredential:success");
-                            finish();
-                            FirebaseUser user = firebaseAuth.getCurrentUser();
-                            startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                            boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
+
+                            if (isNew){
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+                                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+
+                                builder.setTitle("Choose your College")
+                                        .setCancelable(false);
+
+                                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+                                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.collegeList));
+
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                                mSpinner.setAdapter(adapter);
+
+                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")){
+
+                                            FirebaseDatabase.getInstance().getReference("Users")
+                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                    .child("College Name")
+                                                    .setValue(mSpinner.getSelectedItem().toString());
+
+                                            Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                                            intent.putExtra("COLLEGE NAME", mSpinner.getSelectedItem().toString());
+                                            startActivity(intent);
+                                        }else {
+
+                                            progressDialog.dismiss();
+                                            Toast.makeText(MainActivity.this, "Select college name", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                                builder.setView(mView);
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                            }
+                            else {
+                                finish();
+
+                                startActivity(new Intent(getApplicationContext(), UserProfile.class));
+
+                            }
+
+
+
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("info", "signInWithCredential:failure", task.getException());

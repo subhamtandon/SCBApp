@@ -18,12 +18,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 public class QuestionsActivity extends AppCompatActivity {
 
     TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation;
     ImageView imageViewUserQuestion, imageViewUserOptionA, imageViewUserOptionB, imageViewUserOptionC, imageViewUserOptionD, imageViewUserExplanation;
 
-    DatabaseReference databaseReference, databaseReference1, databaseReference2, databaseReference3, databaseReference4, databaseReference5, databaseReference6;
+    DatabaseReference databaseReference, databaseReferenceQuestion, databaseReference1, databaseReference2, databaseReference3, databaseReference4, databaseReference5, databaseReference6;
 
     String questionText, questionImageUrl, optionAText, optionAImageUrl, optionAValue, optionBText, optionBImageUrl, optionBValue, optionCText, optionCImageUrl, optionCValue, optionDText, optionDValue, optionDImageUrl, explanationText, explanationImageUrl;
     Uri questionUri, optionAUri, optionBUri, optionCUri, optionDUri, explanationUri;
@@ -32,6 +34,13 @@ public class QuestionsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
+
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        final String subject = getIntent().getStringExtra("SUBJECT");
+        final String type = getIntent().getStringExtra("TYPE");
+        final String chapter = getIntent().getStringExtra("CHAPTER");
+        final String mode = getIntent().getStringExtra("MODE");
+        final String set = getIntent().getStringExtra("SET");
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -46,14 +55,56 @@ public class QuestionsActivity extends AppCompatActivity {
         imageViewUserOptionC = findViewById(R.id.imageViewUserOptionC);
         imageViewUserOptionD = findViewById(R.id.imageViewUserOptionD);
 
+        /*databaseReference = FirebaseDatabase.getInstance().getReference()
+                .child("App")
+                .child("Study")
+                .child(professional)
+                .child(subject)
+                .child(type)
+                .child(chapter)
+                .child(mode)
+                .child(set);
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds: dataSnapshot.getChildren()){
+                    Log.d("TAG", ds + " ");
+                    id = ds.getKey();
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });*/
+
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
                 .child("Study")
-                .child("First Professional")
-                .child("Anatomy")
-                .child("MCQs")
-                .child("Questions")
-                .child("LIBalDg-6-UDJf7L1hc");
+                .child(professional)
+                .child(subject)
+                .child(type)
+                .child("Questions");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds:dataSnapshot.getChildren()){
+                    String questionId = ds.getKey();
+
+                    if (ds.child(questionId).getKey().toString().equalsIgnoreCase("Question")){
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         databaseReference1 = databaseReference.child("Question");
         Log.e("Dta Reference",databaseReference+"");
@@ -99,7 +150,7 @@ public class QuestionsActivity extends AppCompatActivity {
             }
         });
 
-        databaseReference2 = databaseReference.child("Option A");
+        /*databaseReference2 = databaseReference.child("Option A");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,12 +179,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    /*if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")){
+                    if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")){
 
                         if (! dataSnapshot2.getValue(Boolean.class)){
                             checkOptionA.setVisibility(View.INVISIBLE);
                         }
-                    }*/
+                    }
 
                 }
             }
@@ -142,9 +193,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReference3 = databaseReference.child("Option B");
+        /*databaseReference3 = databaseReference.child("Option B");
         databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -173,12 +224,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    /*if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")){
+                    /if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")){
 
                         if (! dataSnapshot3.getValue(Boolean.class)){
                             checkOptionB.setVisibility(View.INVISIBLE);
                         }
-                    }*/
+                    }
 
                 }
             }
@@ -187,9 +238,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReference4 = databaseReference.child("Option C");
+        /*databaseReference4 = databaseReference.child("Option C");
         databaseReference4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -218,12 +269,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    /*if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")){
+                    if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")){
 
                         if (! dataSnapshot4.getValue(Boolean.class)){
                             checkOptionC.setVisibility(View.INVISIBLE);
                         }
-                    }*/
+                    }
 
                 }
             }
@@ -232,9 +283,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReference5 = databaseReference.child("Option D");
+        /*databaseReference5 = databaseReference.child("Option D");
         databaseReference5.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -263,12 +314,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    /*if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")){
+                    if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")){
 
                         if (! dataSnapshot5.getValue(Boolean.class)){
                             checkOptionD.setVisibility(View.INVISIBLE);
                         }
-                    }*/
+                    }
 
                 }
             }
@@ -277,7 +328,7 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
     }
 
     public void exitQuestions(View view){

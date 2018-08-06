@@ -52,6 +52,19 @@
         <item>Advanced</item>
     </string-array>
 
+    <string-array name="collegeList">
+        <item>-Select-</item>
+        <item>All India Institute of Medical Sciences Bhubaneswar</item>
+        <item>SCB Medical College, Cuttack</item>
+        <item>MKCG Medical College, Berhampur</item>
+        <item>Veer Surendra Sai Institute of Medical Sciences and Research, Burla</item>
+        <item>SLN Medical College and Hospital, Koraput</item>
+        <item>Pandit Raghunath Murmu Medical College and Hospital, Baripada</item>
+        <item>Gopabandhu Ayurveda Mahavidyalaya, Puri</item>
+        <item>Dr Abhin Chandra Homoeopathic Medical College and Hospital, Bhubaneswar</item>
+        <item>Swami Vivekanand National Institute of Rehabilitation Training and Research, Cuttack</item>
+    </string-array>
+
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
     <string name="tab_text_1">MCQs</string>
     <string name="tab_text_2">Record</string>
