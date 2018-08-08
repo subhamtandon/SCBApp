@@ -49,9 +49,8 @@ public class HomeFragment extends Fragment {
         mcqCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction ft= getFragmentManager().beginTransaction();
-                ft.replace(R.id.flMain, new ProfessionalFragment());
-                ft.commit();
+                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
+                startActivity(intent);
             }
         });
 

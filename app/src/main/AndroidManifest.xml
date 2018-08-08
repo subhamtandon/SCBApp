@@ -73,9 +73,19 @@
         <activity android:name=".AddingExplanationActivity" />
         <activity android:name=".ListOfSetsActivity" />
         <activity android:name=".ListOfQuestionsActivity" />
-        <activity android:name=".InformationBulletinActivity"></activity>
-        <activity android:name=".CheckQuestionDetails"></activity>
-
+        <activity android:name=".InformationBulletinActivity" />
+        <activity android:name=".CheckQuestionDetails" />
+        <activity
+            android:name=".ProfessionalsActivity"
+            android:parentActivityName=".UserProfile" />
+        <activity android:name=".UserProfessionalFirstActivity"
+            android:parentActivityName=".ProfessionalsActivity"/>
+        <activity android:name=".UserProfessionalSecondActivity"
+            android:parentActivityName=".ProfessionalsActivity"/>
+        <activity android:name=".UserProfessionalThirdOneActivity"
+            android:parentActivityName=".ProfessionalsActivity"/>
+        <activity android:name=".UserProfessionalThirdTwoActivity"
+            android:parentActivityName=".ProfessionalsActivity"></activity>
     </application>
 
 </manifest>
