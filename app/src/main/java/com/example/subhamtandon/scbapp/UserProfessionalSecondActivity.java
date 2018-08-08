@@ -11,6 +11,6 @@ public class UserProfessionalSecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_professional_second);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("2nd Professional");
+        getSupportActionBar().setTitle("Second Professional");
     }
 }

@@ -1,7 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -12,12 +11,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.ViewHolder> {
@@ -77,7 +74,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                         final Intent intent;
                         switch (position){
                             case 1:
-                                intent = new Intent(context, EasyQuestionSetActivity.class);
+                                intent = new Intent(context, BasicQuestionSetActivity.class);
                                 intent.putExtra("PROFESSIONAL", professional);
                                 intent.putExtra("SUBJECT", subject);
                                 intent.putExtra("TYPE", "MCQs");
@@ -87,7 +84,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 //Toast.makeText(context, "Easy", Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
-                                intent = new Intent(context, MediumQuestionSetActivity.class);
+                                intent = new Intent(context, AdvancedQuestionSetActivity.class);
                                 intent.putExtra("PROFESSIONAL", professional);
                                 intent.putExtra("SUBJECT", subject);
                                 intent.putExtra("TYPE", "MCQs");
@@ -123,9 +120,6 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
-
-
-
             }
 
         });

@@ -44,8 +44,9 @@
             android:name=".DifferentMaterialsActivity"
             android:label="@string/title_activity_different_materials"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EasyQuestionSetActivity" />
-        <activity android:name=".MediumQuestionSetActivity" />
+        <activity android:name=".BasicQuestionSetActivity"
+            android:parentActivityName=".ChaptersActivity"/>
+        <activity android:name=".AdvancedQuestionSetActivity" />
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />
@@ -78,14 +79,20 @@
         <activity
             android:name=".ProfessionalsActivity"
             android:parentActivityName=".UserProfile" />
-        <activity android:name=".UserProfessionalFirstActivity"
-            android:parentActivityName=".ProfessionalsActivity"/>
-        <activity android:name=".UserProfessionalSecondActivity"
-            android:parentActivityName=".ProfessionalsActivity"/>
-        <activity android:name=".UserProfessionalThirdOneActivity"
-            android:parentActivityName=".ProfessionalsActivity"/>
-        <activity android:name=".UserProfessionalThirdTwoActivity"
-            android:parentActivityName=".ProfessionalsActivity"></activity>
+        <activity
+            android:name=".UserProfessionalFirstActivity"
+            android:parentActivityName=".ProfessionalsActivity" />
+        <activity
+            android:name=".UserProfessionalSecondActivity"
+            android:parentActivityName=".ProfessionalsActivity" />
+        <activity
+            android:name=".UserProfessionalThirdOneActivity"
+            android:parentActivityName=".ProfessionalsActivity" />
+        <activity
+            android:name=".UserProfessionalThirdTwoActivity"
+            android:parentActivityName=".ProfessionalsActivity" />
+        <activity android:name=".ChaptersActivity"
+            android:parentActivityName=".UserProfessionalFirstActivity"></activity>
     </application>
 
 </manifest>

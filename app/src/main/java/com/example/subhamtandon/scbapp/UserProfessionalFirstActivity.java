@@ -94,7 +94,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                Intent intent = new Intent(getApplicationContext(),DifferentMaterialsActivity.class);
+                Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
                 intent.putExtra("PROFESSIONAL", professional);
                 intent.putExtra("SUBJECT", "Anatomy");
                 startActivity(intent);
