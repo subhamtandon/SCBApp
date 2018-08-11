@@ -51,7 +51,7 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
 
                     String setName = dataSnapshot.getKey();
 
-                    ((AdapterForSetsList) recyclerViewSets.getAdapter()).update(setName);
+                    ((AdapterForBasicSets) recyclerViewSets.getAdapter()).update(setName);
                 }
             }
 
@@ -77,8 +77,8 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
         });
 
         recyclerViewSets.setLayoutManager(new LinearLayoutManager(this));
-        AdapterForSetsList adapterForSetsList = new AdapterForSetsList(recyclerViewSets, BasicQuestionSetActivity.this, new ArrayList<String>(), professional, subject, chapter, mode);
-        recyclerViewSets.setAdapter(adapterForSetsList);
+        AdapterForBasicSets adapterForBasicSets = new AdapterForBasicSets(recyclerViewSets, BasicQuestionSetActivity.this, new ArrayList<String>(), professional, subject, type, chapter, mode);
+        recyclerViewSets.setAdapter(adapterForBasicSets);
 
     }
 

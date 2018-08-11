@@ -42,6 +42,8 @@ public class QuestionsActivity extends AppCompatActivity {
         final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
 
+        Toast.makeText(this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + mode + ":" + set, Toast.LENGTH_SHORT).show();
+
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
         textViewUserOptionB = findViewById(R.id.textViewUserOptionB);
