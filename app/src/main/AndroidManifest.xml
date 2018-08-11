@@ -27,36 +27,23 @@
             android:name=".UserProfile"
             android:label="@string/title_activity_user_profile"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".Professional1stActivity"
-            android:parentActivityName=".UserProfile" />
-        <activity
-            android:name=".Professional2ndActivity"
-            android:parentActivityName=".UserProfile" />
-        <activity
-            android:name=".Professional3rdActivity"
-            android:parentActivityName=".UserProfile" />
-        <activity
-            android:name=".Professional4thActivity"
-            android:parentActivityName=".UserProfile" />
+        <activity android:name=".Professional1stActivity" />
+        <activity android:name=".Professional2ndActivity" />
+        <activity android:name=".Professional3rdActivity" />
+        <activity android:name=".Professional4thActivity" />
         <activity android:name=".ProfessionalsSpinnerActivity" />
         <activity
             android:name=".DifferentMaterialsActivity"
             android:label="@string/title_activity_different_materials"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BasicQuestionSetActivity"
-            android:parentActivityName=".ChaptersActivity"/>
+        <activity android:name=".BasicQuestionSetActivity"/>
         <activity android:name=".AdvancedQuestionSetActivity" />
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />
         <activity android:name=".AdminHomeActivity" />
-        <activity
-            android:name=".AdminStudyActivity"
-            android:parentActivityName=".AdminHomeActivity" />
-        <activity
-            android:name=".AdminDepartmentActivity"
-            android:parentActivityName=".AdminHomeActivity" />
+        <activity android:name=".AdminStudyActivity" />
+        <activity android:name=".AdminDepartmentActivity" />
         <activity android:name=".MCQsAlteringActivity" />
         <activity android:name=".RecordsAlteringActivity" />
         <activity android:name=".PracticalAlteringActivity" />
@@ -76,23 +63,12 @@
         <activity android:name=".ListOfQuestionsActivity" />
         <activity android:name=".InformationBulletinActivity" />
         <activity android:name=".CheckQuestionDetails" />
-        <activity
-            android:name=".ProfessionalsActivity"
-            android:parentActivityName=".UserProfile" />
-        <activity
-            android:name=".UserProfessionalFirstActivity"
-            android:parentActivityName=".ProfessionalsActivity" />
-        <activity
-            android:name=".UserProfessionalSecondActivity"
-            android:parentActivityName=".ProfessionalsActivity" />
-        <activity
-            android:name=".UserProfessionalThirdOneActivity"
-            android:parentActivityName=".ProfessionalsActivity" />
-        <activity
-            android:name=".UserProfessionalThirdTwoActivity"
-            android:parentActivityName=".ProfessionalsActivity" />
-        <activity android:name=".ChaptersActivity"
-            android:parentActivityName=".UserProfessionalFirstActivity"></activity>
+        <activity android:name=".ProfessionalsActivity"/>
+        <activity android:name=".UserProfessionalFirstActivity" />
+        <activity android:name=".UserProfessionalSecondActivity" />
+        <activity android:name=".UserProfessionalThirdOneActivity" />
+        <activity android:name=".UserProfessionalThirdTwoActivity" />
+        <activity android:name=".ChaptersActivity"></activity>
     </application>
 
 </manifest>

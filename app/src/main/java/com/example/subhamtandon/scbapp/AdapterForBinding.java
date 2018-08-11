@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
@@ -56,7 +57,8 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
 
                 View mView = LayoutInflater.from(context).inflate(R.layout.activity_professionals_spinner, null);
 
-                builder.setTitle("Choose your Mode");
+                builder.setTitle("Choose your Mode")
+                    .setCancelable(false);
 
                 final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
@@ -68,7 +70,36 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
 
                 mSpinner.setAdapter(adapter);
 
-                mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")){
+                            if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Basic")){
+                                Intent intent = new Intent(context, BasicQuestionSetActivity.class);
+                                intent.putExtra("PROFESSIONAL", professional);
+                                intent.putExtra("SUBJECT", subject);
+                                intent.putExtra("TYPE", "MCQs");
+                                intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
+                                intent.putExtra("MODE", "Basic");
+                                context.startActivity(intent);
+                            }
+                            if (mSpinner.getSelectedItem().toString().equalsIgnoreCase("Advanced")){
+                                Intent intent = new Intent(context, AdvancedQuestionSetActivity.class);
+                                intent.putExtra("PROFESSIONAL", professional);
+                                intent.putExtra("SUBJECT", subject);
+                                intent.putExtra("TYPE", "MCQs");
+                                intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
+                                intent.putExtra("MODE", "Advanced");
+                                context.startActivity(intent);
+                            }
+                        }
+                        else {
+                            Toast.makeText(context, "Select Mode", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                /*mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         final Intent intent;
@@ -81,6 +112,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
                                 intent.putExtra("MODE", "Basic");
                                 context.startActivity(intent);
+
                                 //Toast.makeText(context, "Easy", Toast.LENGTH_SHORT).show();
                                 break;
                             case 2:
@@ -93,7 +125,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Medium", Toast.LENGTH_SHORT).show();
                                 break;
-                            /*case 3:
+                            case 3:
                                 intent = new Intent(context, HardQuestionSetActivity.class);
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Hard", Toast.LENGTH_SHORT).show();
@@ -102,7 +134,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                                 intent = new Intent(context, RandomQuestionSetActivity.class);
                                 context.startActivity(intent);
                                 //Toast.makeText(context, "Random", Toast.LENGTH_SHORT).show();
-                                break;*/
+                                break;
                             default:
                                 Toast.makeText(context, "Choose Your Mode", Toast.LENGTH_SHORT).show();
                         }
@@ -115,7 +147,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                         Toast.makeText(context, "Choose Your Mode", Toast.LENGTH_SHORT).show();
 
                     }
-                });
+                });*/
 
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
