@@ -53,10 +53,10 @@ public class AddingQuestionActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : "+ mode + " : " + set, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : " + set, Toast.LENGTH_SHORT).show();
 
         editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
         buttonChooseImageQuestion = (Button) findViewById(R.id.buttonChooseImageQuestion);
@@ -70,7 +70,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
 
         final String id = databaseReference.push().getKey();
         databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Chapter").setValue(chapter);
-        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Mode").setValue(mode);
+        //databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Mode").setValue(mode);
         databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Set").setValue(set);
 
         buttonChooseImageQuestion.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +106,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             .child(subject)
                             .child("MCQs")
                             .child(chapter)
-                            .child(mode)
+                            //.child(mode)
                             .child(set)
                             .child(id)
                             .setValue(editTextQuestion.getText().toString());
@@ -190,7 +190,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                     next.putExtra("PROFESSIONAL", professional);
                     next.putExtra("SUBJECT", subject);
                     next.putExtra("CHAPTER", chapter);
-                    next.putExtra("MODE",mode);
+                    //next.putExtra("MODE",mode);
                     next.putExtra("SET",set);
                     next.putExtra("ID",id);
                     startActivity(next);

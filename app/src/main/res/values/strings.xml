@@ -66,26 +66,26 @@
     </string-array>
 
     <string-array name="anatomyChapters">
-        <item>Supex 1</item>
-        <item>Supex 2</item>
-        <item>Supex 3</item>
-        <item>Thorax 1</item>
-        <item>Thorax 2</item>
-        <item>Infex 1</item>
-        <item>Infex 2</item>
-        <item>Infex 3</item>
-        <item>Abdomen &amp; Pelvis 1</item>
-        <item>Abdomen &amp; Pelvis 2</item>
-        <item>Abdomen &amp; Pelvis 3</item>
-        <item>Abdomen &amp; Pelvis 4</item>
-        <item>Abdomen &amp; Pelvis 5</item>
-        <item>Neuroanatomy 1</item>
-        <item>Neuroanatomy 2</item>
-        <item>Neuroanatomy 3</item>
-        <item>Head &amp; Neck 1</item>
-        <item>Head &amp; Neck 2</item>
-        <item>Head &amp; Neck 3</item>
-        <item>Head &amp; Neck 4</item>
+        <item>Supex I</item>
+        <item>Supex II</item>
+        <item>Supex III</item>
+        <item>Thorax I</item>
+        <item>Thorax II</item>
+        <item>Infex I</item>
+        <item>Infex II</item>
+        <item>Infex III</item>
+        <item>Abdomen &amp; Pelvis I</item>
+        <item>Abdomen &amp; Pelvis II</item>
+        <item>Abdomen &amp; Pelvis III</item>
+        <item>Abdomen &amp; Pelvis IV</item>
+        <item>Abdomen &amp; Pelvis V</item>
+        <item>Neuroanatomy I</item>
+        <item>Neuroanatomy II</item>
+        <item>Neuroanatomy III</item>
+        <item>Head &amp; Neck I</item>
+        <item>Head &amp; Neck II</item>
+        <item>Head &amp; Neck III</item>
+        <item>Head &amp; Neck IV</item>
     </string-array>
 
     <string-array name="physiologyChapters">

@@ -21,10 +21,9 @@ public class AdapterForQuestionsList extends RecyclerView.Adapter<AdapterForQues
     String professional;
     String subject;
     String chapter;
-    String mode;
     String set;
 
-    public AdapterForQuestionsList(RecyclerView recyclerView, Context context, ArrayList<String> questionsArrayList, ArrayList<String> idsArrayList, String professional, String subject, String chapter, String mode, String set){
+    public AdapterForQuestionsList(RecyclerView recyclerView, Context context, ArrayList<String> questionsArrayList, ArrayList<String> idsArrayList, String professional, String subject, String chapter, String set){
 
         this.recyclerView = recyclerView;
         this.context = context;
@@ -33,7 +32,6 @@ public class AdapterForQuestionsList extends RecyclerView.Adapter<AdapterForQues
         this.professional = professional;
         this.subject = subject;
         this.chapter = chapter;
-        this.mode = mode;
         this.set = set;
     }
 
@@ -71,7 +69,6 @@ public class AdapterForQuestionsList extends RecyclerView.Adapter<AdapterForQues
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
-                next.putExtra("MODE",mode);
                 next.putExtra("SET",set);
                 next.putExtra("ID",id);
                 context.startActivity(next);

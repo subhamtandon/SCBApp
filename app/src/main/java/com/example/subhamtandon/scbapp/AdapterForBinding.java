@@ -50,6 +50,18 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
         holder.linearLayoutChapters.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, BasicQuestionSetActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", subject);
+                intent.putExtra("TYPE", "MCQs");
+                intent.putExtra("CHAPTER", listItemChapter.getChapterHead());
+                context.startActivity(intent);
+            }
+        });
+
+        /*holder.linearLayoutChapters.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 //Toast.makeText(context, "Work is going on on "+listItemChapter.getChapterHead(), Toast.LENGTH_SHORT).show();
 
 
@@ -99,7 +111,7 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                     }
                 });
 
-                /*mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         final Intent intent;
@@ -147,14 +159,14 @@ public class AdapterForBinding extends RecyclerView.Adapter<AdapterForBinding.Vi
                         Toast.makeText(context, "Choose Your Mode", Toast.LENGTH_SHORT).show();
 
                     }
-                });*/
+                });
 
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
 
-        });
+        });*/
     }
 
     @Override

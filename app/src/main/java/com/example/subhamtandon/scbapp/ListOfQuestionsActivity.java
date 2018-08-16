@@ -30,10 +30,10 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : "+ mode + " : " + set, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : " + set, Toast.LENGTH_SHORT).show();
 
         addQuestion = (FloatingActionButton) findViewById(R.id.addQuestion);
         addQuestion.setOnClickListener(new View.OnClickListener() {
@@ -44,7 +44,7 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
-                next.putExtra("MODE",mode);
+                //next.putExtra("MODE",mode);
                 next.putExtra("SET",set);
                 startActivity(next);
             }
@@ -59,7 +59,7 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
                 .child(subject)
                 .child("MCQs")
                 .child(chapter)
-                .child(mode)
+                //.child(mode)
                 .child(set);
 
         databaseReference.addChildEventListener(new ChildEventListener() {
@@ -100,7 +100,7 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
         });
 
         recyclerViewQuestions.setLayoutManager(new LinearLayoutManager(this));
-        AdapterForQuestionsList adapterForQuestionsList = new AdapterForQuestionsList(recyclerViewQuestions, ListOfQuestionsActivity.this, new ArrayList<String>(), new ArrayList<String>(), professional, subject, chapter, mode, set);
+        AdapterForQuestionsList adapterForQuestionsList = new AdapterForQuestionsList(recyclerViewQuestions, ListOfQuestionsActivity.this, new ArrayList<String>(), new ArrayList<String>(), professional, subject, chapter, set);
         recyclerViewQuestions.setAdapter(adapterForQuestionsList);
     }
 }

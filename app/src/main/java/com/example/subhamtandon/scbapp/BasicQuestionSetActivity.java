@@ -36,13 +36,13 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String type = getIntent().getStringExtra("TYPE");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
 
-        Toast.makeText(BasicQuestionSetActivity.this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + mode, Toast.LENGTH_SHORT).show();
+        Toast.makeText(BasicQuestionSetActivity.this, professional + ":" + subject + ":" + type + ":" + chapter, Toast.LENGTH_SHORT).show();
 
         recyclerViewSets = findViewById(R.id.recyclerViewSets);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child(type).child(chapter).child(mode);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child(type).child(chapter);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -77,7 +77,7 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
         });
 
         recyclerViewSets.setLayoutManager(new LinearLayoutManager(this));
-        AdapterForBasicSets adapterForBasicSets = new AdapterForBasicSets(recyclerViewSets, BasicQuestionSetActivity.this, new ArrayList<String>(), professional, subject, type, chapter, mode);
+        AdapterForBasicSets adapterForBasicSets = new AdapterForBasicSets(recyclerViewSets, BasicQuestionSetActivity.this, new ArrayList<String>(), professional, subject, type, chapter);
         recyclerViewSets.setAdapter(adapterForBasicSets);
 
     }

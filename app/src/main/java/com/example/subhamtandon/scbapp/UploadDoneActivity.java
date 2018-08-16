@@ -22,7 +22,7 @@ public class UploadDoneActivity extends AppCompatActivity {
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String type = getIntent().getStringExtra("TYPE");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
 
         if (type.equalsIgnoreCase("MCQs")){
@@ -37,7 +37,7 @@ public class UploadDoneActivity extends AppCompatActivity {
                 newQuestion.putExtra("PROFESSIONAL", professional);
                 newQuestion.putExtra("SUBJECT",subject);
                 newQuestion.putExtra("CHAPTER", chapter);
-                newQuestion.putExtra("MODE", mode);
+                //newQuestion.putExtra("MODE", mode);
                 newQuestion.putExtra("SET", set);
                 startActivity(newQuestion);
             }
@@ -70,7 +70,7 @@ public class UploadDoneActivity extends AppCompatActivity {
                     backToList.putExtra("PROFESSIONAL", professional);
                     backToList.putExtra("SUBJECT",subject);
                     backToList.putExtra("CHAPTER", chapter);
-                    backToList.putExtra("MODE", mode);
+                    //backToList.putExtra("MODE", mode);
                     startActivity(backToList);
                 }
 

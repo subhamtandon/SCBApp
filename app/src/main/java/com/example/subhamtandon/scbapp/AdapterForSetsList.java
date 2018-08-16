@@ -19,15 +19,13 @@ public class AdapterForSetsList extends RecyclerView.Adapter<AdapterForSetsList.
     String professional;
     String subject;
     String chapter;
-    String mode;
 
-    public AdapterForSetsList(RecyclerView recyclerView, Context context, ArrayList<String> setsArrayList, String professional, String subject, String chapter, String mode) {
+    public AdapterForSetsList(RecyclerView recyclerView, Context context, ArrayList<String> setsArrayList, String professional, String subject, String chapter) {
         this.context = context;
         this.setsArrayList = setsArrayList;
         this.professional = professional;
         this.subject = subject;
         this.chapter = chapter;
-        this.mode = mode;
     }
 
     public void update(String setName){
@@ -58,7 +56,6 @@ public class AdapterForSetsList extends RecyclerView.Adapter<AdapterForSetsList.
                 intent.putExtra("PROFESSIONAL",professional);
                 intent.putExtra("SUBJECT",subject);
                 intent.putExtra("CHAPTER", chapter);
-                intent.putExtra("MODE",mode);
                 intent.putExtra("SET",setsArrayList.get(position));
                 context.startActivity(intent);
 

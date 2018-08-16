@@ -16,15 +16,17 @@ import android.widget.TextView;
 
 public class AdminStudyActivity extends AppCompatActivity {
 
-
-
-    AutoCompleteTextView ProfessionalsAutoCompleteTextView, SubjectsAutoCompleteTextView, TypeAutoCompleteTextView, ChaptersAutoCompleteTextView, modeAutoCompleteTextView;
-    ImageView image,image1,image2,image3,image4;
+    AutoCompleteTextView ProfessionalsAutoCompleteTextView, SubjectsAutoCompleteTextView, TypeAutoCompleteTextView, ChaptersAutoCompleteTextView;
+    ImageView image,image1,image2,image3;
     //Spinner spinnerProfessionals, spinnerSubjects, spinnerType, spinnerChapters, spinnerMode;
 
-    ArrayAdapter<String> SubjectsProfFirstAdapter, SubjectsProfSecondAdapter, SubjectsProfThird1Adapter, SubjectsProfThird2Adapter, ChaptersAnatomyAdapter;
+    ArrayAdapter<String> SubjectsProfFirstAdapter, SubjectsProfSecondAdapter, SubjectsProfThird1Adapter, SubjectsProfThird2Adapter,
+            ChaptersAnatomyAdapter, ChaptersPhysiologyAdapter, ChaptersBiochemistryAdapter, ChaptersPathologyAdapter, ChaptersPharmacologyAdapter,
+            ChaptersMicrobiologyAdapter, ChaptersFMTAdapter, ChaptersSPMAdapter, ChaptersENTAdapter, ChaptersOpthaAdapter, ChaptersMedicineAdapter,
+            ChaptersSurgeryAdapter, ChaptersPediatricsAdapter, ChaptersOrthopedicsAdapter, ChaptersSkinVdAdapter, ChaptersAnaesthesiologyAdapter,
+            ChaptersRadiologyAdapter, ChaptersOGAdapter;
 
-    String whichProfessional, whichSubject, whichType, whichChapter, whichMode;
+    String whichProfessional, whichSubject, whichType, whichChapter;
 
     public void submitButton(View view){
 
@@ -32,7 +34,6 @@ public class AdminStudyActivity extends AppCompatActivity {
         whichSubject = SubjectsAutoCompleteTextView.getText().toString();
         whichType = TypeAutoCompleteTextView.getText().toString();
         whichChapter = null;
-        whichMode = null;
 
         String ready= "true";
 
@@ -70,7 +71,6 @@ public class AdminStudyActivity extends AppCompatActivity {
 
         if(whichType.equalsIgnoreCase("MCQs")){
             whichChapter = ChaptersAutoCompleteTextView.getText().toString();
-            whichMode = modeAutoCompleteTextView.getText().toString();
 
             /*for (int i = 0 ; i < Chapters.length - 1 ; i++){
 
@@ -92,11 +92,11 @@ public class AdminStudyActivity extends AppCompatActivity {
                     ready = "false";
                 }
             }*/
-            if (TextUtils.isEmpty(whichMode)){
+            /*if (TextUtils.isEmpty(whichMode)){
 
                 modeAutoCompleteTextView.setError(getString(R.string.error_field_required));
                 ready = "false";
-            }
+            }*/
         }
 
         if(ready.equalsIgnoreCase("true")){
@@ -106,7 +106,6 @@ public class AdminStudyActivity extends AppCompatActivity {
                 next.putExtra("PROFESSIONAL", whichProfessional);
                 next.putExtra("SUBJECT", whichSubject);
                 next.putExtra("CHAPTER", whichChapter);
-                next.putExtra("MODE",whichMode);
                 startActivity(next);
             }
             else if(whichType.equalsIgnoreCase("Record")){
@@ -154,14 +153,6 @@ public class AdminStudyActivity extends AppCompatActivity {
             "MCQs","Record","Practical","PYQs"
     };
 
-    private static final String[] Chapters = new String[]{
-            "Chapter 01","Chapter 02","Chapter 03","Chapter 04"
-    };
-
-    private static final String[] Modes = new String[]{
-            "Basic","Advanced"
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -177,13 +168,12 @@ public class AdminStudyActivity extends AppCompatActivity {
         SubjectsAutoCompleteTextView = findViewById(R.id.subjectsAutoCompleteTextView);
         TypeAutoCompleteTextView = findViewById(R.id.typeAutoCompleteTextView);
         ChaptersAutoCompleteTextView = findViewById(R.id.chaptersAutoCompleteTextView);
-        modeAutoCompleteTextView = findViewById(R.id.modeAutoCompleteTextView);
 
         image = (ImageView) findViewById(R.id.image);
         image1 = (ImageView) findViewById(R.id.image1);
         image2 = (ImageView) findViewById(R.id.image2);
         image3 = (ImageView) findViewById(R.id.image3);
-        image4 = (ImageView) findViewById(R.id.image4);
+        //image4 = (ImageView) findViewById(R.id.image4);
 
         //spinnerProfessionals = findViewById(R.id.spinnerProfessionals);
         //spinnerSubjects = findViewById(R.id.spinnerSubjects);
@@ -206,13 +196,23 @@ public class AdminStudyActivity extends AppCompatActivity {
         TypeAutoCompleteTextView.setAdapter(TypeAdapter);
 
         ChaptersAnatomyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.anatomyChapters));
-
-        final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Chapters);
-        ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
-
-        ArrayAdapter<String> ModeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Modes);
-        modeAutoCompleteTextView.setAdapter(ModeAdapter);
-
+        ChaptersPhysiologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.physiologyChapters));
+        ChaptersBiochemistryAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.bioChemistryChapters));
+        ChaptersPathologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pathologyChapters));
+        ChaptersPharmacologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pharmacologyChapters));
+        ChaptersMicrobiologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.microbiologyChapters));
+        ChaptersFMTAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.fmtChapters));
+        ChaptersSPMAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.spmChapters));
+        ChaptersENTAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.entChapters));
+        ChaptersOpthaAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.opthaChapters));
+        ChaptersMedicineAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.medicineChapters));
+        ChaptersSurgeryAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.surgeryChapters));
+        ChaptersPediatricsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.pediatricsChapters));
+        ChaptersOrthopedicsAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.orthopedicsChapters));
+        ChaptersSkinVdAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.skinVdChapters));
+        ChaptersAnaesthesiologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.anaesthesiologyChapters));
+        ChaptersRadiologyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.radiologyChapters));
+        ChaptersOGAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.ogChapters));
 
         image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -260,16 +260,84 @@ public class AdminStudyActivity extends AppCompatActivity {
                     ChaptersAutoCompleteTextView.setAdapter(ChaptersAnatomyAdapter);
                 }
 
+                if (whichSubject.equalsIgnoreCase("Physiology")) {
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersPhysiologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("BioChemistry")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersBiochemistryAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Pathology")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersPathologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Pharmacology")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersPharmacologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Microbiology")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersMicrobiologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("FMT")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersFMTAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("SPM")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersSPMAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("ENT")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersENTAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Optha")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersOpthaAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Medicine")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersMedicineAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Surgery")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersSurgeryAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Pediatrics")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersPediatricsAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Orthopedics")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersOrthopedicsAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Skin & VD")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersSkinVdAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Anaesthesiology")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersAnaesthesiologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("Radiology")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersRadiologyAdapter);
+                }
+
+                if (whichSubject.equalsIgnoreCase("O & G")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersOGAdapter);
+                }
+
                 ChaptersAutoCompleteTextView.showDropDown();
             }
         });
 
-        image4.setOnClickListener(new View.OnClickListener() {
+        /*image4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 modeAutoCompleteTextView.showDropDown();
             }
-        });
+        });*/
 
         TypeAutoCompleteTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -277,15 +345,15 @@ public class AdminStudyActivity extends AppCompatActivity {
                 if (TypeAutoCompleteTextView.getText().toString().equalsIgnoreCase("MCQs")){
                     ChaptersAutoCompleteTextView.setVisibility(View.VISIBLE);
                     image3.setVisibility(View.VISIBLE);
-                    modeAutoCompleteTextView.setVisibility(View.VISIBLE);
-                    image4.setVisibility(View.VISIBLE);
+                    //modeAutoCompleteTextView.setVisibility(View.VISIBLE);
+                    //image4.setVisibility(View.VISIBLE);
                 }
                 else
                 {
                     ChaptersAutoCompleteTextView.setVisibility(View.GONE);
                     image3.setVisibility(View.GONE);
-                    modeAutoCompleteTextView.setVisibility(View.GONE);
-                    image4.setVisibility(View.GONE);
+                    //modeAutoCompleteTextView.setVisibility(View.GONE);
+                    //image4.setVisibility(View.GONE);
                 }
             }
         });

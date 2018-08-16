@@ -54,14 +54,14 @@ public class CheckQuestionDetails extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
         final String id = getIntent().getStringExtra("ID");
 
         Log.d("TAG", professional);
         Log.d("TAG", subject);
         Log.d("TAG", chapter);
-        Log.d("TAG", mode);
+        //Log.d("TAG", mode);
         Log.d("TAG", set);
         Log.d("TAG", id);
 

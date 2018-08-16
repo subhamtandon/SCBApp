@@ -29,9 +29,9 @@ public class SetsAlteringActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " "+ mode, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter, Toast.LENGTH_SHORT).show();
 
         setEditText = (TextInputEditText) findViewById(R.id.setEditText);
         submitSetButton = (Button) findViewById(R.id.submitSetButton);
@@ -52,7 +52,6 @@ public class SetsAlteringActivity extends AppCompatActivity {
                 if(ready.equalsIgnoreCase("true")){
 
                     databaseReference.child(chapter)
-                            .child(mode)
                             .child(whichSet)
                             .setValue(null);
 
@@ -61,7 +60,7 @@ public class SetsAlteringActivity extends AppCompatActivity {
                     done.putExtra("PROFESSIONAL",professional);
                     done.putExtra("SUBJECT",subject);
                     done.putExtra("CHAPTER", chapter);
-                    done.putExtra("MODE",mode);
+                    //done.putExtra("MODE",mode);
                     done.putExtra("SET",whichSet);
                     startActivity(done);
                 }

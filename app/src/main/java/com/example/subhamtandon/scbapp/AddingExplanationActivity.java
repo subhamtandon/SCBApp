@@ -52,7 +52,7 @@ public class AddingExplanationActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
         final String id = getIntent().getStringExtra("ID");
 
@@ -174,7 +174,7 @@ public class AddingExplanationActivity extends AppCompatActivity {
                     done.putExtra("PROFESSIONAL",professional);
                     done.putExtra("SUBJECT",subject);
                     done.putExtra("CHAPTER", chapter);
-                    done.putExtra("MODE",mode);
+                    //done.putExtra("MODE",mode);
                     done.putExtra("SET",set);
                     startActivity(done);
                 }

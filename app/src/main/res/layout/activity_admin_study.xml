@@ -128,14 +128,14 @@
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
         android:visibility="gone"/>
 
-    <AutoCompleteTextView
+    <!--<AutoCompleteTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/modeAutoCompleteTextView"
         android:layout_margin="15dp"
         android:hint="Mode"
         android:layout_below="@id/chaptersAutoCompleteTextView"
-        android:visibility="gone"/>
+        android:visibility="gone"/>-->
 
     <!--<Spinner
         android:id="@+id/spinnerMode"
@@ -147,7 +147,7 @@
         android:visibility="gone">
     </Spinner>-->
 
-    <ImageView
+    <!--<ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/image4"
@@ -156,7 +156,7 @@
         android:layout_alignBottom="@id/modeAutoCompleteTextView"
         android:layout_alignRight="@id/modeAutoCompleteTextView"
         android:src="@mipmap/baseline_arrow_drop_down_black_24dp"
-        android:visibility="gone"/>
+        android:visibility="gone"/>-->
 
     <Button
         android:layout_width="match_parent"
@@ -164,6 +164,6 @@
         android:layout_margin="15dp"
         android:text="Submit"
         android:onClick="submitButton"
-        android:layout_below="@+id/modeAutoCompleteTextView"/>
+        android:layout_below="@+id/chaptersAutoCompleteTextView"/>
 
 </RelativeLayout>

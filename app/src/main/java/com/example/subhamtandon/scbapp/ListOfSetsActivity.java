@@ -31,9 +31,8 @@ public class ListOfSetsActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : "+ mode, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter, Toast.LENGTH_SHORT).show();
 
         addSet = (FloatingActionButton) findViewById(R.id.addSet);
         addSet.setOnClickListener(new View.OnClickListener() {
@@ -46,7 +45,6 @@ public class ListOfSetsActivity extends AppCompatActivity {
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
-                next.putExtra("MODE",mode);
                 startActivity(next);
 
             }
@@ -54,7 +52,7 @@ public class ListOfSetsActivity extends AppCompatActivity {
 
         recyclerViewSets = findViewById(R.id.recyclerViewSets);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter).child(mode);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter);
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -92,7 +90,7 @@ public class ListOfSetsActivity extends AppCompatActivity {
         });
 
         recyclerViewSets.setLayoutManager(new LinearLayoutManager(this));
-        AdapterForSetsList adapterForSetsList = new AdapterForSetsList(recyclerViewSets, ListOfSetsActivity.this, new ArrayList<String>(), professional, subject, chapter, mode);
+        AdapterForSetsList adapterForSetsList = new AdapterForSetsList(recyclerViewSets, ListOfSetsActivity.this, new ArrayList<String>(), professional, subject, chapter);
         recyclerViewSets.setAdapter(adapterForSetsList);
 
     }

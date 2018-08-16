@@ -60,11 +60,11 @@ public class AddingOptionAActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
         final String id = getIntent().getStringExtra("ID");
 
-        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : "+ mode + " : " + set, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + " : " + subject + " : " + chapter + " : " + set, Toast.LENGTH_SHORT).show();
 
         editTextOption1 = (EditText) findViewById(R.id.editTextOption1);
         buttonChooseImageOption1 = (Button) findViewById(R.id.buttonChooseImageOption1);
@@ -196,7 +196,7 @@ public class AddingOptionAActivity extends AppCompatActivity {
                     next.putExtra("PROFESSIONAL", professional);
                     next.putExtra("SUBJECT", subject);
                     next.putExtra("CHAPTER", chapter);
-                    next.putExtra("MODE",mode);
+                    //next.putExtra("MODE",mode);
                     next.putExtra("SET",set);
                     next.putExtra("ID",id);
                     startActivity(next);
