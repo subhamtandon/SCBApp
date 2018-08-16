@@ -65,6 +65,134 @@
         <item>Swami Vivekanand National Institute of Rehabilitation Training and Research, Cuttack</item>
     </string-array>
 
+    <string-array name="anatomyChapters">
+        <item>Supex 1</item>
+        <item>Supex 2</item>
+        <item>Supex 3</item>
+        <item>Thorax 1</item>
+        <item>Thorax 2</item>
+        <item>Infex 1</item>
+        <item>Infex 2</item>
+        <item>Infex 3</item>
+        <item>Abdomen &amp; Pelvis 1</item>
+        <item>Abdomen &amp; Pelvis 2</item>
+        <item>Abdomen &amp; Pelvis 3</item>
+        <item>Abdomen &amp; Pelvis 4</item>
+        <item>Abdomen &amp; Pelvis 5</item>
+        <item>Neuroanatomy 1</item>
+        <item>Neuroanatomy 2</item>
+        <item>Neuroanatomy 3</item>
+        <item>Head &amp; Neck 1</item>
+        <item>Head &amp; Neck 2</item>
+        <item>Head &amp; Neck 3</item>
+        <item>Head &amp; Neck 4</item>
+    </string-array>
+
+    <string-array name="physiologyChapters">
+
+    </string-array>
+
+    <string-array name="bioChemistryChapters">
+
+    </string-array>
+
+    <string-array name="pathologyChapters">
+        <item>Cell and Cellular Response to Stress</item>
+        <item>Inflammation and Repair, Hemodynamics</item>
+        <item>Genetics, Neoplasia</item>
+        <item>Immunology</item>
+        <item>Diseases-I </item>
+        <item>Diseases-II</item>
+        <item>Blood Vessels and Heart</item>
+        <item>WBC, Lymphatic System, RBC and Bleeding Disorders</item>
+        <item>Lungs and Kidney</item>
+        <item>Head and Neck</item>
+        <item>GIT and Eye</item>
+        <item>Liver, GB and Pancreas</item>
+        <item>Lower Urinary Tract, Male and Female Genital System</item>
+        <item>Breast and Endocrine System</item>
+        <item>Miscellaneous</item>
+    </string-array>
+
+    <string-array name="pharmacologyChapters">
+        <item>General Pharmacology</item>
+        <item>ANS-I</item>
+        <item>ANS-II</item>
+        <item>Autacoids-I</item>
+        <item>Autacoids-II</item>
+        <item>Cough and Bronchial Asthma</item>
+        <item>Endocrine System-I</item>
+        <item>Endocrine System-II</item>
+        <item>Peripheral Nervous System</item>
+        <item>CNS-I</item>
+        <item>CNS-II</item>
+        <item>CNS-III</item>
+        <item>CNS-IV</item>
+        <item>CVS-I</item>
+        <item>CVS-II</item>
+        <item>Drugs acting on Kidney</item>
+        <item>Blood and Blood Formation</item>
+        <item>GIT</item>
+        <item>Anti-microbial Drugs-I</item>
+        <item>Anti-microbial Drugs-II</item>
+        <item>Anti-microbial Drugs-III</item>
+        <item>Anti-Cancer Drugs</item>
+        <item>Miscellaneous-I</item>
+        <item>Miscellaneous-II</item>
+    </string-array>
+
+    <string-array name="microbiologyChapters">
+
+    </string-array>
+
+    <string-array name="fmtChapters">
+
+    </string-array>
+
+    <string-array name="spmChapters">
+
+    </string-array>
+
+    <string-array name="entChapters">
+
+    </string-array>
+
+    <string-array name="opthaChapters">
+
+    </string-array>
+
+    <string-array name="medicineChapters">
+
+    </string-array>
+
+    <string-array name="surgeryChapters">
+
+    </string-array>
+
+    <string-array name="pediatricsChapters">
+
+    </string-array>
+
+    <string-array name="orthopedicsChapters">
+
+    </string-array>
+
+    <string-array name="skinVdChapters">
+
+    </string-array>
+
+    <string-array name="anaesthesiologyChapters">
+
+    </string-array>
+
+    <string-array name="radiologyChapters">
+
+    </string-array>
+
+    <string-array name="ogChapters">
+
+    </string-array>
+
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
     <string name="tab_text_1">MCQs</string>
     <string name="tab_text_2">Record</string>

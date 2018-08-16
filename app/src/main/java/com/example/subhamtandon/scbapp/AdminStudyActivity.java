@@ -22,7 +22,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     ImageView image,image1,image2,image3,image4;
     //Spinner spinnerProfessionals, spinnerSubjects, spinnerType, spinnerChapters, spinnerMode;
 
-    ArrayAdapter<String> SubjectsProfFirstAdapter, SubjectsProfSecondAdapter, SubjectsProfThird1Adapter, SubjectsProfThird2Adapter;
+    ArrayAdapter<String> SubjectsProfFirstAdapter, SubjectsProfSecondAdapter, SubjectsProfThird1Adapter, SubjectsProfThird2Adapter, ChaptersAnatomyAdapter;
 
     String whichProfessional, whichSubject, whichType, whichChapter, whichMode;
 
@@ -139,15 +139,15 @@ public class AdminStudyActivity extends AppCompatActivity {
     };
 
     private static final String[] SubjectsProfSecond = new String[]{
-            "2Subject1","2Subject2","2Subject3","2Mock Test"
+            "Pathology","Pharmacology","Microbiology","FMT"
     };
 
     private static final String[] SubjectsProfThird1 = new String[]{
-            "3Subject1","3Subject2","3Subject3","3Mock Test"
+            "SPM","ENT","Optha"
     };
 
     private static final String[] SubjectsProfThird2 = new String[]{
-            "4Subject1","4Subject2","4Subject3","4Mock Test"
+            "Medicine","Surgery","Pediatrics","Orthopedics","Skin & VD","Anaesthesiology","Radiology","O & G"
     };
 
     private static final String[] Type = new String[]{
@@ -205,6 +205,8 @@ public class AdminStudyActivity extends AppCompatActivity {
         ArrayAdapter<String> TypeAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Type);
         TypeAutoCompleteTextView.setAdapter(TypeAdapter);
 
+        ChaptersAnatomyAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.anatomyChapters));
+
         final ArrayAdapter<String> ChaptersAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,Chapters);
         ChaptersAutoCompleteTextView.setAdapter(ChaptersAdapter);
 
@@ -252,6 +254,12 @@ public class AdminStudyActivity extends AppCompatActivity {
         image3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                whichSubject = SubjectsAutoCompleteTextView.getText().toString();
+
+                if (whichSubject.equalsIgnoreCase("Anatomy")){
+                    ChaptersAutoCompleteTextView.setAdapter(ChaptersAnatomyAdapter);
+                }
+
                 ChaptersAutoCompleteTextView.showDropDown();
             }
         });

@@ -102,23 +102,26 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                 intent.putExtra("PROFESSIONAL", professional);
                 intent.putExtra("SUBJECT", "Anatomy");
                 startActivity(intent);
-                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
         PhysiologyCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
-                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Physiology");
+                startActivity(intent);
             }
         });
         BiochemistryCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
-                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Biochemistry");
+                startActivity(intent);
             }
         });
         MockTestCard.setOnClickListener(new View.OnClickListener() {

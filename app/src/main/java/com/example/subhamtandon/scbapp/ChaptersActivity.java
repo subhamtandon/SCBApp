@@ -36,13 +36,153 @@ public class ChaptersActivity extends AppCompatActivity {
         recyclerViewChapters.setHasFixedSize(true);
         recyclerViewChapters.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        String[] anatomyChaptersName = getResources().getStringArray(R.array.anatomyChapters);
+        String[] physiologyChaptersName = getResources().getStringArray(R.array.physiologyChapters);
+        String[] bioChemistryChaptersName = getResources().getStringArray(R.array.bioChemistryChapters);
+        String[] pathologyChaptersName = getResources().getStringArray(R.array.pathologyChapters);
+        String[] pharmacologyChaptersName = getResources().getStringArray(R.array.pharmacologyChapters);
+        String[] microbiologyChaptersName = getResources().getStringArray(R.array.microbiologyChapters);
+        String[] fmtChaptersName = getResources().getStringArray(R.array.fmtChapters);
+        String[] spmChaptersName = getResources().getStringArray(R.array.spmChapters);
+        String[] entChaptersName = getResources().getStringArray(R.array.entChapters);
+        String[] opthaChaptersName = getResources().getStringArray(R.array.opthaChapters);
+        String[] medicineChaptersName = getResources().getStringArray(R.array.medicineChapters);
+        String[] surgeryChaptersName = getResources().getStringArray(R.array.surgeryChapters);
+        String[] pediatricsChaptersName = getResources().getStringArray(R.array.pediatricsChapters);
+        String[] orthopedicsChaptersName = getResources().getStringArray(R.array.orthopedicsChapters);
+        String[] skinVdChaptersName = getResources().getStringArray(R.array.skinVdChapters);
+        String[] anaesthesiologyChaptersName = getResources().getStringArray(R.array.anaesthesiologyChapters);
+        String[] radiologyChaptersName = getResources().getStringArray(R.array.radiologyChapters);
+        String[] ogChaptersName = getResources().getStringArray(R.array.ogChapters);
+
         listItemChapters = new ArrayList<>();
 
-        for(int i =0; i<=10; i++){
-            ListItemChapters listItemChapter = new ListItemChapters("Chapter 0"+ (i+1), "Description is coming soon");
-            listItemChapters.add(listItemChapter);
+        if (subject.equalsIgnoreCase("Anatomy")){
+            for(int i =0; i<anatomyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(anatomyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
         }
 
+        if (subject.equalsIgnoreCase("Physiology")){
+            for(int i =0; i<physiologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(physiologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("BioChemistry")){
+            for(int i =0; i<bioChemistryChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(bioChemistryChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Pathology")){
+            for(int i =0; i<pathologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(pathologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Pharmacology")){
+            for(int i =0; i<pharmacologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(pharmacologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Microbiology")){
+            for(int i =0; i<microbiologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(microbiologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("FMT")){
+            for(int i =0; i<fmtChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(fmtChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("SPM")){
+            for(int i =0; i<spmChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(spmChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("ENT")){
+            for(int i =0; i<entChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(entChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Optha")){
+            for(int i =0; i<opthaChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(opthaChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Medicine")){
+            for(int i =0; i<medicineChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(medicineChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Surgery")){
+            for(int i =0; i<surgeryChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(surgeryChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Pediatrics")){
+            for(int i =0; i<pediatricsChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(pediatricsChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Orthopedics")){
+            for(int i =0; i<orthopedicsChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(orthopedicsChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Skin & VD")){
+            for(int i =0; i<skinVdChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(skinVdChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Anaesthesiology")){
+            for(int i =0; i<anaesthesiologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(anaesthesiologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("Radiology")){
+            for(int i =0; i<radiologyChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(radiologyChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+
+        if (subject.equalsIgnoreCase("O & G")){
+            for(int i =0; i<ogChaptersName.length; i++){
+                ListItemChapters listItemChapter = new ListItemChapters(ogChaptersName[i], "Description is coming soon");
+                listItemChapters.add(listItemChapter);
+            }
+        }
+        
         adapterChapters = new AdapterForBinding(listItemChapters, ChaptersActivity.this, professional, subject);
 
         recyclerViewChapters.setAdapter(adapterChapters);
