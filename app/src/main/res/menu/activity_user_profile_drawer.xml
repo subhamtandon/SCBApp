@@ -5,21 +5,45 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_scbSection"
             android:icon="@drawable/ic_home_black"
-            android:title="Home" />
+            android:title="SCB section" />
         <item
-            android:id="@+id/nav_doctor"
+            android:id="@+id/nav_scbInfoBulletin"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Doctors" />
+            android:title="Information Bulletin" />
         <item
-            android:id="@+id/nav_study"
+            android:id="@+id/nav_scbAboutSCB"
             android:icon="@drawable/ic_book_black"
-            android:title="Study" />
+            android:title="About SCB" />
         <item
-            android:id="@+id/nav_question_bank"
+            android:id="@+id/nav_scbMap"
             android:icon="@drawable/ic_question_answer_black"
-            android:title="Question Bank" />
+            android:title="Map" />
+        <item
+            android:id="@+id/nav_scbDoctorsInfo"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Doctor's Information" />
+        <item
+            android:id="@+id/nav_submitQuestion"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Submit Question" />
+        <item
+            android:id="@+id/nav_shareApp"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Share App" />
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Feedback" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="Logout" />
+        <item
+            android:id="@+id/nav_fromMakersDesk"
+            android:icon="@drawable/ic_question_answer_black"
+            android:title="From maker's Desk" />
     </group>
 
 </menu>

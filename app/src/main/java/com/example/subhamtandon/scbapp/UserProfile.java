@@ -137,19 +137,18 @@ public class UserProfile extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_scbSection) {
             // Handle the camera action
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new HomeFragment());
             ft.commit();
-        } else if (id == R.id.nav_doctor) {
+        } else if (id == R.id.nav_scbInfoBulletin) {
+
+        } else if (id == R.id.nav_scbAboutSCB) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new DepartmentFragment());
+            ft.replace(R.id.flMain, new AboutSCBFragment());
             ft.commit();
-        } else if (id == R.id.nav_study) {
-            //FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            //ft.replace(R.id.flMain, new StudyFragment());
-            //ft.commit();
+            /*
             final AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
             View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
@@ -208,7 +207,40 @@ public class UserProfile extends AppCompatActivity
             builder.setView(mView);
             AlertDialog alertDialog = builder.create();
             alertDialog.show();
-        } else if (id == R.id.nav_question_bank) {
+            */
+
+        } else if (id == R.id.nav_scbMap) {
+            //FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            //ft.replace(R.id.flMain, new QuestionBankFragment());
+            //ft.commit();
+            Toast.makeText(UserProfile.this, "Map is coming soon", Toast.LENGTH_SHORT).show();
+        }else if (id == R.id.nav_scbDoctorsInfo) {
+
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new DepartmentFragment());
+            ft.commit();
+            /*
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.commit();
+            */
+        }else if (id == R.id.nav_submitQuestion) {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.commit();
+        }else if (id == R.id.nav_shareApp) {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.commit();
+        }else if (id == R.id.nav_feedback) {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.commit();
+        }else if (id == R.id.nav_logout) {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.commit();
+        }else if (id == R.id.nav_fromMakersDesk) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new QuestionBankFragment());
             ft.commit();
