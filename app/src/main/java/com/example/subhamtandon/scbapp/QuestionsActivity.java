@@ -65,6 +65,7 @@ public class QuestionsActivity extends AppCompatActivity {
         imageViewUserOptionB = findViewById(R.id.imageViewUserOptionB);
         imageViewUserOptionC = findViewById(R.id.imageViewUserOptionC);
         imageViewUserOptionD = findViewById(R.id.imageViewUserOptionD);
+        imageViewUserExplanation = findViewById(R.id.imageViewUserExplanation);
 
         pathChap.setText(chapter);
         pathSet.setText(set);
@@ -75,7 +76,8 @@ public class QuestionsActivity extends AppCompatActivity {
                 .child(professional)
                 .child(subject)
                 .child(type)
-                .child("Questions");
+                .child("Questions")
+                .child(idsArrayList.get(0));
 
         /*databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -95,7 +97,7 @@ public class QuestionsActivity extends AppCompatActivity {
             }
         });*/
 
-        /*databaseReference1 = databaseReference.child("Question");
+        databaseReference1 = databaseReference.child("Question");
         Log.e("Dta Reference",databaseReference+"");
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,8 +125,6 @@ public class QuestionsActivity extends AppCompatActivity {
                                     .load(questionUri)
                                     .resize(720,720)
                                     .into(imageViewUserQuestion);
-                        }else {
-                            Toast.makeText(QuestionsActivity.this, "image not present", Toast.LENGTH_SHORT).show();
                         }
                     }
 
@@ -137,9 +137,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
-        /*databaseReference2 = databaseReference.child("Option A");
+        databaseReference2 = databaseReference.child("Option A");
         databaseReference2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -168,12 +168,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")){
+                    /*if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")){
 
                         if (! dataSnapshot2.getValue(Boolean.class)){
                             checkOptionA.setVisibility(View.INVISIBLE);
                         }
-                    }
+                    }*/
 
                 }
             }
@@ -182,9 +182,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
-        /*databaseReference3 = databaseReference.child("Option B");
+        databaseReference3 = databaseReference.child("Option B");
         databaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -213,12 +213,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    /if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")){
+                    /*if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")){
 
                         if (! dataSnapshot3.getValue(Boolean.class)){
                             checkOptionB.setVisibility(View.INVISIBLE);
                         }
-                    }
+                    }*/
 
                 }
             }
@@ -227,9 +227,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
-        /*databaseReference4 = databaseReference.child("Option C");
+        databaseReference4 = databaseReference.child("Option C");
         databaseReference4.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -258,12 +258,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")){
+                    /*if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")){
 
                         if (! dataSnapshot4.getValue(Boolean.class)){
                             checkOptionC.setVisibility(View.INVISIBLE);
                         }
-                    }
+                    }*/
 
                 }
             }
@@ -272,9 +272,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
 
-        /*databaseReference5 = databaseReference.child("Option D");
+        databaseReference5 = databaseReference.child("Option D");
         databaseReference5.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -303,12 +303,12 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     }
 
-                    if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")){
+                    /*if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")){
 
                         if (! dataSnapshot5.getValue(Boolean.class)){
                             checkOptionD.setVisibility(View.INVISIBLE);
                         }
-                    }
+                    }*/
 
                 }
             }
@@ -317,7 +317,42 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });*/
+        });
+
+        databaseReference6 = databaseReference.child("Explanation");
+        databaseReference6.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot dataSnapshot6:dataSnapshot.getChildren())
+                {
+                    if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationText")){
+
+                        explanationText = dataSnapshot6.getValue(String.class);
+                        Log.e("tostringkey",explanationText);
+                        textViewUserExplanation.setText(explanationText);
+                    }
+
+                    if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationImageUrl")){
+
+                        if (! dataSnapshot6.getValue(String.class).equalsIgnoreCase("No Image Selected")){
+
+                            explanationImageUrl = dataSnapshot6.getValue(String.class);
+                            explanationUri = Uri.parse(explanationImageUrl);
+                            imageViewUserExplanation.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(explanationUri)
+                                    .resize(720,720)
+                                    .into(imageViewUserExplanation);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void exitQuestions(View view){
