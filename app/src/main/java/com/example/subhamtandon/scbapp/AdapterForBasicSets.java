@@ -4,10 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -20,6 +29,7 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
     String subject;
     String type;
     String chapter;
+
 
     public AdapterForBasicSets(RecyclerView recyclerView, Context context, ArrayList<String> setsArrayList, String professional, String subject, String type, String chapter) {
         this.context = context;
@@ -52,13 +62,86 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, QuestionsActivity.class);
-                intent.putExtra("PROFESSIONAL",professional);
-                intent.putExtra("SUBJECT",subject);
-                intent.putExtra("TYPE", type);
-                intent.putExtra("CHAPTER", chapter);
-                intent.putExtra("SET",setsArrayList.get(position));
-                context.startActivity(intent);
+                final ArrayList<String> idsArrayList = new ArrayList<>();
+
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference()
+                        .child("App")
+                        .child("Study")
+                        .child(professional)
+                        .child(subject)
+                        .child(type)
+                        .child(chapter)
+                        .child(setsArrayList.get(position));
+
+                /*databaseReference.addChildEventListener(new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        if (dataSnapshot != null){
+                            String uniqueId = dataSnapshot.getKey();
+                            idsArrayList.add(uniqueId);
+                        }
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(context, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot != null) {
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                String uniqueId = ds.getKey();
+                                Log.d("uniqueId", uniqueId);
+                                idsArrayList.add(uniqueId);
+                            }
+
+                            for (int i = 0; i < idsArrayList.size(); i++){
+                                Log.d("TAG",idsArrayList.get(i));
+                            }
+
+                            Intent intent = new Intent(context, QuestionsActivity.class);
+                            intent.putExtra("PROFESSIONAL",professional);
+                            intent.putExtra("SUBJECT",subject);
+                            intent.putExtra("TYPE", type);
+                            intent.putExtra("CHAPTER", chapter);
+                            intent.putExtra("SET",setsArrayList.get(position));
+                            intent.putStringArrayListExtra("IDS",idsArrayList);
+                            context.startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                /*for (int i = 0;i < idsArrayList.size(); i++) {
+                    Toast.makeText(context, idsArrayList.get(i), Toast.LENGTH_SHORT).show();
+                }
+                for (int i = 0; i < idsArrayList.size(); i++){
+                    Log.d("TAG",idsArrayList.get(i));
+                }*/
+
+
 
             }
         });

@@ -37,7 +37,6 @@
             android:label="@string/title_activity_different_materials"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".BasicQuestionSetActivity"/>
-        <activity android:name=".AdvancedQuestionSetActivity" />
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />

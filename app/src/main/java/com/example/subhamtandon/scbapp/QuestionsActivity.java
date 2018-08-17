@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,13 +23,15 @@ import java.util.ArrayList;
 
 public class QuestionsActivity extends AppCompatActivity {
 
-    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation;
+    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, pathChap, pathSet;
     ImageView imageViewUserQuestion, imageViewUserOptionA, imageViewUserOptionB, imageViewUserOptionC, imageViewUserOptionD, imageViewUserExplanation;
 
     DatabaseReference databaseReference, databaseReferenceQuestion, databaseReference1, databaseReference2, databaseReference3, databaseReference4, databaseReference5, databaseReference6;
 
     String questionText, questionImageUrl, optionAText, optionAImageUrl, optionAValue, optionBText, optionBImageUrl, optionBValue, optionCText, optionCImageUrl, optionCValue, optionDText, optionDValue, optionDImageUrl, explanationText, explanationImageUrl;
     Uri questionUri, optionAUri, optionBUri, optionCUri, optionDUri, explanationUri;
+
+    //ArrayList<String> idsArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +42,14 @@ public class QuestionsActivity extends AppCompatActivity {
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String type = getIntent().getStringExtra("TYPE");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String mode = getIntent().getStringExtra("MODE");
+        //final String mode = getIntent().getStringExtra("MODE");
         final String set = getIntent().getStringExtra("SET");
+        final ArrayList<String> idsArrayList = getIntent().getStringArrayListExtra("IDS");
 
-        Toast.makeText(this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + mode + ":" + set, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + set, Toast.LENGTH_SHORT).show();
+        for (int i = 0; i < idsArrayList.size(); i++){
+            Log.d("idsArrayList",idsArrayList.get(i));
+        }
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -50,6 +57,8 @@ public class QuestionsActivity extends AppCompatActivity {
         textViewUserOptionC = findViewById(R.id.textViewUserOptionC);
         textViewUserOptionD = findViewById(R.id.textViewUserOptionD);
         textViewUserExplanation = findViewById(R.id.textViewUserExplanation);
+        pathChap = findViewById(R.id.pathChap);
+        pathSet = findViewById(R.id.pathSet);
 
         imageViewUserQuestion = findViewById(R.id.imageViewUserQuestion);
         imageViewUserOptionA = findViewById(R.id.imageViewUserOptionA);
@@ -57,30 +66,8 @@ public class QuestionsActivity extends AppCompatActivity {
         imageViewUserOptionC = findViewById(R.id.imageViewUserOptionC);
         imageViewUserOptionD = findViewById(R.id.imageViewUserOptionD);
 
-        /*databaseReference = FirebaseDatabase.getInstance().getReference()
-                .child("App")
-                .child("Study")
-                .child(professional)
-                .child(subject)
-                .child(type)
-                .child(chapter)
-                .child(mode)
-                .child(set);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds: dataSnapshot.getChildren()){
-                    Log.d("TAG", ds + " ");
-                    id = ds.getKey();
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
+        pathChap.setText(chapter);
+        pathSet.setText(set);
 
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
@@ -90,7 +77,7 @@ public class QuestionsActivity extends AppCompatActivity {
                 .child(type)
                 .child("Questions");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds:dataSnapshot.getChildren()){
@@ -106,9 +93,9 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
-        databaseReference1 = databaseReference.child("Question");
+        /*databaseReference1 = databaseReference.child("Question");
         Log.e("Dta Reference",databaseReference+"");
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -150,7 +137,7 @@ public class QuestionsActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
 
             }
-        });
+        });*/
 
         /*databaseReference2 = databaseReference.child("Option A");
         databaseReference2.addValueEventListener(new ValueEventListener() {
