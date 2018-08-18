@@ -137,7 +137,13 @@ public class UserProfile extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_scbSection) {
+        if (id == R.id.nav_home) {
+            // Handle the camera action
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new HomeFragment());
+            ft.commit();
+        }
+        else if (id == R.id.nav_scbSection) {
             // Handle the camera action
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new HomeFragment());

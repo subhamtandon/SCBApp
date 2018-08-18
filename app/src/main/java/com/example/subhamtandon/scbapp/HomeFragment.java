@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +17,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +26,8 @@ import android.widget.Toast;
 public class HomeFragment extends Fragment {
 
     CardView scorecardCard, mcqCard, studyCard, questionBankCard;
+    RecyclerView recyclerViewVideoCategories;
+    ArrayList<String> listOfNamesOfVideoCategories ;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -34,10 +40,23 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+
+
         scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
         mcqCard =(CardView)view.findViewById(R.id.mcqCard);
         studyCard =(CardView)view.findViewById(R.id.studyCard);
         questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
+        recyclerViewVideoCategories = view.findViewById(R.id.recyclerViewVideoCategories);
+        listOfNamesOfVideoCategories = new ArrayList<>();
+        listOfNamesOfVideoCategories.add("Educational");
+        listOfNamesOfVideoCategories.add("Games");
+        listOfNamesOfVideoCategories.add("Pshycology");
+        listOfNamesOfVideoCategories.add("Nothing");
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        recyclerViewVideoCategories.setLayoutManager(linearLayoutManager);
+        AdapterForVideoCategories adapterForVideoCategories = new AdapterForVideoCategories(recyclerViewVideoCategories, getContext(),listOfNamesOfVideoCategories );
+        recyclerViewVideoCategories.setAdapter(adapterForVideoCategories);
 
         scorecardCard.setOnClickListener(new View.OnClickListener() {
             @Override
