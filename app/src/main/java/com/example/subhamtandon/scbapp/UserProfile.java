@@ -146,7 +146,7 @@ public class UserProfile extends AppCompatActivity
         else if (id == R.id.nav_scbSection) {
             // Handle the camera action
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new HomeFragment());
+            ft.replace(R.id.flMain, new SCBSectionFragment());
             ft.commit();
         } else if (id == R.id.nav_scbInfoBulletin) {
 
