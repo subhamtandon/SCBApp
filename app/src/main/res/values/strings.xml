@@ -194,7 +194,6 @@
     </string-array>
 
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
-    <string name="tab_text_1">MCQs</string>
     <string name="tab_text_2">Record</string>
     <string name="tab_text_3">Practical</string>
     <string name="tab_text_4">PYQ</string>

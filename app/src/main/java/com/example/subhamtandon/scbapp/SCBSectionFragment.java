@@ -1,8 +1,10 @@
 package com.example.subhamtandon.scbapp;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,10 @@ import android.view.ViewGroup;
  * A simple {@link Fragment} subclass.
  */
 public class SCBSectionFragment extends Fragment {
+
+    CardView firstProfessionalCard, secondProfessionalCard, thirdProfessionalPartOneCard, thirdProfessionalPartTwoCard;
+
+    Intent intent;
 
 
     public SCBSectionFragment() {
@@ -23,7 +29,54 @@ public class SCBSectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_scbsection, container, false);
+        View view = inflater.inflate(R.layout.fragment_scbsection, container, false);
+
+        firstProfessionalCard = view.findViewById(R.id.firstProfessionalCard);
+        secondProfessionalCard = view.findViewById(R.id.secondProfessionalCard);
+        thirdProfessionalPartOneCard = view.findViewById(R.id.thirdProfessionalPartOneCard);
+        thirdProfessionalPartTwoCard = view.findViewById(R.id.thirdProfessionalPartTwoCard);
+
+        firstProfessionalCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                intent = new Intent(getContext(), Professional1stActivity.class);
+                intent.putExtra("PROFESSIONAL", "First Professional");
+                startActivity(intent);
+            }
+        });
+
+        secondProfessionalCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                intent = new Intent(getContext(), Professional2ndActivity.class);
+                intent.putExtra("PROFESSIONAL", "Second Professional");
+                startActivity(intent);
+            }
+        });
+
+        thirdProfessionalPartOneCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                intent = new Intent(getContext(), Professional3rdActivity.class);
+                intent.putExtra("PROFESSIONAL", "Third Professional Part-1");
+                startActivity(intent);
+            }
+        });
+
+        thirdProfessionalPartTwoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                intent = new Intent(getContext(), Professional4thActivity.class);
+                intent.putExtra("PROFESSIONAL", "Third Professional Part-2");
+                startActivity(intent);
+            }
+        });
+
+        return view;
     }
 
 }

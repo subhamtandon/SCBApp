@@ -110,6 +110,10 @@ public class    Professional1stActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                Intent intent = new Intent(getApplicationContext(),DifferentMaterialsActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Physiology");
+                startActivity(intent);
                 //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
@@ -118,6 +122,10 @@ public class    Professional1stActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
+                Intent intent = new Intent(getApplicationContext(),DifferentMaterialsActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Biochemistry");
+                startActivity(intent);
                 //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
