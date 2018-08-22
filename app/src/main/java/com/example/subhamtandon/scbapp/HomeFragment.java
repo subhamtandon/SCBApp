@@ -42,7 +42,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
+        //scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
         mcqCard =(CardView)view.findViewById(R.id.mcqCard);
         studyCard =(CardView)view.findViewById(R.id.studyCard);
         questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
@@ -53,10 +53,11 @@ public class HomeFragment extends Fragment {
         listOfNamesOfVideoCategories.add("Pshycology");
         listOfNamesOfVideoCategories.add("Nothing");
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
         recyclerViewVideoCategories.setLayoutManager(linearLayoutManager);
         AdapterForVideoCategories adapterForVideoCategories = new AdapterForVideoCategories(recyclerViewVideoCategories, getContext(),listOfNamesOfVideoCategories );
         recyclerViewVideoCategories.setAdapter(adapterForVideoCategories);
+        /*
 
         scorecardCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +65,7 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getActivity(), "No Scorecard", Toast.LENGTH_SHORT).show();
             }
         });
+        */
 
         mcqCard.setOnClickListener(new View.OnClickListener() {
             @Override
