@@ -29,7 +29,6 @@ public class AdapterForPYQsList extends RecyclerView.Adapter<AdapterForPYQsList.
     ArrayList<String > arrayList = new ArrayList<>();
     ArrayList<String> urls = new ArrayList<>();
     ArrayList<String> ids = new ArrayList<>();
-
     String professional;
     String subject;
 

@@ -28,7 +28,6 @@ public class AdapterForPracticalsList extends RecyclerView.Adapter<AdapterForPra
     ArrayList<String > arrayList = new ArrayList<>();
     ArrayList<String> urls = new ArrayList<>();
     ArrayList<String> ids = new ArrayList<>();
-
     String professional;
     String subject;
 
