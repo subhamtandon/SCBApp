@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
@@ -40,18 +41,22 @@ public class QuestionsActivity extends AppCompatActivity {
     Button buttonSubmitAnswer;
 
     FloatingActionButton nextQuestion;
+    String professional, subject, type, chapter, set;
+    int count;
+    ArrayList<String> idsArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
 
-        final String professional = getIntent().getStringExtra("PROFESSIONAL");
-        final String subject = getIntent().getStringExtra("SUBJECT");
-        final String type = getIntent().getStringExtra("TYPE");
-        final String chapter = getIntent().getStringExtra("CHAPTER");
-        final String set = getIntent().getStringExtra("SET");
-        final ArrayList<String> idsArrayList = getIntent().getStringArrayListExtra("IDS");
+        professional = getIntent().getStringExtra("PROFESSIONAL");
+        subject = getIntent().getStringExtra("SUBJECT");
+        type = getIntent().getStringExtra("TYPE");
+        chapter = getIntent().getStringExtra("CHAPTER");
+        set = getIntent().getStringExtra("SET");
+        idsArrayList = getIntent().getStringArrayListExtra("IDS");
+        count = getIntent().getIntExtra("COUNT", 0);
 
         Toast.makeText(this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + set, Toast.LENGTH_SHORT).show();
         for (int i = 0; i < idsArrayList.size(); i++){
@@ -95,7 +100,7 @@ public class QuestionsActivity extends AppCompatActivity {
                     .child(subject)
                     .child(type)
                     .child("Questions")
-                    .child(idsArrayList.get(0));
+                    .child(idsArrayList.get(count));
 
             databaseReference1 = databaseReference.child("Question");
             Log.e("Dta Reference", databaseReference + "");
@@ -452,14 +457,279 @@ public class QuestionsActivity extends AppCompatActivity {
                     nextQuestion.setVisibility(View.VISIBLE);
                 }
             });
+    }
 
-            nextQuestion.setOnClickListener(new View.OnClickListener() {
+    public void nextClicked(View view){
+
+        count++;
+
+        if (count <= idsArrayList.size()-1){
+
+            buttonSubmitAnswer.setEnabled(false);
+            optionACardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionBCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionCCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionDCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionACardView.setClickable(true);
+            optionBCardView.setClickable(true);
+            optionCCardView.setClickable(true);
+            optionDCardView.setClickable(true);
+            nextQuestion.setVisibility(View.GONE);
+
+            databaseReference = FirebaseDatabase.getInstance().getReference()
+                    .child("App")
+                    .child("Study")
+                    .child(professional)
+                    .child(subject)
+                    .child(type)
+                    .child("Questions")
+                    .child(idsArrayList.get(count));
+
+            databaseReference1 = databaseReference.child("Question");
+            Log.e("Dta Reference", databaseReference + "");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onClick(View v) {
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        Log.e("tostring", dataSnapshot1.getValue().toString());
+                        Log.e("tostringkey", dataSnapshot1.getKey().toString());
 
-                    //Log.d("counter value", counter + "");
+                        if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionText")) {
+
+                            questionText = dataSnapshot1.getValue(String.class);
+                            Log.e("tostringkey", questionText);
+                            textViewUserQuestion.setText(questionText);
+                        }
+
+                        if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionImageUrl")) {
+
+                            if (!dataSnapshot1.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                questionImageUrl = dataSnapshot1.getValue(String.class);
+                                questionUri = Uri.parse(questionImageUrl);
+                                imageViewUserQuestion.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(questionUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserQuestion);
+                            }else {
+                                imageViewUserQuestion.setVisibility(View.GONE);
+                            }
+                        }
+
+
+                        Log.e("questiontext", questionText + "");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
                 }
             });
+
+            databaseReference2 = databaseReference.child("Option A");
+            databaseReference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAText")) {
+
+                            optionAText = dataSnapshot2.getValue(String.class);
+                            Log.e("tostringkey", optionAText);
+                            textViewUserOptionA.setText(optionAText);
+                        }
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAImageUrl")) {
+
+                            if (!dataSnapshot2.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionAImageUrl = dataSnapshot2.getValue(String.class);
+                                optionAUri = Uri.parse(optionAImageUrl);
+                                imageViewUserOptionA.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionAUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionA);
+                            }
+
+                        }
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")) {
+
+                            if (!dataSnapshot2.getValue(Boolean.class)) {
+                                optionAValue = false;
+                            } else {
+                                optionAValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference3 = databaseReference.child("Option B");
+            databaseReference3.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot3 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBText")) {
+
+                            optionBText = dataSnapshot3.getValue(String.class);
+                            Log.e("tostringkey", optionBText);
+                            textViewUserOptionB.setText(optionBText);
+                        }
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBImageUrl")) {
+
+                            if (!dataSnapshot3.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionBImageUrl = dataSnapshot3.getValue(String.class);
+                                optionBUri = Uri.parse(optionBImageUrl);
+                                imageViewUserOptionB.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionBUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionB);
+                            }
+
+                        }
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")) {
+
+                            if (!dataSnapshot3.getValue(Boolean.class)) {
+                                optionBValue = false;
+                            } else {
+                                optionBValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference4 = databaseReference.child("Option C");
+            databaseReference4.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot4 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCText")) {
+
+                            optionCText = dataSnapshot4.getValue(String.class);
+                            Log.e("tostringkey", optionCText);
+                            textViewUserOptionC.setText(optionCText);
+                        }
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCImageUrl")) {
+
+                            if (!dataSnapshot4.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionCImageUrl = dataSnapshot4.getValue(String.class);
+                                optionCUri = Uri.parse(optionCImageUrl);
+                                imageViewUserOptionC.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionCUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionC);
+                            }
+
+                        }
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")) {
+
+                            if (!dataSnapshot4.getValue(Boolean.class)) {
+                                optionCValue = false;
+                            } else {
+                                optionCValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference5 = databaseReference.child("Option D");
+            databaseReference5.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot5 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDText")) {
+
+                            optionDText = dataSnapshot5.getValue(String.class);
+                            Log.e("toStringKey", optionDText);
+                            textViewUserOptionD.setText(optionDText);
+                        }
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDImageUrl")) {
+
+                            if (!dataSnapshot5.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionDImageUrl = dataSnapshot5.getValue(String.class);
+                                optionDUri = Uri.parse(optionDImageUrl);
+                                imageViewUserOptionD.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionDUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionD);
+                            }
+
+                        }
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")) {
+
+                            if (!dataSnapshot5.getValue(Boolean.class)) {
+                                optionDValue = false;
+                            } else {
+                                optionDValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Done")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                            onBackPressed();
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
     }
 
     public void exitQuestions(View view){

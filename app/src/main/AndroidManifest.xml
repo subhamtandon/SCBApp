@@ -36,7 +36,7 @@
             android:name=".DifferentMaterialsActivity"
             android:label="@string/title_activity_different_materials"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".BasicQuestionSetActivity"/>
+        <activity android:name=".BasicQuestionSetActivity" />
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />
@@ -62,12 +62,12 @@
         <activity android:name=".ListOfQuestionsActivity" />
         <activity android:name=".InformationBulletinActivity" />
         <activity android:name=".CheckQuestionDetails" />
-        <activity android:name=".ProfessionalsActivity"/>
+        <activity android:name=".ProfessionalsActivity" />
         <activity android:name=".UserProfessionalFirstActivity" />
         <activity android:name=".UserProfessionalSecondActivity" />
         <activity android:name=".UserProfessionalThirdOneActivity" />
         <activity android:name=".UserProfessionalThirdTwoActivity" />
-        <activity android:name=".ChaptersActivity"></activity>
+        <activity android:name=".ChaptersActivity" />
     </application>
 
 </manifest>

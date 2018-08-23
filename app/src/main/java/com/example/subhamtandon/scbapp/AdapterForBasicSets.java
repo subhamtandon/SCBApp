@@ -124,6 +124,7 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
                             intent.putExtra("CHAPTER", chapter);
                             intent.putExtra("SET",setsArrayList.get(position));
                             intent.putStringArrayListExtra("IDS",idsArrayList);
+                            intent.putExtra("COUNT",0);
                             context.startActivity(intent);
                         }
                     }
