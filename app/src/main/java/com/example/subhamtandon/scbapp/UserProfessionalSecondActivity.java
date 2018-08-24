@@ -1,15 +1,21 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class UserProfessionalSecondActivity extends AppCompatActivity {
 
-    CardView pathologyCard, pharmacologyCard, microbiologyCard, fmtCard;
+    CardView pathologyCard, pharmacologyCard, microbiologyCard, fmtCard, secondProfessionalMockTestCard;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class UserProfessionalSecondActivity extends AppCompatActivity {
         pharmacologyCard = findViewById(R.id.pharmacologyCard);
         microbiologyCard = findViewById(R.id.microbiologyCard);
         fmtCard = findViewById(R.id.fmtCard);
+        secondProfessionalMockTestCard = findViewById(R.id.secondProfessionalMockTestCard);
 
         pathologyCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +73,45 @@ public class UserProfessionalSecondActivity extends AppCompatActivity {
                 intent.putExtra("PROFESSIONAL", professional);
                 intent.putExtra("SUBJECT", "FMT");
                 startActivity(intent);
+            }
+        });
+
+        secondProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalSecondActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                builder.setTitle("Choose number of Questions")
+                        .setCancelable(false);
+
+                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                mSpinner.setAdapter(adapter);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                            Intent intent = new Intent(UserProfessionalSecondActivity.this, MockTestActivity.class);
+                            intent.putExtra("PROFESSIONAL", professional);
+                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Toast.makeText(UserProfessionalSecondActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setView(mView);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }

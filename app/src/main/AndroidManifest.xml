@@ -68,6 +68,7 @@
         <activity android:name=".UserProfessionalThirdOneActivity" />
         <activity android:name=".UserProfessionalThirdTwoActivity" />
         <activity android:name=".ChaptersActivity" />
+        <activity android:name=".MockTestActivity"></activity>
     </application>
 
 </manifest>

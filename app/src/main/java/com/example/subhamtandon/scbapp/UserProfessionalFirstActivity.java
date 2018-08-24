@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
@@ -17,7 +18,8 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
 
     FloatingActionButton changeProfession;
 
-    CardView AnatomyCard, PhysiologyCard, BiochemistryCard, MockTestCard;
+    CardView AnatomyCard, PhysiologyCard, BiochemistryCard, firstProfessionalMockTestCard;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +94,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
         AnatomyCard =(CardView) findViewById(R.id.AnatomyCard);
         PhysiologyCard=(CardView) findViewById(R.id.PhysiologyCard);
         BiochemistryCard=(CardView) findViewById(R.id.BiochemistryCard);
-        MockTestCard=(CardView) findViewById(R.id.MockTestCard);
+        firstProfessionalMockTestCard=(CardView) findViewById(R.id.firstProfessionalMockTestCard);
 
         AnatomyCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,12 +126,43 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        MockTestCard.setOnClickListener(new View.OnClickListener() {
+        firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                //startActivity(new Intent(getApplicationContext(),Professional4thActivity.class));
-                //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                builder.setTitle("Choose number of Questions")
+                        .setCancelable(false);
+
+                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                mSpinner.setAdapter(adapter);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                            Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                            intent.putExtra("PROFESSIONAL", professional);
+                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        }
+                });
+                builder.setView(mView);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }

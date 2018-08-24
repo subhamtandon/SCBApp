@@ -1,15 +1,21 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
 
-    CardView medicineCard, surgeryCard, pediatricsCard, orthopedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard;
+    CardView medicineCard, surgeryCard, pediatricsCard, orthopedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard, thirdProfessionalPartTwoMockTestCard;
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
         anaesthesiologyCard = findViewById(R.id.anaesthesiologyCard);
         radiologyCard = findViewById(R.id.radiologyCard);
         ogCard = findViewById(R.id.ogCard);
+        thirdProfessionalPartTwoMockTestCard = findViewById(R.id.thirdProfessionalPartTwoMockTestCard);
 
         medicineCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,6 +117,45 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
                 intent.putExtra("PROFESSIONAL", professional);
                 intent.putExtra("SUBJECT", "O & G");
                 startActivity(intent);
+            }
+        });
+
+        thirdProfessionalPartTwoMockTestCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalThirdTwoActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                builder.setTitle("Choose number of Questions")
+                        .setCancelable(false);
+
+                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                mSpinner.setAdapter(adapter);
+                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                            Intent intent = new Intent(UserProfessionalThirdTwoActivity.this, MockTestActivity.class);
+                            intent.putExtra("PROFESSIONAL", professional);
+                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                            startActivity(intent);
+                            finish();
+                        }else {
+                            Toast.makeText(UserProfessionalThirdTwoActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setView(mView);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }

@@ -65,6 +65,36 @@
         <item>Swami Vivekanand National Institute of Rehabilitation Training and Research, Cuttack</item>
     </string-array>
 
+    <string-array name="firstProfessionalSubjects">
+        <item>Anatomy</item>
+        <item>Physiology</item>
+        <item>Biochemistry</item>
+    </string-array>
+
+    <string-array name="secondProfessionalSubjects">
+        <item>Pathology</item>
+        <item>Pharmacology</item>
+        <item>Microbiology</item>
+        <item>FMT</item>
+    </string-array>
+
+    <string-array name="thirdProfessionalPartOneSubjects">
+        <item>SPM</item>
+        <item>ENT</item>
+        <item>Optha</item>
+    </string-array>
+
+    <string-array name="thirdProfessionalPartTwoSubjects">
+        <item>Medicine</item>
+        <item>Surgery</item>
+        <item>Pediatrics</item>
+        <item>Orthopedics</item>
+        <item>Skin &amp; VD</item>
+        <item>Anaesthesiology</item>
+        <item>Radiology</item>
+        <item>O &amp; G</item>
+    </string-array>
+
     <string-array name="anatomyChapters">
         <item>Supex I</item>
         <item>Supex II</item>
@@ -86,6 +116,7 @@
         <item>Head &amp; Neck II</item>
         <item>Head &amp; Neck III</item>
         <item>Head &amp; Neck IV</item>
+        <item>Mock Test</item>
     </string-array>
 
     <string-array name="physiologyChapters">
@@ -191,6 +222,14 @@
 
     <string-array name="ogChapters">
 
+    </string-array>
+
+    <string-array name="numberOfQuestions">
+        <item>-Select-</item>
+        <item>2</item>
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
     </string-array>
 
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>

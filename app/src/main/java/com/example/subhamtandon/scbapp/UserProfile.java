@@ -51,7 +51,7 @@ public class UserProfile extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
 
@@ -76,6 +76,11 @@ public class UserProfile extends AppCompatActivity
                     String collegeName = dataSnapshot.getValue(String.class);
 
                     Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
+
+                    if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+                        MenuItem SCBSection = navigationView.findViewById(R.id.nav_scbSection);
+                        SCBSection.setVisible(false);
+                    }
                 }
             }
 
