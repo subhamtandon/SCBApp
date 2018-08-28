@@ -26,8 +26,8 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     CardView scorecardCard, mcqCard, studyCard, questionBankCard;
-    RecyclerView recyclerViewVideoCategories;
-    ArrayList<String> listOfNamesOfVideoCategories ;
+    RecyclerView recyclerViewVideoCategories, recyclerViewMedicalRelatedPictures;
+    ArrayList<String> listOfNamesOfVideoCategories, listOfMedicalRelatedPicturesUrls ;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -44,10 +44,12 @@ public class HomeFragment extends Fragment {
 
         //scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
         mcqCard =(CardView)view.findViewById(R.id.mcqCard);
-        studyCard =(CardView)view.findViewById(R.id.studyCard);
-        questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
+        //studyCard =(CardView)view.findViewById(R.id.studyCard);
+        //questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
         recyclerViewVideoCategories = view.findViewById(R.id.recyclerViewVideoCategories);
+        recyclerViewMedicalRelatedPictures = view.findViewById(R.id.recyclerViewMedicalRelatedPictures);
         listOfNamesOfVideoCategories = new ArrayList<>();
+        listOfMedicalRelatedPicturesUrls = new ArrayList<>();
         listOfNamesOfVideoCategories.add("Educational");
         listOfNamesOfVideoCategories.add("Games");
         listOfNamesOfVideoCategories.add("Pshycology");
@@ -57,6 +59,9 @@ public class HomeFragment extends Fragment {
         recyclerViewVideoCategories.setLayoutManager(linearLayoutManager);
         AdapterForVideoCategories adapterForVideoCategories = new AdapterForVideoCategories(recyclerViewVideoCategories, getContext(),listOfNamesOfVideoCategories );
         recyclerViewVideoCategories.setAdapter(adapterForVideoCategories);
+
+
+
         /*
 
         scorecardCard.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +79,7 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+        /*
 
         studyCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -141,6 +147,7 @@ public class HomeFragment extends Fragment {
                 alertDialog.show();
             }
         });
+        /*
 
         questionBankCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -150,6 +157,7 @@ public class HomeFragment extends Fragment {
                 ft.commit();
             }
         });
+        */
 
 
         return view;
