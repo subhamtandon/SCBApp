@@ -42,7 +42,15 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
 
         recyclerViewSets = findViewById(R.id.recyclerViewSets);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child(type).child(chapter);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App")
+                .child("Study")
+                .child(professional)
+                .child(subject)
+                .child(type)
+                .child("Chapters")
+                .child(chapter)
+                .child("Sets");
+
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

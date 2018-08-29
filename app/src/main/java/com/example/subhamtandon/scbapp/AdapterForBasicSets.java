@@ -70,7 +70,9 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
                         .child(professional)
                         .child(subject)
                         .child(type)
+                        .child("Chapters")
                         .child(chapter)
+                        .child("Sets")
                         .child(setsArrayList.get(position));
 
                 /*databaseReference.addChildEventListener(new ChildEventListener() {

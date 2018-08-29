@@ -29,7 +29,6 @@ public class SetsAlteringActivity extends AppCompatActivity {
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String chapter = getIntent().getStringExtra("CHAPTER");
-        //final String mode = getIntent().getStringExtra("MODE");
 
         Toast.makeText(this, professional + " : " + subject + " : " + chapter, Toast.LENGTH_SHORT).show();
 
@@ -51,7 +50,9 @@ public class SetsAlteringActivity extends AppCompatActivity {
 
                 if(ready.equalsIgnoreCase("true")){
 
-                    databaseReference.child(chapter)
+                    databaseReference.child("Chapters")
+                            .child(chapter)
+                            .child("Sets")
                             .child(whichSet)
                             .setValue(null);
 

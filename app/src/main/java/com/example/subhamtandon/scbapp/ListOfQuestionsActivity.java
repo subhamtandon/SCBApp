@@ -58,8 +58,9 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
                 .child(professional)
                 .child(subject)
                 .child("MCQs")
+                .child("Chapters")
                 .child(chapter)
-                //.child(mode)
+                .child("Sets")
                 .child(set);
 
         databaseReference.addChildEventListener(new ChildEventListener() {

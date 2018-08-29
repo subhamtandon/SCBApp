@@ -52,7 +52,15 @@ public class ListOfSetsActivity extends AppCompatActivity {
 
         recyclerViewSets = findViewById(R.id.recyclerViewSets);
 
-        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Study").child(professional).child(subject).child("MCQs").child(chapter);
+        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App")
+                .child("Study")
+                .child(professional)
+                .child(subject)
+                .child("MCQs")
+                .child("Chapters")
+                .child(chapter)
+                .child("Sets");
+
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -60,6 +68,8 @@ public class ListOfSetsActivity extends AppCompatActivity {
                 if (dataSnapshot != null){
 
                     String setName = dataSnapshot.getKey();
+
+                    Log.d("setName", setName);
 
                     ((AdapterForSetsList) recyclerViewSets.getAdapter()).update(setName);
                 }

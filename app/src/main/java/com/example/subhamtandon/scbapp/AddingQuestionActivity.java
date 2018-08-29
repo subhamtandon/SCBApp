@@ -41,7 +41,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
     Uri imageQuestionUri;
 
     StorageReference storageReference;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReferenceRandom;
 
     StorageTask uploadTask;
 
@@ -67,6 +67,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
 
         storageReference = FirebaseStorage.getInstance().getReference("Uploads");
         databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study");
+        databaseReferenceRandom = FirebaseDatabase.getInstance().getReference("App").child("Study").child("Random");
 
         final String id = databaseReference.push().getKey();
         databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Chapter").setValue(chapter);
@@ -105,9 +106,23 @@ public class AddingQuestionActivity extends AppCompatActivity {
                     databaseReference.child(professional)
                             .child(subject)
                             .child("MCQs")
+                            .child("Chapters")
                             .child(chapter)
-                            //.child(mode)
+                            .child("Sets")
                             .child(set)
+                            .child(id)
+                            .setValue(editTextQuestion.getText().toString());
+
+                    databaseReferenceRandom.child(professional)
+                            .child(subject)
+                            .child("Questions")
+                            .child(id)
+                            .setValue(editTextQuestion.getText().toString());
+
+                    databaseReferenceRandom.child(professional)
+                            .child(subject)
+                            .child("Chapters")
+                            .child(chapter)
                             .child(id)
                             .setValue(editTextQuestion.getText().toString());
 

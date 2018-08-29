@@ -15,9 +15,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MockTestActivity extends AppCompatActivity {
@@ -37,6 +41,8 @@ public class MockTestActivity extends AppCompatActivity {
     FloatingActionButton nextQuestion;
     String professional, subject, type, chapter, set;
     String[] subjects;
+
+    ArrayList<String> idsArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,14 +104,38 @@ public class MockTestActivity extends AppCompatActivity {
         subject = (subjects[new Random().nextInt(subjects.length)]);
         Toast.makeText(this, subject, Toast.LENGTH_SHORT).show();
 
-        /*databaseReference = FirebaseDatabase.getInstance().getReference()
+        databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
                 .child("Study")
                 .child(professional)
                 .child(subject)
-                .child(type)
-                .child("Questions")
-                .child();*/
+                .child("MCQs")
+                .child("Questions");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String uniqueId = ds.getKey();
+                        Log.d("uniqueId", uniqueId);
+                        idsArrayList.add(uniqueId);
+                    }
+
+                    for (int i = 0; i < idsArrayList.size(); i++){
+                        Log.d("idsArrayList",idsArrayList.get(i));
+                    }
+
+                    Log.d("idsArrayList size",idsArrayList.size()+"");
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void exitQuestions(View view){
@@ -128,6 +158,8 @@ public class MockTestActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+
+                        onBackPressed();
                         finish();
                     }
                 })
