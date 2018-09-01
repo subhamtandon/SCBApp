@@ -54,7 +54,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         MedicalRelatedPicsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                startActivity(new Intent(getApplicationContext(), AdminMedicalRelatedPicsActivity.class));
             }
         });
 
