@@ -23,6 +23,9 @@ public class AdapterForAdminMedicalRelatedPictures extends RecyclerView.Adapter<
         this.recyclerView = recyclerView;
         this.context = context;
         this.listOfPics = listOfPics;
+    }public void update(String pictureUrl){
+        listOfPics.add(pictureUrl);
+        notifyDataSetChanged();
     }
 
     @NonNull

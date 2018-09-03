@@ -25,6 +25,7 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
     }
 
 
+
     @NonNull
     @Override
     public AdapterForMedicalRelatedPictures.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

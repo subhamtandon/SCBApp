@@ -137,8 +137,9 @@ public class AddingMedicalRelatedPicAdminActivity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
+                    String url = taskSnapshot.getDownloadUrl().toString();
                     String id = databaseReference.push().getKey();
-                    databaseReference.child(id).setValue(mImageUri.toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child(id).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
