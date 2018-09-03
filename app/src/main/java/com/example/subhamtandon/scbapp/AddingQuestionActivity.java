@@ -117,7 +117,7 @@ public class AddingQuestionActivity extends AppCompatActivity {
                             .child(subject)
                             .child("Questions")
                             .child(id)
-                            .setValue(editTextQuestion.getText().toString());
+                            .setValue(subject);
 
                     databaseReferenceRandom.child(professional)
                             .child(subject)
