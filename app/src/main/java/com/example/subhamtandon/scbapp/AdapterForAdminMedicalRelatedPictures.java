@@ -36,7 +36,7 @@ public class AdapterForAdminMedicalRelatedPictures extends RecyclerView.Adapter<
     public void onBindViewHolder(@NonNull AdapterForAdminMedicalRelatedPictures.ViewHolder holder, int position) {
 
         Picasso.get().load(listOfPics.get(position)).into(holder.medicalRelatedPic);
-        holder.medicalRelatedPic.setOnClickListener(new View.OnClickListener() {
+        holder.deletePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 

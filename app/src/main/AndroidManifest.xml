@@ -69,7 +69,8 @@
         <activity android:name=".UserProfessionalThirdTwoActivity" />
         <activity android:name=".ChaptersActivity" />
         <activity android:name=".MockTestActivity" />
-        <activity android:name=".AdminMedicalRelatedPicsActivity"></activity>
+        <activity android:name=".AdminMedicalRelatedPicsActivity" />
+        <activity android:name=".AddingMedicalRelatedPicAdminActivity"></activity>
     </application>
 
 </manifest>
