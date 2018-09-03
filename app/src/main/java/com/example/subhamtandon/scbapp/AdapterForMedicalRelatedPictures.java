@@ -18,10 +18,16 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
     Context context;
     ArrayList<String> picturesUrls= new ArrayList<>();
 
+
     public AdapterForMedicalRelatedPictures(RecyclerView recyclerView, Context context, ArrayList<String> picturesUrls) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.picturesUrls = picturesUrls;
+    }
+
+    public void update(String pictureUrl){
+        picturesUrls.add(pictureUrl);
+        notifyDataSetChanged();
     }
 
 

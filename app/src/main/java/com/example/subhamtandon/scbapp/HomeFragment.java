@@ -17,6 +17,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 
@@ -59,6 +65,48 @@ public class HomeFragment extends Fragment {
         recyclerViewVideoCategories.setLayoutManager(linearLayoutManager);
         AdapterForVideoCategories adapterForVideoCategories = new AdapterForVideoCategories(recyclerViewVideoCategories, getContext(),listOfNamesOfVideoCategories );
         recyclerViewVideoCategories.setAdapter(adapterForVideoCategories);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("App").child("Medical Related Pictures");
+        databaseReference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                if(dataSnapshot!=null) {
+
+
+                    String url = dataSnapshot.getValue(String.class);
+                    //String uploadPDFID = dataSnapshot.getKey();
+
+                    ((AdapterForMedicalRelatedPictures) recyclerViewMedicalRelatedPictures.getAdapter()).update(url);
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+        recyclerViewMedicalRelatedPictures.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        AdapterForMedicalRelatedPictures adapterForMedicalRelatedPictures = new AdapterForMedicalRelatedPictures(recyclerViewMedicalRelatedPictures, getContext(),new ArrayList<String>());
+        //adapterForRecordsList.notifyDataSetChanged();
+        recyclerViewMedicalRelatedPictures.setAdapter(adapterForMedicalRelatedPictures);
 
 
 
@@ -158,6 +206,8 @@ public class HomeFragment extends Fragment {
             }
         });
         */
+
+
 
 
         return view;
