@@ -77,10 +77,10 @@ public class UserProfile extends AppCompatActivity
 
                     Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
 
-                    if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
-                        MenuItem SCBSection = navigationView.findViewById(R.id.nav_scbSection);
-                        SCBSection.setVisible(false);
-                    }
+                    //if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+                        //MenuItem SCBSection = navigationView.findViewById(R.id.nav_scbSection);
+                        //SCBSection.setVisible(false);
+                    //}
                 }
             }
 
