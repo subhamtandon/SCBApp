@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -14,12 +15,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class UserProfessionalFirstActivity extends AppCompatActivity {
 
     FloatingActionButton changeProfession;
 
     CardView AnatomyCard, PhysiologyCard, BiochemistryCard, firstProfessionalMockTestCard;
     ArrayAdapter<String> adapter;
+    String[] subjects;
+    DatabaseReference databaseReferenceRandom;
+    ArrayList<String> idsArrayList = new ArrayList<>();
+    ArrayList<String> subjectsArrayList = new ArrayList<>();
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +47,8 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setTitle("First Professional");
         }
+
+        subjects = getResources().getStringArray(R.array.firstProfessionalSubjects);
 
         changeProfession = (FloatingActionButton)findViewById(R.id.changeProfession);
         changeProfession.setOnClickListener(new View.OnClickListener() {
@@ -130,7 +146,24 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
+
+                readData(new FirebaseCallback() {
+                    @Override
+                    public void onCallBack(final ArrayList<String> idsList, final ArrayList<String> subjectsList) {
+                        Log.d("idsArrayList", idsList.toString());
+                        Log.d("idssize", idsList.size() + "");
+                        Log.d("subjectsArrayList", subjectsList.toString());
+                        Log.d("subjectssize", subjectsList.size() + "");
+
+                        Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                        intent.putExtra("PROFESSIONAL", professional);
+                        //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                        intent.putStringArrayListExtra("IDSLIST", idsList);
+                        intent.putStringArrayListExtra("SUBJECTSLIST", subjectsList);
+                        startActivity(intent);
+                    }
+                });
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
                 builder.setTitle("Choose number of Questions")
                         .setCancelable(false);
@@ -150,21 +183,75 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                             intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
                             startActivity(intent);
                             finish();
-                        }else {
+                            } else {
                             Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
-                        }
+                            }
                     }
                 }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
-                        }
+                    }
                 });
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                alertDialog.show(); */
             }
         });
+    }
+
+    private void readData(final FirebaseCallback firebaseCallback){
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        for (int i = 0; i < subjects.length; i++) {
+
+            databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+                    .child("App")
+                    .child("Study")
+                    .child("Random")
+                    .child(professional)
+                    .child(subjects[i])
+                    .child("Questions");
+
+            databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        String uniqueId = ds.getKey();
+                        Log.d("uniqueId", uniqueId);
+                        idsArrayList.add(uniqueId);
+
+                        if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
+                            String subjectName = ds.getValue(String.class);
+                            Log.d("subjectName", subjectName);
+                            subjectsArrayList.add(subjectName);
+
+                            //Log.d("subjectsArrayListSize", subjectsArrayList.size() + "");
+                        }
+
+                        //Log.d("idsArrayListSize", idsArrayList.size() + "");
+                    }
+                    firebaseCallback.onCallBack(idsArrayList, subjectsArrayList);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            //for (int j = 0; j < subjectsArrayList.size(); j++) {
+            //   Log.d("subjectsArrayList", subjectsArrayList.get(j));
+            //}
+
+            //for (int k = 0; k < idsArrayList.size(); k++) {
+            //    Log.d("idsArrayList", idsArrayList.get(k));
+            //}
+        }
+    }
+
+
+    private interface FirebaseCallback{
+        void onCallBack(ArrayList<String> list, ArrayList<String> list1);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.support.design.widget.FloatingActionButton;
@@ -11,8 +12,10 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,12 +46,13 @@ public class MockTestActivity extends AppCompatActivity {
     Button buttonSubmitAnswer;
 
     FloatingActionButton nextQuestion;
-    String professional;
-    String[] subjects;
+    String professional, randomElement1;
 
     ArrayList<String> idsArrayList = new ArrayList<>();
     ArrayList<String> subjectsArrayList = new ArrayList<>();
     ArrayList<Integer> questionShownList = new ArrayList<>();
+    ArrayAdapter<String> adapter;
+    Integer n, found, index1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,11 +65,44 @@ public class MockTestActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Mock Test");
         }
 
-        final String professional = getIntent().getStringExtra("PROFESSIONAL");
-        final String numberOfQuestions = getIntent().getStringExtra("NUMBER OF QUESTIONS");
-        final int n = Integer.parseInt(numberOfQuestions);
+        AlertDialog.Builder builder = new AlertDialog.Builder(MockTestActivity.this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+        builder.setTitle("Choose number of Questions")
+                .setCancelable(false);
 
-        Toast.makeText(this, professional + ":" + numberOfQuestions, Toast.LENGTH_SHORT).show();
+        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpinner.setAdapter(adapter);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                    String selectedItem = mSpinner.getSelectedItem().toString();
+                    n = Integer.parseInt(selectedItem);
+                    Toast.makeText(MockTestActivity.this, n + "", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MockTestActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setView(mView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        idsArrayList = getIntent().getStringArrayListExtra("IDSLIST");
+        subjectsArrayList = getIntent().getStringArrayListExtra("SUBJECTSLIST");
+
+        for (int i = 0; i < idsArrayList.size(); i++){
+            Log.d("ids", idsArrayList.get(i));
+        }
+
+        for (int i = 0; i < subjectsArrayList.size(); i++){
+            Log.d("ids", subjectsArrayList.get(i));
+        }
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -92,37 +129,11 @@ public class MockTestActivity extends AppCompatActivity {
 
         buttonSubmitAnswer.setEnabled(false);
 
-        if (professional.equalsIgnoreCase("First Professional")){
-            subjects = getResources().getStringArray(R.array.firstProfessionalSubjects);
-        }
+        String randomElement = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+        int index = idsArrayList.indexOf(randomElement);
+        questionShownList.add(index);
 
-        if (professional.equalsIgnoreCase("Second Professional")){
-            subjects = getResources().getStringArray(R.array.secondProfessionalSubjects);
-        }
-
-        if (professional.equalsIgnoreCase("Third Professional Part-1")){
-            subjects = getResources().getStringArray(R.array.thirdProfessionalPartOneSubjects);
-        }
-
-        if (professional.equalsIgnoreCase("Third Professional Part-2")){
-            subjects = getResources().getStringArray(R.array.thirdProfessionalPartTwoSubjects);
-        }
-
-        readData(new FirebaseCallback() {
-            @Override
-            public void onCallBack(final ArrayList<String> idsList, final ArrayList<String> subjectsList) {
-                Log.d("idsArrayList", idsList.toString());
-                Log.d("idssize", idsList.size() + "");
-                Log.d("subjectsArrayList", subjectsList.toString());
-                Log.d("subjectssize", subjectsList.size() + "");
-
-                buttonSubmitAnswer.setEnabled(false);
-
-                String randomElement = (idsList.get(new Random().nextInt(idsList.size())));
-                int index = idsList.indexOf(randomElement);
-                questionShownList.add(index);
-
-                databaseReference = FirebaseDatabase.getInstance().getReference()
+        databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
                 .child("Study")
                 .child(professional)
@@ -131,38 +142,341 @@ public class MockTestActivity extends AppCompatActivity {
                 .child("Questions")
                 .child(idsArrayList.get(index));
 
-                databaseReference1 = databaseReference.child("Question");
-                Log.e("Dta Reference", databaseReference + "");
-                databaseReference1.addValueEventListener(new ValueEventListener() {
+        databaseReference1 = databaseReference.child("Question");
+        Log.e("Dta Reference", databaseReference + "");
+        databaseReference1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                    Log.e("tostring", dataSnapshot1.getValue().toString());
+                    Log.e("tostringkey", dataSnapshot1.getKey().toString());
+
+                    if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionText")) {
+
+                        questionText = dataSnapshot1.getValue(String.class);
+                        Log.e("tostringkey", questionText);
+                        textViewUserQuestion.setText(questionText);
+                    }
+
+                    if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionImageUrl")) {
+
+                        if (!dataSnapshot1.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                            questionImageUrl = dataSnapshot1.getValue(String.class);
+                            questionUri = Uri.parse(questionImageUrl);
+                            imageViewUserQuestion.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(questionUri)
+                                    .resize(720, 720)
+                                    .into(imageViewUserQuestion);
+                        }
+                    }
+
+
+                    Log.e("questiontext", questionText + "");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference2 = databaseReference.child("Option A");
+        databaseReference2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+
+                    if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAText")) {
+
+                        optionAText = dataSnapshot2.getValue(String.class);
+                        Log.e("tostringkey", optionAText);
+                        textViewUserOptionA.setText(optionAText);
+                    }
+
+                    if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAImageUrl")) {
+
+                        if (!dataSnapshot2.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                            optionAImageUrl = dataSnapshot2.getValue(String.class);
+                            optionAUri = Uri.parse(optionAImageUrl);
+                            imageViewUserOptionA.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(optionAUri)
+                                    .resize(720, 720)
+                                    .into(imageViewUserOptionA);
+                        }
+                    }
+
+                    if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")) {
+
+                        if (!dataSnapshot2.getValue(Boolean.class)) {
+                            optionAValue = false;
+                        } else {
+                            optionAValue = true;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                }
+        });
+
+        databaseReference3 = databaseReference.child("Option B");
+        databaseReference3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot3 : dataSnapshot.getChildren()) {
+
+                    if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBText")) {
+
+                        optionBText = dataSnapshot3.getValue(String.class);
+                        Log.e("tostringkey", optionBText);
+                        textViewUserOptionB.setText(optionBText);
+                    }
+
+                    if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBImageUrl")) {
+
+                        if (!dataSnapshot3.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                            optionBImageUrl = dataSnapshot3.getValue(String.class);
+                            optionBUri = Uri.parse(optionBImageUrl);
+                            imageViewUserOptionB.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(optionBUri)
+                                    .resize(720, 720)
+                                    .into(imageViewUserOptionB);
+                        }
+                    }
+
+                    if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")) {
+
+                        if (!dataSnapshot3.getValue(Boolean.class)) {
+                            optionBValue = false;
+                        } else {
+                            optionBValue = true;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference4 = databaseReference.child("Option C");
+        databaseReference4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot4 : dataSnapshot.getChildren()) {
+
+                    if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCText")) {
+
+                        optionCText = dataSnapshot4.getValue(String.class);
+                        Log.e("tostringkey", optionCText);
+                        textViewUserOptionC.setText(optionCText);
+                    }
+
+                    if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCImageUrl")) {
+
+                        if (!dataSnapshot4.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                            optionCImageUrl = dataSnapshot4.getValue(String.class);
+                            optionCUri = Uri.parse(optionCImageUrl);
+                            imageViewUserOptionC.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(optionCUri)
+                                    .resize(720, 720)
+                                    .into(imageViewUserOptionC);
+                        }
+                    }
+
+                    if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")) {
+
+                        if (!dataSnapshot4.getValue(Boolean.class)) {
+                            optionCValue = false;
+                        } else {
+                            optionCValue = true;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        databaseReference5 = databaseReference.child("Option D");
+        databaseReference5.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshot5 : dataSnapshot.getChildren()) {
+
+                    if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDText")) {
+
+                        optionDText = dataSnapshot5.getValue(String.class);
+                        Log.e("toStringKey", optionDText);
+                        textViewUserOptionD.setText(optionDText);
+                    }
+
+                    if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDImageUrl")) {
+
+                        if (!dataSnapshot5.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                            optionDImageUrl = dataSnapshot5.getValue(String.class);
+                            optionDUri = Uri.parse(optionDImageUrl);
+                            imageViewUserOptionD.setVisibility(View.VISIBLE);
+                            Picasso.get()
+                                    .load(optionDUri)
+                                    .resize(720, 720)
+                                    .into(imageViewUserOptionD);
+                        }
+                    }
+
+                    if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")) {
+
+                        if (!dataSnapshot5.getValue(Boolean.class)) {
+                            optionDValue = false;
+                        } else {
+                            optionDValue = true;
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        optionACardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                optionAChoosed = true;
+                optionACardView.setClickable(false);
+                optionBCardView.setClickable(false);
+                optionCCardView.setClickable(false);
+                optionDCardView.setClickable(false);
+                buttonSubmitAnswer.setEnabled(true);
+            }
+        });
+
+        optionBCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionBCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                optionBChoosed = true;
+                optionACardView.setClickable(false);
+                optionBCardView.setClickable(false);
+                optionCCardView.setClickable(false);
+                optionDCardView.setClickable(false);
+                buttonSubmitAnswer.setEnabled(true);
+            }
+        });
+
+        optionCCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionCCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                optionCChoosed = true;
+                optionACardView.setClickable(false);
+                optionBCardView.setClickable(false);
+                optionCCardView.setClickable(false);
+                optionDCardView.setClickable(false);
+                buttonSubmitAnswer.setEnabled(true);
+            }
+        });
+
+        optionDCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                optionDCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                optionDChoosed = true;
+                optionACardView.setClickable(false);
+                optionBCardView.setClickable(false);
+                optionCCardView.setClickable(false);
+                optionDCardView.setClickable(false);
+                buttonSubmitAnswer.setEnabled(true);
+            }
+        });
+
+        buttonSubmitAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (optionAValue) {
+                    optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                }
+                if (optionBValue) {
+                    optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                }
+                if (optionCValue) {
+                    optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                }
+                if (optionDValue) {
+                    optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                }
+                if (optionAChoosed) {
+                    if (!optionAValue) {
+                        optionACardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                        }
+                }
+                if (optionBChoosed) {
+                    if (!optionBValue) {
+                        optionBCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    }
+                }
+                if (optionCChoosed) {
+                    if (!optionCValue) {
+                        optionCCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    }
+                }
+                if (optionDChoosed) {
+                    if (!optionDValue) {
+                        optionDCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    }
+                }
+
+                databaseReference6 = databaseReference.child("Explanation");
+                databaseReference6.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
-                            Log.e("tostring", dataSnapshot1.getValue().toString());
-                            Log.e("tostringkey", dataSnapshot1.getKey().toString());
+                        for (DataSnapshot dataSnapshot6 : dataSnapshot.getChildren()) {
+                            if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationText")) {
 
-                            if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionText")) {
-
-                                questionText = dataSnapshot1.getValue(String.class);
-                                Log.e("tostringkey", questionText);
-                                textViewUserQuestion.setText(questionText);
+                                explanationText = dataSnapshot6.getValue(String.class);
+                                Log.e("tostringkey", explanationText);
+                                textViewUserExplanation.setText(explanationText);
                             }
 
-                            if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionImageUrl")) {
+                            if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationImageUrl")) {
 
-                                if (!dataSnapshot1.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+                                if (!dataSnapshot6.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
 
-                                    questionImageUrl = dataSnapshot1.getValue(String.class);
-                                    questionUri = Uri.parse(questionImageUrl);
-                                    imageViewUserQuestion.setVisibility(View.VISIBLE);
+                                    explanationImageUrl = dataSnapshot6.getValue(String.class);
+                                    explanationUri = Uri.parse(explanationImageUrl);
+                                    imageViewUserExplanation.setVisibility(View.VISIBLE);
                                     Picasso.get()
-                                            .load(questionUri)
+                                            .load(explanationUri)
                                             .resize(720, 720)
-                                            .into(imageViewUserQuestion);
+                                            .into(imageViewUserExplanation);
                                 }
                             }
-
-
-                            Log.e("questiontext", questionText + "");
                         }
                     }
 
@@ -172,322 +486,11 @@ public class MockTestActivity extends AppCompatActivity {
                     }
                 });
 
-                databaseReference2 = databaseReference.child("Option A");
-                databaseReference2.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
-
-                            if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAText")) {
-
-                                optionAText = dataSnapshot2.getValue(String.class);
-                                Log.e("tostringkey", optionAText);
-                                textViewUserOptionA.setText(optionAText);
-                            }
-
-                            if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAImageUrl")) {
-
-                                if (!dataSnapshot2.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
-
-                                    optionAImageUrl = dataSnapshot2.getValue(String.class);
-                                    optionAUri = Uri.parse(optionAImageUrl);
-                                    imageViewUserOptionA.setVisibility(View.VISIBLE);
-                                    Picasso.get()
-                                            .load(optionAUri)
-                                            .resize(720, 720)
-                                            .into(imageViewUserOptionA);
-                                }
-
-                            }
-
-                            if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")) {
-
-                                if (!dataSnapshot2.getValue(Boolean.class)) {
-                                    optionAValue = false;
-                                } else {
-                                    optionAValue = true;
-                                }
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                databaseReference3 = databaseReference.child("Option B");
-                databaseReference3.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot dataSnapshot3 : dataSnapshot.getChildren()) {
-
-                            if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBText")) {
-
-                                optionBText = dataSnapshot3.getValue(String.class);
-                                Log.e("tostringkey", optionBText);
-                                textViewUserOptionB.setText(optionBText);
-                            }
-
-                            if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBImageUrl")) {
-
-                                if (!dataSnapshot3.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
-
-                                    optionBImageUrl = dataSnapshot3.getValue(String.class);
-                                    optionBUri = Uri.parse(optionBImageUrl);
-                                    imageViewUserOptionB.setVisibility(View.VISIBLE);
-                                    Picasso.get()
-                                            .load(optionBUri)
-                                            .resize(720, 720)
-                                            .into(imageViewUserOptionB);
-                                }
-
-                            }
-
-                            if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")) {
-
-                                if (!dataSnapshot3.getValue(Boolean.class)) {
-                                    optionBValue = false;
-                                } else {
-                                    optionBValue = true;
-                                }
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                databaseReference4 = databaseReference.child("Option C");
-                databaseReference4.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot dataSnapshot4 : dataSnapshot.getChildren()) {
-
-                            if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCText")) {
-
-                                optionCText = dataSnapshot4.getValue(String.class);
-                                Log.e("tostringkey", optionCText);
-                                textViewUserOptionC.setText(optionCText);
-                            }
-
-                            if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCImageUrl")) {
-
-                                if (!dataSnapshot4.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
-
-                                    optionCImageUrl = dataSnapshot4.getValue(String.class);
-                                    optionCUri = Uri.parse(optionCImageUrl);
-                                    imageViewUserOptionC.setVisibility(View.VISIBLE);
-                                    Picasso.get()
-                                            .load(optionCUri)
-                                            .resize(720, 720)
-                                            .into(imageViewUserOptionC);
-                                }
-
-                            }
-
-                            if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")) {
-
-                                if (!dataSnapshot4.getValue(Boolean.class)) {
-                                    optionCValue = false;
-                                } else {
-                                    optionCValue = true;
-                                }
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                databaseReference5 = databaseReference.child("Option D");
-                databaseReference5.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        for (DataSnapshot dataSnapshot5 : dataSnapshot.getChildren()) {
-
-                            if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDText")) {
-
-                                optionDText = dataSnapshot5.getValue(String.class);
-                                Log.e("toStringKey", optionDText);
-                                textViewUserOptionD.setText(optionDText);
-                            }
-
-                            if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDImageUrl")) {
-
-                                if (!dataSnapshot5.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
-
-                                    optionDImageUrl = dataSnapshot5.getValue(String.class);
-                                    optionDUri = Uri.parse(optionDImageUrl);
-                                    imageViewUserOptionD.setVisibility(View.VISIBLE);
-                                    Picasso.get()
-                                            .load(optionDUri)
-                                            .resize(720, 720)
-                                            .into(imageViewUserOptionD);
-                                }
-
-                            }
-
-                            if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")) {
-
-                                if (!dataSnapshot5.getValue(Boolean.class)) {
-                                    optionDValue = false;
-                                } else {
-                                    optionDValue = true;
-                                }
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-                optionACardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
-                        optionAChoosed = true;
-                        optionACardView.setClickable(false);
-                        optionBCardView.setClickable(false);
-                        optionCCardView.setClickable(false);
-                        optionDCardView.setClickable(false);
-                        buttonSubmitAnswer.setEnabled(true);
-                    }
-                });
-
-                optionBCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        optionBCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
-                        optionBChoosed = true;
-                        optionACardView.setClickable(false);
-                        optionBCardView.setClickable(false);
-                        optionCCardView.setClickable(false);
-                        optionDCardView.setClickable(false);
-                        buttonSubmitAnswer.setEnabled(true);
-                    }
-                });
-
-                optionCCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        optionCCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
-                        optionCChoosed = true;
-                        optionACardView.setClickable(false);
-                        optionBCardView.setClickable(false);
-                        optionCCardView.setClickable(false);
-                        optionDCardView.setClickable(false);
-                        buttonSubmitAnswer.setEnabled(true);
-                    }
-                });
-
-                optionDCardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        optionDCardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
-                        optionDChoosed = true;
-                        optionACardView.setClickable(false);
-                        optionBCardView.setClickable(false);
-                        optionCCardView.setClickable(false);
-                        optionDCardView.setClickable(false);
-                        buttonSubmitAnswer.setEnabled(true);
-                    }
-                });
-
-                buttonSubmitAnswer.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        if (optionAValue) {
-                            optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                        }
-                        if (optionBValue) {
-                            optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                        }
-                        if (optionCValue) {
-                            optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                        }
-                        if (optionDValue) {
-                            optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                        }
-                        if (optionAChoosed) {
-                            if (!optionAValue) {
-                                optionACardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
-                            }
-                        }
-                        if (optionBChoosed) {
-                            if (!optionBValue) {
-                                optionBCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
-                            }
-                        }
-                        if (optionCChoosed) {
-                            if (!optionCValue) {
-                                optionCCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
-                            }
-                        }
-                        if (optionDChoosed) {
-                            if (!optionDValue) {
-                                optionDCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
-                            }
-                        }
-
-                        databaseReference6 = databaseReference.child("Explanation");
-                        databaseReference6.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                for (DataSnapshot dataSnapshot6 : dataSnapshot.getChildren()) {
-                                    if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationText")) {
-
-                                        explanationText = dataSnapshot6.getValue(String.class);
-                                        Log.e("tostringkey", explanationText);
-                                        textViewUserExplanation.setText(explanationText);
-                                    }
-
-                                    if (dataSnapshot6.getKey().toString().equalsIgnoreCase("explanationImageUrl")) {
-
-                                        if (!dataSnapshot6.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
-
-                                            explanationImageUrl = dataSnapshot6.getValue(String.class);
-                                            explanationUri = Uri.parse(explanationImageUrl);
-                                            imageViewUserExplanation.setVisibility(View.VISIBLE);
-                                            Picasso.get()
-                                                    .load(explanationUri)
-                                                    .resize(720, 720)
-                                                    .into(imageViewUserExplanation);
-                                        }
-                                    }
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                        nextQuestion.setVisibility(View.VISIBLE);
-                    }
-                });
-
-                nextQuestion.setOnClickListener(new View.OnClickListener() {
+                nextQuestion.setVisibility(View.VISIBLE);
+            }
+        });
+
+               /* nextQuestion.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (questionShownList.size() <= n){
@@ -495,8 +498,8 @@ public class MockTestActivity extends AppCompatActivity {
                             int found = 0,index1;
                             String randomElement1;
                             while (true) {
-                                randomElement1 = (idsList.get(new Random().nextInt(idsList.size())));
-                                index1 = idsList.indexOf(randomElement1);
+                                randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+                                index1 = idsArrayList.indexOf(randomElement1);
                                 for (int i = 0; i < questionShownList.size(); i++) {
                                     if (index1 == questionShownList.get(i)) {
                                         found = 1;
@@ -510,22 +513,6 @@ public class MockTestActivity extends AppCompatActivity {
                                 }
                             }
                             questionShownList.add(index1);
-                            /*String randomElement1 = (idsList.get(new Random().nextInt(idsList.size())));
-                            int index1 = idsList.indexOf(randomElement1);
-                            int found = 0;
-                            for (int i = 0; i < questionShownList.size(); i++){
-                                if (index1 == questionShownList.get(i)){
-                                    found = 1;
-                                    while (found==1){
-                                        randomElement1 = (idsList.get(new Random().nextInt(idsList.size())));
-                                        index1 = idsList.indexOf(randomElement1);
-                                    }
-                                    //randomElement1 = (idsList.get(new Random().nextInt(idsList.size())));
-                                    //index1 = idsList.indexOf(randomElement1);
-                                }else {
-                                    questionShownList.add(index1);
-                                }
-                            }*/
 
                             buttonSubmitAnswer.setEnabled(false);
                             optionACardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
@@ -793,12 +780,301 @@ public class MockTestActivity extends AppCompatActivity {
                             alertDialog.show();
                         }
                     }
-                });
-            }
-        });
+                });*/
     }
 
-    private void readData(final FirebaseCallback firebaseCallback){
+    public void nextClicked(View view){
+
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+
+        if (questionShownList.size() <= n){
+
+            found = 0;
+            while (true) {
+                randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+                index1 = idsArrayList.indexOf(randomElement1);
+                for (int i = 0; i < questionShownList.size(); i++) {
+                    if (index1 == questionShownList.get(i)) {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (found==1){
+                    continue;
+                }else {
+                    break;
+                }
+            }
+            questionShownList.add(index1);
+
+            buttonSubmitAnswer.setEnabled(false);
+            optionACardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionBCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionCCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionDCardView.setCardBackgroundColor(Color.parseColor("#ffffff"));
+            optionACardView.setClickable(true);
+            optionBCardView.setClickable(true);
+            optionCCardView.setClickable(true);
+            optionDCardView.setClickable(true);
+            nextQuestion.setVisibility(View.GONE);
+
+            databaseReference = FirebaseDatabase.getInstance().getReference()
+                    .child("App")
+                    .child("Study")
+                    .child(professional)
+                    .child(subjectsArrayList.get(index1))
+                    .child("MCQs")
+                    .child("Questions")
+                    .child(idsArrayList.get(index1));
+
+            databaseReference1 = databaseReference.child("Question");
+            Log.e("Dta Reference", databaseReference + "");
+            databaseReference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
+                        Log.e("tostring", dataSnapshot1.getValue().toString());
+                        Log.e("tostringkey", dataSnapshot1.getKey().toString());
+
+                        if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionText")) {
+
+                            questionText = dataSnapshot1.getValue(String.class);
+                            Log.e("tostringkey", questionText);
+                            textViewUserQuestion.setText(questionText);
+                        }
+
+                        if (dataSnapshot1.getKey().toString().equalsIgnoreCase("questionImageUrl")) {
+
+                            if (!dataSnapshot1.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                questionImageUrl = dataSnapshot1.getValue(String.class);
+                                questionUri = Uri.parse(questionImageUrl);
+                                imageViewUserQuestion.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(questionUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserQuestion);
+                            }else {
+                                imageViewUserQuestion.setVisibility(View.GONE);
+                            }
+                        }
+
+
+                        Log.e("questiontext", questionText + "");
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference2 = databaseReference.child("Option A");
+            databaseReference2.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot2 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAText")) {
+
+                            optionAText = dataSnapshot2.getValue(String.class);
+                            Log.e("tostringkey", optionAText);
+                            textViewUserOptionA.setText(optionAText);
+                        }
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAImageUrl")) {
+
+                            if (!dataSnapshot2.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionAImageUrl = dataSnapshot2.getValue(String.class);
+                                optionAUri = Uri.parse(optionAImageUrl);
+                                imageViewUserOptionA.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionAUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionA);
+                            }
+
+                        }
+
+                        if (dataSnapshot2.getKey().toString().equalsIgnoreCase("optionAValue")) {
+
+                            if (!dataSnapshot2.getValue(Boolean.class)) {
+                                optionAValue = false;
+                            } else {
+                                optionAValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference3 = databaseReference.child("Option B");
+            databaseReference3.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot3 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBText")) {
+
+                            optionBText = dataSnapshot3.getValue(String.class);
+                            Log.e("tostringkey", optionBText);
+                            textViewUserOptionB.setText(optionBText);
+                        }
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBImageUrl")) {
+
+                            if (!dataSnapshot3.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionBImageUrl = dataSnapshot3.getValue(String.class);
+                                optionBUri = Uri.parse(optionBImageUrl);
+                                imageViewUserOptionB.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionBUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionB);
+                            }
+
+                        }
+
+                        if (dataSnapshot3.getKey().toString().equalsIgnoreCase("optionBValue")) {
+
+                            if (!dataSnapshot3.getValue(Boolean.class)) {
+                                optionBValue = false;
+                            } else {
+                                optionBValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference4 = databaseReference.child("Option C");
+            databaseReference4.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot4 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCText")) {
+
+                            optionCText = dataSnapshot4.getValue(String.class);
+                            Log.e("tostringkey", optionCText);
+                            textViewUserOptionC.setText(optionCText);
+                        }
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCImageUrl")) {
+
+                            if (!dataSnapshot4.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionCImageUrl = dataSnapshot4.getValue(String.class);
+                                optionCUri = Uri.parse(optionCImageUrl);
+                                imageViewUserOptionC.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionCUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionC);
+                            }
+
+                        }
+
+                        if (dataSnapshot4.getKey().toString().equalsIgnoreCase("optionCValue")) {
+
+                            if (!dataSnapshot4.getValue(Boolean.class)) {
+                                optionCValue = false;
+                            } else {
+                                optionCValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+
+            databaseReference5 = databaseReference.child("Option D");
+            databaseReference5.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot dataSnapshot5 : dataSnapshot.getChildren()) {
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDText")) {
+
+                            optionDText = dataSnapshot5.getValue(String.class);
+                            Log.e("toStringKey", optionDText);
+                            textViewUserOptionD.setText(optionDText);
+                        }
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDImageUrl")) {
+
+                            if (!dataSnapshot5.getValue(String.class).equalsIgnoreCase("No Image Selected")) {
+
+                                optionDImageUrl = dataSnapshot5.getValue(String.class);
+                                optionDUri = Uri.parse(optionDImageUrl);
+                                imageViewUserOptionD.setVisibility(View.VISIBLE);
+                                Picasso.get()
+                                        .load(optionDUri)
+                                        .resize(720, 720)
+                                        .into(imageViewUserOptionD);
+                            }
+
+                        }
+
+                        if (dataSnapshot5.getKey().toString().equalsIgnoreCase("optionDValue")) {
+
+                            if (!dataSnapshot5.getValue(Boolean.class)) {
+                                optionDValue = false;
+                            } else {
+                                optionDValue = true;
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Done")
+                    .setCancelable(false)
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                            onBackPressed();
+                        }
+                    });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+        }
+
+    }
+
+    /*private void readData(final FirebaseCallback firebaseCallback){
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         for (int i = 0; i < subjects.length; i++) {
 
@@ -846,11 +1122,7 @@ public class MockTestActivity extends AppCompatActivity {
             //    Log.d("idsArrayList", idsArrayList.get(k));
             //}
         }
-    }
-
-    private interface FirebaseCallback{
-        void onCallBack(ArrayList<String> list, ArrayList<String> list1);
-    }
+    }*/
 
     public void exitQuestions(View view){
 
