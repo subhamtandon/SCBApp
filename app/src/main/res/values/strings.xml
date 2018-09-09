@@ -232,11 +232,52 @@
         <item>10</item>
     </string-array>
 
+    <string-array name="departments">
+        <item>Anatomy</item>
+        <item>Physiology</item>
+        <item>Biochemistry</item>
+        <item>Comm. Medicine</item>
+        <item>Pathology</item>
+        <item>Microbiology</item>
+        <item>Pharmacology</item>
+        <item>FMT</item>
+        <item>Radiology</item>
+        <item>Medicine</item>
+        <item>Pul-Medicine</item>
+        <item>Surgery</item>
+        <item>Orthopedics</item>
+        <item>Psychiatry</item>
+        <item>Pediatrics</item>
+        <item>O &amp; G</item>
+        <item>Ophthalmology</item>
+        <item>ENT</item>
+        <item>Anaesthesiology</item>
+        <item>Skin &amp; VD</item>
+        <item>Cardiology</item>
+        <item>Neurology</item>
+        <item>Nephrology</item>
+        <item>Gastroenterology</item>
+        <item>Endocrinology</item>
+        <item>Clinical Hematolgy</item>
+        <item>C.T.V.Surgery</item>
+        <item>Plastic Surgery</item>
+        <item>Urology</item>
+        <item>Neurosurgery</item>
+        <item>G.I.Surgery</item>
+        <item>Endocrine Surgery</item>
+        <item>Transfusion Medicine</item>
+        <item>Paediatric Surgery</item>
+        <item>Emergency Medicine</item>
+        <item>Rehumatology</item>
+        <item>Radiotherapy</item>
+    </string-array>
+
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
     <string name="tab_text_2">Record</string>
     <string name="tab_text_3">Practical</string>
     <string name="tab_text_4">PYQ</string>
     <string name="section_format">Hello World from section: %1$d</string>
+    <string name="department_prompt">Enter Department Name:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

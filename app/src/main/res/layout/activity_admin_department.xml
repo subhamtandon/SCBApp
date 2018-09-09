@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminDepartmentActivity">
+    tools:context=".AdminDepartmentActivity"
+    android:padding="10dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -15,5 +16,24 @@
         android:textStyle="bold"
         android:textAppearance="@style/Theme.AppCompat"
         android:id="@+id/headingDepartment"/>
+
+    <Spinner
+        android:id="@+id/spinnerDepartments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/headingDepartment"
+        android:entries="@array/departments"
+        android:spinnerMode="dialog"
+        android:prompt="@string/department_prompt"/>
+
+    <Button
+        android:id="@+id/departmentSubmitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Submit" />
 
 </RelativeLayout>

@@ -120,7 +120,7 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
             }
         });
 
-        thirdProfessionalPartTwoMockTestCard.setOnClickListener(new View.OnClickListener() {
+        /*thirdProfessionalPartTwoMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalThirdTwoActivity.this);
@@ -157,7 +157,7 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
-        });
+        });*/
     }
 
     @Override

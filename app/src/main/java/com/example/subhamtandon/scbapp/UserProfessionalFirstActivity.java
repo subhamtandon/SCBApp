@@ -142,7 +142,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
+        /*firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
@@ -195,12 +195,12 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                 });
                 builder.setView(mView);
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show(); */
+                alertDialog.show();
             }
-        });
+        });*/
     }
 
-    private void readData(final FirebaseCallback firebaseCallback){
+    /*private void readData(final FirebaseCallback firebaseCallback){
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         for (int i = 0; i < subjects.length; i++) {
 
@@ -247,12 +247,12 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             //    Log.d("idsArrayList", idsArrayList.get(k));
             //}
         }
-    }
+    }*/
 
 
-    private interface FirebaseCallback{
+    /*private interface FirebaseCallback{
         void onCallBack(ArrayList<String> list, ArrayList<String> list1);
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
