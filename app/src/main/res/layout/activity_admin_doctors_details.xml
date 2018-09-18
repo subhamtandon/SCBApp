@@ -32,20 +32,53 @@
                 android:layout_below="@+id/textView2"
                 android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/hodName"
-                    android:text="HOD Name"
-                    android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-                    android:layout_gravity="center"/>
+                    android:padding="5dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hodName"
+                        android:text="HOD Name"
+                        android:gravity="start"
+                        android:layout_gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:layout_toLeftOf="@id/editHodName" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/editHodName"
+                        android:src="@drawable/ic_edit_black"
+                        android:layout_toLeftOf="@+id/deleteHodName"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_delete_black"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/deleteHodName"/>
+
+                </RelativeLayout>
+
             </android.support.v7.widget.CardView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addNewHodName"
+                android:layout_centerHorizontal="true"
+                android:text="add new"
+                android:layout_below="@+id/cardViewHOD"/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewAssistantProfessors"
-                android:layout_below="@+id/cardViewHOD"
+                android:layout_below="@+id/addNewHodName"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Assistant Professors"
@@ -92,6 +125,7 @@
                 android:layout_below="@+id/recyclerViewAssociateProfessors"
                 android:layout_centerHorizontal="true"
                 android:text="add new" />
+
         </RelativeLayout>
 
     </ScrollView>
