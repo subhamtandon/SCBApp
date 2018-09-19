@@ -24,7 +24,8 @@
             android:id="@+id/editAssociateProfessor"
             android:src="@drawable/ic_edit_black"
             android:layout_toLeftOf="@+id/deleteAssociateProfessor"
-            android:layout_marginRight="10dp"/>
+            android:layout_marginRight="10dp"
+            android:visibility="gone"/>
 
         <ImageView
             android:layout_width="wrap_content"

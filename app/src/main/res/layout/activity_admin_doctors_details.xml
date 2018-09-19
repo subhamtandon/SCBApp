@@ -40,7 +40,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/hodName"
+                        android:id="@+id/hodNameTextView"
                         android:text="HOD Name"
                         android:gravity="start"
                         android:layout_gravity="center"
@@ -52,7 +52,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/editHodName"
                         android:src="@drawable/ic_edit_black"
-                        android:layout_toLeftOf="@+id/deleteHodName"/>
+                        android:layout_toLeftOf="@+id/deleteHodName"
+                        android:visibility="gone"/>
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -60,7 +61,8 @@
                         android:layout_marginLeft="10dp"
                         android:src="@drawable/ic_delete_black"
                         android:layout_alignParentRight="true"
-                        android:id="@+id/deleteHodName"/>
+                        android:id="@+id/deleteHodName"
+                        android:visibility="gone"/>
 
                 </RelativeLayout>
 
