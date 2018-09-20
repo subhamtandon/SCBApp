@@ -89,6 +89,9 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
                         notifyDataSetChanged();
                         Toast.makeText(context, "Deletion done successfully" , Toast.LENGTH_SHORT).show();
 
+                        InformationBulletinActivity informationBulletinActivity = (InformationBulletinActivity)context;
+                        informationBulletinActivity.reloadActivity();
+
 
                     }
                 });

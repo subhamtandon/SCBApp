@@ -117,11 +117,11 @@ public class AdapterForPracticalsList extends RecyclerView.Adapter<AdapterForPra
         holder.nameOfFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //int position = recyclerView.getChildLayoutPosition(v);
-                Intent intent = new Intent();
-                intent.setType(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(urls.get(pos)));
-                context.startActivity(intent);
+                Uri webpage = Uri.parse(urls.get(pos));
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                if (intent.resolveActivity(context.getPackageManager()) != null) {
+                    context.startActivity(intent);
+                }
             }
         });
     }

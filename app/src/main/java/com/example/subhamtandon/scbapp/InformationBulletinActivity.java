@@ -193,6 +193,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                         Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
                                         //databaseReference.child(infoKey).child("Date").setValue(date);
                                         //databaseReference.child(infoKey).child("Time").setValue(time);
+                                        reloadActivity();
                                     }
                                     else
                                         Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
@@ -213,5 +214,12 @@ public class InformationBulletinActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }
