@@ -63,7 +63,7 @@ public class AdminDoctorsDetails extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null){
                     String hodName = dataSnapshot.getValue(String.class);
-                    Log.d("hodName", hodName);
+                    //Log.d("hodName", hodName);
                     hodNameTextView.setText(hodName);
 
                 }

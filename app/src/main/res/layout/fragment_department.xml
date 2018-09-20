@@ -6,18 +6,116 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".DepartmentFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Departments"
-        android:gravity="center_horizontal"
-        android:textSize="40dp"
-        android:textStyle="bold"
-        android:textAppearance="@style/Theme.AppCompat"
-        android:id="@+id/headingDepartment"
-        />
-
     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Departments"
+                android:gravity="center_horizontal"
+                android:textSize="40dp"
+                android:textStyle="bold"
+                android:textAppearance="@style/Theme.AppCompat"
+                android:id="@+id/headingDepartment"
+                />
+
+            <Spinner
+                android:id="@+id/spinnerDepartmentsUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/headingDepartment"
+                android:entries="@array/departments"
+                android:spinnerMode="dialog"
+                android:prompt="@string/department_prompt"/>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/spinnerDepartmentsUser"
+                android:gravity="center"
+                android:text="HOD"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardViewHOD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_below="@+id/textView2"
+                android:padding="8dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/hodNameTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="HOD Name"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAssistantProfessors"
+                android:layout_below="@+id/cardViewHOD"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Assistant Professors"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerViewAssistantProfessors"
+                android:layout_below="@+id/textViewAssistantProfessors">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAssociateProfessors"
+                android:layout_below="@+id/recyclerViewAssistantProfessors"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Associate Professors"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerViewAssociateProfessors"
+                android:layout_below="@+id/textViewAssociateProfessors">
+            </android.support.v7.widget.RecyclerView>
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <!--<ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scrollViewOfDepartments"
@@ -38,8 +136,6 @@
             android:layout_marginTop="10dp"
             >
 
-            <!--row 1-->
-            <!--col 1-->
             <android.support.v7.widget.CardView
                 android:id="@+id/anatomyDeptCard"
                 android:layout_width="match_parent"
@@ -82,7 +178,6 @@
 
             </android.support.v7.widget.CardView>
 
-            <!--col 2-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -125,8 +220,6 @@
 
             </android.support.v7.widget.CardView>
 
-            <!--row 2-->
-            <!--col 1-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -169,7 +262,6 @@
 
             </android.support.v7.widget.CardView>
 
-            <!--col 2-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -509,6 +601,6 @@
 
         </GridLayout>
 
-    </ScrollView>
+    </ScrollView>-->
 
 </RelativeLayout>
