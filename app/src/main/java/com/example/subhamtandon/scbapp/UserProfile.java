@@ -154,6 +154,9 @@ public class UserProfile extends AppCompatActivity
             ft.replace(R.id.flMain, new SCBSectionFragment());
             ft.commit();
         } else if (id == R.id.nav_scbInfoBulletin) {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new InformationBulletinFragment());
+            ft.commit();
 
         } else if (id == R.id.nav_scbAboutSCB) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
