@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
 
     CardView scorecardCard, mcqCard, studyCard, questionBankCard;
-    RecyclerView recyclerViewVideoCategories, recyclerViewMedicalRelatedPictures;
+    RecyclerView recyclerViewVideoCategories, recyclerViewMedicalRelatedPictures, recyclerViewPPT;
     ArrayList<String> listOfNamesOfVideoCategories, listOfMedicalRelatedPicturesUrls ;
 
     public HomeFragment() {
@@ -54,6 +54,7 @@ public class HomeFragment extends Fragment {
         //questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
         recyclerViewVideoCategories = view.findViewById(R.id.recyclerViewVideoCategories);
         recyclerViewMedicalRelatedPictures = view.findViewById(R.id.recyclerViewMedicalRelatedPictures);
+        recyclerViewPPT = view.findViewById(R.id.recyclerViewPPT);
         listOfNamesOfVideoCategories = new ArrayList<>();
         listOfMedicalRelatedPicturesUrls = new ArrayList<>();
         listOfNamesOfVideoCategories.add("Educational");

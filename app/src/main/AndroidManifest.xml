@@ -71,7 +71,9 @@
         <activity android:name=".MockTestActivity" />
         <activity android:name=".AdminMedicalRelatedPicsActivity" />
         <activity android:name=".AddingMedicalRelatedPicAdminActivity" />
-        <activity android:name=".AdminDoctorsDetails"></activity>
+        <activity android:name=".AdminDoctorsDetails" />
+        <activity android:name=".AdminPPTActivity" />
+        <activity android:name=".AddingPPTActivity"></activity>
     </application>
 
 </manifest>
