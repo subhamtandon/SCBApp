@@ -50,11 +50,11 @@ public class DepartmentFragment extends Fragment {
         recyclerViewAssociateProfessors = view.findViewById(R.id.recyclerViewAssociateProfessors);
         hodNameTextView = view.findViewById(R.id.hodNameTextView);
 
-        databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("HOD");
-        databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Assistant Professor");
-        databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Associate Professor");
+        //databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("HOD");
+        //databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Assistant Professor");
+        //databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Associate Professor");
 
-        databaseReferenceHod.addValueEventListener(new ValueEventListener() {
+        /*databaseReferenceHod.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null){
@@ -110,7 +110,7 @@ public class DepartmentFragment extends Fragment {
 
         recyclerViewAssociateProfessors.setLayoutManager(new LinearLayoutManager(getContext()));
         AdapterForUserAssociateProfessors adapterForUserAssociateProfessors = new AdapterForUserAssociateProfessors(recyclerViewAssociateProfessors, getContext(), new ArrayList<String>(), new ArrayList<String>(), spinnerDepartmentsUser.getSelectedItem().toString());
-        recyclerViewAssociateProfessors.setAdapter(adapterForUserAssociateProfessors);
+        recyclerViewAssociateProfessors.setAdapter(adapterForUserAssociateProfessors);*/
 
         spinnerDepartmentsUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
