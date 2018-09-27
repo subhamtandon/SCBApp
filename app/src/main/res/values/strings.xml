@@ -53,16 +53,1003 @@
     </string-array>
 
     <string-array name="collegeList">
-        <item>-Select-</item>
-        <item>All India Institute of Medical Sciences Bhubaneswar</item>
-        <item>SCB Medical College, Cuttack</item>
+        <item>ACSR Government Medical College Nellore</item>
+        <item>Alluri Sitaram Raju Academy of Medical Sciences, Eluru</item>
+        <item>Andhra Medical College, Visakhapatnam</item>
+        <item>Apollo Institute of Medical Sciences and Research, Hyderabad</item>
+        <item>Bhaskar Medical College, Yenkapally</item>
+        <item>Chalmeda Anand Rao Insttitute Of Medical Sciences, Karimnaga</item>
+        <item>Deccan College of Medical Sciences, Hyderabad</item>
+        <item>Dr. P.S.I. Medical College, Chinoutpalli</item>
+        <item>Dr. VRK Womens MedicalCollege, Aziznagar</item>
+        <item>Fathima Instt. of Medical Sciences,Kadapa</item>
+        <item>Gandhi Medical College, Hyderabad</item>
+        <item>Government Medical College, Anantapur</item>
+        <item>Government Medical College, Nizamabad</item>
+        <item>Government Siddhartha Medical College, Vijaywada</item>
+        <item>Great Eastern Medical School and Hospital,Srikakulam</item>
+        <item>GSL Medical College, Rajahmundry</item>
+        <item>Guntur Medical College, Guntur</item>
+        <item>Kakatiya Medical College, Wrangal</item>
+        <item>Kamineni Academy of Medical Sciences &amp; Research Center, Hyderabad</item>
+        <item>Kamineni Institute of Medical Sciences, Narketpally</item>
+        <item>Katuri Medical College, Guntur</item>
+        <item>Konaseema Institute of Medical Sciences &amp; Research Foundation, Amalapuram</item>
+        <item>Kurnool Medical College, Kurnool</item>
+        <item>Maharajah Institute of Medical Sciences, Vizianagaram</item>
+        <item>Malla Reddy Institute of Medical Sciences, Hyderabad</item>
+        <item>Mallareddy Medical College for Womens, Hyderabad</item>
+        <item>Mamata Medical College, Khammam</item>
+        <item>Medicity Institute Of Medical Sciences, Ghanpur</item>
+        <item>MNR Medical College, Sangareddy</item>
+        <item>Narayana Medical College, Nellore</item>
+        <item>NRI Institute of Medical Sciences, Visakhapatnam</item>
+        <item>NRI Medical College, Guntur</item>
+        <item>Osmania Medical College, Hyderabad</item>
+        <item>P E S Institute Of Medical Sciences and Research, Kuppam</item>
+        <item>Prathima Institute Of Medical Sciences, Karimnagar</item>
+        <item>Rajiv Gandhi Institute of Medical Sciences, adilabad</item>
+        <item>Rajiv Gandhi Institute of Medical Sciences, Kadapa</item>
+        <item>Rajiv Gandhi Institute of Medical Sciences, Srikakulam</item>
+        <item>Rajiv Gandhi Institute of Medical Sciences,Ongole, AP</item>
+        <item>Rangaraya Medical College, Kakinada</item>
+        <item>S V Medical College, Tirupati</item>
+        <item>S V S Medical College, Mehboobnagar</item>
+        <item>Santhiram Medical College, Nandyal</item>
+        <item>Shadan Institute of Medical Sciences,Research Centre and Teaching Hospital, Peerancheru</item>
+        <item>Sri Padmavathi Medical College for Women, Alipiri Road, Tirupati</item>
+        <item>Viswabharathi Medical College, Kurnoo</item>
+        <item>Assam Medial College, Dibrugarh</item>
+        <item>Fakhruddin Ali Ahmed Medical College, Barpeta, Assam</item>
+        <item>Gauhati Medical College, Guwahati</item>
+        <item>Jorhat Medical College &amp; Hospital, Jorhat</item>
+        <item>Silchar Medical College, Silchar</item>
+        <item>Tezpur Medical College &amp; Hospital, Tezpur</item>
+        <item>A N Magadh Medical College, Gaya</item>
+        <item>Darbhanga Medical College, Lehriasarai</item>
+        <item>Government Medical College, Bettiah</item>
+        <item>Indira Gandhi Institute of Medical Sciences,Sheikhpura Patna</item>
+        <item>Jawaharlal Nehru Medical College, Bhagalpur</item>
+        <item>Katihar Medical College, Katihar</item>
+        <item>Lord Buddha Koshi Medical College and Hospital, Saharsa</item>
+        <item>Mata Gujri Memorial Medical College, Kishanganj</item>
+        <item>Nalanda Medical College, Patna</item>
+        <item>Narayan Medical College &amp; Hospital, Sasaram</item>
+        <item>Patna Medical College, Patna</item>
+        <item>Shri Krishna Medical College, Muzzafarpur</item>
+        <item>Vardhman Institute of Medical Sciences, Pawapuri, Nalanda</item>
+        <item>Government Medical College, Chandigarh</item>
+        <item>Chandulal Chandrakar Memorial Medical College, Durg</item>
+        <item>Chhattisgarh Institute of Medical Sciences</item>
+        <item>Government Medical College, Rajnandgaon</item>
+        <item>Late Shri Baliram Kashyap Memorial NDMC Govt. Medical College, Jagdalpur</item>
+        <item>Late Shri Lakhi Ram Agrawal Memorial Govt. Medical College, Raigarh</item>
+        <item>Pt. J N M Medical College, Raipur</item>
+        <item>All India Institute of Medical Sciences, New Delhi</item>
+        <item>Army College of Medical Sciences, New Delhi</item>
+        <item>Hamdard Institute of Medical Sciences &amp; Research, New Delhi</item>
+        <item>Lady Hardinge Medical College, New Delhi </item>
+        <item>Maulana Azad Medical College, New Delhi </item>
+        <item>North Delhi Muncipal Corporation Medical College, Delhi</item>
+        <item>University College of Medical Sciences &amp; GTB Hospital, New Delhi</item>
+        <item>Vardhman Mahavir Medical College &amp; Safdarjung Hospital, Delhi</item>
+        <item>Goa Medical College, Panaji</item>
+        <item>Ahmedabad Municipal
+Coporation Medical
+Education Trust Medical
+College, Ahmedabad</item>
+        <item>B
+J Medical College,
+Ahmedabad</item>
+        <item>CU Shah Medical College,
+Surendra Nagar</item>
+        <item>GCS Medical College,
+Ahmedabad</item>
+        <item>GMERS Medical College,
+Dharpur Patan</item>
+        <item>GMERS Medical College,
+Gandhinagar</item>
+        <item>GMERS Medical College,
+Gotri, Vadodara</item>
+        <item>GMERS Medical College,
+Sola, Ahmedabad</item>
+        <item>GMERS Medical College,
+Valsad</item>
+        <item>Government Medical
+College, Bhavnagar</item>
+        <item>Government Medical
+College, Surat</item>
+        <item>Gujarat Adani Institute of
+Medical Sciences, Bhuj</item>
+        <item>K.J. Mehta General
+Hospital
+&amp; College of
+Medical Sciences,
+Amargadh</item>
+        <item>Kesarsal Medical College &amp; Research Institute,
+Ahmedabad</item>
+        <item>Medical College, Baroda </item>
+        <item>MP Shah Medical
+College,Jamnagar </item>
+        <item>Pandit Deendayal
+Upadhyay Medical
+College, Rajkot</item>
+        <item>Pramukhswami Medical
+C lolege, Karmsad</item>
+        <item>SBKS Medical Instt.
+&amp;
+Research Centre,
+Vadodra</item>
+        <item>Smt. N.H.L.Municipal
+Medical College,
+Ahmedabad</item>
+        <item>Surat Municipal Institute
+of Medical Education
+&amp;
+Research, Surat</item>
+        <item>Vivekanand Institute Of
+Medical Sciences
+&amp;
+Research, Valia</item>
+        <item>BPS Government Medical
+College for Women,
+Sonepat</item>
+        <item>Gold Field Institute of
+Medical Sciences
+&amp;
+Research, Ballabgarh,
+Faridabad</item>
+        <item>Maharaja Agrasen
+Medical College, Agroha</item>
+        <item>Maharishi
+Markandeshwar Institute
+Of Medical Sciences
+&amp;
+Research, Mullana,
+Ambala</item>
+        <item>Pt.
+B
+D Sharma
+Postgraduate Institute of
+Medical Sciences, Rohtak
+(Haryana)</item>
+        <item>Shaheed Hasan Khan
+Mewati Government
+Medical College, Nalhar</item>
+        <item>Shree Guru Gobind Singh
+Tricentenary Medical
+College, Gurgaon</item>
+        <item>Dr. Rajendar Prasad
+Government Medical
+College, Tanda, H.P</item>
+        <item>Indira Gandhi Medical
+College, Shimla</item>
+        <item>Maharishi
+Markandeshwar Medical
+College
+&amp; Hospital, Solan</item>
+        <item>Acharya Shri Chander
+College of Medical
+Sciences, Jammu</item>
+        <item>Government Medical
+College, Jammu</item>
+        <item>Government Medical
+College, Srinagar</item>
+        <item>Sher
+‐
+I
+‐Kashmir Instt. Of
+Medical Sciences,
+Srinagar</item>
+        <item>M
+G
+M Medical College,
+Jamshedpur</item>
+        <item>Patliputra Medical
+College, Dhanbad </item>
+        <item>Rajendra Institute of
+Medical Sciences, Ranchi</item>
+        <item>A
+J Institute of Medical
+Sciences
+&amp; Research
+Centre, Mangalore</item>
+        <item>Adichunchanagiri
+Institute of Medical
+Sciences Bellur</item>
+        <item>Al
+‐Ameen Medical
+College,Bijapur</item>
+        <item>Bangalore Medical
+College and Research
+Institute, Bangalore</item>
+        <item>Basaveswara Medical
+College and Hospital,
+Chitradurga</item>
+        <item>Belgaum Institute of
+Medical Sciences,
+Belgaum</item>
+        <item>BGS Global Institute of
+Medical Sciences,
+Bangalore</item>
+        <item>Bidar Institute of Medical
+Sciences,Bidar</item>
+        <item>Dr BR Ambedkar Medical
+College, Bangalore</item>
+        <item>Employees State
+Insurance Corporation
+Medical College,
+Bangalore</item>
+        <item>ESIC Medical College,
+Gulbarga</item>
+        <item>Father Mullers Institute of
+Medical Education and
+Research, Mangalore</item>
+        <item>Government Medical
+College, Mysore</item>
+        <item>Hassan Institute of
+Medical Sciences, Hassan</item>
+        <item>Jawaharlal Nehru
+Medical College,
+Belgaum</item>
+        <item>JJM Medical College,
+Davangere</item>
+        <item>JSS Medical College,
+Mysore</item>
+        <item>K
+S Hegde Medical
+Academy, Mangalore</item>
+        <item>K
+V
+G Medical College,
+Sullia</item>
+        <item>Karnataka Institute of
+Medical Sciences, Hubli</item>
+        <item>Kasturba Medical
+College, Mangalore</item>
+        <item>Kasturba Medical
+College, Manipal</item>
+        <item>Kempegowda Institute of
+Medical Sciences,
+Bangalore</item>
+        <item>Khaja Banda Nawaz
+Institute of Medical
+Sciences, Gulbarga</item>
+        <item>M
+S Ramaiah Medical
+College, Bangalore</item>
+        <item>Mahadevappa Rampure
+Medical College,
+Gulbarga</item>
+        <item>Mandya Institute of
+Medical Sciences,
+Mandya</item>
+        <item>MVJ Medical College and
+Research Hospital,
+Bangalore</item>
+        <item>Navodaya Medical
+College, Raichur</item>
+        <item>Raichur Institute of
+Medical Sciences,Raichur</item>
+        <item>Rajarajeswari Medical
+College
+&amp; Hospital,
+Bangalore</item>
+        <item>S
+S Institute of Medical
+Sciences&amp; Research
+Centre, Davangere</item>
+        <item>S. Nijalingappa Medical
+College
+&amp; HSK Hospital
+&amp;
+Research Centre,Bagalkot</item>
+        <item>Sapthagiri Institute of
+Medical Sciences
+&amp;
+Research Centre,
+Bangalore</item>
+        <item>SDM Medical College
+,
+Dharwad</item>
+        <item>Shimoga Institute of
+Medical
+Sciences,Shimoga</item>
+        <item>Shri
+B
+M Patil Medical
+College, Hospital
+&amp;
+Research Centre, Bijapur</item>
+        <item>Shridevi Institute of
+Medical Sciences
+&amp;
+Research Hospital,
+Tumkur</item>
+        <item>Sri Devaraj URS Medical
+College, Kolar </item>
+        <item>Sri Siddhartha Medical
+College, Tumkur</item>
+        <item>Srinivas Institute of
+Medical Research Centre,
+Srinivasnagar</item>
+        <item>St. Johns Medical
+College, Bangalore</item>
+        <item>Subbaiah Institute of
+Medical Sciences,
+Shimoga, Karnataka</item>
+        <item>The Oxford Medical
+College, Hospital
+&amp;
+Research Centre,
+Bangalore</item>
+        <item>Vijaynagar Institute of
+Medical Sciences, Bellary</item>
+        <item>Vydehi Institute Of
+Medical Sciences
+&amp;
+Research Centre,
+Bangalore</item>
+        <item>Yenepoya Medical
+College, Mangalore</item>
+        <item>Academy of Medical
+Sceiences,Pariyaram,
+Kannur</item>
+        <item>Al
+‐Azhar Medical College
+and Super Speciality
+Hospital, Thodupuzha</item>
+        <item>Amala Institute of
+Medical Sciences,
+Thrissur</item>
+        <item>Amrita School of
+Medicine, Elamkara,
+Kochi</item>
+        <item>Azeezia Instt of Medical
+Science,Meeyannoor,Koll
+am</item>
+        <item>Cochin Medical C lolege,
+Kochi</item>
+        <item>DM Wayanad Institute of
+Medical Sciences,
+Wayanad, Kerala</item>
+        <item>Dr. Somervel Memorial
+CSI Hospital
+&amp; Medical
+College, Karakonam,
+Thiruvananthapuram</item>
+        <item>Government Medical
+College, Kottayam</item>
+        <item>Government Medical
+College, Kozhikode,
+Calicut</item>
+        <item>Government Medical
+College, Manjeri,
+Malapuram Dist.</item>
+        <item>Government Medical
+College, Painav, Idukki</item>
+        <item>Government Medical
+College, Thrissur</item>
+        <item>Institute of Integrated
+Medical Sciences,
+Yakkara, Palakkad</item>
+        <item>Jubilee Mission Medical
+College
+&amp; Research
+Institute, Thrissur</item>
+        <item>Kannur Medical College,
+Kannur</item>
+        <item>Karuna Medical College,
+Palakkad</item>
+        <item>KMCT Medical
+College,Kozhikode,
+Calicut</item>
+        <item>M
+E
+S Medical College
+,
+Perintalmanna
+Malappuram Distt.Kerala</item>
+        <item>Malabar Medical College,
+Kozhikode,Calicut</item>
+        <item>Malankara Orthodox
+Syrian Church Medical
+College, Kolenchery</item>
+        <item>Medical College,
+Thiruvananthapuram</item>
+        <item>Mount Zion Medical
+College, Chayalode,
+Ezhamkulam Adoor,
+Pathanamthitta</item>
+        <item>P
+K Das Institute of
+Medical Sciences,
+Palakkad, Kerala</item>
+        <item>Pushpagiri Institute Of
+Medical Sciences and
+Research Centre,
+Tiruvalla</item>
+        <item>Sree Narayana Instt. of
+Medical Sciences,
+Chalakka,Ernakulam</item>
+        <item>Sree Uthradom Thiurnal
+Academy of Medical
+Sciences,Trivandrum</item>
+        <item>Sri Gokulam Medical
+College Trust
+&amp; Research
+Foundation, Trivandrum</item>
+        <item>T
+D Medical College,
+Alleppey (Allappuzha)</item>
+        <item>Travancore Medical
+College, Kollam</item>
+        <item>Bundelkhand Medical College, Sagar</item>
+        <item>Chirayu Medical College
+and Hospital,
+Bairagarh,Bhopal</item>
+        <item>Gajra Raja Medical
+College, Gwalior</item>
+        <item>Gandhi Medical College,
+Bhopal</item>
+        <item>Index Medical College
+Hospital
+&amp; Research
+Centre,Indore</item>
+        <item>L.N. Medical College and
+Research Centre,Bhopal</item>
+        <item>M
+G
+M Medical College,
+Indore</item>
+        <item>Netaji Subhash Chandra
+Bose Medical College,
+Jabalpur</item>
+        <item>Peoples College of
+Medical Sciences
+&amp;
+Research Centre,
+Bhanpur, Bhopal</item>
+        <item>RKDF Medical College
+Hospital
+&amp; Research
+Centre, Jatkhedi, Bhopal</item>
+        <item>Ruxmaniben Deepchand
+Gardi Medical College,
+Ujjain</item>
+        <item>Shyam Shah Medical
+College, Rewa</item>
+        <item>Sri Aurobindo Medical
+College and Post
+Graduate Institute
+,
+Indore</item>
+        <item>ACPM Medical College,
+Dhule</item>
+        <item>Armed Forces Medical
+College, Pune</item>
+        <item>Ashwini Rural Medical
+College, Hospital
+&amp;
+Research Centre, Solapur</item>
+        <item>B. J. Govt. Medical
+College, Pune</item>
+        <item>Bharati Vidyapeeth
+Deemed University
+Medical College
+&amp;
+Hospital, Sangli</item>
+        <item>Bharati Vidyapeeth
+University Medical
+College, Pune</item>
+        <item>Dr Vaishampayan
+Memorial Medical
+College, Solapur</item>
+        <item>Dr.
+D
+Y Patil Medical
+College, Kolhapur</item>
+        <item>Dr. Panjabrao Alias
+Bhausaheb Deshmukh
+Memorial Medical
+College, Amravati</item>
+        <item>Dr. Shankarrao Chavan
+Govt. Medical College,
+Nanded</item>
+        <item>Dr. Ulhas Patil Medical
+College
+&amp; Hospital,
+Jalgaon</item>
+        <item>Dr.Vasantrao Pawar
+Med. Col. Hosp.
+&amp;
+Research Centre,Nasik
+(Prev. NDMVP Samaj
+Medical College)</item>
+        <item>Government Medical
+College
+, Latur</item>
+        <item>Government Medical
+College, Akola</item>
+        <item>Government Medical
+College, Aurangabad</item>
+        <item>Government Medical
+College, Miraj</item>
+        <item>Government Medical
+College, Nagpur</item>
+        <item>Grant Medical College,
+Mumbai</item>
+        <item>Indian Institute of
+Medical Science
+&amp;
+Research, Jalna</item>
+        <item>Indira Gandhi Medical
+College
+&amp; Hospital,
+Nagpur</item>
+        <item>Institute of Medical
+Science and Research,
+Vidyagiri, Satara</item>
+        <item>Jawaharlal Nehru
+Medical College, Sawangi
+(Meghe), Wardha</item>
+        <item>KJ Somaiyya Medical
+College
+&amp; Research
+Centre, Mumbai</item>
+        <item>Krishna Institute of
+Medical Sciences, Karad</item>
+        <item>Lokmanya Tilak
+Municipal Medical
+College, Sion, Mumbai</item>
+        <item>Maharashtra Institute of
+Medical Sciences &amp;
+Research, Latur</item>
+        <item>Maharashtra Institute of
+Medical Education &amp;
+Research, Pune</item>
+        <item>Mahatma Gandhi
+Institute of Medical
+Sciences, Sevagram,
+Wardha</item>
+        <item>Mahatma Gandhi
+Missions Medical
+College, Aurangabad</item>
+        <item>Mahatma Gandhi
+Missions Medical
+College, Navi Mumbai</item>
+        <item>N. K. P. Salve Instt. of
+Medical Sciences and
+Research Centre and Lata
+Mangeshkar Hospital,
+Nagpur</item>
+        <item>Padmashree Dr. D Y Patil
+Medical College, Pimpri,
+Pune</item>
+        <item>Padmashri Dr. Vithalrao
+Vikhe Patil Foundations
+Medical College,
+Ahmednagar</item>
+        <item>Rajashree Chatrapati
+Shahu Maharaj
+Government Medical
+College, Kolhapur</item>
+        <item>Rajiv Gandhi Medical
+College and Chhatrapati
+Shivaji Maharaj Hospital,
+Thane</item>
+        <item>Rural Medical College,
+Loni</item>
+        <item>Seth GS Medical College,
+Mumbai</item>
+        <item>Shri Vasant Rao Naik
+Govt. Medical College,
+Yavatmal</item>
+        <item>SMBT Institute of
+Medical Sciences &amp;
+Research Centre,
+Nandihills, Nashik</item>
+        <item>Smt. Kashibai Navale
+Medical College and
+General Hospital,Pune</item>
+        <item>Sri Bhausaheb Hire
+Government Medical
+College, Dhule</item>
+        <item>SRTR Medical College,
+Ambajogai</item>
+        <item>Terna Medical College,
+Navi Mumbai</item>
+        <item>Topiwala National
+Medical College, Mumbai</item>
+        <item>Jawaharlal Nehru
+Institute of Medical
+Sciences,Porompet,Imph
+al</item>
+        <item>Regional Institute of
+Medical Sciences, Imphal </item>
+        <item>North Eastern Indira
+Gandhi Regional Instt. of
+Health and Medical
+Sciences, Shillong</item>
+        <item>Hi
+‐Tech Medical College
+&amp; Hospital, Bhubaneswar</item>
+        <item>Hi
+‐Tech Medical College &amp; Hospital, Rourkela</item>
+        <item>Instt. Of Medical Sciences &amp; SUM Hospital,
+Bhubaneswar</item>
+        <item>Kalinga Institute of
+Medical Sciences,
+Bhubaneswar</item>
         <item>MKCG Medical College, Berhampur</item>
+        <item>Sardar Rajas Medical
+College, Hospital and
+Research Centre, Jaring,
+Kalahandi</item>
+        <item>SCB Medical College, Cuttack</item>
         <item>Veer Surendra Sai Institute of Medical Sciences and Research, Burla</item>
+        <item>Aarupadai Veedu
+Medical College,
+Pondicherry</item>
+        <item>Indira Gandhi Medical
+College
+&amp; Research
+Institute, Puducherry</item>
+        <item>Jawaharlal Institute of
+Postgraduate Medical
+Education
+&amp; Research,
+Puducherry</item>
+        <item>Mahatma Gandhi
+Medical College
+&amp;
+Research Institute,
+Pondicherry</item>
+        <item>Pondicherry Institute of
+Medical Sciences
+&amp;
+Research, Pondicherry</item>
+        <item>Sri Lakshmi Narayana
+Institute of Medical
+Sciences, Pondicherry</item>
+        <item>Sri Manakula Vinayagar
+Medical College
+&amp;
+Hospital, Pondicherry</item>
+        <item>Sri Venkateswaraa
+Medical College, Hospital &amp; Research Centre,
+Pondicherry</item>
+        <item>Vinayaka Missions
+Medical College,
+Pondicherry</item>
+        <item>Adesh Institute of
+Medical Sciences
+&amp;
+Research, Bhatinda</item>
+        <item>Chintpurni Medical
+College, Gurdaspur</item>
+        <item>Christian Medical
+College, Ludhiana</item>
+        <item>Dayanand Medical
+College
+&amp; Hospital,
+Ludhiana</item>
+        <item>Gian Sagar Medical
+College
+&amp; Hospital,
+Patiala</item>
+        <item>Government Medical
+College, Amritsar</item>
+        <item>Government Medical
+College, Patiala</item>
+        <item>Guru Govind Singh
+Medical College, Faridkot</item>
+        <item>Punjab Institute of
+Medical Sciences,
+Jalandhar</item>
+        <item>Sri Guru Ram Das
+Institute of Medical
+Sciences and Research,
+Sri Amritsar</item>
+        <item>Dr SN Medical College,
+Jodhpur</item>
+        <item>Geetanjali Medical
+College
+&amp;
+Hospital,Udaipur</item>
+        <item>Government Medical
+College, Kota</item>
+        <item>Jawaharlal Nehru
+Medical College, Ajmer</item>
+        <item>Jhalawar Medical
+College, Jhalawar</item>
+        <item>Mahatma Gandhi
+Medical College and
+Hospital, Jaipur</item>
+        <item>National Institute of
+Medical Science
+&amp;
+Research, Jaipur</item>
+        <item>Pacific Medical College
+&amp;
+Hospital, Udaipur</item>
+        <item>R
+N
+T Medical College,
+Udaipur</item>
+        <item>RUHS College of Medical
+Sciences, Jaipur</item>
+        <item>Sardar Patel Medical
+College, Bikaner</item>
+        <item>SMS Medical College,
+Jaipur</item>
+        <item>Sikkim Manipal Institute
+of Medical Sciences,
+Gangtok</item>
+        <item>ACS Medical College and
+Hospital, Chennai</item>
+        <item>Annapoorna Medical
+College
+&amp; Hospital, Salem</item>
+        <item>Chengalpattu Medical
+College, Chengalpattu</item>
+        <item>Chennai Medical College
+Hospital and research
+centre,Irungalur,Trichy</item>
+        <item>Chettinad Hospital
+&amp;
+Research Institute,
+Kanchipuram</item>
+        <item>Christian Medical
+College, Vellore</item>
+        <item>Coimbatore Medical
+College, Coimbatore</item>
+        <item>D.D. Medical College and
+Hospital, Tiruvallur,
+Chennai</item>
+        <item>Dhanalakshmi Srinivasan
+Medical College and
+Hospital,Perambalur</item>
+        <item>ESIC Medical College,
+Chennai</item>
+        <item>Government Dharmapuri
+Medical College,
+Dharmapuri</item>
+        <item>Government Sivgangai
+Medical College,
+Sivaganga</item>
+        <item>Government
+Thiruvannamalai Medical
+College, Thiruvannamalai</item>
+        <item>Government Vellore
+Medical College, Vellore</item>
+        <item>Government Villupuram
+Medical College,
+Villupuram</item>
+        <item>K A P Viswanathan
+Government Medical
+College, Trichy</item>
+        <item>KanyaKumari
+Government Medical
+College, Asaripallam</item>
+        <item>Karpaga Vinayaga
+Institute of Medical
+Sciences,Maduranthaga
+m</item>
+        <item>Karpagam Faculty of
+Medical Sciences &amp;
+Research, Coimbatore</item>
+        <item>Kilpauk Medical College,
+Chennai</item>
+        <item>Madha Medical College
+and Hospital,
+Thandalam, Chennai</item>
+        <item>Madras Medical College,
+Chennai</item>
+        <item>Madurai Medical College,
+Madurai</item>
+        <item>Meenakshi Medical
+College and Research
+Institute, Enathur</item>
+        <item>Melmaruvathur
+Adiparasakthi Instt.
+Medical Sciences and
+Research</item>
+        <item>Mohan
+Kumaramangalam
+Medical College, Salem</item>
+        <item>Perunthurai Medical
+College and Institute of
+Road Transport,
+Perunthurai</item>
+        <item>PSG Institute of Medical
+Sciences, Coimbatore</item>
+        <item>Rajah Muthiah Medical
+College, Annamalainagar</item>
+        <item>Saveetha Medical College
+and Hospital,
+Kanchipuram</item>
+        <item>Shri Satya Sai Medical
+College and Research
+Institute, Kancheepuram</item>
+        <item>Sree Balaji Medical
+College and Hospital,
+Chennai</item>
+        <item>Sree Mookambika
+Institute of Medical
+Sciences, Kanyakumari</item>
+        <item>Sri Muthukumaran
+Medical College,Chennai</item>
+        <item>Sri Ramachandra Medical
+College &amp; Research
+Institute, Chennai</item>
+        <item>SRM Medical College
+Hospital &amp; Research
+Centre, Kancheepuram</item>
+        <item>Stanley Medical College,
+Chennai</item>
+        <item>Tagore Medical College
+and Hospital, Chennai</item>
+        <item>Thanjavur Medical
+College,Thanjavur</item>
+        <item>Theni Government
+Medical College,Theni</item>
+        <item>Thiruvarur Govt. Medical
+College, Thiruvarur</item>
+        <item>Thoothukudi Medical
+College, Thoothukudi</item>
+        <item>Tirunelveli Medical
+College,Tirunelveli</item>
+        <item>Velammal Medical
+College Hospital and
+Research Institute,
+Madurai</item>
+        <item>Vinayaka Missions
+Kirupananda Variyar
+Medical College, Salem</item>
+        <item>Agartala Government
+Medical College,Agartala</item>
+        <item>Tripura Medical College
+and Dr. B R A M Teaching
+Hospital, Agartala</item>
+        <item>BRD Medical College,
+Gorakhpur</item>
+        <item>Career Instt. Of Medical
+Sciences &amp; Hospital,
+Lucknow</item>
+        <item>Chhatrapati Shahuji
+Maharaj Medical
+University, Lucknow</item>
+        <item>Era Lucknow Medical
+College , Lucknow</item>
+        <item>F.H. Medical College &amp;
+Hospital, Firozabad</item>
+        <item>Government Medical
+C lolege    &amp; Super facility f ili
+Hospital, Azamgarh</item>
+        <item>Government Medical
+College, Kannauj</item>
+        <item>GSVM Medial College,
+Kanpur</item>
+        <item>Hind Institute of Medical
+Sciences , Barabanki</item>
+        <item>Institute of Medical
+Sciences, BHU, Varansi</item>
+        <item>Integral Institute of
+Medical Sciences &amp;
+Research, Lucknow</item>
+        <item>Jawaharlal Nehru
+Medical College, Aligarh</item>
+        <item>LLRM Medical College,
+Merrut</item>
+        <item>Mahamaya Rajkiya
+Allopathic Medical
+College, Ambedkarnagar</item>
+        <item>Maharani Laxmi Bai
+Medical College, Jhansi</item>
+        <item>Major S D Singh Medical
+College and Hospital,
+Fathehgarh, Farrukhabad</item>
+        <item>Manyavar Kanshi Ram Ji
+Government Allopathic
+Medical College</item>
+        <item>Mayo Institute of
+Medical Sciences,
+Barabanki</item>
+        <item>Moti Lal Nehru Medical
+College, Allahabad</item>
+        <item>Muzaffarnagar Medical
+College, Muzaffarnagar</item>
+        <item>Rajshree Medical
+Research Institute,
+Bareilly</item>
+        <item>Rama Medical College
+and Hospital , Kanpur</item>
+        <item>Rama Medical College
+Hospital and Research
+Centre, Hapur,Gaziabad</item>
+        <item>Rohilkhand Medical
+College &amp; Hospital,
+Bareilly</item>
+        <item>S N Medical College, Agra</item>
+        <item>Santosh Medical College,
+Ghaziabad</item>
+        <item>Saraswati Institute of
+Medical Sciences, Hapur</item>
+        <item>School of Medical
+Sciences &amp;
+Research,Greater Noida</item>
+        <item>Shri Ram Murti Smarak
+Institute of Medical
+Sciences, Bareilly</item>
+        <item>Subharti Medical College,
+Meerut</item>
+        <item>Teerthanker Mahaveer
+Medical College,
+Moradabad</item>
+        <item>U.P. Rural Institute of
+Medical Sciences &amp;
+Research, Etawah</item>
+        <item>Government Medical
+College
+(Prev.Uttarakhand .Uttarakhand Forest
+Hospital Trust Med.Col.),
+Haldwani</item>
+        <item>Himalayan Institute of
+Medical Sciences,
+Dehradun</item>
+        <item>Shri Guru Ram Rai
+Institute of Medical &amp;
+Health Sciences,
+Dehradun</item>
+        <item>Veer Chandra Singh
+Garhwali Govt. Medical
+Sc. &amp; Research Instt,
+Srinagar, Pauri Garhwal</item>
+        <item>Bankura Sammilani
+Medical College, Bankura</item>
+        <item>Burdwan Medical
+College, Burdwan</item>
+        <item>Calcutta National
+Medical College, Kolkata</item>
+        <item>College of Medicine and
+JNM
+Hospital,Kalyani,Nadia</item>
+        <item>College of Medicine and
+Sagore Dutta Hospital,
+Kolkata</item>
+        <item>Employees State
+Insurance Corporation
+Medical College, Joka,
+Kolkata</item>
+        <item>ICARE Institute of
+Medical Sciences &amp;
+Research, Haldia, Purba
+Midanpore</item>
+        <item>Institute of Postgraduate
+Medical Education &amp;
+Research, Kolkata</item>
+        <item>IQ‐City Medical College,
+Burdwan</item>
+        <item>KPC Medical
+College,Jadavpur,Kolkata</item>
+        <item>Malda Medical College &amp;
+Hospital, Malda</item>
+        <item>Medical College, Kolkata</item>
+        <item>Midnapore Medical
+College, Midnapore</item>
+        <item>Murshidabad Medical
+College &amp; Hospitals,
+Murshidabad</item>
+        <item>Nilratan Sircar Medical
+College, Kolkata</item>
+        <item>North Bengal Medical
+College, Darjeeling</item>
+        <item>RG Kar Medical College,
+Kolkata</item>
+        <item>All India Institute of Medical Sciences Bhubaneswar</item>
         <item>SLN Medical College and Hospital, Koraput</item>
         <item>Pandit Raghunath Murmu Medical College and Hospital, Baripada</item>
-        <item>Gopabandhu Ayurveda Mahavidyalaya, Puri</item>
-        <item>Dr Abhin Chandra Homoeopathic Medical College and Hospital, Bhubaneswar</item>
-        <item>Swami Vivekanand National Institute of Rehabilitation Training and Research, Cuttack</item>
     </string-array>
 
     <string-array name="firstProfessionalSubjects">
@@ -278,6 +1265,7 @@
     <string name="tab_text_4">PYQ</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="department_prompt">Select Department</string>
+    <string name="college_prompt">Select College Name</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

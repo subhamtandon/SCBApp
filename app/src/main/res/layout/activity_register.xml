@@ -62,12 +62,28 @@
 
         </LinearLayout>
 
-        <Spinner
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <AutoCompleteTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="Enter College Name"
+                android:id="@+id/collegeNameAutoCompleteTextView"/>
+
+        </android.support.design.widget.TextInputLayout>
+        <!--<Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:id="@+id/spinnerCollegeList">
-        </Spinner>
+            android:id="@+id/spinnerCollegeList"
+            android:entries="@array/collegeList"
+            android:spinnerMode="dialog"
+            android:prompt="@string/college_prompt">
+        </Spinner>-->
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

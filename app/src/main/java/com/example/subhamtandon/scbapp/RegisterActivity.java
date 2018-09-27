@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -35,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private TextView textViewSignin;
     private ProgressDialog progressDialog;
     Spinner mSpinner;
+    AutoCompleteTextView collegeNameAutoCompleteTextView;
 
     private FirebaseAuth firebaseAuth;
     ArrayAdapter<String> adapter;
@@ -61,7 +63,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
-        mSpinner = findViewById(R.id.spinnerCollegeList);
+        //mSpinner = findViewById(R.id.spinnerCollegeList);
+        collegeNameAutoCompleteTextView = findViewById(R.id.collegeNameAutoCompleteTextView);
 
         progressDialog = new ProgressDialog(this);
 
@@ -69,11 +72,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         textViewSignin.setOnClickListener(this);
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.collegeList));
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.collegeList));
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        mSpinner.setAdapter(adapter);
+        collegeNameAutoCompleteTextView.setAdapter(adapter);
     }
 
     private boolean isEmailValid(String email) {
@@ -91,13 +92,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         String password = editTextPassword.getText().toString();
 
-        final String collegeName = mSpinner.getSelectedItem().toString();
+        final String collegeName = collegeNameAutoCompleteTextView.getText().toString();
 
         String ready= "true";
 
-        if (collegeName.equalsIgnoreCase("-Select-")){
+        if (TextUtils.isEmpty(collegeName)){
+            collegeNameAutoCompleteTextView.setError(getString(R.string.error_field_required));
             ready = "false";
-            Toast.makeText(RegisterActivity.this, "Select College name", Toast.LENGTH_SHORT).show();
         }
         if (TextUtils.isEmpty(email)){
 

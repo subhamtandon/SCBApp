@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -198,45 +199,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             boolean isNew = task.getResult().getAdditionalUserInfo().isNewUser();
 
                             if (isNew){
-
                                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                                View mView = getLayoutInflater().inflate(R.layout.college_name_autocompletetextview, null);
 
-                                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                                final AutoCompleteTextView collegeNameAutoCompleteTextView = mView.findViewById(R.id.collegeNameAutoCompleteTextView);
 
-                                builder.setTitle("Choose your College")
+                                Button buttonCollegeName = (Button) mView.findViewById(R.id.buttonCollegeName);
+
+                                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.collegeList));
+
+                                collegeNameAutoCompleteTextView.setAdapter(adapter);
+
+                                builder.setTitle("Enter College Name")
                                         .setCancelable(false);
+                                builder.setView(mView);
+                                final AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
 
-                                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
-
-                                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.collegeList));
-
-                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                                mSpinner.setAdapter(adapter);
-
-                                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                buttonCollegeName.setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")){
-
+                                    public void onClick(View v) {
+                                        if (!collegeNameAutoCompleteTextView.getText().toString().isEmpty()) {
                                             FirebaseDatabase.getInstance().getReference("Users")
                                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                     .child("College Name")
-                                                    .setValue(mSpinner.getSelectedItem().toString());
+                                                    .setValue(collegeNameAutoCompleteTextView.getText().toString());
+
+                                            alertDialog.dismiss();
 
                                             Intent intent = new Intent(getApplicationContext(), UserProfile.class);
                                             startActivity(intent);
                                         }else {
-
-                                            progressDialog.dismiss();
-                                            Toast.makeText(MainActivity.this, "Select college name", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(MainActivity.this, "Please enter college Name", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
-
-                                builder.setView(mView);
-                                AlertDialog alertDialog = builder.create();
-                                alertDialog.show();
                             }
                             else {
                                 finish();
