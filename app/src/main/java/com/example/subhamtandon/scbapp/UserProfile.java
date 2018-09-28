@@ -224,10 +224,9 @@ public class UserProfile extends AppCompatActivity
             */
 
         } else if (id == R.id.nav_scbMap) {
-            //FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            //ft.replace(R.id.flMain, new QuestionBankFragment());
-            //ft.commit();
-            Toast.makeText(UserProfile.this, "Map is coming soon", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(UserProfile.this, SCBMapActivity.class);
+            startActivity(intent);
+            //Toast.makeText(UserProfile.this, "Map is coming soon", Toast.LENGTH_SHORT).show();
         }else if (id == R.id.nav_scbDoctorsInfo) {
 
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
