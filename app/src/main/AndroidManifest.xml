@@ -96,7 +96,9 @@
         <activity
             android:name=".SCBMapActivity"
             android:label="@string/title_activity_scbmap" />
-        <activity android:name=".YoutubeVideoView"></activity>
+        <activity android:name=".YoutubeVideoView" />
+        <activity android:name=".AdminFeaturedVideos" />
+        <activity android:name=".AdminYoutubeVideos"></activity>
     </application>
 
 </manifest>

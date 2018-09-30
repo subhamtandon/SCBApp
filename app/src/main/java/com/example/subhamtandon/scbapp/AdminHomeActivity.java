@@ -10,7 +10,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
-    CardView StudyCard,DepartmentCard,InformationBulletinCard, MedicalRelatedPicsCard, PPTCard;
+    CardView StudyCard,DepartmentCard,InformationBulletinCard, MedicalRelatedPicsCard, PPTCard, featuredVideosCard;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -23,6 +23,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         InformationBulletinCard = findViewById(R.id.InformationBulletinCard);
         MedicalRelatedPicsCard = findViewById(R.id.MedicalRelatedPicturesCard);
         PPTCard = findViewById(R.id.PPTCard);
+        featuredVideosCard = findViewById(R.id.featuredVideosCard);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -62,6 +63,13 @@ public class AdminHomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), AdminPPTActivity.class));
+            }
+        });
+
+        featuredVideosCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), AdminFeaturedVideos.class));
             }
         });
 
