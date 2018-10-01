@@ -18,7 +18,7 @@ public class    Professional1stActivity extends AppCompatActivity {
 
     FloatingActionButton changeProfession;
 
-    CardView AnatomyCard, PhysiologyCard, BiochemistryCard, MockTestCard;
+    CardView AnatomyCard, PhysiologyCard, BiochemistryCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +93,7 @@ public class    Professional1stActivity extends AppCompatActivity {
         AnatomyCard =(CardView) findViewById(R.id.AnatomyCard);
         PhysiologyCard=(CardView) findViewById(R.id.PhysiologyCard);
         BiochemistryCard=(CardView) findViewById(R.id.BiochemistryCard);
-        MockTestCard=(CardView) findViewById(R.id.MockTestCard);
+        //MockTestCard=(CardView) findViewById(R.id.MockTestCard);
 
         AnatomyCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,14 +130,14 @@ public class    Professional1stActivity extends AppCompatActivity {
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
         });
-        MockTestCard.setOnClickListener(new View.OnClickListener() {
+       /* MockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
                 //startActivity(new Intent(getApplicationContext(),Professional4thActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 

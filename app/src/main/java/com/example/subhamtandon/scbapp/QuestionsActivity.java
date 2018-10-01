@@ -476,6 +476,10 @@ public class QuestionsActivity extends AppCompatActivity {
             optionDCardView.setClickable(true);
             nextQuestion.setVisibility(View.GONE);
             textViewUserExplanation.setText("Explanation/Hint");
+            optionAChoosed = false;
+            optionBChoosed = false;
+            optionCChoosed = false;
+            optionDChoosed = false;
 
             databaseReference = FirebaseDatabase.getInstance().getReference()
                     .child("App")

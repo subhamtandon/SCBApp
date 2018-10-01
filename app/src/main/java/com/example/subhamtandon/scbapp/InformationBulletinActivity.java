@@ -47,6 +47,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
     ProgressBar progressBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -222,4 +223,5 @@ public class InformationBulletinActivity extends AppCompatActivity {
         startActivity(getIntent());
         overridePendingTransition(0, 0);
     }
+
 }
