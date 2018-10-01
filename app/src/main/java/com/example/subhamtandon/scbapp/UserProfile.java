@@ -67,7 +67,7 @@ public class UserProfile extends AppCompatActivity
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Users")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .child("College Name");
+                .child("collegeName");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -77,10 +77,18 @@ public class UserProfile extends AppCompatActivity
 
                     Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
 
-                    //if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
-                        //MenuItem SCBSection = navigationView.findViewById(R.id.nav_scbSection);
-                        //SCBSection.setVisible(false);
-                    //}
+                    if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+                        Menu SCBSection = navigationView.getMenu();
+                        SCBSection.findItem(R.id.nav_scbSection).setVisible(false);
+                        Menu infoBulletin = navigationView.getMenu();
+                        infoBulletin.findItem(R.id.nav_scbInfoBulletin).setVisible(false);
+                        Menu docInfo = navigationView.getMenu();
+                        docInfo.findItem(R.id.nav_scbDoctorsInfo).setVisible(false);
+                        Menu scbMap = navigationView.getMenu();
+                        scbMap.findItem(R.id.nav_scbMap).setVisible(false);
+                        Menu aboutSCB = navigationView.getMenu();
+                        aboutSCB.findItem(R.id.nav_scbAboutSCB).setVisible(false);
+                    }
                 }
             }
 
@@ -109,8 +117,8 @@ public class UserProfile extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.user_profile, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.user_profile, menu);
+        return false;
     }
 
     @Override
@@ -126,10 +134,7 @@ public class UserProfile extends AppCompatActivity
         }
         if(id == R.id.action_logout){
 
-            firebaseAuth.signOut();
-            firebaseAuth.getInstance().signOut();
-            finish();
-            startActivity(new Intent(this, MainActivity.class));
+
 
         }
 
@@ -250,9 +255,12 @@ public class UserProfile extends AppCompatActivity
             ft.replace(R.id.flMain, new QuestionBankFragment());
             ft.commit();
         }else if (id == R.id.nav_logout) {
-            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new QuestionBankFragment());
-            ft.commit();
+
+            firebaseAuth.signOut();
+            firebaseAuth.getInstance().signOut();
+            finish();
+            startActivity(new Intent(this, MainActivity.class));
+
         }else if (id == R.id.nav_fromMakersDesk) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new QuestionBankFragment());

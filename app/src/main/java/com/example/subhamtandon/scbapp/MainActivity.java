@@ -37,7 +37,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -55,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private GoogleApiClient mGoogleApiClient;
 
     ArrayAdapter<String> adapter;
+
+    DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +80,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 finish();
                 startActivity(new Intent(getApplicationContext(), AdminHomeActivity.class));
             } else {
-                //profile activity here
+
+                /*databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .child("College Name");
+
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot != null){
+                            String collegeName = dataSnapshot.getValue(String.class);
+
+                            if (collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+                                //profile activity here
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), UserProfile.class));
+                            }else {
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), UserProfileNonSCB.class));
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(MainActivity.this, databaseError + "", Toast.LENGTH_SHORT).show();
+                    }
+                });*/
+
                 finish();
                 startActivity(new Intent(getApplicationContext(), UserProfile.class));
             }
@@ -222,13 +256,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         if (!collegeNameAutoCompleteTextView.getText().toString().isEmpty()) {
                                             FirebaseDatabase.getInstance().getReference("Users")
                                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                    .child("College Name")
+                                                    .child("collegeName")
                                                     .setValue(collegeNameAutoCompleteTextView.getText().toString());
 
                                             alertDialog.dismiss();
-
                                             Intent intent = new Intent(getApplicationContext(), UserProfile.class);
                                             startActivity(intent);
+
+                                            /*if (collegeNameAutoCompleteTextView.getText().toString().equalsIgnoreCase("SCB Medical College, Cuttack")){
+                                                Intent intent = new Intent(getApplicationContext(), UserProfile.class);
+                                                startActivity(intent);
+                                            }else {
+                                                Intent intent = new Intent(getApplicationContext(), UserProfileNonSCB.class);
+                                                startActivity(intent);
+                                            }*/
+
+
                                         }else {
                                             Toast.makeText(MainActivity.this, "Please enter college Name", Toast.LENGTH_SHORT).show();
                                         }

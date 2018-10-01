@@ -10,7 +10,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 public class AdapterForAdminYoutubeVideos extends RecyclerView.Adapter<AdapterForAdminYoutubeVideos.ViewHolder> {
@@ -28,7 +27,7 @@ public class AdapterForAdminYoutubeVideos extends RecyclerView.Adapter<AdapterFo
 
     public void update(String link){
         linksArrayList.add(link);
-        youtubeVideosList.add( new YoutubeVideos("<iframe width=\"100%\" height=\"100%\" src=\" " + link + " frameborder=\"0\" allowfullscreen></iframe>"));
+        youtubeVideosList.add( new YoutubeVideos(link));
         notifyDataSetChanged();
     }
 
