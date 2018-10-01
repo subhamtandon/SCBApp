@@ -66,13 +66,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //mSpinner = findViewById(R.id.spinnerCollegeList);
         collegeNameAutoCompleteTextView = findViewById(R.id.collegeNameAutoCompleteTextView);
 
+        //collegeNameAutoCompleteTextView.setDropDownForeground(R.color.autocomplete_foreground_color);
+
         progressDialog = new ProgressDialog(this);
 
         buttonRegister.setOnClickListener(this);
 
         textViewSignin.setOnClickListener(this);
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.collegeList));
+        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.autocomplete_custom, getResources().getStringArray(R.array.collegeList));
 
         collegeNameAutoCompleteTextView.setAdapter(adapter);
     }

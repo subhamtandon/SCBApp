@@ -68,11 +68,13 @@
             android:layout_weight="1">
 
             <AutoCompleteTextView
+                android:id="@+id/collegeNameAutoCompleteTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:hint="Enter College Name"
-                android:id="@+id/collegeNameAutoCompleteTextView"/>
+                android:textColor="#000000"
+                android:padding="8dp"/>
 
         </android.support.design.widget.TextInputLayout>
         <!--<Spinner

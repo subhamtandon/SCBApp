@@ -55,6 +55,9 @@ public class UserProfile extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View header=navigationView.getHeaderView(0);
 
+        //Menu nav_Menu = navigationView.getMenu();
+        //nav_Menu.findItem(R.id.nav_scbAboutSCB).setVisible(false);
+
         textViewUserName = (TextView)header.findViewById(R.id.textViewUserName);
         textViewUserEmail = (TextView)header.findViewById(R.id.textViewUserEmail);
 
