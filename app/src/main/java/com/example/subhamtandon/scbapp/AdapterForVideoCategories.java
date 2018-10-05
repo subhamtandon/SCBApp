@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.youtube.player.YouTubePlayerView;
+
 import java.util.ArrayList;
 
 public class AdapterForVideoCategories extends RecyclerView.Adapter<AdapterForVideoCategories.ViewHolder> {
@@ -38,7 +40,7 @@ public class AdapterForVideoCategories extends RecyclerView.Adapter<AdapterForVi
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, YoutubeVideoView.class);
+                Intent i = new Intent(context, YouTubePlayerViewActivity.class);
                 context.startActivity(i);
             }
         });
