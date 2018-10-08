@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,13 +9,31 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class AdapterForYoutubeVideos extends RecyclerView.Adapter<AdapterForYoutubeVideos.VideoViewHolder> {
 
-    List<YoutubeVideos> youtubeVideosList;
+    RecyclerView recyclerView;
+    Context context;
+
+    Vector<YoutubeVideos> youtubeVideosList = new Vector<>();
+    ArrayList<String> linksArrayList = new ArrayList<>();
 
     public AdapterForYoutubeVideos() {
+    }
+
+    public AdapterForYoutubeVideos(RecyclerView recyclerView, Context context, Vector<YoutubeVideos> youtubeVideosList) {
+        this.recyclerView = recyclerView;
+        this.context = context;
+        this.youtubeVideosList = youtubeVideosList;
+    }
+
+    public void update(String link){
+        linksArrayList.add(link);
+        youtubeVideosList.add( new YoutubeVideos(link));
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -35,9 +54,6 @@ public class AdapterForYoutubeVideos extends RecyclerView.Adapter<AdapterForYout
         return youtubeVideosList.size();
     }
 
-    public AdapterForYoutubeVideos(List<YoutubeVideos> youtubeVideosList) {
-        this.youtubeVideosList = youtubeVideosList;
-    }
 
     public class VideoViewHolder extends RecyclerView.ViewHolder{
         WebView videoView;

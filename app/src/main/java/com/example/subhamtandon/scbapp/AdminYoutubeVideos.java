@@ -88,6 +88,7 @@ public class AdminYoutubeVideos extends AppCompatActivity {
                     public void onClick(View v) {
                         String title = videoTitle.getText().toString();
                         String link = videoLink.getText().toString();
+                        String updatedLink = "<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/" + link + "\" frameborder=\"0\" allowfullscreen></iframe>";
                         String ready = "true";
                         if (TextUtils.isEmpty(title)){
                             videoTitle.setError(getString(R.string.error_field_required));
@@ -100,13 +101,21 @@ public class AdminYoutubeVideos extends AppCompatActivity {
                         if (ready.equals("true")){
                             final String id = databaseReference.push().getKey();
                             databaseReference.child(id).child("Title").setValue(title);
-                            databaseReference.child(id).child("Link").setValue(link);
+                            databaseReference.child(id).child("Link").setValue(updatedLink);
                             dialog.dismiss();
+                            reloadActivity();
                         }
 
                     }
                 });
             }
         });
+    }
+
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }

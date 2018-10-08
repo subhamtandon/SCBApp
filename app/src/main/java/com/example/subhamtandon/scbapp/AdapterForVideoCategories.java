@@ -33,14 +33,15 @@ public class AdapterForVideoCategories extends RecyclerView.Adapter<AdapterForVi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.nameOfVideoCategories.setText(listOfNamesOfVideoCategories.get(position));
         holder.nameOfVideoCategories.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent i = new Intent(context, YouTubePlayerViewActivity.class);
+                Intent i = new Intent(context, YoutubeVideoView.class);
+                i.putExtra("Category", listOfNamesOfVideoCategories.get(position));
                 context.startActivity(i);
             }
         });

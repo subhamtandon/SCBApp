@@ -9,8 +9,13 @@ import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerView;
+
 import java.util.ArrayList;
 import java.util.Vector;
+
+//import static com.example.subhamtandon.scbapp.YouTubePlayerViewActivity.API_KEY;
 
 public class AdapterForAdminYoutubeVideos extends RecyclerView.Adapter<AdapterForAdminYoutubeVideos.ViewHolder> {
 
@@ -35,12 +40,14 @@ public class AdapterForAdminYoutubeVideos extends RecyclerView.Adapter<AdapterFo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.layout_list_of_youtube_videos, parent, false);
-        return new ViewHolder(v);
+        return new AdapterForAdminYoutubeVideos.ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.videoView.loadData(youtubeVideosList.get(position).getVideoUrl(),"text/html", "utf-8");
+        //holder.youtubePlayerViewItem.initialize(API_KEY, (YouTubePlayer.OnInitializedListener) context);
+        //AdminYoutubeClass adminYoutubeClass = new AdminYoutubeClass(youtubeVideosList.get(position).getVideoUrl());
     }
 
     @Override
