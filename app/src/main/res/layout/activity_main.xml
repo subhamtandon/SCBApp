@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@drawable/main_activity_background">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,12 @@
             android:layout_margin="15dp"
             android:text="User Login"
             android:textAlignment="center"
-            android:textSize="30sp" />
+            android:textSize="30sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:autoSizeMaxTextSize="60dp"
+            android:autoSizeMinTextSize="30dp"
+            style="@style/Base.TextAppearance.AppCompat.Body1"/>
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/buttonGoogle"
@@ -40,11 +46,14 @@
             android:layout_margin="5dp"
             android:text="OR"
             android:textAlignment="center"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:textColor="#ffffff"
+            android:textStyle="bold"/>
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp">
 
             <EditText
                 android:id="@+id/editTextEmail"
@@ -52,6 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
                 android:hint="Email"
+                android:textColorHint="#ffffff"
+                android:textColor="#ffffff"
                 android:inputType="textEmailAddress" />
 
         </android.support.design.widget.TextInputLayout>
@@ -59,13 +70,16 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="35dp">
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="15dp"
+                android:textColorHint="#ffffff"
+                android:textColor="#ffffff"
                 android:hint="Password"
                 android:inputType="textPassword" />
 
@@ -90,7 +104,10 @@
             android:layout_margin="15dp"
             android:text="Don't have an account. Sign up here"
             android:textAlignment="center"
-            android:onClick="signUpClicked"/>
+            android:onClick="signUpClicked"
+            android:textStyle="bold|italic"
+            android:textColor="#0854ba"
+            android:textSize="15dp"/>
 
     </LinearLayout>
 

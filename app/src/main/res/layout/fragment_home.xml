@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    android:background="@drawable/home_fragment_background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,9 +19,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:text="WELCOME"
-                android:textSize="20sp"
+                android:textSize="30sp"
                 android:textAlignment="center"
                 android:textStyle="bold"
+                android:textColor="#92f431"
                 android:id="@+id/welcome"
                 android:layout_marginTop="10dp"
                 />
@@ -34,6 +36,7 @@
                 android:textSize="30sp"
                 android:textAlignment="center"
                 android:id="@+id/title"
+                android:textColor="#d1cfcf"
                 android:layout_below="@id/welcome"
                 android:textStyle="bold"
                 />
@@ -64,11 +67,11 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="120dp"
                     android:layout_columnWeight="1"
                     android:layout_rowWeight="1"
                     android:layout_margin="2dp"
-                    app:cardBackgroundColor="#4c97e7"
+                    app:cardBackgroundColor="#69e187"
                     app:cardElevation="8dp"
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
@@ -87,8 +90,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
-                            android:text="MCQ"
-                            android:textSize="18dp"
+                            android:text="Practice MCQ"
+                            android:textColor="#539939"
+                            android:textSize="30dp"
                             android:textAlignment="center" />
 
                     </LinearLayout>
