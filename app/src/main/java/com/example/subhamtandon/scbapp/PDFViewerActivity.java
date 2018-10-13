@@ -1,12 +1,14 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Intent;
+import android.content.Loader;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.github.barteksc.pdfviewer.PDFView;
+import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -52,7 +54,8 @@ public class PDFViewerActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(InputStream inputStream) {
-            pdfView.fromStream(inputStream).load();
+            pdfView.fromStream(inputStream)
+                    .load();
         }
     }
 }

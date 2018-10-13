@@ -117,11 +117,14 @@ public class AdapterForPracticalsList extends RecyclerView.Adapter<AdapterForPra
         holder.nameOfFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri webpage = Uri.parse(urls.get(pos));
+                /*Uri webpage = Uri.parse(urls.get(pos));
                 Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
                     context.startActivity(intent);
-                }
+                }*/
+                Intent intent = new Intent(context, PDFViewerActivity.class);
+                intent.putExtra("PDF_STRING", urls.get(pos));
+                context.startActivity(intent);
             }
         });
     }
