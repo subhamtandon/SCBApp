@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<AdapterForUserInformationBulletin.ViewHolder> {
@@ -19,22 +21,25 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
     ArrayList<String> infoKeys = new ArrayList<>();
     ArrayList<String> infoDates = new ArrayList<>();
     ArrayList<String> infoTimes = new ArrayList<>();
+    ArrayList<String> infoImageUris ;
 
-    public AdapterForUserInformationBulletin(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes) {
+    public AdapterForUserInformationBulletin(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.infosArrayList = infosArrayList;
         this.infoKeys = infoKeys;
         this.infoDates = infoDates;
         this.infoTimes = infoTimes;
+        this.infoImageUris = infoImageUris;
     }
 
-    public void update(String infoName, String infoKey, String infoDate, String infoTime){
+    public void update(String infoName, String infoKey, String infoDate, String infoTime, String infoImageUri){
 
         infosArrayList.add(infoName);
         infoKeys.add(infoKey);
         infoDates.add(infoDate);
         infoTimes.add(infoTime);
+        infoImageUris.add(infoImageUri);
         notifyDataSetChanged();
 
     }
@@ -50,6 +55,10 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.infoTextView.setText(infosArrayList.get(position));
         holder.dateAndTimeInfo.setText(infoDates.get(position) + " at " + infoTimes.get(position));
+        if(!infoImageUris.get(position).equals("No image selected"))
+        {
+            Picasso.get().load(infoImageUris.get(position)).into(holder.infoImageView);
+        }
     }
 
     @Override

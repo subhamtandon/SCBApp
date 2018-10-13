@@ -43,6 +43,15 @@
                     android:layout_alignParentRight="true"
                     android:id="@+id/deleteInfo"/>
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/infoTextView"
+                    android:id="@+id/infoImageViewAdmin"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_toLeftOf="@id/deleteInfo"/>
+
             </RelativeLayout>
 
 

@@ -59,8 +59,9 @@ public class InformationBulletinFragment extends Fragment {
                     String infoKey = ds.getKey();
                     String dateOfInfo = ds.child("infoDate").getValue(String.class);
                     String timeOfInfo = ds.child("infoTime").getValue(String.class);
+                    String infoImageUri = ds.child("infoImageUri").getValue(String.class);
 
-                    ((AdapterForUserInformationBulletin) recyclerViewInformationBulletinUser.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo);
+                    ((AdapterForUserInformationBulletin) recyclerViewInformationBulletinUser.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
                 }
             }
 
@@ -74,7 +75,7 @@ public class InformationBulletinFragment extends Fragment {
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerViewInformationBulletinUser.setLayoutManager(mLayoutManager);
-        AdapterForUserInformationBulletin adapterForUserInformationBulletin = new AdapterForUserInformationBulletin(recyclerViewInformationBulletinUser, getContext(),new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        AdapterForUserInformationBulletin adapterForUserInformationBulletin = new AdapterForUserInformationBulletin(recyclerViewInformationBulletinUser, getContext(),new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         recyclerViewInformationBulletinUser.setAdapter(adapterForUserInformationBulletin);
 
         return view;

@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -28,21 +29,24 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
     ArrayList<String> infoKeys = new ArrayList<>();
     ArrayList<String> infoDates = new ArrayList<>();
     ArrayList<String> infoTimes = new ArrayList<>();
+    ArrayList<String> infoImageUris ;
 
-    public AdapterForInfoList(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes) {
+    public AdapterForInfoList(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
         this.recyclerView = recyclerView;
         this.context = context;
         this.infosArrayList = infosArrayList;
         this.infoKeys = infoKeys;
         this.infoDates = infoDates;
         this.infoTimes = infoTimes;
+        this.infoImageUris = infoImageUris;
     }
-    public void update(String infoName, String infoKey, String infoDate, String infoTime){
+    public void update(String infoName, String infoKey, String infoDate, String infoTime, String infoImageUri){
 
         infosArrayList.add(infoName);
         infoKeys.add(infoKey);
         infoDates.add(infoDate);
         infoTimes.add(infoTime);
+        infoImageUris.add(infoImageUri);
         notifyDataSetChanged();
 
     }
@@ -60,6 +64,10 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
 
         holder.infoName.setText(infosArrayList.get(position));
         holder.dateAndTimeInfo.setText(infoDates.get(position) + " at " + infoTimes.get(position));
+        if(!infoImageUris.get(position).equals("No image selected"))
+        {
+            Picasso.get().load(infoImageUris.get(position)).into(holder.infoImageViewAdmin);
+        }
         holder.deleteInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,13 +119,14 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
     public class ViewHolder extends RecyclerView.ViewHolder{
         TextView infoName;
         TextView dateAndTimeInfo;
-        ImageView deleteInfo;
+        ImageView deleteInfo, infoImageViewAdmin;
 
         public ViewHolder(View itemView){
             super(itemView);
             infoName = itemView.findViewById(R.id.infoTextView);
             dateAndTimeInfo = itemView.findViewById(R.id.dateAndTimeInfo);
             deleteInfo = itemView.findViewById(R.id.deleteInfo);
+            infoImageViewAdmin = itemView.findViewById(R.id.infoImageViewAdmin);
         }
     }
 }

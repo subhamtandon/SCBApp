@@ -113,9 +113,10 @@ public class InformationBulletinActivity extends AppCompatActivity {
                         String infoKey = dataSnapshot2.getKey();
                         String dateOfInfo = dataSnapshot2.child("infoDate").getValue(String.class);
                         String timeOfInfo = dataSnapshot2.child("infoTime").getValue(String.class);
+                        String infoImageUri = dataSnapshot2.child("infoImageUri").getValue(String.class);
                         Log.d("getting", info);
 
-                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo);
+                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
                     }
                     progressBar.setVisibility(View.INVISIBLE);
                 }
@@ -175,7 +176,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerViewInfos.setLayoutManager(mLayoutManager);
-        AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         recyclerViewInfos.setAdapter(adapterForInfoList);
 
 
