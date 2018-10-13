@@ -50,11 +50,14 @@ public class AdapterForUserRecords extends RecyclerView.Adapter<AdapterForUserRe
         holder.textViewRecordName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri webpage = Uri.parse(urls.get(position));
+                Intent intent = new Intent(context, PDFViewerActivity.class);
+                intent.putExtra("PDF_STRING", urls.get(position));
+                context.startActivity(intent);
+                /*Uri webpage = Uri.parse(urls.get(position));
                 Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
                 if (intent.resolveActivity(context.getPackageManager()) != null) {
                     context.startActivity(intent);
-                }
+                }*/
             }
         });
     }
