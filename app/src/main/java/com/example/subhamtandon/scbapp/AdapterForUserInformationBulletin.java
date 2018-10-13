@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -59,11 +60,13 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView dateAndTimeInfo,infoTextView;
+        public ImageView infoImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             dateAndTimeInfo = itemView.findViewById(R.id.dateAndTimeInfo);
             infoTextView = itemView.findViewById(R.id.infoTextView);
+            infoImageView = itemView.findViewById(R.id.infoImageView);
         }
     }
 }
