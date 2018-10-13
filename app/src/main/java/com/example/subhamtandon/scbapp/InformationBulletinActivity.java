@@ -297,6 +297,37 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                 }
                                 else {
                                     Toast.makeText(InformationBulletinActivity.this, "No Image selected", Toast.LENGTH_SHORT).show();
+
+                                    String url = "No image selected";
+
+                                    date = dateFormat.format(calendar.getTime());
+                                    time = timeFormat.format(calendar.getTime());
+
+                                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
+                                    final String infoKey = databaseReference.push().getKey();
+
+                                    Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
+
+                                    UploadInfo uploadInfo = new UploadInfo(newInfo, date, time, url);
+
+                                    databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
+                                                //databaseReference.child(infoKey).child("Date").setValue(date);
+                                                //databaseReference.child(infoKey).child("Time").setValue(time);
+                                                Toast.makeText(InformationBulletinActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+
+                                                reloadActivity();
+                                            }
+                                            else
+                                                Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
+
+                                            dialog.dismiss();
+
+                                        }
+                                    });
                                 }
                             }
                         }
