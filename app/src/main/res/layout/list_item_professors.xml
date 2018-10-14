@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp">
+    android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,35 +11,35 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/assistantProfessorTextView"
+            android:id="@+id/professorTextView"
             android:gravity="center"
             android:text="Name"
             android:textSize="25sp"
-            android:layout_toLeftOf="@+id/editAssistantProfessor"
+            android:layout_toLeftOf="@+id/editprofessor"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/editAssistantProfessor"
+            android:id="@+id/editprofessor"
             android:src="@drawable/ic_edit_black"
-            android:layout_toLeftOf="@+id/deleteAssistantProfessor"
+            android:layout_toLeftOf="@+id/deleteprofessor"
             android:layout_marginRight="10dp"
             android:visibility="gone"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/deleteAssistantProfessor"
+            android:id="@+id/deleteprofessor"
             android:src="@drawable/ic_delete_black"
             android:layout_alignParentRight="true"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/descriptionAssistantProfessor"
+            android:id="@+id/descriptionProfessor"
             android:gravity="center"
-            android:layout_below="@+id/assistantProfessorTextView"
+            android:layout_below="@+id/professorTextView"
             android:text="Description"
             android:textSize="20sp"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>

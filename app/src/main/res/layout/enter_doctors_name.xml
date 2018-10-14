@@ -10,12 +10,35 @@
         android:hint="Name"
         android:id="@+id/textInputEditTextName"/>
 
-    <Button
-        android:layout_width="wrap_content"
+    <android.support.design.widget.TextInputEditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/enterNameButton"
-        android:layout_below="@+id/textInputEditTextName"
-        android:layout_centerHorizontal="true"
-        android:text="submit"/>
+        android:id="@+id/textInputEditTextDescription"
+        android:hint="Description"
+        android:layout_below="@+id/textInputEditTextName"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textInputEditTextDescription">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancelButton"
+            android:text="cancel"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/enterNameButton"
+            android:text="submit"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>

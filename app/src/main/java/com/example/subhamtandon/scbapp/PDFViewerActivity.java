@@ -28,9 +28,6 @@ public class PDFViewerActivity extends AppCompatActivity {
         pdfView = findViewById(R.id.pdfView);
 
         String pdfString = getIntent().getStringExtra("PDF_STRING");
-        //Uri pdfUri = Uri.parse(pdfString);
-        //pdfView.fromUri(pdfUri)
-        //        .load();
 
         new RetrievePDFStream().execute(pdfString);
     }

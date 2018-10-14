@@ -42,8 +42,8 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/hodNameTextView"
                         android:text="HOD Name"
-                        android:gravity="start"
-                        android:layout_gravity="center"
+                        android:textSize="25sp"
+                        android:gravity="center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:layout_toLeftOf="@id/editHodName" />
 
@@ -64,6 +64,16 @@
                         android:id="@+id/deleteHodName"
                         android:visibility="gone"/>
 
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hodDescription"
+                        android:layout_below="@+id/hodNameTextView"
+                        android:gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:text="Description"
+                        android:textSize="20sp"/>
+
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -79,26 +89,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewAssistantProfessors"
+                android:id="@+id/textViewProfessors"
                 android:layout_below="@+id/addNewHodName"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Assistant Professors"
+                android:text="Professors"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold"/>
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recyclerViewAssistantProfessors"
-                android:layout_below="@+id/textViewAssistantProfessors">
+                android:id="@+id/recyclerViewProfessors"
+                android:layout_below="@+id/textViewProfessors">
             </android.support.v7.widget.RecyclerView>
 
             <Button
-                android:id="@+id/addNewAssistantProfessor"
+                android:id="@+id/addNewProfessor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/recyclerViewAssistantProfessors"
+                android:layout_below="@+id/recyclerViewProfessors"
                 android:layout_centerHorizontal="true"
                 android:text="add new" />
 
@@ -106,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewAssociateProfessors"
-                android:layout_below="@+id/addNewAssistantProfessor"
+                android:layout_below="@+id/addNewProfessor"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Associate Professors"
@@ -125,6 +135,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/recyclerViewAssociateProfessors"
+                android:layout_centerHorizontal="true"
+                android:text="add new" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAssistantProfessors"
+                android:layout_below="@+id/addNewAssociateProfessor"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Assistant Professors"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerViewAssistantProfessors"
+                android:layout_below="@+id/textViewAssistantProfessors">
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/addNewAssistantProfessor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/recyclerViewAssistantProfessors"
                 android:layout_centerHorizontal="true"
                 android:text="add new" />
 
