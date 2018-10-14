@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".DepartmentFragment">
+    tools:context=".DepartmentFragment"
+    android:padding="10dp">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -69,7 +70,18 @@
                         android:layout_gravity="center"
                         android:gravity="center"
                         android:text="HOD Name"
+                        android:textSize="25sp"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hodDescription"
+                        android:layout_below="@+id/hodNameTextView"
+                        android:gravity="center"
+                        android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                        android:text="Description"
+                        android:textSize="20sp"/>
 
                 </RelativeLayout>
 
@@ -78,26 +90,26 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/textViewAssistantProfessors"
+                android:id="@+id/textViewProfessors"
                 android:layout_below="@+id/cardViewHOD"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Assistant Professors"
+                android:text="Professors"
                 android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                 android:textStyle="bold"/>
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/recyclerViewAssistantProfessors"
-                android:layout_below="@+id/textViewAssistantProfessors">
+                android:id="@+id/recyclerViewProfessors"
+                android:layout_below="@+id/textViewProfessors">
             </android.support.v7.widget.RecyclerView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/textViewAssociateProfessors"
-                android:layout_below="@+id/recyclerViewAssistantProfessors"
+                android:layout_below="@+id/recyclerViewProfessors"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
                 android:text="Associate Professors"
@@ -109,6 +121,24 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/recyclerViewAssociateProfessors"
                 android:layout_below="@+id/textViewAssociateProfessors">
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/textViewAssistantProfessors"
+                android:layout_below="@+id/recyclerViewAssociateProfessors"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="Assistant Professors"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+                android:textStyle="bold"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerViewAssistantProfessors"
+                android:layout_below="@+id/textViewAssistantProfessors">
             </android.support.v7.widget.RecyclerView>
 
         </RelativeLayout>

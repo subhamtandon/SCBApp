@@ -17,20 +17,20 @@ public class AdapterForUserAssistantProfessors extends RecyclerView.Adapter<Adap
 
     RecyclerView recyclerView;
     Context context;
-    ArrayList<String> assistantProfessorsArrayList = new ArrayList<>();
+    ArrayList<DoctorDetails> doctorDetailsArrayList = new ArrayList<>();
     ArrayList<String> assistantProfessorsIdsArrayList = new ArrayList<>();
     String departmentName;
 
-    public AdapterForUserAssistantProfessors(RecyclerView recyclerView, Context context, ArrayList<String> assistantProfessorsArrayList, ArrayList<String> assistantProfessorsIdsArrayList, String departmentName) {
+    public AdapterForUserAssistantProfessors(RecyclerView recyclerView, Context context, ArrayList<DoctorDetails> doctorDetailsArrayList, ArrayList<String> assistantProfessorsIdsArrayList, String departmentName) {
         this.recyclerView = recyclerView;
         this.context = context;
-        this.assistantProfessorsArrayList = assistantProfessorsArrayList;
+        this.doctorDetailsArrayList = doctorDetailsArrayList;
         this.assistantProfessorsIdsArrayList = assistantProfessorsIdsArrayList;
         this.departmentName = departmentName;
     }
 
-    public void update(String assistantProfessorName, String assistantProfessorId){
-        assistantProfessorsArrayList.add(assistantProfessorName);
+    public void update(DoctorDetails doctorDetails, String assistantProfessorId){
+        doctorDetailsArrayList.add(doctorDetails);
         assistantProfessorsIdsArrayList.add(assistantProfessorId);
         notifyDataSetChanged();
     }
@@ -45,21 +45,23 @@ public class AdapterForUserAssistantProfessors extends RecyclerView.Adapter<Adap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final DatabaseReference databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(departmentName).child("Assistant Professor").child(assistantProfessorsIdsArrayList.get(position));
-        holder.userAssistantProfessorTextView.setText(assistantProfessorsArrayList.get(position));
+        holder.userAssistantProfessorTextView.setText(doctorDetailsArrayList.get(position).getName());
+        holder.descriptionAssistantProfessor.setText(doctorDetailsArrayList.get(position).getDescription());
     }
 
     @Override
     public int getItemCount() {
-        return assistantProfessorsArrayList.size();
+        return doctorDetailsArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView userAssistantProfessorTextView;
+        public TextView userAssistantProfessorTextView, descriptionAssistantProfessor;
 
         public ViewHolder(View itemView) {
             super(itemView);
             userAssistantProfessorTextView = itemView.findViewById(R.id.userAssistantProfessorTextView);
+            descriptionAssistantProfessor = itemView.findViewById(R.id.descriptionAssistantProfessor);
         }
     }
 }

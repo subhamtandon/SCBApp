@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,9 +31,9 @@ import java.util.ArrayList;
 public class DepartmentFragment extends Fragment {
 
     Spinner spinnerDepartmentsUser;
-    DatabaseReference databaseReferenceHod, databaseReferenceAssistantProfessor, databaseReferenceAssociateProfessor;
-    RecyclerView recyclerViewAssistantProfessors, recyclerViewAssociateProfessors;
-    TextView hodNameTextView;
+    DatabaseReference databaseReferenceHod, databaseReferenceAssistantProfessor, databaseReferenceAssociateProfessor, databaseReferenceProfessor;
+    RecyclerView recyclerViewAssistantProfessors, recyclerViewAssociateProfessors, recyclerViewProfessors;
+    TextView hodNameTextView, hodDescription;
 
     public DepartmentFragment() {
         // Required empty public constructor
@@ -119,63 +120,87 @@ public class DepartmentFragment extends Fragment {
                 databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("HOD");
                 databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Assistant Professor");
                 databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Associate Professor");
+                databaseReferenceProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Professor");
 
                 databaseReferenceHod.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        if (dataSnapshot != null){
-                            String hodName = dataSnapshot.getValue(String.class);
-                            //
-                            // +Log.d("hodName", hodName);
-                            hodNameTextView.setText(hodName);
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            DoctorDetails doctorDetails = dataSnapshot.getValue(DoctorDetails.class);
+                            hodNameTextView.setText(doctorDetails.name);
+                            if (doctorDetails.getDescription().equalsIgnoreCase("Empty")) {
+                                hodDescription.setVisibility(View.GONE);
+                            } else {
+                                hodDescription.setText(doctorDetails.description);
+                            }
                         }
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
+
+                databaseReferenceProfessor.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()){
+                            String professorId = ds.getKey();
+                            DoctorDetails doctorDetails1 = ds.getValue(DoctorDetails.class);
+                            ((AdapterForUserProfessors) recyclerViewProfessors.getAdapter()).update(doctorDetails1, professorId);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                recyclerViewProfessors.setLayoutManager(new LinearLayoutManager(getContext()));
+                AdapterForUserProfessors adapterForUserProfessors = new AdapterForUserProfessors(recyclerViewProfessors, getContext(), new ArrayList<DoctorDetails>(), new ArrayList<String>(), parent.getItemAtPosition(position).toString());
+                recyclerViewProfessors.setAdapter(adapterForUserProfessors);
 
                 databaseReferenceAssistantProfessor.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds : dataSnapshot.getChildren()){
-                            String assistantProfessorName = ds.getValue(String.class);
                             String assistantProfessorId = ds.getKey();
-                            ((AdapterForUserAssistantProfessors) recyclerViewAssistantProfessors.getAdapter()).update(assistantProfessorName, assistantProfessorId);
+                            DoctorDetails doctorDetails2 = ds.getValue(DoctorDetails.class);
+                            ((AdapterForUserAssistantProfessors) recyclerViewAssistantProfessors.getAdapter()).update(doctorDetails2, assistantProfessorId);
                         }
 
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 recyclerViewAssistantProfessors.setLayoutManager(new LinearLayoutManager(getContext()));
-                AdapterForUserAssistantProfessors adapterForUserAssistantProfessors1 = new AdapterForUserAssistantProfessors(recyclerViewAssistantProfessors, getContext(), new ArrayList<String>(), new ArrayList<String>(), parent.getItemAtPosition(position).toString());
+                AdapterForUserAssistantProfessors adapterForUserAssistantProfessors1 = new AdapterForUserAssistantProfessors(recyclerViewAssistantProfessors, getContext(), new ArrayList<DoctorDetails>(), new ArrayList<String>(), parent.getItemAtPosition(position).toString());
                 recyclerViewAssistantProfessors.setAdapter(adapterForUserAssistantProfessors1);
 
                 databaseReferenceAssociateProfessor.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot ds : dataSnapshot.getChildren()){
-                            String associateProfessorName = ds.getValue(String.class);
                             String associateProfessorId = ds.getKey();
-                            ((AdapterForUserAssociateProfessors) recyclerViewAssociateProfessors.getAdapter()).update(associateProfessorName, associateProfessorId);
+                            DoctorDetails doctorDetails3 = ds.getValue(DoctorDetails.class);
+                            ((AdapterForUserAssociateProfessors) recyclerViewAssociateProfessors.getAdapter()).update(doctorDetails3, associateProfessorId);
                         }
                     }
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
 
                 recyclerViewAssociateProfessors.setLayoutManager(new LinearLayoutManager(getContext()));
-                AdapterForUserAssociateProfessors adapterForUserAssociateProfessors1 = new AdapterForUserAssociateProfessors(recyclerViewAssociateProfessors, getContext(), new ArrayList<String>(), new ArrayList<String>(), parent.getItemAtPosition(position).toString());
+                AdapterForUserAssociateProfessors adapterForUserAssociateProfessors1 = new AdapterForUserAssociateProfessors(recyclerViewAssociateProfessors, getContext(), new ArrayList<DoctorDetails>(), new ArrayList<String>(), parent.getItemAtPosition(position).toString());
                 recyclerViewAssociateProfessors.setAdapter(adapterForUserAssociateProfessors1);
             }
 
