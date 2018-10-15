@@ -47,9 +47,11 @@ public class DepartmentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_department, container, false);
 
         spinnerDepartmentsUser = view.findViewById(R.id.spinnerDepartmentsUser);
+        recyclerViewProfessors = view.findViewById(R.id.recyclerViewProfessors);
         recyclerViewAssistantProfessors = view.findViewById(R.id.recyclerViewAssistantProfessors);
         recyclerViewAssociateProfessors = view.findViewById(R.id.recyclerViewAssociateProfessors);
         hodNameTextView = view.findViewById(R.id.hodNameTextView);
+        hodDescription = view.findViewById(R.id.hodDescription);
 
         //databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("HOD");
         //databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Assistant Professor");
