@@ -1,14 +1,20 @@
 package com.example.subhamtandon.scbapp;
 
 import android.Manifest;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,8 +52,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static com.example.subhamtandon.scbapp.App.CHANNEL_1_ID;
+
 public class InformationBulletinActivity extends AppCompatActivity {
 
+    NotificationManagerCompat notificationManagerCompat;
     RecyclerView recyclerViewInfos;
     EditText addInfoEditText;
     ImageView addInfoImageView;
@@ -79,6 +88,8 @@ public class InformationBulletinActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information_bulletin);
+
+        notificationManagerCompat = NotificationManagerCompat.from(this);
 
         recyclerViewInfos = findViewById(R.id.recyclerViewInformationBulletinAdmin);
 
@@ -265,6 +276,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                                         Toast.makeText(InformationBulletinActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
 
                                                         reloadActivity();
+                                                        sendNotification();
                                                     }
                                                     else
                                                         Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
@@ -321,6 +333,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                                 Toast.makeText(InformationBulletinActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
 
                                                 reloadActivity();
+                                                sendNotification();
                                             }
                                             else
                                                 Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
@@ -337,6 +350,27 @@ public class InformationBulletinActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void sendNotification() {
+
+        String info = addInfoEditText.getText().toString();
+        Intent activityIntent = new Intent(this, InformationBulletinActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Information Bulletin")
+                .setContentText(info)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .setColor(Color.GREEN)
+                .setContentIntent(contentIntent)
+                .setAutoCancel(true)
+                .setOnlyAlertOnce(true)
+                .build();
+
+        notificationManagerCompat.notify(1, notification);
+    }
+
     private void openFileChooser(){
         Intent intent = new Intent();
         intent.setType("image/*");
