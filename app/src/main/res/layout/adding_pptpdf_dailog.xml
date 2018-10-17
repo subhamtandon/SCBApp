@@ -34,6 +34,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/addPPTPDFTextViewThumbnail"
+            android:text="No file selected"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Thumbnail"
+            android:layout_weight="0"
+            android:id="@+id/selectPPTPDFThumbnail"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/addPPTPDFTextView"
             android:text="No file selected"
             android:layout_marginHorizontal="10dp"
@@ -41,7 +62,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select"
+            android:text="Select PDF"
             android:layout_weight="0"
             android:id="@+id/selectPPTPDF"/>
 

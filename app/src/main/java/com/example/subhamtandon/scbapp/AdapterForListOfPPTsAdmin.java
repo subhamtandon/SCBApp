@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -17,15 +18,20 @@ public class AdapterForListOfPPTsAdmin extends RecyclerView.Adapter<AdapterForLi
     RecyclerView recyclerView;
     Context context;
     ArrayList<String> picturesUrls= new ArrayList<>();
+    ArrayList<String> pdfpptUrls, pptNames ;
 
-    public AdapterForListOfPPTsAdmin(RecyclerView recyclerView, Context context, ArrayList<String> picturesUrls) {
+    public AdapterForListOfPPTsAdmin(RecyclerView recyclerView, Context context, ArrayList<String> pptNames, ArrayList<String> picturesUrls, ArrayList<String> pdfpptUrls) {
         this.recyclerView = recyclerView;
         this.context = context;
+        this.pptNames = pptNames;
         this.picturesUrls = picturesUrls;
+        this.pdfpptUrls = pdfpptUrls;
     }
 
-    public void update(String pictureUrl){
+    public void update(String pptName, String pictureUrl, String pdfpptUrl){
+        pptNames.add(pptName);
         picturesUrls.add(pictureUrl);
+        pdfpptUrls.add(pdfpptUrl);
         notifyDataSetChanged();
     }
 
@@ -41,6 +47,7 @@ public class AdapterForListOfPPTsAdmin extends RecyclerView.Adapter<AdapterForLi
     public void onBindViewHolder(@NonNull AdapterForListOfPPTsAdmin.ViewHolder holder, int position) {
 
         Picasso.get().load(picturesUrls.get(position)).into(holder.picImage);
+        holder.pptName.setText(pptNames.get(position));
     }
 
     @Override
@@ -50,9 +57,11 @@ public class AdapterForListOfPPTsAdmin extends RecyclerView.Adapter<AdapterForLi
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView picImage;
+        TextView pptName;
         public ViewHolder(View itemView) {
             super(itemView);
             picImage = itemView.findViewById(R.id.imageViewPPTThumbnail);
+            pptName = itemView.findViewById(R.id.textViewPPTName);
         }
     }
 }
