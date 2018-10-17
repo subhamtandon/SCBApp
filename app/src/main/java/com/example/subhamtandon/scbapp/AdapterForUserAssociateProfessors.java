@@ -46,7 +46,12 @@ public class AdapterForUserAssociateProfessors extends RecyclerView.Adapter<Adap
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final DatabaseReference databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(departmentName).child("Associate Professor").child(associateProfessorsIdsArrayList.get(position));
         holder.UserAssociateProfessorTextView.setText(doctorDetailsArrayList.get(position).getName());
-        holder.descriptionAssociateProfessor.setText(doctorDetailsArrayList.get(position).getDescription());
+        if (doctorDetailsArrayList.get(position).getDescription().equalsIgnoreCase("Empty")){
+            holder.descriptionAssociateProfessor.setVisibility(View.GONE);
+        }else {
+            holder.descriptionAssociateProfessor.setVisibility(View.VISIBLE);
+            holder.descriptionAssociateProfessor.setText(doctorDetailsArrayList.get(position).getDescription());
+        }
     }
 
     @Override

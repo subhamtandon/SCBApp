@@ -42,7 +42,12 @@ public class AdapterForUserProfessors extends RecyclerView.Adapter<AdapterForUse
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.userProfessorTextView.setText(doctorDetailsArrayList.get(position).getName());
-        holder.descriptionProfessor.setText(doctorDetailsArrayList.get(position).getDescription());
+        if (doctorDetailsArrayList.get(position).getDescription().equalsIgnoreCase("Empty")){
+            holder.descriptionProfessor.setVisibility(View.GONE);
+        }else {
+            holder.descriptionProfessor.setVisibility(View.VISIBLE);
+            holder.descriptionProfessor.setText(doctorDetailsArrayList.get(position).getDescription());
+        }
     }
 
     @Override

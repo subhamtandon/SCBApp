@@ -81,7 +81,8 @@
                         android:gravity="center"
                         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
                         android:text="Description"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp"
+                        android:visibility="gone"/>
 
                 </RelativeLayout>
 

@@ -118,21 +118,30 @@ public class DepartmentFragment extends Fragment {
         spinnerDepartmentsUser.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //reloadActivity();
-                databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("HOD");
-                databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Assistant Professor");
-                databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Associate Professor");
-                databaseReferenceProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(parent.getItemAtPosition(position).toString()).child("Professor");
+                final String department  = spinnerDepartmentsUser.getSelectedItem().toString();
+                Log.d("spinneritem", parent.getItemAtPosition(position).toString());
+                Log.d("getSelectedItem", department);
+                hodNameTextView.setText("HOD");
+                hodDescription.setVisibility(View.GONE);
 
+                databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(department).child("HOD");
+                databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(department).child("Assistant Professor");
+                databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(department).child("Associate Professor");
+                databaseReferenceProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child(department).child("Professor");
+
+                Log.d("databasereference", databaseReferenceHod+"");
                 databaseReferenceHod.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Log.d("datasnapshot", dataSnapshot+"");
+                        if (dataSnapshot.getValue() != null){
+                            //Log.d("datasnapshot", department+dataSnapshot);
                             DoctorDetails doctorDetails = dataSnapshot.getValue(DoctorDetails.class);
                             hodNameTextView.setText(doctorDetails.name);
                             if (doctorDetails.getDescription().equalsIgnoreCase("Empty")) {
                                 hodDescription.setVisibility(View.GONE);
                             } else {
+                                hodDescription.setVisibility(View.VISIBLE);
                                 hodDescription.setText(doctorDetails.description);
                             }
                         }
@@ -210,13 +219,9 @@ public class DepartmentFragment extends Fragment {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
+
         });
         return view;
-    }
-
-    private void reloadActivity() {
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
     }
 
     @Override
@@ -244,6 +249,9 @@ public class DepartmentFragment extends Fragment {
             }
         });
     }
-
+    public void reloadActivity() {
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
 
 }
