@@ -53,7 +53,7 @@ public class AdminPPTActivity extends AppCompatActivity {
     ProgressDialog progressDialog, progressDialog1;
     EditText addPPTPDFEditText;
     TextView addPPTPDFTextView,addPPTPDFTextViewThumbnail;
-    Button selectPPTPDF,selectPPTPDFThubnail, addPPTPDF;
+    Button selectPPTPDF,selectPPTPDFThumbnail, addPPTPDF;
 
     StorageTask uploadTask,uploadTask1;
 
@@ -75,9 +75,10 @@ public class AdminPPTActivity extends AppCompatActivity {
                 if(dataSnapshot!=null) {
                     //for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                         UploadPPTPDF retriveUploadPPTPDF = dataSnapshot.getValue(UploadPPTPDF.class);
+                        String id = dataSnapshot.getKey();
                         //String uploadPDFID = dataSnapshot.getKey();
 
-                        ((AdapterForListOfPPTsAdmin) listOfPPT.getAdapter()).update(retriveUploadPPTPDF.mName,retriveUploadPPTPDF.mThumbnailURL, retriveUploadPPTPDF.mPDFURL);
+                        ((AdapterForListOfPPTsAdmin) listOfPPT.getAdapter()).update(retriveUploadPPTPDF.mName,retriveUploadPPTPDF.mThumbnailURL, retriveUploadPPTPDF.mPDFURL, id );
                     //}
 
 
@@ -111,7 +112,7 @@ public class AdminPPTActivity extends AppCompatActivity {
             }
         });
         listOfPPT.setLayoutManager(new GridLayoutManager(AdminPPTActivity.this,3));
-        AdapterForListOfPPTsAdmin adapterForListOfPPTsAdmin = new AdapterForListOfPPTsAdmin(listOfPPT, AdminPPTActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        AdapterForListOfPPTsAdmin adapterForListOfPPTsAdmin = new AdapterForListOfPPTsAdmin(listOfPPT, AdminPPTActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         //adapterForRecordsList.notifyDataSetChanged();
         listOfPPT.setAdapter(adapterForListOfPPTsAdmin);
 
@@ -125,7 +126,7 @@ public class AdminPPTActivity extends AppCompatActivity {
                 addPPTPDFTextView = mView.findViewById(R.id.addPPTPDFTextView);
                 addPPTPDFTextViewThumbnail = mView.findViewById(R.id.addPPTPDFTextViewThumbnail);
                 selectPPTPDF = mView.findViewById(R.id.selectPPTPDF);
-                selectPPTPDFThubnail = mView.findViewById(R.id.selectPPTPDFThumbnail);
+                selectPPTPDFThumbnail = mView.findViewById(R.id.selectPPTPDFThumbnail);
                 addPPTPDF = mView.findViewById(R.id.addPPTPDF);
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
@@ -147,7 +148,7 @@ public class AdminPPTActivity extends AppCompatActivity {
                     }
                 });
 
-                selectPPTPDFThubnail.setOnClickListener(new View.OnClickListener() {
+                selectPPTPDFThumbnail.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (ContextCompat.checkSelfPermission(AdminPPTActivity.this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){

@@ -73,8 +73,8 @@ public class AdapterForPracticalsList extends RecyclerView.Adapter<AdapterForPra
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, "Delete clicked", Toast.LENGTH_SHORT).show();
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
                 alertDialog.setTitle("Delete File");
                 alertDialog.setMessage("Do you want to delete this file? ");

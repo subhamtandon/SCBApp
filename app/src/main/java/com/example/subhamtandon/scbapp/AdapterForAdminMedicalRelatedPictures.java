@@ -1,6 +1,8 @@
 package com.example.subhamtandon.scbapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -8,7 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -43,7 +48,43 @@ public class AdapterForAdminMedicalRelatedPictures extends RecyclerView.Adapter<
         holder.deletePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                alertDialog.setTitle("Delete File");
+                alertDialog.setMessage("Do you want to delete this file? ");
+                alertDialog.setPositiveButton("CANCEL", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.setNegativeButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        /*
+
+                        final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
+
+                        String uploadPDFID = databaseReference.child(infoKeys.get(pos)).getKey();
+
+                        databaseReference.child(uploadPDFID).removeValue();
+                        infosArrayList.remove(pos);
+                        //urls.remove(pos);
+                        infoDates.remove(pos);
+                        infoTimes.remove(pos);
+                        infoKeys.remove(pos);
+                        notifyDataSetChanged();
+                        Toast.makeText(context, "Deletion done successfully" , Toast.LENGTH_SHORT).show();
+
+                        InformationBulletinActivity informationBulletinActivity = (InformationBulletinActivity)context;
+                        informationBulletinActivity.reloadActivity();
+                        */
+
+
+                    }
+                });
+
+                AlertDialog dialog = alertDialog.create();
+                dialog.show();
             }
         });
     }
