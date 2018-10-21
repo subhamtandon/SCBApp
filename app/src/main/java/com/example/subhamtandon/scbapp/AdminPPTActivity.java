@@ -76,6 +76,8 @@ public class AdminPPTActivity extends AppCompatActivity {
                     //for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
                         UploadPPTPDF retriveUploadPPTPDF = dataSnapshot.getValue(UploadPPTPDF.class);
                         String id = dataSnapshot.getKey();
+                        //String pdfUrl = dataSnapshot.child("mPDFURL").getValue(String.class);
+                        //Toast.makeText(AdminPPTActivity.this, retriveUploadPPTPDF.mPDFURL, Toast.LENGTH_SHORT).show();
                         //String uploadPDFID = dataSnapshot.getKey();
 
                         ((AdapterForListOfPPTsAdmin) listOfPPT.getAdapter()).update(retriveUploadPPTPDF.mName,retriveUploadPPTPDF.mThumbnailURL, retriveUploadPPTPDF.mPDFURL, id );

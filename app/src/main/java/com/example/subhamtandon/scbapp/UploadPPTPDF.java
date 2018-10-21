@@ -37,7 +37,7 @@ public class UploadPPTPDF {
         this.mName = mName;
     }
 
-    public void setmPDFURL(String mURL) {
+    public void setmPDFURL(String mPDFURL) {
         this.mPDFURL = mPDFURL;
     }
 }
