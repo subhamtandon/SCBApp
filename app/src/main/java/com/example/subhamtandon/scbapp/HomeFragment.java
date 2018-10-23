@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -110,16 +111,57 @@ public class HomeFragment extends Fragment {
         recyclerViewMedicalRelatedPictures.setAdapter(adapterForMedicalRelatedPictures);
 
 
-
-        /*
-
-        scorecardCard.setOnClickListener(new View.OnClickListener() {
+        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference().child("App").child("PPTPDFs");
+        databaseReference1.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "No Scorecard", Toast.LENGTH_SHORT).show();
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                if(dataSnapshot!=null) {
+                    //for(DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
+                    UploadPPTPDF retriveUploadPPTPDF = dataSnapshot.getValue(UploadPPTPDF.class);
+                    String id = dataSnapshot.getKey();
+                    //String pdfUrl = dataSnapshot.child("mPDFURL").getValue(String.class);
+                    //Toast.makeText(AdminPPTActivity.this, retriveUploadPPTPDF.mPDFURL, Toast.LENGTH_SHORT).show();
+                    //String uploadPDFID = dataSnapshot.getKey();
+
+                    ((AdapterForPPTUser) recyclerViewPPT.getAdapter()).update(retriveUploadPPTPDF.mName,retriveUploadPPTPDF.mThumbnailURL, retriveUploadPPTPDF.mPDFURL, id );
+                    //}
+
+
+                    //String url = dataSnapshot.getValue(String.class);
+                    //String uploadPDFID = dataSnapshot.getKey();
+
+                    //((AdapterForListOfPPTsAdmin) listOfPPT.getAdapter()).update(url);
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+                Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        */
+        recyclerViewPPT.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        AdapterForPPTUser adapterForPPTUser = new AdapterForPPTUser(recyclerViewPPT, getContext(),new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        //adapterForRecordsList.notifyDataSetChanged();
+        recyclerViewPPT.setAdapter(adapterForPPTUser);
+
 
         mcqCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,87 +170,6 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        /*
-
-        studyCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //FragmentTransaction ft= getFragmentManager().beginTransaction();
-                //ft.replace(R.id.flMain, new StudyFragment());
-                //ft.commit();
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-
-                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
-
-                builder.setTitle("Choose your Professional");
-
-                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                        android.R.layout.simple_spinner_item,
-                        getResources().getStringArray(R.array.professionalsList));
-
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                mSpinner.setAdapter(adapter);
-
-                mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        final Intent intent;
-                        switch (position){
-                            case 1:
-                                intent = new Intent(getContext(), Professional1stActivity.class);
-                                intent.putExtra("PROFESSIONAL","1st Professional");
-                                startActivity(intent);
-                                break;
-                            case 2:
-                                intent = new Intent(getContext(), Professional2ndActivity.class);
-                                intent.putExtra("PROFESSIONAL","2nd Professional");
-                                startActivity(intent);
-                                break;
-                            case 3:
-                                intent = new Intent(getContext(), Professional3rdActivity.class);
-                                intent.putExtra("PROFESSIONAL","3rd Professional part 1");
-                                startActivity(intent);
-                                break;
-                            case 4:
-                                intent = new Intent(getContext(), Professional4thActivity.class);
-                                intent.putExtra("PROFESSIONAL","3rd Professional part 2");
-                                startActivity(intent);
-                                break;
-                            default:
-                                Toast.makeText(getContext(), "Choose Your Professional", Toast.LENGTH_SHORT).show();
-                        }
-
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                        Toast.makeText(getContext(), "Choose Your Professional", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
-
-                builder.setView(mView);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-            }
-        });
-        /*
-
-        questionBankCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction ft= getFragmentManager().beginTransaction();
-                ft.replace(R.id.flMain, new QuestionBankFragment());
-                ft.commit();
-            }
-        });
-        */
-
-
 
 
         return view;
