@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private EditText editTextFirstName;
     private EditText editTextLastName;
     private Button buttonRegister;
-    private TextView textViewSignin;
+    private TextView textViewSignin, otherCollegeTextview;
     private ProgressDialog progressDialog;
     Spinner mSpinner;
     AutoCompleteTextView collegeNameAutoCompleteTextView;
@@ -62,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         buttonRegister = (Button) findViewById(R.id.buttonRegister);
 
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        otherCollegeTextview = findViewById(R.id.otherCollegeTextview);
 
         //mSpinner = findViewById(R.id.spinnerCollegeList);
         collegeNameAutoCompleteTextView = findViewById(R.id.collegeNameAutoCompleteTextView);
@@ -77,6 +78,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.autocomplete_custom, getResources().getStringArray(R.array.collegeList));
 
         collegeNameAutoCompleteTextView.setAdapter(adapter);
+
+        otherCollegeTextview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                collegeNameAutoCompleteTextView.setText("Other");
+            }
+        });
     }
 
     private boolean isEmailValid(String email) {

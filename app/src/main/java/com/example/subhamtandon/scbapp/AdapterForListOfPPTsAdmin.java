@@ -3,6 +3,7 @@ package com.example.subhamtandon.scbapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -116,6 +117,14 @@ public class AdapterForListOfPPTsAdmin extends RecyclerView.Adapter<AdapterForLi
 
                 AlertDialog dialog = alertDialog.create();
                 dialog.show();
+            }
+        });
+        holder.picImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PDFViewerActivity.class);
+                intent.putExtra("PDF_STRING", pdfpptUrls.get(position));
+                context.startActivity(intent);
             }
         });
     }

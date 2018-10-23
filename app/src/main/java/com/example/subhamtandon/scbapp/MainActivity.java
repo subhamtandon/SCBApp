@@ -238,6 +238,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                                 final AutoCompleteTextView collegeNameAutoCompleteTextView = mView.findViewById(R.id.collegeNameAutoCompleteTextView);
 
+                                TextView otherCollegeTextview = mView.findViewById(R.id.otherCollegeTextview);
+
                                 Button buttonCollegeName = (Button) mView.findViewById(R.id.buttonCollegeName);
 
                                 adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.collegeList));
@@ -249,6 +251,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 builder.setView(mView);
                                 final AlertDialog alertDialog = builder.create();
                                 alertDialog.show();
+
+                                otherCollegeTextview.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        collegeNameAutoCompleteTextView.setText("Other");
+                                    }
+                                });
 
                                 buttonCollegeName.setOnClickListener(new View.OnClickListener() {
                                     @Override
