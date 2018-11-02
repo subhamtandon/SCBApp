@@ -42,7 +42,7 @@ public class QuestionsActivity extends AppCompatActivity {
 
     FloatingActionButton nextQuestion;
     String professional, subject, type, chapter, set;
-    int count;
+    int count, rightAnswer = 0;
     ArrayList<String> idsArrayList;
 
     @Override
@@ -389,34 +389,42 @@ public class QuestionsActivity extends AppCompatActivity {
 
                     if (optionAValue) {
                         optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                        rightAnswer+=1;
                     }
                     if (optionBValue) {
                         optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                        rightAnswer+=1;
                     }
                     if (optionCValue) {
                         optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                        rightAnswer+=1;
                     }
                     if (optionDValue) {
                         optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                        rightAnswer+=1;
                     }
                     if (optionAChoosed) {
                         if (!optionAValue) {
                             optionACardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                            rightAnswer-=1;
                         }
                     }
                     if (optionBChoosed) {
                         if (!optionBValue) {
                             optionBCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                            rightAnswer-=1;
                         }
                     }
                     if (optionCChoosed) {
                         if (!optionCValue) {
                             optionCCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                            rightAnswer-=1;
                         }
                     }
                     if (optionDChoosed) {
                         if (!optionDValue) {
                             optionDCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                            rightAnswer-=1;
                         }
                     }
 
@@ -722,8 +730,19 @@ public class QuestionsActivity extends AppCompatActivity {
             });
         }else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Done")
+            View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
+
+            TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
+            TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
+
+            String count1 = Integer.toString(count);
+            String rightAnswer1 = Integer.toString(rightAnswer);
+
+            correctAnswers.setText(rightAnswer1);
+            totalQuestions.setText(count1);
+            builder.setTitle("SCORECARD")
                     .setCancelable(false)
+                    .setView(mView)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
