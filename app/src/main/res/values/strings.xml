@@ -1266,6 +1266,14 @@ Kolkata</item>
         <item>Nothing</item>
     </string-array>
 
+    <string-array name="correctOption">
+        <item>Choose Correct Option</item>
+        <item>Option A</item>
+        <item>Option B</item>
+        <item>Option C</item>
+        <item>Option D</item>
+    </string-array>
+
     <string name="title_activity_different_materials">DifferentMaterialsActivity</string>
     <string name="tab_text_2">Record</string>
     <string name="tab_text_3">Practical</string>
@@ -1274,6 +1282,7 @@ Kolkata</item>
     <string name="department_prompt">Select Department</string>
     <string name="college_prompt">Select College Name</string>
     <string name="categories_prompt">Select Category</string>
+    <string name="correctOption_prompt">Choose Correct Option</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

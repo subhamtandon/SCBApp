@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -102,7 +102,8 @@
         <activity android:name=".AdminFeaturedVideos" />
         <activity android:name=".AdminYoutubeVideos" />
         <activity android:name=".YouTubePlayerViewActivity" />
-        <activity android:name=".PDFViewerActivity"></activity>
+        <activity android:name=".PDFViewerActivity" />
+        <activity android:name=".NewQuestionActivity"></activity>
     </application>
 
 </manifest>

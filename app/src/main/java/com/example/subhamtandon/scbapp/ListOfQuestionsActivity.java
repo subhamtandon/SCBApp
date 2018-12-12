@@ -40,7 +40,7 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent next = new Intent(ListOfQuestionsActivity.this, AddingQuestionActivity.class);
+                Intent next = new Intent(ListOfQuestionsActivity.this, NewQuestionActivity.class);
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
