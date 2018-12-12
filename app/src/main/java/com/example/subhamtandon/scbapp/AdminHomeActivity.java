@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -69,7 +70,9 @@ public class AdminHomeActivity extends AppCompatActivity {
         featuredVideosCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdminFeaturedVideos.class));
+                //TODO: to remove
+                Toast.makeText(AdminHomeActivity.this, "This feature is no more available", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(getApplicationContext(), AdminFeaturedVideos.class));
             }
         });
 

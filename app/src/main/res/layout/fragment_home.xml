@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/recyclerViewVideoCategories"
-                android:layout_below="@+id/title">
+                android:layout_below="@+id/title"
+                android:visibility="gone">
 
             </android.support.v7.widget.RecyclerView>
 
@@ -117,9 +118,147 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:id="@+id/recyclerViewPPT"
-                android:layout_margin="10dp">
+                android:layout_margin="10dp"
+                android:visibility="gone">
 
             </android.support.v7.widget.RecyclerView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="2dp"
+                app:cardBackgroundColor="#69e187"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:clickable="true"
+                android:id="@+id/journalCard"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Journal"
+                        android:textColor="#539939"
+                        android:textSize="30dp"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="2dp"
+                app:cardBackgroundColor="#69e187"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:clickable="true"
+                android:id="@+id/paperPresentationCard"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Paper Presentation"
+                        android:textColor="#539939"
+                        android:textSize="30dp"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="2dp"
+                app:cardBackgroundColor="#69e187"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:clickable="true"
+                android:id="@+id/quizCard"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Quiz"
+                        android:textColor="#539939"
+                        android:textSize="30dp"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="2dp"
+                app:cardBackgroundColor="#69e187"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:clickable="true"
+                android:id="@+id/mnemonicsCard"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Mnemonics"
+                        android:textColor="#539939"
+                        android:textSize="30dp"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
         </LinearLayout>
     </ScrollView>

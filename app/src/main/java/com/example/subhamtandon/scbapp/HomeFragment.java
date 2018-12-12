@@ -32,7 +32,7 @@ import java.util.ArrayList;
  */
 public class HomeFragment extends Fragment {
 
-    CardView scorecardCard, mcqCard, studyCard, questionBankCard;
+    CardView scorecardCard, mcqCard, studyCard, questionBankCard, journalCard, paperPresentationCard, quizCard, mnemonicsCard;
     RecyclerView recyclerViewVideoCategories, recyclerViewMedicalRelatedPictures, recyclerViewPPT;
     ArrayList<String> listOfNamesOfVideoCategories, listOfMedicalRelatedPicturesUrls ;
 
@@ -50,7 +50,11 @@ public class HomeFragment extends Fragment {
 
 
         //scorecardCard =(CardView)view.findViewById(R.id.scorecardCard);
-        mcqCard =(CardView)view.findViewById(R.id.mcqCard);
+        mcqCard = view.findViewById(R.id.mcqCard);
+        journalCard = view.findViewById(R.id.journalCard);
+        paperPresentationCard = view.findViewById(R.id.paperPresentationCard);
+        quizCard = view.findViewById(R.id.quizCard);
+        mnemonicsCard = view.findViewById(R.id.mnemonicsCard);
         //studyCard =(CardView)view.findViewById(R.id.studyCard);
         //questionBankCard =(CardView)view.findViewById(R.id.questionBankCard);
         recyclerViewVideoCategories = view.findViewById(R.id.recyclerViewVideoCategories);
@@ -170,6 +174,44 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        journalCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        paperPresentationCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        quizCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+        mnemonicsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
+//                startActivity(intent);
+            }
+        });
+
+
 
 
         return view;
