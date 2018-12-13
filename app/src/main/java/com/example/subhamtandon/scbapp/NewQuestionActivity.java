@@ -45,9 +45,8 @@ public class NewQuestionActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("App").child("Study");
         databaseReferenceRandom = FirebaseDatabase.getInstance().getReference("App").child("Study").child("Random");
 
-        final String id = databaseReference.push().getKey();
-        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Chapter").setValue(chapter);
-        databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Set").setValue(set);
+        //databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Chapter").setValue(chapter);
+        //databaseReference.child(professional).child(subject).child("MCQs").child("Questions").child(id).child("Set").setValue(set);
 
         submitQuestionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +131,8 @@ public class NewQuestionActivity extends AppCompatActivity {
                     Question question1 = new Question(question);
 
                     NewQuestion newQuestion = new NewQuestion(chapter, explanation1, optionA1, optionB1, optionC1, optionD1, question1, set);
+
+                    String id = databaseReference.push().getKey();
 
                     databaseReference.child(professional)
                             .child(subject)

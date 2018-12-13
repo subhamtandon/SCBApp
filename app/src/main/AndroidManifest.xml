@@ -103,7 +103,8 @@
         <activity android:name=".AdminYoutubeVideos" />
         <activity android:name=".YouTubePlayerViewActivity" />
         <activity android:name=".PDFViewerActivity" />
-        <activity android:name=".NewQuestionActivity"></activity>
+        <activity android:name=".NewQuestionActivity" />
+        <activity android:name=".AdminQuestionDetailsActivity"></activity>
     </application>
 
 </manifest>

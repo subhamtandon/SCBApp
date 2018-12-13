@@ -65,7 +65,7 @@ public class AdapterForQuestionsList extends RecyclerView.Adapter<AdapterForQues
 
                 String id = idsArrayList.get(pos);
 
-                Intent next = new Intent(context, CheckQuestionDetails.class);
+                Intent next = new Intent(context, AdminQuestionDetailsActivity.class);
                 next.putExtra("PROFESSIONAL", professional);
                 next.putExtra("SUBJECT", subject);
                 next.putExtra("CHAPTER", chapter);
