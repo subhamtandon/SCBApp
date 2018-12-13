@@ -119,7 +119,7 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
                                 Log.d("TAG",idsArrayList.get(i));
                             }
 
-                            Intent intent = new Intent(context, QuestionsActivity.class);
+                            Intent intent = new Intent(context, UserQuestionActivity.class);
                             intent.putExtra("PROFESSIONAL",professional);
                             intent.putExtra("SUBJECT",subject);
                             intent.putExtra("TYPE", type);
