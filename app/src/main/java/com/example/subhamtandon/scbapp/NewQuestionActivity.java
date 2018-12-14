@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -139,7 +142,12 @@ public class NewQuestionActivity extends AppCompatActivity {
                             .child("MCQs")
                             .child("Questions")
                             .child(id)
-                            .setValue(newQuestion);
+                            .setValue(newQuestion).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+
+                        }
+                    });
 
                     databaseReference.child(professional)
                             .child(subject)
@@ -165,6 +173,8 @@ public class NewQuestionActivity extends AppCompatActivity {
                             .setValue(question1.getQuestionText());
 
                     Toast.makeText(NewQuestionActivity.this, question+optionA+optionB+optionC+optionD+correctAnswer+explanation, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(NewQuestionActivity.this, "Addition of new question done", Toast.LENGTH_SHORT).show();
+                    onBackPressed();
                 }
             }
         });

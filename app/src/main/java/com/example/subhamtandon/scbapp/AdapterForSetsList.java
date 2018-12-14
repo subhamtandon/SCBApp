@@ -21,6 +21,7 @@ public class AdapterForSetsList extends RecyclerView.Adapter<AdapterForSetsList.
     String chapter;
 
     public AdapterForSetsList(RecyclerView recyclerView, Context context, ArrayList<String> setsArrayList, String professional, String subject, String chapter) {
+        this.recyclerView = recyclerView;
         this.context = context;
         this.setsArrayList = setsArrayList;
         this.professional = professional;
