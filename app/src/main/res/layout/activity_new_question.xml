@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#bf6969"
+            android:background="@color/lightColor"
             android:padding="10dp">
 
             <TextView
@@ -93,7 +93,7 @@
                 android:id="@+id/submitQuestionButton"
                 android:text="Submit"
                 android:textColor="#ffffff"
-                android:background="#4e0000"
+                android:background="@color/normalColor"
                 android:textSize="20dp"
                 android:layout_weight="1"
                 />

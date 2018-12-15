@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -178,7 +179,10 @@ public class HomeFragment extends Fragment {
         journalCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), NewListOfPPT.class);
+                i.putExtra("TypeOfCard", "Journal");
+                startActivity(i);
+                //Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
 //                startActivity(intent);
             }
@@ -187,7 +191,35 @@ public class HomeFragment extends Fragment {
         paperPresentationCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+                CharSequence options[] = new CharSequence[] {"Clinical", "NonClinical"};
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setCancelable(false);
+                builder.setTitle("Select your option:");
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // the user clicked on options[which]
+                        if(which == 0){
+                            Intent i = new Intent(getContext(), NewListOfPPT.class);
+                            i.putExtra("TypeOfCard", "PaperPresentation");
+                            i.putExtra("TypeOfPaperPresentation", "Clinical");
+                            startActivity(i);
+                        }
+                        else if(which == 1){
+                            Intent i = new Intent(getContext(), NewListOfPPT.class);
+                            i.putExtra("TypeOfCard", "PaperPresentation");
+                            i.putExtra("TypeOfPaperPresentation", "NonClinical");
+                            startActivity(i);
+                        }
+                        else {
+                            Toast.makeText(getContext(), "Something is wrong", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+                builder.show();
+
+                //Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
 //                startActivity(intent);
             }
@@ -196,7 +228,10 @@ public class HomeFragment extends Fragment {
         quizCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), NewListOfPPT.class);
+                i.putExtra("TypeOfCard", "Quiz");
+                startActivity(i);
+                //Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
 //                startActivity(intent);
             }
@@ -205,7 +240,10 @@ public class HomeFragment extends Fragment {
         mnemonicsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(getContext(), NewListOfPPT.class);
+                i.putExtra("TypeOfCard", "Mnemonics");
+                startActivity(i);
+                //Toast.makeText(getContext(), "This feature coming soon :)", Toast.LENGTH_SHORT).show();
 //                Intent intent = new Intent(getContext(), ProfessionalsActivity.class);
 //                startActivity(intent);
             }

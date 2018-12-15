@@ -49,28 +49,39 @@
         <activity android:name=".HardQuestionSetActivity" />
         <activity android:name=".RandomQuestionSetActivity" />
         <activity android:name=".QuestionsActivity" />
-        <activity android:name=".AdminHomeActivity"
-            android:label="Admin Panel"/>
-        <activity android:name=".AdminStudyActivity"
-            android:label="Study Section"/>
-        <activity android:name=".AdminDepartmentActivity"
-            android:label="Department Section"/>
-        <activity android:name=".MCQsAlteringActivity"
-            android:label="Add MCQ"/>
-        <activity android:name=".RecordsAlteringActivity"
-            android:label="Add Record"/>
-        <activity android:name=".PracticalAlteringActivity"
-            android:label="Add Practical"/>
-        <activity android:name=".PYQsAlteringActivity"
-            android:label="Add PYQ"/>
-        <activity android:name=".SetsAlteringActivity"
-            android:label="Add Set"/>
-        <activity android:name=".ListOfRecordsActivity"
-            android:label="List of Records"/>
-        <activity android:name=".ListOfPracticalsActivity"
-            android:label="List of Practicals"/>
-        <activity android:name=".ListOfPYQsActivity"
-            android:label="List of PYQs"/>
+        <activity
+            android:name=".AdminHomeActivity"
+            android:label="Admin Panel" />
+        <activity
+            android:name=".AdminStudyActivity"
+            android:label="Study Section" />
+        <activity
+            android:name=".AdminDepartmentActivity"
+            android:label="Department Section" />
+        <activity
+            android:name=".MCQsAlteringActivity"
+            android:label="Add MCQ" />
+        <activity
+            android:name=".RecordsAlteringActivity"
+            android:label="Add Record" />
+        <activity
+            android:name=".PracticalAlteringActivity"
+            android:label="Add Practical" />
+        <activity
+            android:name=".PYQsAlteringActivity"
+            android:label="Add PYQ" />
+        <activity
+            android:name=".SetsAlteringActivity"
+            android:label="Add Set" />
+        <activity
+            android:name=".ListOfRecordsActivity"
+            android:label="List of Records" />
+        <activity
+            android:name=".ListOfPracticalsActivity"
+            android:label="List of Practicals" />
+        <activity
+            android:name=".ListOfPYQsActivity"
+            android:label="List of PYQs" />
         <activity android:name=".UploadDoneActivity" />
         <activity android:name=".AddingQuestionActivity" />
         <activity android:name=".AddingOptionAActivity" />
@@ -78,34 +89,46 @@
         <activity android:name=".AddingOptionCActivity" />
         <activity android:name=".AddingOptionDActivity" />
         <activity android:name=".AddingExplanationActivity" />
-        <activity android:name=".ListOfSetsActivity"
-            android:label="List Of Sets"/>
-        <activity android:name=".ListOfQuestionsActivity"
-            android:label="List of Questions"/>
-        <activity android:name=".InformationBulletinActivity"
-            android:label="Information Bulletin"/>
-        <activity android:name=".CheckQuestionDetails"
-            android:label="Question Details"/>
-        <activity android:name=".ProfessionalsActivity"
-            android:label="Professionals"/>
-        <activity android:name=".UserProfessionalFirstActivity"
-            android:label="First Professional"/>
-        <activity android:name=".UserProfessionalSecondActivity"
-            android:label="Second Professional"/>
-        <activity android:name=".UserProfessionalThirdOneActivity"
-            android:label="Third-One Professional"/>
-        <activity android:name=".UserProfessionalThirdTwoActivity"
-            android:label="Third-Two Professional"/>
+        <activity
+            android:name=".ListOfSetsActivity"
+            android:label="List Of Sets" />
+        <activity
+            android:name=".ListOfQuestionsActivity"
+            android:label="List of Questions" />
+        <activity
+            android:name=".InformationBulletinActivity"
+            android:label="Information Bulletin" />
+        <activity
+            android:name=".CheckQuestionDetails"
+            android:label="Question Details" />
+        <activity
+            android:name=".ProfessionalsActivity"
+            android:label="Professionals" />
+        <activity
+            android:name=".UserProfessionalFirstActivity"
+            android:label="First Professional" />
+        <activity
+            android:name=".UserProfessionalSecondActivity"
+            android:label="Second Professional" />
+        <activity
+            android:name=".UserProfessionalThirdOneActivity"
+            android:label="Third-One Professional" />
+        <activity
+            android:name=".UserProfessionalThirdTwoActivity"
+            android:label="Third-Two Professional" />
         <activity android:name=".ChaptersActivity" />
         <activity android:name=".MockTestActivity" />
         <activity android:name=".AdminMedicalRelatedPicsActivity" />
         <activity android:name=".AddingMedicalRelatedPicAdminActivity" />
-        <activity android:name=".AdminDoctorsDetails"
-            android:label="Doctor Details"/>
-        <activity android:name=".AdminPPTActivity"
-            android:label="List Of PPT"/>
-        <activity android:name=".AddingPPTActivity"
-            android:label="Add PPT"/>
+        <activity
+            android:name=".AdminDoctorsDetails"
+            android:label="Doctor Details" />
+        <activity
+            android:name=".AdminPPTActivity"
+            android:label="List Of PPT" />
+        <activity
+            android:name=".AddingPPTActivity"
+            android:label="Add PPT" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -125,14 +148,21 @@
         <activity android:name=".AdminFeaturedVideos" />
         <activity android:name=".AdminYoutubeVideos" />
         <activity android:name=".YouTubePlayerViewActivity" />
-        <activity android:name=".PDFViewerActivity"
-            android:label="PDF View"/>
-        <activity android:name=".NewQuestionActivity"
-            android:label="New Question"/>
-        <activity android:name=".AdminQuestionDetailsActivity"
-            android:label="Question Details"/>
-        <activity android:name=".UserQuestionActivity"
-            android:label="Practise"></activity>
+        <activity
+            android:name=".PDFViewerActivity"
+            android:label="PDF View" />
+        <activity
+            android:name=".NewQuestionActivity"
+            android:label="New Question" />
+        <activity
+            android:name=".AdminQuestionDetailsActivity"
+            android:label="Question Details" />
+        <activity
+            android:name=".UserQuestionActivity"
+            android:label="Practise" />
+        <activity android:name=".NewListOfPPT" />
+        <activity android:name=".NewListOfPPTAdmin" />
+        <activity android:name=".NewPPTsAndPDFsTypes"></activity>
     </application>
 
 </manifest>

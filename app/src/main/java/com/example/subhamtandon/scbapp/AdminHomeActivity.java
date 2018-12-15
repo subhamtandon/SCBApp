@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminHomeActivity extends AppCompatActivity {
 
-    CardView StudyCard,DepartmentCard,InformationBulletinCard, MedicalRelatedPicsCard, PPTCard, featuredVideosCard;
+    CardView StudyCard,DepartmentCard,InformationBulletinCard, MedicalRelatedPicsCard, PPTCard, featuredVideosCard, newPPTPDFCard;
     FirebaseAuth firebaseAuth;
 
     @Override
@@ -25,6 +25,7 @@ public class AdminHomeActivity extends AppCompatActivity {
         MedicalRelatedPicsCard = findViewById(R.id.MedicalRelatedPicturesCard);
         PPTCard = findViewById(R.id.PPTCard);
         featuredVideosCard = findViewById(R.id.featuredVideosCard);
+        newPPTPDFCard = findViewById(R.id.newPPTsCard);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -63,7 +64,9 @@ public class AdminHomeActivity extends AppCompatActivity {
         PPTCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), AdminPPTActivity.class));
+                //TODO: to hide
+                Toast.makeText(AdminHomeActivity.this, "This feature is no more available", Toast.LENGTH_SHORT).show();
+                //startActivity(new Intent(getApplicationContext(), AdminPPTActivity.class));
             }
         });
 
@@ -73,6 +76,14 @@ public class AdminHomeActivity extends AppCompatActivity {
                 //TODO: to remove
                 Toast.makeText(AdminHomeActivity.this, "This feature is no more available", Toast.LENGTH_SHORT).show();
                 //startActivity(new Intent(getApplicationContext(), AdminFeaturedVideos.class));
+            }
+        });
+
+        newPPTPDFCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(AdminHomeActivity.this, NewPPTsAndPDFsTypes.class);
+                startActivity(i);
             }
         });
 
