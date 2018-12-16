@@ -162,7 +162,8 @@
             android:label="Practise" />
         <activity android:name=".NewListOfPPT" />
         <activity android:name=".NewListOfPPTAdmin" />
-        <activity android:name=".NewPPTsAndPDFsTypes"></activity>
+        <activity android:name=".NewPPTsAndPDFsTypes" />
+        <activity android:name=".NewPPTPDFAddingActivity"></activity>
     </application>
 
 </manifest>

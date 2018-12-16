@@ -29,6 +29,7 @@ public class NewPPTsAndPDFsTypes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(NewPPTsAndPDFsTypes.this, NewListOfPPTAdmin.class);
+                i.putExtra("TypeOfCard", "Journal");
                 startActivity(i);
             }
         });
@@ -47,11 +48,13 @@ public class NewPPTsAndPDFsTypes extends AppCompatActivity {
                         // the user clicked on options[which]
                         if(which == 0){
                             Intent i = new Intent(NewPPTsAndPDFsTypes.this, NewListOfPPTAdmin.class);
+                            i.putExtra("TypeOfCard", "PaperPresentation");
                             i.putExtra("TypeOfPaperPresentation", "Clinical");
                             startActivity(i);
                         }
                         else if(which == 1){
                             Intent i = new Intent(NewPPTsAndPDFsTypes.this, NewListOfPPTAdmin.class);
+                            i.putExtra("TypeOfCard", "PaperPresentation");
                             i.putExtra("TypeOfPaperPresentation", "NonClinical");
                             startActivity(i);
                         }
@@ -69,6 +72,7 @@ public class NewPPTsAndPDFsTypes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(NewPPTsAndPDFsTypes.this, NewListOfPPTAdmin.class);
+                i.putExtra("TypeOfCard", "Quiz");
                 startActivity(i);
             }
         });
@@ -77,6 +81,7 @@ public class NewPPTsAndPDFsTypes extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(NewPPTsAndPDFsTypes.this, NewListOfPPTAdmin.class);
+                i.putExtra("TypeOfCard", "Mnemonics");
                 startActivity(i);
             }
         });
