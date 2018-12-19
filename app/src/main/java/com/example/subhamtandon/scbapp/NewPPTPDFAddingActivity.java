@@ -108,7 +108,7 @@ public class NewPPTPDFAddingActivity extends AppCompatActivity {
         progressDialog.setProgress(0);
         progressDialog.show();
 
-        StorageReference storageReference = storage.getReference();
+        final StorageReference storageReference = storage.getReference();
 //        final String professional = getIntent().getStringExtra("PROFESSIONAL");
 //        final String subject = getIntent().getStringExtra("SUBJECT");
         final String fileName =  System.currentTimeMillis()+"." + getFileExtension(pdfUri);
@@ -125,29 +125,30 @@ public class NewPPTPDFAddingActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            String url = taskSnapshot.getDownloadUrl().toString();
+                            storageReference.child("Uploads").child("NewPPTPDFs").child(typeOfCard).child(typeOfPaperPresentation).child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    DatabaseReference reference = database.getReference();
+                                    UploadPDF uploadPDF = new UploadPDF(newPDFFileName.getText().toString().trim(), task.getResult().toString());
+                                    String uploadPDFID = reference.push().getKey();
 
-                            DatabaseReference reference = database.getReference();
-                            UploadPDF uploadPDF = new UploadPDF(newPDFFileName.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
-                            String uploadPDFID = reference.push().getKey();
+                                    reference.child("App").child("Study").child("NewPPTPDFs").child(typeOfCard).child(typeOfPaperPresentation).child(uploadPDFID).setValue(uploadPDF)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
 
-                            reference.child("App").child("Study").child("NewPPTPDFs").child(typeOfCard).child(typeOfPaperPresentation).child(uploadPDFID).setValue(uploadPDF)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful())
+                                                        Toast.makeText(NewPPTPDFAddingActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                    else
+                                                        Toast.makeText(NewPPTPDFAddingActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
 
-                                            if (task.isSuccessful())
-                                                Toast.makeText(NewPPTPDFAddingActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                                            else
-                                                Toast.makeText(NewPPTPDFAddingActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                    progressDialog.dismiss();
 
-                                        }
-                                    });
-                            progressDialog.dismiss();
-
-                            onBackPressed();
-
-
+                                    onBackPressed();
+                                }
+                            });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
@@ -173,29 +174,30 @@ public class NewPPTPDFAddingActivity extends AppCompatActivity {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            String url = taskSnapshot.getDownloadUrl().toString();
+                            storageReference.child("Uploads").child("NewPPTPDFs").child(typeOfCard).child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Uri> task) {
+                                    DatabaseReference reference = database.getReference();
+                                    UploadPDF uploadPDF = new UploadPDF(newPDFFileName.getText().toString().trim(),task.getResult().toString());
+                                    String uploadPDFID = reference.push().getKey();
 
-                            DatabaseReference reference = database.getReference();
-                            UploadPDF uploadPDF = new UploadPDF(newPDFFileName.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
-                            String uploadPDFID = reference.push().getKey();
+                                    reference.child("App").child("Study").child("NewPPTPDFs").child(typeOfCard).child(uploadPDFID).setValue(uploadPDF)
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
 
-                            reference.child("App").child("Study").child("NewPPTPDFs").child(typeOfCard).child(uploadPDFID).setValue(uploadPDF)
-                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Void> task) {
+                                                    if (task.isSuccessful())
+                                                        Toast.makeText(NewPPTPDFAddingActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                    else
+                                                        Toast.makeText(NewPPTPDFAddingActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
 
-                                            if (task.isSuccessful())
-                                                Toast.makeText(NewPPTPDFAddingActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                                            else
-                                                Toast.makeText(NewPPTPDFAddingActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                }
+                                            });
+                                    progressDialog.dismiss();
 
-                                        }
-                                    });
-                            progressDialog.dismiss();
-
-                            onBackPressed();
-
-
+                                    onBackPressed();
+                                }
+                            });
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override

@@ -187,109 +187,58 @@ public class AdminPPTActivity extends AppCompatActivity {
 
                                         final StorageReference storageReference = storage.getReference();
                                         final String fileName = System.currentTimeMillis() + "." + getFileExtension(pdfUri);
-                                        //final String fileName1 = System.currentTimeMillis()+"";
-
-                                        //final String fileName =  practicalFileName.getText().toString()+".pdf";
-                                        //final String fileName1 = practicalFileName.getText().toString()+"";
 
                                         uploadTask = storageReference.child("Uploads").child("PPTPDFs").child(fileName).putFile(pdfUri)
                                                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                                     @Override
                                                     public void onSuccess(final UploadTask.TaskSnapshot taskSnapshot) {
-                                                    /*
+                                                        storageReference.child("Uploads").child("PPTPDFs").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull final Task<Uri> task) {
+                                                                progressDialog1 = new ProgressDialog(AdminPPTActivity.this);
+                                                                progressDialog1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                                                progressDialog1.setTitle("Uploading Thumbnail...");
+                                                                progressDialog1.setProgress(0);
+                                                                progressDialog1.show();
 
+                                                                final StorageReference storageReference1 = storage.getReference();
+                                                                final String thumbnailFileName = System.currentTimeMillis() + "." + getFileExtension(pdfUri);
 
-                                                    String url = taskSnapshot.getDownloadUrl().toString();
+                                                                uploadTask1 = storageReference1.child("Uploads").child("PPTPDFs").child("Thumbnails").child(thumbnailFileName).putFile(thumbnailUri)
+                                                                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                                                            @Override
+                                                                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot1) {
 
-
-                                                    DatabaseReference reference = database.getReference();
-                                                    UploadPDF uploadPDF = new UploadPDF(addPPTPDFEditText.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
-                                                    String uploadPDFID = reference.push().getKey();
-
-                                                    reference.child("App").child("PPTPDFs").child(uploadPDFID).setValue(uploadPDF)
-                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                                @Override
-                                                                public void onComplete(@NonNull Task<Void> task) {
-
-                                                                    if (task.isSuccessful())
-                                                                        Toast.makeText(AdminPPTActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                                                                    else
-                                                                        Toast.makeText(AdminPPTActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-
-                                                                }
-                                                            });
-                                                    progressDialog.dismiss();
-
-                                                    onBackPressed();
-                                                    dialog.dismiss();
-                                                    */
-
-
-                                                        progressDialog1 = new ProgressDialog(AdminPPTActivity.this);
-                                                        progressDialog1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                                                        progressDialog1.setTitle("Uploading Thumbnail...");
-                                                        progressDialog1.setProgress(0);
-                                                        progressDialog1.show();
-
-                                                        StorageReference storageReference1 = storage.getReference();
-                                                        final String thumbnailFileName = System.currentTimeMillis() + "." + getFileExtension(pdfUri);
-                                                        //final String fileName1 = System.currentTimeMillis()+"";
-
-                                                        //final String fileName =  practicalFileName.getText().toString()+".pdf";
-                                                        //final String fileName1 = practicalFileName.getText().toString()+"";
-
-                                                        uploadTask1 = storageReference1.child("Uploads").child("PPTPDFs").child("Thumbnails").child(thumbnailFileName).putFile(thumbnailUri)
-                                                                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                                                                    @Override
-                                                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot1) {
-
-                                                                        String url = taskSnapshot1.getDownloadUrl().toString();
-
-
-                                                                        DatabaseReference reference = database.getReference();
-                                                                        UploadPPTPDF uploadPPTPDF = new UploadPPTPDF(addPPTPDFEditText.getText().toString().trim(), taskSnapshot.getDownloadUrl().toString(), taskSnapshot1.getDownloadUrl().toString());
-                                                                        String uploadPPTPDFID = reference.push().getKey();
-
-                                                                        reference.child("App").child("PPTPDFs").child(uploadPPTPDFID).setValue(uploadPPTPDF)
-                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                storageReference1.child("Uploads").child("PPTPDFs").child("Thumbnails").child(thumbnailFileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                                                                     @Override
-                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                    public void onComplete(@NonNull Task<Uri> task1) {
+                                                                                        DatabaseReference reference = database.getReference();
+                                                                                        UploadPPTPDF uploadPPTPDF = new UploadPPTPDF(addPPTPDFEditText.getText().toString().trim(), task.getResult().toString(), task1.getResult().toString());
+                                                                                        String uploadPPTPDFID = reference.push().getKey();
 
-                                                                                        if (task.isSuccessful()) {
-                                                                                            Toast.makeText(AdminPPTActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                                                                                            reloadActivity();
-                                                                                        } else
-                                                                                            Toast.makeText(AdminPPTActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                                                        reference.child("App").child("PPTPDFs").child(uploadPPTPDFID).setValue(uploadPPTPDF)
+                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                    @Override
+                                                                                                    public void onComplete(@NonNull Task<Void> task) {
 
+                                                                                                        if (task.isSuccessful()) {
+                                                                                                            Toast.makeText(AdminPPTActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                                                                            reloadActivity();
+                                                                                                        } else
+                                                                                                            Toast.makeText(AdminPPTActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+
+                                                                                                    }
+                                                                                                });
+                                                                                        progressDialog1.dismiss();
+
+                                                                                        onBackPressed();
+                                                                                        dialog.dismiss();
                                                                                     }
                                                                                 });
-                                                                        progressDialog1.dismiss();
-
-                                                                        onBackPressed();
-                                                                        dialog.dismiss();
-
-
-                                                                    }
-                                                                }).addOnFailureListener(new OnFailureListener() {
-                                                                    @Override
-                                                                    public void onFailure(@NonNull Exception e) {
-
-                                                                        Toast.makeText(AdminPPTActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-                                                                        dialog.dismiss();
-
-
-                                                                    }
-                                                                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                                                    @Override
-                                                                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-
-                                                                        int currentProgress = (int) (100 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                                                                        progressDialog1.setProgress(currentProgress);
-
-                                                                    }
-                                                                });
-
-
+                                                                            }
+                                                                        });
+                                                            }
+                                                        });
                                                     }
                                                 }).addOnFailureListener(new OnFailureListener() {
                                                     @Override
@@ -309,8 +258,6 @@ public class AdminPPTActivity extends AppCompatActivity {
 
                                                     }
                                                 });
-
-
                                     }
                                     else if(chosePic.equals("true") && chosePdf.equals("false")){
                                         Toast.makeText(AdminPPTActivity.this, "Choose a PDf of PPT", Toast.LENGTH_SHORT).show();
@@ -328,7 +275,6 @@ public class AdminPPTActivity extends AppCompatActivity {
                 });
             }
         });
-
     }
 
 

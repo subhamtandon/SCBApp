@@ -132,31 +132,32 @@ public class AddingMedicalRelatedPicAdminActivity extends AppCompatActivity {
             progressDialog.show();progressDialog = new ProgressDialog(this);
 
 
-            StorageReference storageReference1 = storageReference.child("Medical Related Pictures").child(System.currentTimeMillis()+"."+getFileExtention(mImageUri));
+            final StorageReference storageReference1 = storageReference.child("Medical Related Pictures").child(System.currentTimeMillis()+"."+getFileExtention(mImageUri));
             mUploadTask = storageReference1.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                    String url = taskSnapshot.getDownloadUrl().toString();
-                    String id = databaseReference.push().getKey();
-                    databaseReference.child(id).setValue(url).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    storageReference1.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(AddingMedicalRelatedPicAdminActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                        public void onComplete(@NonNull Task<Uri> task) {
+                            String id = databaseReference.push().getKey();
+                            databaseReference.child(id).setValue(task.getResult().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(AddingMedicalRelatedPicAdminActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                    }
 
-                            }
-
-                            else{
-                                Toast.makeText(AddingMedicalRelatedPicAdminActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-
-
-                            }
-
+                                    else{
+                                        Toast.makeText(AddingMedicalRelatedPicAdminActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            progressDialog.dismiss();
+                            onBackPressed();
                         }
                     });
-                    progressDialog.dismiss();
-                    onBackPressed();
+
 
                 }
             }).addOnFailureListener(new OnFailureListener() {

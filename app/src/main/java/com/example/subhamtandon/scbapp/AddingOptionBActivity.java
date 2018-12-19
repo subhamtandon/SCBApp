@@ -150,8 +150,8 @@ public class AddingOptionBActivity extends AppCompatActivity {
                                                     .child("Questions")
                                                     .child(id)
                                                     .child("Option B")
-                                                    .child("optionBImageUrl")
-                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+                                                    .child("optionBImageUrl");
+                                                   // .setValue(taskSnapshot.getDownloadUrl().toString());
 
                                         }
                                     })

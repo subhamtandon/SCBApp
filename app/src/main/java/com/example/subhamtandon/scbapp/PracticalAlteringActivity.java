@@ -112,7 +112,7 @@ public class PracticalAlteringActivity extends AppCompatActivity {
         progressDialog.setProgress(0);
         progressDialog.show();
 
-        StorageReference storageReference = storage.getReference();
+        final StorageReference storageReference = storage.getReference();
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         final String subject = getIntent().getStringExtra("SUBJECT");
         final String fileName =  System.currentTimeMillis()+"." + getFileExtension(pdfUri);
@@ -126,38 +126,29 @@ public class PracticalAlteringActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                        String url = taskSnapshot.getDownloadUrl().toString();
+                        storageReference.child("Uploads").child(professional).child(subject).child("Practicals").child(fileName).getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                DatabaseReference reference = database.getReference();
+                                UploadPDF uploadPDF = new UploadPDF(practicalFileName.getText().toString().trim(),task.getResult().toString());
+                                String uploadPDFID = reference.push().getKey();
 
-                        DatabaseReference reference = database.getReference();
-                        UploadPDF uploadPDF = new UploadPDF(practicalFileName.getText().toString().trim(),taskSnapshot.getDownloadUrl().toString());
-                        String uploadPDFID = reference.push().getKey();
+                                reference.child("App").child("Study").child(professional).child(subject).child("Practicals").child(uploadPDFID).setValue(uploadPDF)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
 
-                        reference.child("App").child("Study").child(professional).child(subject).child("Practicals").child(uploadPDFID).setValue(uploadPDF)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful())
+                                                    Toast.makeText(PracticalAlteringActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                else
+                                                    Toast.makeText(PracticalAlteringActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
 
-                                        if (task.isSuccessful())
-                                            Toast.makeText(PracticalAlteringActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
-                                        else
-                                            Toast.makeText(PracticalAlteringActivity.this, "File not successfully uploaded", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                });
-                        progressDialog.dismiss();
-
-                        /*
-
-                        Intent done = new Intent(PracticalAlteringActivity.this, UploadDoneActivity.class);
-                        done.putExtra("TYPE","Practicals");
-                        done.putExtra("PROFESSIONAL",professional);
-                        done.putExtra("SUBJECT",subject);
-                        startActivity(done);
-                        */
-
-                        onBackPressed();
-
-
+                                            }
+                                        });
+                                progressDialog.dismiss();
+                                onBackPressed();
+                            }
+                        });
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override

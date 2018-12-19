@@ -131,8 +131,8 @@ public class AddingExplanationActivity extends AppCompatActivity {
                                                     .child("Questions")
                                                     .child(id)
                                                     .child("Explanation")
-                                                    .child("explanationImageUrl")
-                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+                                                    .child("explanationImageUrl");
+                                                    //.setValue(taskSnapshot.getDownloadUrl().toString());
 
                                         }
                                     })

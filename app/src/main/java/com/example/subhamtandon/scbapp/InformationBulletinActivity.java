@@ -248,46 +248,48 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                     progressDialog.show();progressDialog = new ProgressDialog(InformationBulletinActivity.this);
 
 
-                                    StorageReference storageReference1 = storageReference.child("Info Images").child(System.currentTimeMillis()+"."+getFileExtention(mImageUri));
+                                    final StorageReference storageReference1 = storageReference.child("Info Images").child(System.currentTimeMillis()+"."+getFileExtention(mImageUri));
                                     mUploadTask = storageReference1.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                                            String url = taskSnapshot.getDownloadUrl().toString();
-                                            //String id = databaseReference.push().getKey();
-
-                                            date = dateFormat.format(calendar.getTime());
-                                            time = timeFormat.format(calendar.getTime());
-
-                                            final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
-                                            final String infoKey = databaseReference.push().getKey();
-
-                                            Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
-
-                                            UploadInfo uploadInfo = new UploadInfo(newInfo, date, time, url);
-
-                                            databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            storageReference1.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                                                 @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
-                                                        //databaseReference.child(infoKey).child("Date").setValue(date);
-                                                        //databaseReference.child(infoKey).child("Time").setValue(time);
-                                                        Toast.makeText(InformationBulletinActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+                                                public void onComplete(@NonNull Task<Uri> task) {
+                                                    date = dateFormat.format(calendar.getTime());
+                                                    time = timeFormat.format(calendar.getTime());
 
-                                                        reloadActivity();
-                                                        sendNotification();
-                                                    }
-                                                    else
-                                                        Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
+                                                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
+                                                    final String infoKey = databaseReference.push().getKey();
 
-                                                    dialog.dismiss();
+                                                    Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
 
+                                                    UploadInfo uploadInfo = new UploadInfo(newInfo, date, time, task.getResult().toString());
+
+                                                    databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            if (task.isSuccessful()) {
+                                                                Toast.makeText(InformationBulletinActivity.this, "New Information Added", Toast.LENGTH_SHORT).show();
+                                                                //databaseReference.child(infoKey).child("Date").setValue(date);
+                                                                //databaseReference.child(infoKey).child("Time").setValue(time);
+                                                                Toast.makeText(InformationBulletinActivity.this, "File successfully uploaded", Toast.LENGTH_SHORT).show();
+
+                                                                reloadActivity();
+                                                                sendNotification();
+                                                            }
+                                                            else
+                                                                Toast.makeText(InformationBulletinActivity.this, "New Information not added", Toast.LENGTH_SHORT).show();
+
+                                                            dialog.dismiss();
+
+                                                        }
+                                                    });
+
+                                                    progressDialog.dismiss();
+                                                    onBackPressed();
                                                 }
                                             });
-
-                                            progressDialog.dismiss();
-                                            onBackPressed();
 
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {

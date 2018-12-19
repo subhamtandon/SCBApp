@@ -164,8 +164,8 @@ public class AddingQuestionActivity extends AppCompatActivity {
                                                     .child("Questions")
                                                     .child(id)
                                                     .child("Question")
-                                                    .child("questionImageUrl")
-                                                    .setValue(taskSnapshot.getDownloadUrl().toString());
+                                                    .child("questionImageUrl");
+                                                    //.setValue(taskSnapshot.getDownloadUrl().toString());
 
                                         }
                                     })
