@@ -53,6 +53,9 @@ public class DepartmentFragment extends Fragment {
         hodNameTextView = view.findViewById(R.id.hodNameTextView);
         hodDescription = view.findViewById(R.id.hodDescription);
 
+        ((UserProfile) getActivity())
+                .setActionBarTitle("Doctors' Details");
+
         //databaseReferenceHod = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("HOD");
         //databaseReferenceAssistantProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Assistant Professor");
         //databaseReferenceAssociateProfessor = FirebaseDatabase.getInstance().getReference("App").child("Departments").child("Anatomy").child("Associate Professor");

@@ -33,6 +33,9 @@ public class SCBSectionFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_scbsection, container, false);
 
+        ((UserProfile) getActivity())
+                .setActionBarTitle("Study Section");
+
         firstProfessionalCard = view.findViewById(R.id.firstProfessionalCard);
         secondProfessionalCard = view.findViewById(R.id.secondProfessionalCard);
         thirdProfessionalPartOneCard = view.findViewById(R.id.thirdProfessionalPartOneCard);

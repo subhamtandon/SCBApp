@@ -45,6 +45,8 @@ public class InformationBulletinFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_information_bulletin, container, false);
+        ((UserProfile) getActivity())
+                .setActionBarTitle("Information Bulletin");
         recyclerViewInformationBulletinUser = view.findViewById(R.id.recyclerViewInformationBulletinUser);
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd-MM-yyyy");

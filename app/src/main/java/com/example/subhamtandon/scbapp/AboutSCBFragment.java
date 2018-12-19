@@ -25,7 +25,10 @@ public class AboutSCBFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ((UserProfile) getActivity())
+                .setActionBarTitle("About SCB");
         return inflater.inflate(R.layout.fragment_about_scb, container, false);
+
     }
     @Override
     public void onResume() {

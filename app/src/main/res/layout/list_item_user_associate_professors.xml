@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@color/normalColor"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp"
     android:layout_margin="8dp">
 
     <RelativeLayout
@@ -15,6 +18,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/UserAssociateProfessorTextView"
             android:text="Name"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:gravity="center"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
@@ -26,6 +31,7 @@
             android:layout_below="@+id/UserAssociateProfessorTextView"
             android:text="Description"
             android:textSize="20sp"
+            android:textColor="#ffffff"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"/>
 
     </RelativeLayout>
