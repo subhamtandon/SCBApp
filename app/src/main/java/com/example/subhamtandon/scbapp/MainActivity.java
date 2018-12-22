@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private SignInButton buttonGoogle;
 
     private FirebaseAuth firebaseAuth;
+    FirebaseDatabase database;
 
     private static final int RC_SIGN_IN = 1;
 
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database = FirebaseDatabase.getInstance();
 
         if(!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
         else {
