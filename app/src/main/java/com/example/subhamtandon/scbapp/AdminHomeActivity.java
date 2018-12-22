@@ -223,20 +223,21 @@ public class AdminHomeActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(View v) {
 
-                                    Toast.makeText(AdminHomeActivity.this, "Make it alterable", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(AdminHomeActivity.this, "Make it alterable", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(getApplicationContext(), InformationBulletinActivity.class));
                                 }
                             });
 
                             MedicalRelatedPicsCard.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Toast.makeText(AdminHomeActivity.this, "Make it alterable", Toast.LENGTH_SHORT).show();                        }
+                                    Toast.makeText(AdminHomeActivity.this, "Make it alterable", Toast.LENGTH_SHORT).show();
+                                }
                             });
                             PPTCard.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     Toast.makeText(AdminHomeActivity.this, "Make it alterable", Toast.LENGTH_SHORT).show();
-
                                 }
                             });
 
@@ -288,13 +289,13 @@ public class AdminHomeActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        DatabaseReference databaseReference = database.getReference();
-        databaseReference.child("Altering").setValue("false").addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        DatabaseReference databaseReference = database.getReference();
+//        databaseReference.child("Altering").setValue("false").addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
@@ -324,13 +325,13 @@ public class AdminHomeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        DatabaseReference databaseReference = database.getReference();
-        databaseReference.child("Altering").setValue("false").addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        DatabaseReference databaseReference = database.getReference();
+//        databaseReference.child("Altering").setValue("false").addOnCompleteListener(new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override
