@@ -163,17 +163,20 @@
         <activity android:name=".NewListOfPPT" />
         <activity android:name=".NewListOfPPTAdmin" />
         <activity android:name=".NewPPTsAndPDFsTypes" />
-        <activity android:name=".NewPPTPDFAddingActivity"></activity>
+        <activity android:name=".NewPPTPDFAddingActivity" />
+
         <service android:name=".MyFirebaseInstanceIdService">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"></action>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".NewMockTestActivity"></activity>
     </application>
 
 </manifest>

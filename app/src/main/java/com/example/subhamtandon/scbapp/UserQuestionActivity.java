@@ -1,6 +1,7 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -22,10 +23,10 @@ import java.util.ArrayList;
 
 public class UserQuestionActivity extends AppCompatActivity {
 
-    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, pathChap, pathSet;
+    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, pathChap, pathSet, textViewUserResult;
 
     CardView optionACardView, optionBCardView, optionCCardView, optionDCardView;
-    Button buttonSubmitAnswer, exitQuestions;
+    Button buttonSeeExplanation, exitQuestions;
     FloatingActionButton nextQuestion;
 
     DatabaseReference databaseReference;
@@ -58,13 +59,14 @@ public class UserQuestionActivity extends AppCompatActivity {
         textViewUserExplanation = findViewById(R.id.textViewUserExplanation);
         pathChap = findViewById(R.id.pathChap);
         pathSet = findViewById(R.id.pathSet);
+        textViewUserResult = findViewById(R.id.textViewUserResult);
 
         optionACardView = findViewById(R.id.optionACardView);
         optionBCardView = findViewById(R.id.optionBCardView);
         optionCCardView = findViewById(R.id.optionCCardView);
         optionDCardView = findViewById(R.id.optionDCardView);
 
-        buttonSubmitAnswer = findViewById(R.id.buttonSubmitAnswer);
+        buttonSeeExplanation = findViewById(R.id.buttonSeeExplanation);
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
@@ -72,20 +74,145 @@ public class UserQuestionActivity extends AppCompatActivity {
         pathChap.setText(chapter);
         pathSet.setText(set);
 
-        buttonSubmitAnswer.setEnabled(false);
+        nextQuestion.setVisibility(View.GONE);
 
         showQuestion();
 
         nextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                optionACardView.setClickable(true);
+                optionBCardView.setClickable(true);
+                optionCCardView.setClickable(true);
+                optionDCardView.setClickable(true);
+                optionACardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+                optionBCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+                optionCCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+                optionDCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+                textViewUserResult.setVisibility(View.GONE);
+                buttonSeeExplanation.setVisibility(View.GONE);
+                textViewUserExplanation.setVisibility(View.GONE);
+                nextQuestion.setVisibility(View.GONE);
                 count++;
                 if (count<idsArrayList.size()){
                     showQuestion();
                 }
                 else {
                     Toast.makeText(UserQuestionActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(UserQuestionActivity.this);
+                    View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
+
+                    TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
+                    TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
+
+                    String count1 = Integer.toString(count);
+                    String rightAnswer1 = Integer.toString(rightAnswer);
+
+                    correctAnswers.setText(rightAnswer1);
+                    totalQuestions.setText(count1);
+                    builder.setTitle("SCORECARD")
+                            .setCancelable(false)
+                            .setView(mView)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                    onBackPressed();
+                                }
+                            });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
                 }
+            }
+        });
+
+        optionACardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                disableButtons();
+                textViewUserResult.setVisibility(View.VISIBLE);
+                if (optionAValue){
+                    optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                    rightAnswer+=1;
+                    textViewUserResult.setText("CORRECT");
+                }else {
+                    optionACardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    textViewUserResult.setText("INCORRECT");
+                    showRightAnswer();
+                }
+                buttonSeeExplanation.setVisibility(View.VISIBLE);
+                nextQuestion.setVisibility(View.VISIBLE);
+            }
+        });
+
+        optionBCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                disableButtons();
+                textViewUserResult.setVisibility(View.VISIBLE);
+                if (optionBValue){
+                    optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                    rightAnswer+=1;
+                    textViewUserResult.setText("CORRECT");
+                }else {
+                    optionBCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    textViewUserResult.setText("INCORRECT");
+                    showRightAnswer();
+                }
+                buttonSeeExplanation.setVisibility(View.VISIBLE);
+                nextQuestion.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        optionCCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                disableButtons();
+                textViewUserResult.setVisibility(View.VISIBLE);
+                if (optionCValue){
+                    optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                    rightAnswer+=1;
+                    textViewUserResult.setText("CORRECT");
+                }else {
+                    optionCCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    textViewUserResult.setText("INCORRECT");
+                    showRightAnswer();
+                }
+                buttonSeeExplanation.setVisibility(View.VISIBLE);
+                nextQuestion.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        optionDCardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
+                disableButtons();
+                textViewUserResult.setVisibility(View.VISIBLE);
+                if (optionDValue){
+                    optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+                    rightAnswer+=1;
+                    textViewUserResult.setText("CORRECT");
+                }else {
+                    optionDCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
+                    textViewUserResult.setText("INCORRECT");
+                    showRightAnswer();
+                }
+                buttonSeeExplanation.setVisibility(View.VISIBLE);
+                nextQuestion.setVisibility(View.VISIBLE);
+            }
+        });
+
+        buttonSeeExplanation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textViewUserExplanation.setVisibility(View.VISIBLE);
+                textViewUserExplanation.setText(explanation);
             }
         });
 
@@ -95,6 +222,28 @@ public class UserQuestionActivity extends AppCompatActivity {
                 exitDialog();
             }
         });
+    }
+
+    private void showRightAnswer() {
+        if (optionAValue) {
+            optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+        }
+        if (optionBValue) {
+            optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+        }
+        if (optionCValue) {
+            optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+        }
+        if (optionDValue) {
+            optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
+        }
+    }
+
+    private void disableButtons() {
+        optionACardView.setClickable(false);
+        optionBCardView.setClickable(false);
+        optionCCardView.setClickable(false);
+        optionDCardView.setClickable(false);
     }
 
     private void showQuestion() {

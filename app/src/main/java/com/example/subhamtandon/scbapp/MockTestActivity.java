@@ -65,7 +65,7 @@ public class MockTestActivity extends AppCompatActivity {
             getSupportActionBar().setTitle("Mock Test");
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MockTestActivity.this);
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(MockTestActivity.this);
         View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
         builder.setTitle("Choose number of Questions")
                 .setCancelable(false);
@@ -90,11 +90,13 @@ public class MockTestActivity extends AppCompatActivity {
         });
         builder.setView(mView);
         AlertDialog alertDialog = builder.create();
-        alertDialog.show();
+        alertDialog.show();*/
 
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
+
         idsArrayList = getIntent().getStringArrayListExtra("IDSLIST");
         subjectsArrayList = getIntent().getStringArrayListExtra("SUBJECTSLIST");
+        Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
 
         for (int i = 0; i < idsArrayList.size(); i++){
             Log.d("ids", idsArrayList.get(i));

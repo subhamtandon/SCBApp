@@ -142,7 +142,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
+        firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO: Link new fragment
@@ -154,53 +154,53 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                         Log.d("idssize", idsList.size() + "");
                         Log.d("subjectsArrayList", subjectsList.toString());
                         Log.d("subjectssize", subjectsList.size() + "");
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                        builder.setTitle("Choose number of Questions")
+                                .setCancelable(false);
 
-                        Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
-                        intent.putExtra("PROFESSIONAL", professional);
-                        //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
-                        intent.putStringArrayListExtra("IDSLIST", idsList);
-                        intent.putStringArrayListExtra("SUBJECTSLIST", subjectsList);
-                        startActivity(intent);
-                    }
-                });
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
-                builder.setTitle("Choose number of Questions")
-                        .setCancelable(false);
+                        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                mSpinner.setAdapter(adapter);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
-                            Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
-                            intent.putExtra("PROFESSIONAL", professional);
-                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
-                            startActivity(intent);
-                            finish();
-                            } else {
-                            Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                        mSpinner.setAdapter(adapter);
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                                    //Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                                    //intent.putExtra("PROFESSIONAL", professional);
+                                    //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                                    //startActivity(intent);
+                                    //finish();
+                                    Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                                    intent.putExtra("PROFESSIONAL", professional);
+                                    intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                                    intent.putStringArrayListExtra("IDSLIST", idsList);
+                                    intent.putStringArrayListExtra("SUBJECTSLIST", subjectsList);
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                    }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.setView(mView);
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
                     }
                 });
-                builder.setView(mView);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+
             }
-        });*/
+        });
     }
 
-    /*private void readData(final FirebaseCallback firebaseCallback){
+    private void readData(final FirebaseCallback firebaseCallback){
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         for (int i = 0; i < subjects.length; i++) {
 
@@ -247,12 +247,12 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             //    Log.d("idsArrayList", idsArrayList.get(k));
             //}
         }
-    }*/
+    }
 
 
-    /*private interface FirebaseCallback{
+    private interface FirebaseCallback{
         void onCallBack(ArrayList<String> list, ArrayList<String> list1);
-    }*/
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

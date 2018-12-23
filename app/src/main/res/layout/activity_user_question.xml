@@ -46,225 +46,293 @@
                 android:text="EXIT"
                 android:id="@+id/exitQuestions" />
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:layout_below="@id/path"
-                android:layout_marginTop="30dp">
+                android:id="@+id/cardViewQuestion"
+                app:cardBackgroundColor="@color/lightColor"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textViewUserQuestion"
+                        android:text="Question Text View"
+                        android:textSize="20sp"
+                        android:layout_margin="16dp"
+                        android:textColor="#000000"/>
+
+                    <GridLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="14dp"
+                        android:columnCount="1"
+                        android:columnOrderPreserved="false"
+                        android:rowCount="4"
+                        android:rowOrderPreserved="true"
+                        android:alignmentMode="alignMargins">
+
+                        <android.support.v7.widget.CardView
+                            android:id="@+id/optionACardView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_columnWeight="1"
+                            android:layout_margin="16dp"
+                            android:layout_rowWeight="1"
+                            app:cardBackgroundColor="@color/normalColor"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_gravity="start"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"
+                                android:textColor="#ffffff"
+                                android:text="A : "
+                                android:textSize="25sp" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/textViewUserOptionA"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="About above image"
+                                    android:textColor="#ffffff"/>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/optionBCardView"
+                            android:layout_margin="16dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="@color/normalColor"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="B : "
+                                android:textSize="25sp"
+                                android:textColor="#ffffff"
+                                android:layout_gravity="start"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewUserOptionB"
+                                    android:text="About above image"
+                                    android:textColor="#ffffff"/>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/optionCCardView"
+                            android:layout_margin="16dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="@color/normalColor"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="C : "
+                                android:textSize="25sp"
+                                android:textColor="#ffffff"
+                                android:layout_gravity="start"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewUserOptionC"
+                                    android:text="About above image"
+                                    android:textColor="#ffffff"/>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/optionDCardView"
+                            android:layout_margin="16dp"
+                            android:layout_columnWeight="1"
+                            android:layout_rowWeight="1"
+                            android:clickable="true"
+                            app:cardBackgroundColor="@color/normalColor"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+                            </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="D : "
+                                android:textSize="25sp"
+                                android:textColor="#ffffff"
+                                android:layout_gravity="start"
+                                android:layout_marginLeft="10dp"
+                                android:gravity="center"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/textViewUserOptionD"
+                                    android:text="About above image"
+                                    android:textColor="#ffffff"/>
+
+                            </LinearLayout>
+
+                        </android.support.v7.widget.CardView>
+
+
+                    </GridLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardViewQuestion"
+                android:id="@+id/cardViewResult"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="@color/lightColor"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/textViewUserQuestion"
-                    android:text="Question Text View"
-                    android:textSize="20sp" />
-
-                <GridLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="14dp"
-                    android:columnCount="1"
-                    android:columnOrderPreserved="false"
-                    android:rowCount="4"
-                    android:rowOrderPreserved="true"
-                    android:alignmentMode="alignMargins">
-
-                    <android.support.v7.widget.CardView
-                        android:id="@+id/optionACardView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:layout_margin="16dp"
-                        android:layout_rowWeight="1"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                        </LinearLayout>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="start"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center"
-                            android:text="A : "
-                            android:textSize="25sp" />
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/textViewUserOptionA"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="About above image" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/optionBCardView"
-                        android:layout_margin="16dp"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:clickable="true"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="B : "
-                            android:textSize="25sp"
-                            android:layout_gravity="start"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textViewUserOptionB"
-                                android:text="About above image" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/optionCCardView"
-                        android:layout_margin="16dp"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:clickable="true"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="C : "
-                            android:textSize="25sp"
-                            android:layout_gravity="start"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textViewUserOptionC"
-                                android:text="About above image" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-                    <android.support.v7.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/optionDCardView"
-                        android:layout_margin="16dp"
-                        android:layout_columnWeight="1"
-                        android:layout_rowWeight="1"
-                        android:clickable="true"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="8dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="horizontal">
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:text="D : "
-                            android:textSize="25sp"
-                            android:layout_gravity="start"
-                            android:layout_marginLeft="10dp"
-                            android:gravity="center"/>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:gravity="center">
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:id="@+id/textViewUserOptionD"
-                                android:text="About above image" />
-
-                        </LinearLayout>
-
-                    </android.support.v7.widget.CardView>
-
-
-                </GridLayout>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/textViewUserExplanation"
-                    android:text="Explanation/Hint"
+                    android:id="@+id/textViewUserResult"
                     android:textSize="25sp"
-                    android:textAlignment="center"/>
+                    android:text="Result"
+                    android:textColor="@color/normalColor"
+                    android:textAlignment="center"
+                    android:padding="8dp"
+                    android:visibility="gone"
+                />
 
-                <Button
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cardViewResult"
+                android:layout_marginTop="15dp"
+                app:cardBackgroundColor="@color/lightColor"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/buttonSubmitAnswer"
-                    android:clickable="false"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:text="Submit"
-                    android:textSize="25sp"/>
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/buttonSeeExplanation"
+                        android:clickable="false"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginHorizontal="30dp"
+                        android:text="see explanation"
+                        android:textSize="25sp"
+                        android:textColor="#ffffff"
+                        android:background="@color/normalColor"
+                        android:visibility="gone"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/textViewUserExplanation"
+                        android:text="Explanation/Hint"
+                        android:textSize="25sp"
+                        android:textAlignment="center"
+                        android:visibility="gone"
+                        />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
-
-
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton

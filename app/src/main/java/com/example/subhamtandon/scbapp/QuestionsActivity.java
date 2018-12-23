@@ -624,6 +624,17 @@ public class QuestionsActivity extends AppCompatActivity {
                             } else {
                                 optionBValue = true;
                             }
+
+
+
+
+
+
+
+
+
+
+
                         }
 
                     }
