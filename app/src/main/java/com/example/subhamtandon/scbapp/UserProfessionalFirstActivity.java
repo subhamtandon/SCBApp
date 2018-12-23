@@ -2,6 +2,7 @@ package com.example.subhamtandon.scbapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
         }
 
         subjects = getResources().getStringArray(R.array.firstProfessionalSubjects);
+        Log.d("subjects_length", subjects.length + "");
 
         changeProfession = (FloatingActionButton)findViewById(R.id.changeProfession);
         changeProfession.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +149,83 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO: Link new fragment
 
-                readData(new FirebaseCallback() {
+                databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+                        .child("App")
+                        .child("Study")
+                        .child("Random")
+                        .child(professional)
+                        .child("Questions");
+
+                databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String uniqueId = ds.getKey();
+                            Log.d("uniqueId", uniqueId);
+                            idsArrayList.add(uniqueId);
+
+                            if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
+                                String subjectName = ds.getValue(String.class);
+                                Log.d("subjectName", subjectName);
+                                subjectsArrayList.add(subjectName);
+
+                                //Log.d("subjectsArrayListSize", subjectsArrayList.size() + "");
+                            }
+                        }
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
+                        View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+                        builder.setTitle("Choose number of Questions")
+                                .setCancelable(false);
+
+                        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                        mSpinner.setAdapter(adapter);
+                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                                    //Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                                    //intent.putExtra("PROFESSIONAL", professional);
+                                    //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                                    //startActivity(intent);
+                                    //finish();
+
+                                    Log.d("idsArrayList", idsArrayList.toString());
+                                    Log.d("idssize", idsArrayList.size() + "");
+                                    Log.d("subjectsArrayList", subjectsArrayList.toString());
+                                    Log.d("subjectssize", subjectsArrayList.size() + "");
+                                    Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);
+                                    intent.putExtra("PROFESSIONAL", professional);
+                                    intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                                    intent.putStringArrayListExtra("IDSLIST", idsArrayList);
+                                    intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
+                                    finish();
+                                    startActivity(intent);
+                                } else {
+                                    Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder.setView(mView);
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
+                /*readData(new FirebaseCallback() {
                     @Override
                     public void onCallBack(final ArrayList<String> idsList, final ArrayList<String> subjectsList) {
                         Log.d("idsArrayList", idsList.toString());
@@ -174,7 +252,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                                     //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
                                     //startActivity(intent);
                                     //finish();
-                                    Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
+                                    Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);
                                     intent.putExtra("PROFESSIONAL", professional);
                                     intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
                                     intent.putStringArrayListExtra("IDSLIST", idsList);
@@ -194,13 +272,13 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                         AlertDialog alertDialog = builder.create();
                         alertDialog.show();
                     }
-                });
+                });*/
 
             }
         });
     }
 
-    private void readData(final FirebaseCallback firebaseCallback){
+    /*private void readData(final FirebaseCallback firebaseCallback){
         final String professional = getIntent().getStringExtra("PROFESSIONAL");
         for (int i = 0; i < subjects.length; i++) {
 
@@ -230,7 +308,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
 
                         //Log.d("idsArrayListSize", idsArrayList.size() + "");
                     }
-                    firebaseCallback.onCallBack(idsArrayList, subjectsArrayList);
+                    //firebaseCallback.onCallBack(idsArrayList, subjectsArrayList);
                 }
 
                 @Override
@@ -247,12 +325,13 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             //    Log.d("idsArrayList", idsArrayList.get(k));
             //}
         }
-    }
+        firebaseCallback.onCallBack(idsArrayList, subjectsArrayList);
+    }*/
 
 
-    private interface FirebaseCallback{
+    /*private interface FirebaseCallback{
         void onCallBack(ArrayList<String> list, ArrayList<String> list1);
-    }
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

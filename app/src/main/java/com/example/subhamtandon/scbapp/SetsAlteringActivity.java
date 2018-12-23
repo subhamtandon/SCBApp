@@ -56,7 +56,7 @@ public class SetsAlteringActivity extends AppCompatActivity {
                             .child(whichSet)
                             .setValue(null);
 
-                    Intent done = new Intent(SetsAlteringActivity.this, AddingQuestionActivity.class);
+                    Intent done = new Intent(SetsAlteringActivity.this, NewQuestionActivity.class);
                     //done.putExtra("TYPE","MCQs");
                     done.putExtra("PROFESSIONAL",professional);
                     done.putExtra("SUBJECT",subject);

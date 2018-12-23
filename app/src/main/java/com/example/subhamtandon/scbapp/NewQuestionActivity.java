@@ -160,17 +160,15 @@ public class NewQuestionActivity extends AppCompatActivity {
                             .setValue(question1.getQuestionText());
 
                     databaseReferenceRandom.child(professional)
-                            .child(subject)
                             .child("Questions")
                             .child(id)
                             .setValue(subject);
 
                     databaseReferenceRandom.child(professional)
                             .child(subject)
-                            .child("Chapters")
-                            .child(chapter)
+                            .child("Questions")
                             .child(id)
-                            .setValue(question1.getQuestionText());
+                            .setValue(chapter);
 
                     Toast.makeText(NewQuestionActivity.this, question+optionA+optionB+optionC+optionD+correctAnswer+explanation, Toast.LENGTH_SHORT).show();
                     Toast.makeText(NewQuestionActivity.this, "Addition of new question done", Toast.LENGTH_SHORT).show();
