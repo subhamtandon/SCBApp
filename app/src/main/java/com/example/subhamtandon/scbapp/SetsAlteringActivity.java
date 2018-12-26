@@ -134,10 +134,10 @@ public class SetsAlteringActivity extends AppCompatActivity {
                     Toast.makeText(SetsAlteringActivity.this, "Choose correct option from the Dropdown", Toast.LENGTH_SHORT).show();
                     ready = "false";
                 }
-                if (TextUtils.isEmpty(explanation)){
-                    addExplanationEditText.setError(getString(R.string.error_field_required));
-                    ready = "false";
-                }
+//                if (TextUtils.isEmpty(explanation)){
+//                    addExplanationEditText.setError(getString(R.string.error_field_required));
+//                    ready = "false";
+//                }
 
                 if (ready.equalsIgnoreCase("true")){
 
@@ -167,6 +167,10 @@ public class SetsAlteringActivity extends AppCompatActivity {
                         optionBValue = false;
                         optionCValue = false;
                         optionDValue = true;
+                    }
+
+                    if(explanation.equalsIgnoreCase("")){
+                        explanation = "null";
                     }
 
                     Explanation explanation1 = new Explanation(explanation);

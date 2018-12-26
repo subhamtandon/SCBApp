@@ -253,8 +253,10 @@ public class NewMockTestActivity extends AppCompatActivity {
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
                 }
-                buttonSeeExplanation.setVisibility(View.VISIBLE);
                 nextQuestion.setVisibility(View.VISIBLE);
+                if(!explanation.equalsIgnoreCase("null")){
+                    buttonSeeExplanation.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -273,8 +275,10 @@ public class NewMockTestActivity extends AppCompatActivity {
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
                 }
-                buttonSeeExplanation.setVisibility(View.VISIBLE);
                 nextQuestion.setVisibility(View.VISIBLE);
+                if(!explanation.equalsIgnoreCase("null")){
+                    buttonSeeExplanation.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -294,8 +298,10 @@ public class NewMockTestActivity extends AppCompatActivity {
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
                 }
-                buttonSeeExplanation.setVisibility(View.VISIBLE);
                 nextQuestion.setVisibility(View.VISIBLE);
+                if(!explanation.equalsIgnoreCase("null")){
+                    buttonSeeExplanation.setVisibility(View.VISIBLE);
+                }
 
             }
         });
@@ -315,8 +321,10 @@ public class NewMockTestActivity extends AppCompatActivity {
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
                 }
-                buttonSeeExplanation.setVisibility(View.VISIBLE);
                 nextQuestion.setVisibility(View.VISIBLE);
+                if(!explanation.equalsIgnoreCase("null")){
+                    buttonSeeExplanation.setVisibility(View.VISIBLE);
+                }
             }
         });
 
