@@ -202,8 +202,9 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                                     intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
                                     intent.putStringArrayListExtra("IDSLIST", idsArrayList);
                                     intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
-                                    finish();
+                                    Toast.makeText(UserProfessionalFirstActivity.this, "passed", Toast.LENGTH_SHORT).show();
                                     startActivity(intent);
+                                    finish();
                                 } else {
                                     Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
                                 }

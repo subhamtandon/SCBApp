@@ -3,6 +3,7 @@ package com.example.subhamtandon.scbapp;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,15 +35,19 @@ public class NewMockTestActivity extends AppCompatActivity {
     FloatingActionButton nextQuestion;
 
     DatabaseReference databaseReference;
-    String professional, explanation, randomElement1;
+    String professional, explanation, randomElement, subjectName;
     int count = 0, rightAnswer = 0;
     ArrayList<String> idsArrayList = new ArrayList<>();
     ArrayList<String> subjectsArrayList = new ArrayList<>();
     ArrayList<Integer> questionShownList = new ArrayList<>();
+    ArrayList<String> newIdsArrayList = new ArrayList<>();
+    ArrayList<String> newSubjectsArrayList = new ArrayList<>();
 
-    int n, found, index1;
+    int n, found, index;
 
     Boolean optionAValue , optionBValue, optionCValue, optionDValue;
+
+    //ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,14 +82,37 @@ public class NewMockTestActivity extends AppCompatActivity {
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
+        //loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         nextQuestion.setVisibility(View.GONE);
 
-        String randomElement = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
-        int index = idsArrayList.indexOf(randomElement);
-        questionShownList.add(index);
+        for (int i = 0;i < n;i++) {
+            found = 0;
+            while (true) {
+                randomElement = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+                index = idsArrayList.indexOf(randomElement);
+                subjectName = subjectsArrayList.get(index);
+                for (int j = 0; j < questionShownList.size(); j++) {
+                    if (index == questionShownList.get(j)) {
+                        found = 1;
+                        break;
+                    }
+                }
+                if (found == 1) {
+                    continue;
+                } else {
+                    break;
+                }
+            }
+            questionShownList.add(index);
+            newIdsArrayList.add(randomElement);
+            newSubjectsArrayList.add(subjectName);
+        }
 
-        showQuestion(index);
+        Log.d("newIdsList", newIdsArrayList + "");
+        Log.d("newSubjectList", newSubjectsArrayList + "");
+
+        showQuestion();
 
         nextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,27 +129,9 @@ public class NewMockTestActivity extends AppCompatActivity {
                 buttonSeeExplanation.setVisibility(View.GONE);
                 textViewUserExplanation.setVisibility(View.GONE);
                 nextQuestion.setVisibility(View.GONE);
-
-                if (questionShownList.size() < n) {
-
-                    found = 0;
-                    while (true) {
-                        randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
-                        index1 = idsArrayList.indexOf(randomElement1);
-                        for (int i = 0; i < questionShownList.size(); i++) {
-                            if (index1 == questionShownList.get(i)) {
-                                found = 1;
-                                break;
-                            }
-                        }
-                        if (found == 1) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                    questionShownList.add(index1);
-                    showQuestion(index1);
+                count++;
+                if (count<newIdsArrayList.size()) {
+                    showQuestion();
                 }
                 else {
                     Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
@@ -271,15 +282,15 @@ public class NewMockTestActivity extends AppCompatActivity {
         optionDCardView.setClickable(false);
     }
 
-    private void showQuestion(int index) {
+    private void showQuestion() {
         databaseReference = FirebaseDatabase.getInstance().getReference()
                 .child("App")
                 .child("Study")
                 .child(professional)
-                .child(subjectsArrayList.get(index))
+                .child(newSubjectsArrayList.get(count))
                 .child("MCQs")
                 .child("Questions")
-                .child(idsArrayList.get(index));
+                .child(newIdsArrayList.get(count));
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -329,6 +340,94 @@ public class NewMockTestActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+    /*private class LoadingTask extends AsyncTask<Void, String, Void>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Toast.makeText(NewMockTestActivity.this, "pre", Toast.LENGTH_SHORT).show();
+            optionACardView.setClickable(true);
+            optionBCardView.setClickable(true);
+            optionCCardView.setClickable(true);
+            optionDCardView.setClickable(true);
+            optionACardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+            optionBCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+            optionCCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+            optionDCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
+            textViewUserResult.setVisibility(View.GONE);
+            buttonSeeExplanation.setVisibility(View.GONE);
+            textViewUserExplanation.setVisibility(View.GONE);
+            nextQuestion.setVisibility(View.GONE);
+            loadingProgressBar.setVisibility(View.VISIBLE);
+
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Toast.makeText(NewMockTestActivity.this, "background", Toast.LENGTH_SHORT).show();
+            try {
+                if (questionShownList.size() < n) {
+
+                    found = 0;
+                    while (true) {
+                        randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+                        index1 = idsArrayList.indexOf(randomElement1);
+                        for (int i = 0; i < questionShownList.size(); i++) {
+                            if (index1 == questionShownList.get(i)) {
+                                found = 1;
+                                break;
+                            }
+                        }
+                        if (found == 1) {
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }
+                    questionShownList.add(index1);
+                    showQuestion();
+                }
+                else {
+                    Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NewMockTestActivity.this);
+                    View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
+
+                    TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
+                    TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
+
+                    String count1 = Integer.toString(n);
+                    String rightAnswer1 = Integer.toString(rightAnswer);
+
+                    correctAnswers.setText(rightAnswer1);
+                    totalQuestions.setText(count1);
+                    builder.setTitle("SCORECARD")
+                            .setCancelable(false)
+                            .setView(mView)
+                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                    onBackPressed();
+                                }
+                            });
+                    AlertDialog alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            }catch (Exception e){
+                Toast.makeText(NewMockTestActivity.this, e + "", Toast.LENGTH_SHORT).show();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            Toast.makeText(NewMockTestActivity.this, "post", Toast.LENGTH_SHORT).show();
+
+            loadingProgressBar.setVisibility(View.GONE);
+        }
+    }*/
 
     @Override
     public void onBackPressed(){
