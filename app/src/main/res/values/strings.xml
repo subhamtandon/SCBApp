@@ -1103,15 +1103,37 @@ Kolkata</item>
         <item>Head &amp; Neck II</item>
         <item>Head &amp; Neck III</item>
         <item>Head &amp; Neck IV</item>
-        <item>Mock Test</item>
     </string-array>
 
     <string-array name="physiologyChapters">
-
+        <item>General Physiology</item>
+        <item>Nerve and Muscle Physiology</item>
+        <item>Blood and Its Constituents</item>
+        <item>Cardiovascular Physiology</item>
+        <item>Respiratory Physiology</item>
+        <item>Gastrointestinal Physiology</item>
+        <item>Renal Physiology</item>
+        <item>The Endocrine System</item>
+        <item>Reproductive Physiology</item>
+        <item>Central Nervous System</item>
+        <item>Miscellaneous</item>
     </string-array>
 
     <string-array name="bioChemistryChapters">
-
+        <item>MACROMOLECULES - 1</item>
+        <item>MACROMOLECULES- 2</item>
+        <item>METABOLISM -1</item>
+        <item>METABOLISM - 2</item>
+        <item>METABOLISM - 3</item>
+        <item>METABOLISM - 4</item>
+        <item>ORGAN FUNCTION TEST</item>
+        <item>ACID BASE BALANCE</item>
+        <item>VITAMINS AND ANTI OXIDANTS</item>
+        <item>MINERAL METABOLISM AND HEME SYNTHESIS</item>
+        <item>ENERGY METABOLISM AND NUTRITION</item>
+        <item>NUCLEOTIDE METABOLISM</item>
+        <item> rDNA Technology</item>
+        <item>ADVANCED BIOCHEM</item>
     </string-array>
 
     <string-array name="pathologyChapters">
@@ -1160,11 +1182,35 @@ Kolkata</item>
     </string-array>
 
     <string-array name="microbiologyChapters">
-
+        <item>General Microbiology-1</item>
+        <item>General Microbiology-2</item>
+        <item>Immunology-1</item>
+        <item>Immunology-2</item>
+        <item>Bacteriology-1</item>
+        <item>Bacteriology-2</item>
+        <item>Bacteriology-3</item>
+        <item>Bacteriology-4</item>
+        <item>Bacteriology-5</item>
+        <item>Bacteriology-6</item>
+        <item>Virology</item>
+        <item>Mycology</item>
+        <item>Applied Microbiology</item>
+        <item>Clinical Microbiology</item>
     </string-array>
 
     <string-array name="fmtChapters">
-
+        <item>Medical Jurisprudence</item>
+        <item>Identification</item>
+        <item>Thanatology and PM Changes, Autopsy</item>
+        <item>Traumatology</item>
+        <item>Mechanical Asphyxia</item>
+        <item>Sexual Jurisprudence</item>
+        <item>Miscellaneous</item>
+        <item>General Toxicology</item>
+        <item>Irritant Poisoning</item>
+        <item>Poison acting on Nervous System</item>
+        <item>Cardiac Poison</item>
+        <item>Miscellaneous Poisons</item>
     </string-array>
 
     <string-array name="spmChapters">
