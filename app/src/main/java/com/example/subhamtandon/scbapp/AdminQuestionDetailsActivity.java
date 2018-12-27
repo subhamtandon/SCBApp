@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +13,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 public class AdminQuestionDetailsActivity extends AppCompatActivity {
 
@@ -56,7 +58,7 @@ public class AdminQuestionDetailsActivity extends AppCompatActivity {
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot!=null) {
                     NewQuestion newQuestion = dataSnapshot.getValue(NewQuestion.class);
                     textViewQuestion.setText(newQuestion.getQuestion().getQuestionText());

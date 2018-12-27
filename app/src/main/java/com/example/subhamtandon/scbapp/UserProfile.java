@@ -1,5 +1,6 @@
 package com.example.subhamtandon.scbapp;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -116,15 +117,18 @@ public class UserProfile extends AppCompatActivity
                                     Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
-
-                            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                            ft.replace(R.id.flMain, new HomeFragment());
-                            ft.commit();
+                            if(!UserProfile.this.isFinishing())
+                            {
+                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.flMain, new HomeFragment());
+                                ft.commit();
+                            }
                         }
                         else{
 
                             Toast.makeText(UserProfile.this, "You can not access this time :<", Toast.LENGTH_SHORT).show();
+
+
                             final AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfile.this).setTitle("No access").setMessage("Maintenance is going on. Try again later...:)");
                             dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
@@ -137,7 +141,12 @@ public class UserProfile extends AppCompatActivity
                                 }
                             });
                             final AlertDialog alert = dialog.create();
-                            alert.show();
+                            if(!UserProfile.this.isFinishing())
+                            {
+                                //show dialog
+                                alert.show();
+                            }
+
 
 // Hide after some seconds
                             final Handler handler  = new Handler();
@@ -258,9 +267,12 @@ public class UserProfile extends AppCompatActivity
                             });
 
 
-                            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                            ft.replace(R.id.flMain, new HomeFragment());
-                            ft.commit();
+                            if(!UserProfile.this.isFinishing())
+                            {
+                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+                                ft.replace(R.id.flMain, new HomeFragment());
+                                ft.commit();
+                            }
                         }
                         else{
 
@@ -277,7 +289,11 @@ public class UserProfile extends AppCompatActivity
                                 }
                             });
                             final AlertDialog alert = dialog.create();
-                            alert.show();
+                            if(!UserProfile.this.isFinishing())
+                            {
+                                //show dialog
+                                alert.show();
+                            }
 
 // Hide after some seconds
                             final Handler handler  = new Handler();
@@ -463,8 +479,8 @@ public class UserProfile extends AppCompatActivity
 
             firebaseAuth.signOut();
             firebaseAuth.getInstance().signOut();
-            finish();
             startActivity(new Intent(this, MainActivity.class));
+            finish();
 
         }else if (id == R.id.nav_fromMakersDesk) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();

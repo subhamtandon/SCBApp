@@ -86,7 +86,7 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
 
                         final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Information");
 
-                        String uploadPDFID = databaseReference.child(infoKeys.get(pos)).getKey();
+                        String uploadPDFID = infoKeys.get(pos);
 
                         databaseReference.child(uploadPDFID).removeValue();
                         infosArrayList.remove(pos);

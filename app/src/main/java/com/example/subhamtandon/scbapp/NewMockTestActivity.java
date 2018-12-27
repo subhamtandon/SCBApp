@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -12,8 +14,10 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,9 +38,10 @@ public class NewMockTestActivity extends AppCompatActivity {
     Button buttonSeeExplanation, exitQuestions;
     FloatingActionButton nextQuestion;
 
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReferenceRandom;
     String professional, explanation, randomElement, subjectName;
     int count = 0, rightAnswer = 0;
+    ArrayAdapter<String> adapter;
     ArrayList<String> idsArrayList = new ArrayList<>();
     ArrayList<String> subjectsArrayList = new ArrayList<>();
     ArrayList<Integer> questionShownList = new ArrayList<>();
@@ -45,9 +50,9 @@ public class NewMockTestActivity extends AppCompatActivity {
 
     int n, found, index;
 
-    Boolean optionAValue , optionBValue, optionCValue, optionDValue;
+    Boolean optionAValue, optionBValue, optionCValue, optionDValue;
 
-    //ProgressBar loadingProgressBar;
+    ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +64,12 @@ public class NewMockTestActivity extends AppCompatActivity {
         }
 
         professional = getIntent().getStringExtra("PROFESSIONAL");
-        n = Integer.parseInt(getIntent().getStringExtra("NUMBER OF QUESTIONS"));
+//        n = Integer.parseInt(getIntent().getStringExtra("NUMBER OF QUESTIONS"));
         idsArrayList = getIntent().getStringArrayListExtra("IDSLIST");
         subjectsArrayList = getIntent().getStringArrayListExtra("SUBJECTSLIST");
 
-        Toast.makeText(this, professional + ":"+ n+ ":" + idsArrayList.size() + ":" + subjectsArrayList.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, idsArrayList.size() + "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, subjectsArrayList.size() + "", Toast.LENGTH_SHORT).show();
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -82,11 +88,82 @@ public class NewMockTestActivity extends AppCompatActivity {
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
-        //loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         nextQuestion.setVisibility(View.GONE);
 
-        for (int i = 0;i < n;i++) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+        builder.setTitle("Choose number of Questions")
+                .setCancelable(false);
+
+        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+
+        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        mSpinner.setAdapter(adapter);
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+                    n= Integer.parseInt(mSpinner.getSelectedItem().toString());
+                    dialog.cancel();
+                } else {
+                    Toast.makeText(NewMockTestActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.setView(mView);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        //loadingProgressBar.setVisibility(View.VISIBLE);
+
+        /*databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+                .child("App")
+                .child("Study")
+                .child("Random")
+                .child(professional)
+                .child("Questions");*/
+
+        /*databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    String uniqueId = ds.getKey();
+                    Log.d("uniqueId", uniqueId);
+                    idsArrayList.add(uniqueId);
+
+                    if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
+                        String subjectName = ds.getValue(String.class);
+                        Log.d("subjectName", subjectName);
+                        subjectsArrayList.add(subjectName);
+
+                        //Log.d("subjectsArrayListSize", subjectsArrayList.size() + "");
+                    }
+                }
+                Log.d("Listid", idsArrayList+"");
+                Log.d("Listsubject",subjectsArrayList+"");
+                passLists(idsArrayList, subjectsArrayList);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
+        //LoadingTask loadingTask = new LoadingTask();
+        //loadingTask.execute();
+        Toast.makeText(this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
+
+        for (int i = 0; i < n; i++) {
             found = 0;
             while (true) {
                 randomElement = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
@@ -130,10 +207,9 @@ public class NewMockTestActivity extends AppCompatActivity {
                 textViewUserExplanation.setVisibility(View.GONE);
                 nextQuestion.setVisibility(View.GONE);
                 count++;
-                if (count<newIdsArrayList.size()) {
+                if (count < newIdsArrayList.size()) {
                     showQuestion();
-                }
-                else {
+                } else {
                     Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewMockTestActivity.this);
                     View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
@@ -168,11 +244,11 @@ public class NewMockTestActivity extends AppCompatActivity {
                 //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
                 disableButtons();
                 textViewUserResult.setVisibility(View.VISIBLE);
-                if (optionAValue){
+                if (optionAValue) {
                     optionACardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                    rightAnswer+=1;
+                    rightAnswer += 1;
                     textViewUserResult.setText("CORRECT");
-                }else {
+                } else {
                     optionACardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
@@ -188,11 +264,11 @@ public class NewMockTestActivity extends AppCompatActivity {
                 //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
                 disableButtons();
                 textViewUserResult.setVisibility(View.VISIBLE);
-                if (optionBValue){
+                if (optionBValue) {
                     optionBCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                    rightAnswer+=1;
+                    rightAnswer += 1;
                     textViewUserResult.setText("CORRECT");
-                }else {
+                } else {
                     optionBCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
@@ -209,11 +285,11 @@ public class NewMockTestActivity extends AppCompatActivity {
                 //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
                 disableButtons();
                 textViewUserResult.setVisibility(View.VISIBLE);
-                if (optionCValue){
+                if (optionCValue) {
                     optionCCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                    rightAnswer+=1;
+                    rightAnswer += 1;
                     textViewUserResult.setText("CORRECT");
-                }else {
+                } else {
                     optionCCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
@@ -230,11 +306,11 @@ public class NewMockTestActivity extends AppCompatActivity {
                 //optionACardView.setCardBackgroundColor(Color.parseColor("#ffcc00"));
                 disableButtons();
                 textViewUserResult.setVisibility(View.VISIBLE);
-                if (optionDValue){
+                if (optionDValue) {
                     optionDCardView.setCardBackgroundColor(Color.parseColor("#00cc00"));
-                    rightAnswer+=1;
+                    rightAnswer += 1;
                     textViewUserResult.setText("CORRECT");
-                }else {
+                } else {
                     optionDCardView.setCardBackgroundColor(Color.parseColor("#ff0000"));
                     textViewUserResult.setText("INCORRECT");
                     showRightAnswer();
@@ -259,6 +335,10 @@ public class NewMockTestActivity extends AppCompatActivity {
             }
         });
     }
+
+    /*private void passLists(ArrayList<String> idsArrayList, ArrayList<String> subjectsArrayList) {
+
+    }*/
 
     private void showRightAnswer() {
         if (optionAValue) {
@@ -295,7 +375,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null){
+                if (dataSnapshot != null) {
                     NewQuestion newQuestion = dataSnapshot.getValue(NewQuestion.class);
                     textViewUserQuestion.setText(newQuestion.getQuestion().getQuestionText());
                     textViewUserOptionA.setText(newQuestion.getOptionA().getOptionAText());
@@ -317,7 +397,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         });
     }
 
-    public void exitDialog(){
+    public void exitDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Are you sure you want to exit?")
@@ -341,96 +421,39 @@ public class NewMockTestActivity extends AppCompatActivity {
 
     }
 
-    /*private class LoadingTask extends AsyncTask<Void, String, Void>{
+    /*class LoadingTask extends AsyncTask<Void, String, Void>{
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            Toast.makeText(NewMockTestActivity.this, "pre", Toast.LENGTH_SHORT).show();
-            optionACardView.setClickable(true);
-            optionBCardView.setClickable(true);
-            optionCCardView.setClickable(true);
-            optionDCardView.setClickable(true);
-            optionACardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
-            optionBCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
-            optionCCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
-            optionDCardView.setCardBackgroundColor(Color.parseColor("#4e0000"));
-            textViewUserResult.setVisibility(View.GONE);
-            buttonSeeExplanation.setVisibility(View.GONE);
-            textViewUserExplanation.setVisibility(View.GONE);
-            nextQuestion.setVisibility(View.GONE);
+            //Toast.makeText(NewMockTestActivity.this, "pre", Toast.LENGTH_SHORT).show();
             loadingProgressBar.setVisibility(View.VISIBLE);
-
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            Toast.makeText(NewMockTestActivity.this, "background", Toast.LENGTH_SHORT).show();
-            try {
-                if (questionShownList.size() < n) {
+            //Toast.makeText(NewMockTestActivity.this, "background", Toast.LENGTH_SHORT).show();
 
-                    found = 0;
-                    while (true) {
-                        randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
-                        index1 = idsArrayList.indexOf(randomElement1);
-                        for (int i = 0; i < questionShownList.size(); i++) {
-                            if (index1 == questionShownList.get(i)) {
-                                found = 1;
-                                break;
-                            }
-                        }
-                        if (found == 1) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                    questionShownList.add(index1);
-                    showQuestion();
-                }
-                else {
-                    Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
-                    AlertDialog.Builder builder = new AlertDialog.Builder(NewMockTestActivity.this);
-                    View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
-
-                    TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
-                    TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
-
-                    String count1 = Integer.toString(n);
-                    String rightAnswer1 = Integer.toString(rightAnswer);
-
-                    correctAnswers.setText(rightAnswer1);
-                    totalQuestions.setText(count1);
-                    builder.setTitle("SCORECARD")
-                            .setCancelable(false)
-                            .setView(mView)
-                            .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    finish();
-                                    onBackPressed();
-                                }
-                            });
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                }
-            }catch (Exception e){
-                Toast.makeText(NewMockTestActivity.this, e + "", Toast.LENGTH_SHORT).show();
-            }
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Toast.makeText(NewMockTestActivity.this, "post", Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(NewMockTestActivity.this, "post", Toast.LENGTH_SHORT).show();
             loadingProgressBar.setVisibility(View.GONE);
+
+            Toast.makeText(NewMockTestActivity.this, professional + ":"+ n+ ":" + idsArrayList.size() + ":" + subjectsArrayList.size(), Toast.LENGTH_SHORT).show();
+
+
+
+
+
         }
     }*/
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         exitDialog();
     }
 }

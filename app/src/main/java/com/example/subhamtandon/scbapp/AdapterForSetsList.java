@@ -53,12 +53,9 @@ public class AdapterForSetsList extends RecyclerView.Adapter<AdapterForSetsList.
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(context, ListOfQuestionsActivity.class);
-                intent.putExtra("PROFESSIONAL",professional);
-                intent.putExtra("SUBJECT",subject);
-                intent.putExtra("CHAPTER", chapter);
-                intent.putExtra("SET",setsArrayList.get(position));
-                context.startActivity(intent);
+                ListOfSetsActivity listOfSetsActivity = (ListOfSetsActivity) context;
+                listOfSetsActivity.passActivity(setsArrayList,position);
+                //context.startActivity(intent);
 
             }
         });

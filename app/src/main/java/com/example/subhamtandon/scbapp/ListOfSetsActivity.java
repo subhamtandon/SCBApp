@@ -22,6 +22,7 @@ public class ListOfSetsActivity extends AppCompatActivity {
 
     FloatingActionButton addSet;
     RecyclerView recyclerViewSets;
+    String result = "noreturn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,10 @@ public class ListOfSetsActivity extends AppCompatActivity {
         final String chapter = getIntent().getStringExtra("CHAPTER");
 
         Toast.makeText(this, professional + " : " + subject + " : " + chapter, Toast.LENGTH_SHORT).show();
+
+        if (result.equals("reload")){
+            reloadActivity();
+        }
 
         addSet = (FloatingActionButton) findViewById(R.id.addSet);
         addSet.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +108,33 @@ public class ListOfSetsActivity extends AppCompatActivity {
         AdapterForSetsList adapterForSetsList = new AdapterForSetsList(recyclerViewSets, ListOfSetsActivity.this, new ArrayList<String>(), professional, subject, chapter);
         recyclerViewSets.setAdapter(adapterForSetsList);
 
+    }
+
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
+    public void passActivity(ArrayList<String> setsArrayList, int position) {
+        final String professional = getIntent().getStringExtra("PROFESSIONAL");
+        final String subject = getIntent().getStringExtra("SUBJECT");
+        final String chapter = getIntent().getStringExtra("CHAPTER");
+        Intent intent = new Intent(ListOfSetsActivity.this, ListOfQuestionsActivity.class);
+        intent.putExtra("PROFESSIONAL",professional);
+        intent.putExtra("SUBJECT",subject);
+        intent.putExtra("CHAPTER", chapter);
+        intent.putExtra("SET",setsArrayList.get(position));
+        startActivityForResult(intent,1);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if(resultCode == RESULT_OK) {
+                result = data.getStringExtra("RETURN");
+            }
+        }
     }
 }

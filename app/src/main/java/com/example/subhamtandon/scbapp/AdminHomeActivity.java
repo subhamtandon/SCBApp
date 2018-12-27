@@ -119,12 +119,6 @@ public class AdminHomeActivity extends AppCompatActivity {
                         Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
                     }
                 });
-                if(statusOfAltering){
-
-                }
-                else {
-
-                }
 
 
             }
@@ -284,18 +278,6 @@ public class AdminHomeActivity extends AppCompatActivity {
         finish();
         startActivity(new Intent(this, MainActivity.class));
 
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-//        DatabaseReference databaseReference = database.getReference();
-//        databaseReference.child("Altering").setValue("false").addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                Toast.makeText(AdminHomeActivity.this, "Altering Status changed!!!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
     }
 
     @Override

@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
     ArrayList<String> idsArrayList = new ArrayList<>();
     ArrayList<String> subjectsArrayList = new ArrayList<>();
     AlertDialog alertDialog;
+    //ProgressBar loaderProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,8 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setTitle("First Professional");
         }
+
+        //loaderProgressBar = findViewById(R.id.loaderProgressBar);
 
         subjects = getResources().getStringArray(R.array.firstProfessionalSubjects);
         Log.d("subjects_length", subjects.length + "");
@@ -147,84 +151,76 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
         firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: Link new fragment
-
-                databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
-                        .child("App")
-                        .child("Study")
-                        .child("Random")
-                        .child(professional)
-                        .child("Questions");
-
-                databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            String uniqueId = ds.getKey();
-                            Log.d("uniqueId", uniqueId);
-                            idsArrayList.add(uniqueId);
-
-                            if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
-                                String subjectName = ds.getValue(String.class);
-                                Log.d("subjectName", subjectName);
-                                subjectsArrayList.add(subjectName);
-
-                                //Log.d("subjectsArrayListSize", subjectsArrayList.size() + "");
-                            }
-                        }
-                        AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
-                        View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
-                        builder.setTitle("Choose number of Questions")
-                                .setCancelable(false);
-
-                        final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
-
-                        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                        mSpinner.setAdapter(adapter);
-                        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
-                                    //Intent intent = new Intent(UserProfessionalFirstActivity.this, MockTestActivity.class);
-                                    //intent.putExtra("PROFESSIONAL", professional);
-                                    //intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
-                                    //startActivity(intent);
-                                    //finish();
-
-                                    Log.d("idsArrayList", idsArrayList.toString());
-                                    Log.d("idssize", idsArrayList.size() + "");
-                                    Log.d("subjectsArrayList", subjectsArrayList.toString());
-                                    Log.d("subjectssize", subjectsArrayList.size() + "");
-                                    Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);
-                                    intent.putExtra("PROFESSIONAL", professional);
-                                    intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
-                                    intent.putStringArrayListExtra("IDSLIST", idsArrayList);
-                                    intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
-                                    Toast.makeText(UserProfessionalFirstActivity.this, "passed", Toast.LENGTH_SHORT).show();
-                                    startActivity(intent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                        builder.setView(mView);
-                        AlertDialog alertDialog = builder.create();
-                        alertDialog.show();
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+//                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalFirstActivity.this);
+//                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
+//                builder.setTitle("Choose number of Questions")
+//                        .setCancelable(false);
+//
+//                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
+//
+//                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+//                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//                mSpinner.setAdapter(adapter);
+//                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
+//                            dialog.cancel();
+//                            loaderProgressBar.setVisibility(View.VISIBLE);
+//                            databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+//                                    .child("App")
+//                                    .child("Study")
+//                                    .child("Random")
+//                                    .child(professional)
+//                                    .child("Questions");
+//
+//                            databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                                        String uniqueId = ds.getKey();
+//                                        Log.d("uniqueId", uniqueId);
+//                                        idsArrayList.add(uniqueId);
+//
+//                                        if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
+//                                            String subjectName = ds.getValue(String.class);
+//                                            Log.d("subjectName", subjectName);
+//                                            subjectsArrayList.add(subjectName);
+//                                        }
+//                                    }
+//                                    Log.d("IdsList", idsArrayList + "");
+//                                    Log.d("SubjectList", subjectsArrayList + "");
+//                                    if (idsArrayList.size()>=Integer.parseInt(mSpinner.getSelectedItem().toString())){
+//                                        loaderProgressBar.setVisibility(View.GONE);
+//                                        Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);
+//                                        intent.putExtra("PROFESSIONAL", professional);
+//                                        intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+//                                        intent.putStringArrayListExtra("IDSLIST", idsArrayList);
+//                                        intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
+//                                        Toast.makeText(UserProfessionalFirstActivity.this, "passed", Toast.LENGTH_SHORT).show();
+//                                        startActivity(intent);
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                }
+//                            });
+//                        } else {
+//                            Toast.makeText(UserProfessionalFirstActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+//                        }
+//                    }
+//                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.cancel();
+//                    }
+//                });
+//                builder.setView(mView);
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
 
                 /*readData(new FirebaseCallback() {
                     @Override
@@ -274,6 +270,46 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                         alertDialog.show();
                     }
                 });*/
+                databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+                        .child("App")
+                        .child("Study")
+                        .child("Random")
+                        .child(professional)
+                        .child("Questions");
+
+                databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            String uniqueId = ds.getKey();
+                            Log.d("uniqueId", uniqueId);
+                            idsArrayList.add(uniqueId);
+
+                            if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
+                                String subjectName = ds.getValue(String.class);
+                                Log.d("subjectName", subjectName);
+                                subjectsArrayList.add(subjectName);
+                            }
+                        }
+                        Log.d("IdsList", idsArrayList + "");
+                        Log.d("SubjectList", subjectsArrayList + "");
+//                        if (idsArrayList.size()>=Integer.parseInt(mSpinner.getSelectedItem().toString())){
+//                            loaderProgressBar.setVisibility(View.GONE);
+                            Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);
+                            intent.putExtra("PROFESSIONAL", professional);
+//                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
+                            intent.putStringArrayListExtra("IDSLIST", idsArrayList);
+                            intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
+                            Toast.makeText(UserProfessionalFirstActivity.this, "passed", Toast.LENGTH_SHORT).show();
+                            startActivity(intent);
+//                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });

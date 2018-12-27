@@ -104,4 +104,19 @@ public class ListOfQuestionsActivity extends AppCompatActivity {
         AdapterForQuestionsList adapterForQuestionsList = new AdapterForQuestionsList(recyclerViewQuestions, ListOfQuestionsActivity.this, new ArrayList<String>(), new ArrayList<String>(), professional, subject, chapter, set);
         recyclerViewQuestions.setAdapter(adapterForQuestionsList);
     }
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent();
+        intent.putExtra("RETURN", "reload");
+        setResult(RESULT_OK, intent);
+        super.onBackPressed();
+    }
 }
