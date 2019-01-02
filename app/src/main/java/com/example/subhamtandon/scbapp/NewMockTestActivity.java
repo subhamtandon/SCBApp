@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class NewMockTestActivity extends AppCompatActivity {
@@ -39,16 +40,17 @@ public class NewMockTestActivity extends AppCompatActivity {
     FloatingActionButton nextQuestion;
 
     DatabaseReference databaseReference, databaseReferenceRandom;
-    String professional, explanation, randomElement, subjectName;
+    String professional, explanation, randomElement, subjectName, randomElement1;
     int count = 0, rightAnswer = 0;
     ArrayAdapter<String> adapter;
-    ArrayList<String> idsArrayList = new ArrayList<>();
-    ArrayList<String> subjectsArrayList = new ArrayList<>();
-    ArrayList<Integer> questionShownList = new ArrayList<>();
-    ArrayList<String> newIdsArrayList = new ArrayList<>();
-    ArrayList<String> newSubjectsArrayList = new ArrayList<>();
+    //ArrayList<String> idsArrayList = new ArrayList<>();
+    //ArrayList<String> subjectsArrayList = new ArrayList<>();
+    //ArrayList<Integer> questionShownList = new ArrayList<>();
+    //ArrayList<String> newIdsArrayList = new ArrayList<>();
+    //ArrayList<String> newSubjectsArrayList = new ArrayList<>();
+    ArrayList<Lists> listsArrayList = new ArrayList<>();
 
-    int n, found, index;
+    int n, found, index, index1;
 
     Boolean optionAValue, optionBValue, optionCValue, optionDValue;
 
@@ -65,11 +67,16 @@ public class NewMockTestActivity extends AppCompatActivity {
 
         professional = getIntent().getStringExtra("PROFESSIONAL");
 //        n = Integer.parseInt(getIntent().getStringExtra("NUMBER OF QUESTIONS"));
-        idsArrayList = getIntent().getStringArrayListExtra("IDSLIST");
-        subjectsArrayList = getIntent().getStringArrayListExtra("SUBJECTSLIST");
+        //idsArrayList = getIntent().getStringArrayListExtra("IDSLIST");
+        //subjectsArrayList = getIntent().getStringArrayListExtra("SUBJECTSLIST");
+        listsArrayList = (ArrayList<Lists>)getIntent().getSerializableExtra("LISTSLIST");
 
-        Toast.makeText(this, idsArrayList.size() + "", Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, subjectsArrayList.size() + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, idsArrayList.size() + ":" + subjectsArrayList.size(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "original size" + listsArrayList.size() + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, subjectsArrayList.size() + "", Toast.LENGTH_SHORT).show();
+        //Log.d("newIdslist", idsArrayList + "");
+        //Log.d("newSubjectslist", subjectsArrayList+"");
+        Log.d("originalListsList", listsArrayList + "");
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -88,7 +95,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
-        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        //loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         nextQuestion.setVisibility(View.GONE);
 
@@ -108,62 +115,24 @@ public class NewMockTestActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
                     n= Integer.parseInt(mSpinner.getSelectedItem().toString());
+                    Toast.makeText(NewMockTestActivity.this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
                     dialog.cancel();
+                    generateRandomShowQuestion();
                 } else {
                     Toast.makeText(NewMockTestActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
                 }
             }
-        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+        })/*.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();
             }
-        });
+        })*/;
         builder.setView(mView);
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
-        //loadingProgressBar.setVisibility(View.VISIBLE);
-
-        /*databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
-                .child("App")
-                .child("Study")
-                .child("Random")
-                .child(professional)
-                .child("Questions");*/
-
-        /*databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    String uniqueId = ds.getKey();
-                    Log.d("uniqueId", uniqueId);
-                    idsArrayList.add(uniqueId);
-
-                    if (ds.getKey().toString().equalsIgnoreCase(uniqueId)) {
-                        String subjectName = ds.getValue(String.class);
-                        Log.d("subjectName", subjectName);
-                        subjectsArrayList.add(subjectName);
-
-                        //Log.d("subjectsArrayListSize", subjectsArrayList.size() + "");
-                    }
-                }
-                Log.d("Listid", idsArrayList+"");
-                Log.d("Listsubject",subjectsArrayList+"");
-                passLists(idsArrayList, subjectsArrayList);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
-        //LoadingTask loadingTask = new LoadingTask();
-        //loadingTask.execute();
-        Toast.makeText(this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
-
-        for (int i = 0; i < n; i++) {
+        /*for (int i = 0; i < n; i++) {
             found = 0;
             while (true) {
                 randomElement = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
@@ -184,12 +153,10 @@ public class NewMockTestActivity extends AppCompatActivity {
             questionShownList.add(index);
             newIdsArrayList.add(randomElement);
             newSubjectsArrayList.add(subjectName);
-        }
+        }*/
 
-        Log.d("newIdsList", newIdsArrayList + "");
-        Log.d("newSubjectList", newSubjectsArrayList + "");
-
-        showQuestion();
+        //Log.d("newIdsList", newIdsArrayList + "");
+        //Log.d("newSubjectList", newSubjectsArrayList + "");
 
         nextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -207,7 +174,24 @@ public class NewMockTestActivity extends AppCompatActivity {
                 textViewUserExplanation.setVisibility(View.GONE);
                 nextQuestion.setVisibility(View.GONE);
                 count++;
-                if (count < newIdsArrayList.size()) {
+                if (count < n) {
+                    /*found = 0;
+                    while (true) {
+                        randomElement1 = (idsArrayList.get(new Random().nextInt(idsArrayList.size())));
+                        index1 = idsArrayList.indexOf(randomElement);
+                        for (int j = 0; j < questionShownList.size(); j++) {
+                            if (index1 == questionShownList.get(j)) {
+                                found = 1;
+                                break;
+                            }
+                        }
+                        if (found == 1) {
+                            continue;
+                        } else {
+                            break;
+                        }
+                    }*/
+                    //questionShownList.add(index1);
                     showQuestion();
                 } else {
                     Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
@@ -344,9 +328,18 @@ public class NewMockTestActivity extends AppCompatActivity {
         });
     }
 
-    /*private void passLists(ArrayList<String> idsArrayList, ArrayList<String> subjectsArrayList) {
 
-    }*/
+    private void generateRandomShowQuestion() {
+        Collections.shuffle(listsArrayList);
+        for (int i = listsArrayList.size() - 1; i >= n; --i)
+            listsArrayList.remove(i);
+        Toast.makeText(this, "newsize" + listsArrayList.size(), Toast.LENGTH_SHORT).show();
+        Log.d("newListsList", listsArrayList + "");
+        //randomElement = idsArrayList.get(new Random().nextInt(idsArrayList.size()));
+        //index = idsArrayList.indexOf(randomElement);
+        //questionShownList.add(index);
+        showQuestion();
+    }
 
     private void showRightAnswer() {
         if (optionAValue) {
@@ -375,10 +368,10 @@ public class NewMockTestActivity extends AppCompatActivity {
                 .child("App")
                 .child("Study")
                 .child(professional)
-                .child(newSubjectsArrayList.get(count))
+                .child(listsArrayList.get(count).getSubjectName())
                 .child("MCQs")
                 .child("Questions")
-                .child(newIdsArrayList.get(count));
+                .child(listsArrayList.get(count).getUniqueId());
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -428,37 +421,6 @@ public class NewMockTestActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
-
-    /*class LoadingTask extends AsyncTask<Void, String, Void>{
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            //Toast.makeText(NewMockTestActivity.this, "pre", Toast.LENGTH_SHORT).show();
-            loadingProgressBar.setVisibility(View.VISIBLE);
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            //Toast.makeText(NewMockTestActivity.this, "background", Toast.LENGTH_SHORT).show();
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            //Toast.makeText(NewMockTestActivity.this, "post", Toast.LENGTH_SHORT).show();
-            loadingProgressBar.setVisibility(View.GONE);
-
-            Toast.makeText(NewMockTestActivity.this, professional + ":"+ n+ ":" + idsArrayList.size() + ":" + subjectsArrayList.size(), Toast.LENGTH_SHORT).show();
-
-
-
-
-
-        }
-    }*/
 
     @Override
     public void onBackPressed() {

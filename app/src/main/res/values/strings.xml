@@ -1259,10 +1259,9 @@ Kolkata</item>
 
     <string-array name="numberOfQuestions">
         <item>-Select-</item>
-        <item>2</item>
         <item>5</item>
-        <item>8</item>
         <item>10</item>
+        <item>20</item>
     </string-array>
 
     <string-array name="departments">

@@ -33,7 +33,7 @@ public class ProfessionalsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                intent = new Intent(getApplicationContext(), UserProfessionalFirstActivity.class);
+                intent = new Intent(getApplicationContext(), UserProfessionalFirstActivity1.class);
                 intent.putExtra("PROFESSIONAL", "First Professional");
                 startActivity(intent);
             }

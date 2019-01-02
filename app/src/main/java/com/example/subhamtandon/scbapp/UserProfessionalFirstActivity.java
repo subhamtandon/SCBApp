@@ -291,8 +291,8 @@ public class UserProfessionalFirstActivity extends AppCompatActivity {
                                 subjectsArrayList.add(subjectName);
                             }
                         }
-                        Log.d("IdsList", idsArrayList + "");
-                        Log.d("SubjectList", subjectsArrayList + "");
+                            Log.d("IdsList", idsArrayList + "");
+                            Log.d("SubjectList", subjectsArrayList + "");
 //                        if (idsArrayList.size()>=Integer.parseInt(mSpinner.getSelectedItem().toString())){
 //                            loaderProgressBar.setVisibility(View.GONE);
                             Intent intent = new Intent(UserProfessionalFirstActivity.this, NewMockTestActivity.class);

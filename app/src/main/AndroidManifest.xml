@@ -176,7 +176,8 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".NewMockTestActivity"></activity>
+        <activity android:name=".NewMockTestActivity" />
+        <activity android:name=".UserProfessionalFirstActivity1"></activity>
     </application>
 
 </manifest>
