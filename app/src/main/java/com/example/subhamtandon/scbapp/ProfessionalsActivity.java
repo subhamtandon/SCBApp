@@ -1,11 +1,14 @@
 package com.example.subhamtandon.scbapp;
 
 import android.content.Intent;
+import android.support.design.internal.SnackbarContentLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class ProfessionalsActivity extends AppCompatActivity {
 
@@ -52,20 +55,20 @@ public class ProfessionalsActivity extends AppCompatActivity {
         thirdProfessionalPartOneCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                intent = new Intent(getApplicationContext(), UserProfessionalThirdOneActivity.class);
-                intent.putExtra("PROFESSIONAL", "Third Professional Part-1");
-                startActivity(intent);
+                Toast.makeText(ProfessionalsActivity.this, "TO BE UPDATED LATER", Toast.LENGTH_SHORT).show();
+                //intent = new Intent(getApplicationContext(), UserProfessionalThirdOneActivity.class);
+                //intent.putExtra("PROFESSIONAL", "Third Professional Part-1");
+                //startActivity(intent);
             }
         });
 
         thirdProfessionalPartTwoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                intent = new Intent(getApplicationContext(), UserProfessionalThirdTwoActivity.class);
-                intent.putExtra("PROFESSIONAL", "Third Professional Part-2");
-                startActivity(intent);
+                Toast.makeText(ProfessionalsActivity.this, "TO BE UPDATED LATER", Toast.LENGTH_SHORT).show();
+                //intent = new Intent(getApplicationContext(), UserProfessionalThirdTwoActivity.class);
+                //intent.putExtra("PROFESSIONAL", "Third Professional Part-2");
+                //startActivity(intent);
             }
         });
     }

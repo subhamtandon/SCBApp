@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,12 +21,9 @@ import java.util.ArrayList;
 public class UserProfessionalFirstActivity1 extends AppCompatActivity {
 
     CardView AnatomyCard, PhysiologyCard, BiochemistryCard, firstProfessionalMockTestCard;
-    String[] subjects;
     String uniqueId;
     String subjectName;
     DatabaseReference databaseReferenceRandom;
-    ArrayList<String> idsArrayList = new ArrayList<>();
-    ArrayList<String> subjectsArrayList = new ArrayList<>();
     ArrayList<Lists> listsArrayList = new ArrayList<>();
 
     @Override
@@ -40,9 +38,6 @@ public class UserProfessionalFirstActivity1 extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setTitle("First Professional");
         }
-
-        subjects = getResources().getStringArray(R.array.firstProfessionalSubjects);
-        Log.d("subjects_length", subjects.length + "");
 
         AnatomyCard = findViewById(R.id.AnatomyCard);
         PhysiologyCard = findViewById(R.id.PhysiologyCard);
@@ -82,7 +77,6 @@ public class UserProfessionalFirstActivity1 extends AppCompatActivity {
         firstProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(UserProfessionalFirstActivity1.this, "clicked", Toast.LENGTH_SHORT).show();
                 databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
                         .child("App")
                         .child("Study")
@@ -96,27 +90,19 @@ public class UserProfessionalFirstActivity1 extends AppCompatActivity {
                         for (DataSnapshot ds: dataSnapshot.getChildren()){
                             uniqueId = ds.getKey();
                             Log.d("uniqueId", uniqueId);
-                            //idsArrayList.add(uniqueId);
 
                             if (ds.getKey().equals(uniqueId)) {
                                 subjectName = ds.getValue(String.class);
                                 Log.d("subjectName", subjectName);
-                                //subjectsArrayList.add(subjectName);
                             }
                             Lists lists = new Lists(uniqueId, subjectName);
                             listsArrayList.add(lists);
                         }
-                        //Log.d("IdsList", idsArrayList + "");
-                        //Log.d("SubjectList", subjectsArrayList + "");
                         Log.d("ListsList", listsArrayList + "");
-                        //Log.d("Listssize", idsArrayList.size() + ":" + subjectsArrayList.size());
                         Log.d("ListsSize", listsArrayList.size() + "");
                         Intent intent = new Intent(UserProfessionalFirstActivity1.this, NewMockTestActivity.class);
                         intent.putExtra("PROFESSIONAL", professional);
                         intent.putExtra("LISTSLIST", listsArrayList);
-                        //intent.putStringArrayListExtra("IDSLIST", idsArrayList);
-                        //intent.putStringArrayListExtra("SUBJECTSLIST", subjectsArrayList);
-                        //Toast.makeText(UserProfessionalFirstActivity1.this, "passed", Toast.LENGTH_SHORT).show();
                         startActivity(intent);
                         finish();
                     }
@@ -128,5 +114,12 @@ public class UserProfessionalFirstActivity1 extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId()==android.R.id.home)
+            finish();
+        return super.onOptionsItemSelected(item);
     }
 }

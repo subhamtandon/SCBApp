@@ -119,8 +119,8 @@ public class UserQuestionActivity extends AppCompatActivity {
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
                                     finish();
-                                    onBackPressed();
                                 }
                             });
                     AlertDialog alertDialog = builder.create();

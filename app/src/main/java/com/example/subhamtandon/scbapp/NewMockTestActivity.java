@@ -50,7 +50,7 @@ public class NewMockTestActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<Lists> listsArrayList = new ArrayList<>();
 
-    int n, found;
+    int n, found, flag = 0;
     long timeLeftInMilliSeconds;
 
     Boolean optionAValue, optionBValue, optionCValue, optionDValue, timerRunning;
@@ -378,8 +378,8 @@ public class NewMockTestActivity extends AppCompatActivity {
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
                             finish();
-                            onBackPressed();
                         }
                     });
             AlertDialog alertDialog = builder.create();
@@ -395,8 +395,6 @@ public class NewMockTestActivity extends AppCompatActivity {
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
-                        onBackPressed();
                         finish();
                     }
                 })

@@ -2,20 +2,33 @@ package com.example.subhamtandon.scbapp;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class UserProfessionalSecondActivity extends AppCompatActivity {
 
     CardView pathologyCard, pharmacologyCard, microbiologyCard, fmtCard, secondProfessionalMockTestCard;
-    ArrayAdapter<String> adapter;
+    DatabaseReference databaseReferenceRandom;
+    String uniqueId;
+    String subjectName;
+    ArrayList<Lists> listsArrayList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,44 +89,46 @@ public class UserProfessionalSecondActivity extends AppCompatActivity {
             }
         });
 
-        /*secondProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
+        secondProfessionalMockTestCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserProfessionalSecondActivity.this);
-                View mView = getLayoutInflater().inflate(R.layout.activity_professionals_spinner, null);
-                builder.setTitle("Choose number of Questions")
-                        .setCancelable(false);
+                databaseReferenceRandom = FirebaseDatabase.getInstance().getReference()
+                        .child("App")
+                        .child("Study")
+                        .child("Random")
+                        .child(professional)
+                        .child("Questions");
 
-                final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
-
-                adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                mSpinner.setAdapter(adapter);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                databaseReferenceRandom.addValueEventListener(new ValueEventListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (!mSpinner.getSelectedItem().toString().equalsIgnoreCase("-Select-")) {
-                            Intent intent = new Intent(UserProfessionalSecondActivity.this, MockTestActivity.class);
-                            intent.putExtra("PROFESSIONAL", professional);
-                            intent.putExtra("NUMBER OF QUESTIONS", mSpinner.getSelectedItem().toString());
-                            startActivity(intent);
-                            finish();
-                        }else {
-                            Toast.makeText(UserProfessionalSecondActivity.this, "Select number of Questions", Toast.LENGTH_SHORT).show();
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds: dataSnapshot.getChildren()){
+                            uniqueId = ds.getKey();
+                            Log.d("uniqueId", uniqueId);
+
+                            if (ds.getKey().equals(uniqueId)) {
+                                subjectName = ds.getValue(String.class);
+                                Log.d("subjectName", subjectName);
+                            }
+                            Lists lists = new Lists(uniqueId, subjectName);
+                            listsArrayList.add(lists);
                         }
+                        Log.d("ListsList", listsArrayList + "");
+                        Log.d("ListsSize", listsArrayList.size() + "");
+                        Intent intent = new Intent(UserProfessionalSecondActivity.this, NewMockTestActivity.class);
+                        intent.putExtra("PROFESSIONAL", professional);
+                        intent.putExtra("LISTSLIST", listsArrayList);
+                        startActivity(intent);
+                        finish();
                     }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
                     @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(UserProfessionalSecondActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-                builder.setView(mView);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
             }
-        });*/
+        });
     }
 
     @Override
