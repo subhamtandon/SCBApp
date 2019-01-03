@@ -1258,10 +1258,10 @@ Kolkata</item>
     </string-array>
 
     <string-array name="numberOfQuestions">
-        <item>-Select-</item>
-        <item>5</item>
-        <item>10</item>
-        <item>20</item>
+        <item>30</item>
+        <item>50</item>
+        <item>60</item>
+        <item>90</item>
     </string-array>
 
     <string-array name="departments">
