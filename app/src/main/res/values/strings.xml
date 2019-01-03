@@ -1136,6 +1136,25 @@ Kolkata</item>
         <item>ADVANCED BIOCHEM</item>
     </string-array>
 
+    <string-array name="bioChemistryDescription">
+
+        <item>Amino acids, Proteins, Carbohydrates, Lipids</item>
+        <item>Enzymes</item>
+        <item>General, detoxification, disease</item>
+        <item>Glucose metabolism</item>
+        <item>Lipid metabolism</item>
+        <item>Protein and amino acid metabolism</item>
+        <item>lft, tft, kft, adrenal cortex</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>replication, transcription, translation, gene expression</item>
+        <item></item>
+        <item> GFs, Immunochemistry, AIDS, Cancer</item>
+
+    </string-array>
+
     <string-array name="pathologyChapters">
         <item>Cell and Cellular Response to Stress</item>
         <item>Inflammation and Repair, Hemodynamics</item>
@@ -1181,6 +1200,35 @@ Kolkata</item>
         <item>Miscellaneous-II</item>
     </string-array>
 
+    <string-array name="pharmacologyDescription">
+
+        <item>Pharmacokinetics, Pharmacodynamics, ADR</item>
+        <item>Cholinergic and Anti-cholinergic</item>
+        <item>Adrenergic, Anti-adrenergic and Drugs for Glaucoma</item>
+        <item>Histamine, Serotonin, PGs</item>
+        <item>NSAIDs, Anti-rheumatoid and Anti-gout drugs</item>
+        <item></item>
+        <item>Pituitary, Thyroid, Insulin, Glucagon, Corticosteroids</item>
+        <item>Androgens, Female Sex Hormones, Contraceptives, Calcium Balance</item>
+        <item>Skeletal Muscles Relaxants, Local Anaesthetics</item>
+        <item>General Anaesthetics, Alcohols, Sedative-Hypnotics</item>
+        <item>Anti-epileptic Drugs, Anti-Parkinsonian Drugs</item>
+        <item>Drugs used in Mental Illness</item>
+        <item>Opioid Analgesic, CNS Stimulant</item>
+        <item>Renin-Angiotensin System, Cardiac Glycosides, Heart Failure, Anti-arrhythmic Drugs</item>
+        <item>Anti-anginal, Anti-Ischaemic and Anti-hypertensive Drugs</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>Sulfonamides, Cotrimoxazole, Quinolones, ß-lactams, Broad Spectrum Antibiotics</item>
+        <item>Aminoglycoside Antibiotics, Macrolide, and Urinary Antiseptics, Anti-TB, Anti-Leprosy, Anti-fungal Drugs</item>
+        <item>Antiviral, Antimalarial, Antiamoebic, Antiprotozoal and Antihelminthic Drugs</item>
+        <item></item>
+        <item>Immunosuppressant Drugs, Drugs on Skin and Mucous Membrane, Antiseptics, Disinfectants</item>
+        <item>Chelating Agents, Vitamins, Vaccines, Drug Interaction</item>
+
+    </string-array>
+
     <string-array name="microbiologyChapters">
         <item>General Microbiology-1</item>
         <item>General Microbiology-2</item>
@@ -1198,6 +1246,23 @@ Kolkata</item>
         <item>Clinical Microbiology</item>
     </string-array>
 
+    <string-array name="microbiologyDescription">
+        <item>Sterilisation and Disinfection</item>
+        <item>Rest all</item>
+        <item>Till Ag-Ab reaction</item>
+        <item>Complement System- Immunohematology</item>
+        <item>Staph, Strep, Pneumo, Nisseria, Corynebacterium and Bacillus</item>
+        <item>Anaerobic bacteria- I, II, Vibrio, Pseudomonas</item>
+        <item>Enterobacteriaceae</item>
+        <item>Yersinia, Pasteurella, Francisella and Coccobacilli</item>
+        <item>Mycobacterium</item>
+        <item>Spirochetes, Mycoplasma, Actinomycetes, Rickettsiaceae, Chlamydiae, Miscellaneous Bacteria</item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+    </string-array>
+
     <string-array name="fmtChapters">
         <item>Medical Jurisprudence</item>
         <item>Identification</item>
@@ -1211,6 +1276,21 @@ Kolkata</item>
         <item>Poison acting on Nervous System</item>
         <item>Cardiac Poison</item>
         <item>Miscellaneous Poisons</item>
+    </string-array>
+
+    <string-array name="fmtDescription">
+        <item>Legal procedure, Medical Law and Ethics</item>
+        <item></item>
+        <item></item>
+        <item>Injuries and Wounds</item>
+        <item></item>
+        <item>Impotence and Sterility, Virginity, Pregnancy and Delivery, Abortion, Sexual Offences, Infant Deaths</item>
+        <item>Starvation, Anaesthetic Deaths, Blood Stain, Artefacts, Forensic Lab and Forensic Psychiatry</item>
+        <item></item>
+        <item>Agricultural, Corrosive, Metallic, Inorganic and Organic</item>
+        <item>CNS Depressants, Psychotropic Drugs, Deliriant Poisons, Spinal Poisons</item>
+        <item></item>
+        <item>Asphyxiants, Food Poisoning, Drug dependence and abuse</item>
     </string-array>
 
     <string-array name="spmChapters">
