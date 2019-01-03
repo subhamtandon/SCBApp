@@ -39,10 +39,14 @@ public class ChaptersActivity extends AppCompatActivity {
         String[] anatomyChaptersName = getResources().getStringArray(R.array.anatomyChapters);
         String[] physiologyChaptersName = getResources().getStringArray(R.array.physiologyChapters);
         String[] bioChemistryChaptersName = getResources().getStringArray(R.array.bioChemistryChapters);
+        String[] bioChemistryDescription = getResources().getStringArray(R.array.bioChemistryDescription);
         String[] pathologyChaptersName = getResources().getStringArray(R.array.pathologyChapters);
         String[] pharmacologyChaptersName = getResources().getStringArray(R.array.pharmacologyChapters);
+        String[] pharmacologyDescription = getResources().getStringArray(R.array.pharmacologyDescription);
         String[] microbiologyChaptersName = getResources().getStringArray(R.array.microbiologyChapters);
+        String[] microbiologyDescription = getResources().getStringArray(R.array.microbiologyDescription);
         String[] fmtChaptersName = getResources().getStringArray(R.array.fmtChapters);
+        String[] fmtDescription = getResources().getStringArray(R.array.fmtDescription);
         String[] spmChaptersName = getResources().getStringArray(R.array.spmChapters);
         String[] entChaptersName = getResources().getStringArray(R.array.entChapters);
         String[] opthaChaptersName = getResources().getStringArray(R.array.opthaChapters);
@@ -59,49 +63,49 @@ public class ChaptersActivity extends AppCompatActivity {
 
         if (subject.equalsIgnoreCase("Anatomy")){
             for(int i =0; i<anatomyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(anatomyChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(anatomyChaptersName[i], "");
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("Physiology")){
             for(int i =0; i<physiologyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(physiologyChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(physiologyChaptersName[i], "");
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("BioChemistry")){
             for(int i =0; i<bioChemistryChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(bioChemistryChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(bioChemistryChaptersName[i], bioChemistryDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("Pathology")){
             for(int i =0; i<pathologyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(pathologyChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(pathologyChaptersName[i], "");
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("Pharmacology")){
             for(int i =0; i<pharmacologyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(pharmacologyChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(pharmacologyChaptersName[i], pharmacologyDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("Microbiology")){
             for(int i =0; i<microbiologyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(microbiologyChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(microbiologyChaptersName[i], microbiologyDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
 
         if (subject.equalsIgnoreCase("FMT")){
             for(int i =0; i<fmtChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(fmtChaptersName[i], "Description is coming soon");
+                ListItemChapters listItemChapter = new ListItemChapters(fmtChaptersName[i], fmtDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
