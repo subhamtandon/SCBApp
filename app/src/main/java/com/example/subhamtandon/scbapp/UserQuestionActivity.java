@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class UserQuestionActivity extends AppCompatActivity {
 
-    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, pathChap, pathSet, textViewUserResult;
+    TextView questionCount, textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, pathChap, pathSet, textViewUserResult;
 
     CardView optionACardView, optionBCardView, optionCCardView, optionDCardView;
     Button buttonSeeExplanation, exitQuestions;
@@ -51,6 +51,7 @@ public class UserQuestionActivity extends AppCompatActivity {
 
         Toast.makeText(this, professional + ":" + subject + ":" + type + ":" + chapter + ":" + set + ":" + idsArrayList.size(), Toast.LENGTH_SHORT).show();
 
+        questionCount = findViewById(R.id.questionCount);
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
         textViewUserOptionB = findViewById(R.id.textViewUserOptionB);
@@ -94,7 +95,9 @@ public class UserQuestionActivity extends AppCompatActivity {
                 textViewUserExplanation.setVisibility(View.GONE);
                 nextQuestion.setVisibility(View.GONE);
                 count++;
+
                 if (count<idsArrayList.size()){
+                    questionCount.setText(count + 1 + ". ");
                     showQuestion();
                 }
                 else {

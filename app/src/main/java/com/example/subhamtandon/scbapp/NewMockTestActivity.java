@@ -33,7 +33,7 @@ import java.util.Random;
 
 public class NewMockTestActivity extends AppCompatActivity {
 
-    TextView textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, textViewUserResult;
+    TextView questionCount, textViewUserQuestion, textViewUserOptionA, textViewUserOptionB, textViewUserOptionC, textViewUserOptionD, textViewUserExplanation, textViewUserResult;
 
     CardView optionACardView, optionBCardView, optionCCardView, optionDCardView;
     Button buttonSeeExplanation, exitQuestions;
@@ -77,6 +77,8 @@ public class NewMockTestActivity extends AppCompatActivity {
         //Log.d("newIdslist", idsArrayList + "");
         //Log.d("newSubjectslist", subjectsArrayList+"");
         Log.d("originalListsList", listsArrayList + "");
+
+        questionCount = findViewById(R.id.questionCount);
 
         textViewUserQuestion = findViewById(R.id.textViewUserQuestion);
         textViewUserOptionA = findViewById(R.id.textViewUserOptionA);
@@ -174,6 +176,7 @@ public class NewMockTestActivity extends AppCompatActivity {
                 textViewUserExplanation.setVisibility(View.GONE);
                 nextQuestion.setVisibility(View.GONE);
                 count++;
+
                 if (count < n) {
                     /*found = 0;
                     while (true) {
@@ -192,6 +195,7 @@ public class NewMockTestActivity extends AppCompatActivity {
                         }
                     }*/
                     //questionShownList.add(index1);
+                    questionCount.setText(count + 1 + ". ");
                     showQuestion();
                 } else {
                     Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
