@@ -94,7 +94,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
-        //loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
 
         nextQuestion.setVisibility(View.GONE);
 
@@ -114,6 +114,7 @@ public class NewMockTestActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                     n= Integer.parseInt(mSpinner.getSelectedItem().toString());
                     Toast.makeText(NewMockTestActivity.this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
+                    loadingProgressBar.setVisibility(View.VISIBLE);
                     dialog.cancel();
                     generateRandomShowQuestion();
             }
@@ -292,6 +293,12 @@ public class NewMockTestActivity extends AppCompatActivity {
                     textViewUserOptionC.setText(newQuestion.getOptionC().getOptionCText());
                     textViewUserOptionD.setText(newQuestion.getOptionD().getOptionDText());
                     explanation = newQuestion.getExplanation().getExplanationText();
+                    loadingProgressBar.setVisibility(View.GONE);
+                }
+                else{
+                    Toast.makeText(NewMockTestActivity.this, "No questions", Toast.LENGTH_SHORT).show();
+                    finish();
+                    loadingProgressBar.setVisibility(View.GONE);
                 }
             }
 
@@ -342,6 +349,7 @@ public class NewMockTestActivity extends AppCompatActivity {
     }
 
     public void nextClicked(View view){
+        loadingProgressBar.setVisibility(View.VISIBLE);
         startStop();
         optionACardView.setClickable(true);
         optionBCardView.setClickable(true);
@@ -360,6 +368,7 @@ public class NewMockTestActivity extends AppCompatActivity {
             questionCount.setText(count + 1 + ". ");
             showQuestion();
         } else {
+            loadingProgressBar.setVisibility(View.GONE);
             Toast.makeText(NewMockTestActivity.this, "Done", Toast.LENGTH_SHORT).show();
             AlertDialog.Builder builder = new AlertDialog.Builder(NewMockTestActivity.this);
             View mView = getLayoutInflater().inflate(R.layout.scorecard, null);

@@ -10,6 +10,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,8 @@ public class UserQuestionActivity extends AppCompatActivity {
     ArrayList<String> idsArrayList;
 
     Boolean optionAValue , optionBValue, optionCValue, optionDValue;
+
+    ProgressBar loadingProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,17 +74,21 @@ public class UserQuestionActivity extends AppCompatActivity {
         exitQuestions = findViewById(R.id.exitQuestions);
 
         nextQuestion = findViewById(R.id.nextQuestion);
+        loadingProgressBar = findViewById(R.id.loadingProgressBar);
+        loadingProgressBar.setVisibility(View.VISIBLE);
 
         pathChap.setText(chapter);
         pathSet.setText(set);
 
         nextQuestion.setVisibility(View.GONE);
 
+
         showQuestion();
 
         nextQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loadingProgressBar.setVisibility(View.VISIBLE);
                 optionACardView.setClickable(true);
                 optionBCardView.setClickable(true);
                 optionCCardView.setClickable(true);
@@ -101,6 +108,7 @@ public class UserQuestionActivity extends AppCompatActivity {
                     showQuestion();
                 }
                 else {
+                    loadingProgressBar.setVisibility(View.GONE);
                     Toast.makeText(UserQuestionActivity.this, "Done", Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(UserQuestionActivity.this);
                     View mView = getLayoutInflater().inflate(R.layout.scorecard, null);
@@ -285,6 +293,12 @@ public class UserQuestionActivity extends AppCompatActivity {
                     textViewUserOptionC.setText(newQuestion.getOptionC().getOptionCText());
                     textViewUserOptionD.setText(newQuestion.getOptionD().getOptionDText());
                     explanation = newQuestion.getExplanation().getExplanationText();
+                    loadingProgressBar.setVisibility(View.GONE);
+                }
+                else{
+                    Toast.makeText(UserQuestionActivity.this, "No questions", Toast.LENGTH_SHORT).show();
+                    finish();
+                    loadingProgressBar.setVisibility(View.GONE);
                 }
             }
 
