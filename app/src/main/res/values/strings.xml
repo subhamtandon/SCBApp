@@ -1232,8 +1232,7 @@ Kolkata</item>
     <string-array name="microbiologyChapters">
         <item>General Microbiology-1</item>
         <item>General Microbiology-2</item>
-        <item>Immunology-1</item>
-        <item>Immunology-2</item>
+        <item>Immunology</item>
         <item>Bacteriology-1</item>
         <item>Bacteriology-2</item>
         <item>Bacteriology-3</item>
