@@ -6,4 +6,25 @@
     android:name="com.google.android.gms.maps.SupportMapFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SCBMapActivity" />
+    tools:context=".SCBMapActivity" >
+
+    <ImageView
+        android:layout_height="wrap_content"
+        android:layout_width = "wrap_content"
+        android:layout_gravity="center"
+        android:id="@+id/schematicMap"
+        android:padding="20dp"
+        android:src="@drawable/schematicmapimage"
+        android:visibility="invisible"
+        >
+
+    </ImageView>
+
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width = "wrap_content"
+        android:text="Schematic Map"
+        android:layout_gravity="center|bottom"
+        android:id="@+id/schematicMapButton">
+    </Button>
+</fragment>

@@ -2,6 +2,10 @@ package com.example.subhamtandon.scbapp;
 
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageSwitcher;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -13,6 +17,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class SCBMapActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+    Button schematicMapButton;
+    ImageView schematicMap;
+    int count = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +29,27 @@ public class SCBMapActivity extends FragmentActivity implements OnMapReadyCallba
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        schematicMapButton = findViewById(R.id.schematicMapButton);
+        schematicMap = findViewById(R.id.schematicMap);
+
+        schematicMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                count ++;
+                if(count%2==1){
+                    schematicMap.setVisibility(View.VISIBLE);
+                    schematicMapButton.setText("GOOGLE MAP");
+                }
+                else {
+                    schematicMap.setVisibility(View.INVISIBLE);
+                    schematicMapButton.setText("SCHEMATIC MAP");
+                }
+
+            }
+        });
+
+
     }
 
 
