@@ -2,20 +2,17 @@ package com.example.subhamtandon.scbapp;
 
 public class UploadInfo {
 
-    String infoText, infoDate, infoTime, infoImageUri;
+    String infoTitle, infoDescription, infoDate, infoTime, infoImageUri;
 
-    public UploadInfo(String infoText, String infoDate, String infoTime, String infoImageUri) {
-        this.infoText = infoText;
+    public UploadInfo(String infoTitle,String infoDescription, String infoDate, String infoTime, String infoImageUri) {
+        this.infoTitle = infoTitle;
+        this.infoDescription = infoDescription;
         this.infoDate = infoDate;
         this.infoTime = infoTime;
         this.infoImageUri = infoImageUri;
     }
     public UploadInfo(){
 
-    }
-
-    public String getInfoText() {
-        return infoText;
     }
 
     public String getInfoDate() {
@@ -34,8 +31,20 @@ public class UploadInfo {
         this.infoImageUri = infoImageUri;
     }
 
-    public void setInfoText(String infoText) {
-        this.infoText = infoText;
+    public String getInfoTitle() {
+        return infoTitle;
+    }
+
+    public void setInfoTitle(String infoTitle) {
+        this.infoTitle = infoTitle;
+    }
+
+    public String getInfoDescription() {
+        return infoDescription;
+    }
+
+    public void setInfoDescription(String infoDescription) {
+        this.infoDescription = infoDescription;
     }
 
     public void setInfoDate(String infoDate) {

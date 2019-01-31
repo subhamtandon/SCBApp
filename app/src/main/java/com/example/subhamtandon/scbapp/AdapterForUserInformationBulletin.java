@@ -17,25 +17,28 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
 
     RecyclerView recyclerView;
     Context context;
-    ArrayList<String> infosArrayList = new ArrayList<>();
+    ArrayList<String> infoTitleArrayList = new ArrayList<>();
+    ArrayList<String> infoDescriptionArrayList = new ArrayList<>();
     ArrayList<String> infoKeys = new ArrayList<>();
     ArrayList<String> infoDates = new ArrayList<>();
     ArrayList<String> infoTimes = new ArrayList<>();
     ArrayList<String> infoImageUris ;
 
-    public AdapterForUserInformationBulletin(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
+    public AdapterForUserInformationBulletin(RecyclerView recyclerView, Context context, ArrayList<String> infoTitleArrayList, ArrayList<String> infoDescriptionArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
         this.recyclerView = recyclerView;
         this.context = context;
-        this.infosArrayList = infosArrayList;
+        this.infoTitleArrayList = infoTitleArrayList;
+        this.infoDescriptionArrayList = infoDescriptionArrayList;
         this.infoKeys = infoKeys;
         this.infoDates = infoDates;
         this.infoTimes = infoTimes;
         this.infoImageUris = infoImageUris;
     }
 
-    public void update(String infoName, String infoKey, String infoDate, String infoTime, String infoImageUri){
+    public void update(String infoTitle, String infoDescription, String infoKey, String infoDate, String infoTime, String infoImageUri){
 
-        infosArrayList.add(infoName);
+        infoTitleArrayList.add(infoTitle);
+        infoDescriptionArrayList.add(infoDescription);
         infoKeys.add(infoKey);
         infoDates.add(infoDate);
         infoTimes.add(infoTime);
@@ -53,7 +56,8 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.infoTextView.setText(infosArrayList.get(position));
+        holder.infoTitleTextView.setText(infoTitleArrayList.get(position));
+        holder.infoDescriptionTextView.setText(infoDescriptionArrayList.get(position));
         holder.dateAndTimeInfo.setText(infoDates.get(position) + " at " + infoTimes.get(position));
         if(!infoImageUris.get(position).equals("No image selected"))
         {
@@ -63,18 +67,19 @@ public class AdapterForUserInformationBulletin extends RecyclerView.Adapter<Adap
 
     @Override
     public int getItemCount() {
-        return infosArrayList.size();
+        return infoTitleArrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView dateAndTimeInfo,infoTextView;
+        public TextView dateAndTimeInfo,infoTitleTextView, infoDescriptionTextView;
         public ImageView infoImageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
             dateAndTimeInfo = itemView.findViewById(R.id.dateAndTimeInfo);
-            infoTextView = itemView.findViewById(R.id.infoTextView);
+            infoTitleTextView = itemView.findViewById(R.id.infoTitleTextView);
+            infoDescriptionTextView = itemView.findViewById(R.id.infoDescriptionTextView);
             infoImageView = itemView.findViewById(R.id.infoImageView);
         }
     }

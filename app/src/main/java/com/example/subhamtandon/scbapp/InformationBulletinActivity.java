@@ -58,7 +58,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
     NotificationManagerCompat notificationManagerCompat;
     RecyclerView recyclerViewInfos;
-    EditText addInfoEditText;
+    EditText addInfoTitle, addInfoDescription;
     ImageView addInfoImageView;
     Button addInfo, selectInfoImage;
     FloatingActionButton addInfoFloating;
@@ -75,8 +75,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
     DatabaseReference databaseReference;
     StorageTask mUploadTask;
 
-
-    String newInfo;
+    String newTitle, newDescription;
     String date, time;
 
     ProgressBar progressBar;
@@ -120,14 +119,15 @@ public class InformationBulletinActivity extends AppCompatActivity {
                         Log.e("toget",dataSnapshot2.getValue().toString());
                         Log.e("toget2",dataSnapshot2.getKey().toString());
 
-                        String info = dataSnapshot2.child("infoText").getValue(String.class);
+                        String infoTitle = dataSnapshot2.child("infoTitle").getValue(String.class);
+                        String infoDescription = dataSnapshot2.child("infoDescription").getValue(String.class);
                         String infoKey = dataSnapshot2.getKey();
                         String dateOfInfo = dataSnapshot2.child("infoDate").getValue(String.class);
                         String timeOfInfo = dataSnapshot2.child("infoTime").getValue(String.class);
                         String infoImageUri = dataSnapshot2.child("infoImageUri").getValue(String.class);
-                        Log.d("getting", info);
+                        Log.d("getting", infoTitle);
 
-                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
+                        ((AdapterForInfoList) recyclerViewInfos.getAdapter()).update(infoTitle, infoDescription, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
                     }
                     progressBar.setVisibility(View.INVISIBLE);
                 }
@@ -187,10 +187,8 @@ public class InformationBulletinActivity extends AppCompatActivity {
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerViewInfos.setLayoutManager(mLayoutManager);
-        AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        AdapterForInfoList adapterForInfoList = new AdapterForInfoList(recyclerViewInfos, InformationBulletinActivity.this,new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         recyclerViewInfos.setAdapter(adapterForInfoList);
-
-
 
         addInfoFloating.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,7 +196,8 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(InformationBulletinActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.alert_dialog_box_add_info, null);
-                addInfoEditText = mView.findViewById(R.id.addInfoEditText);
+                addInfoTitle = mView.findViewById(R.id.addInfoTitle);
+                addInfoDescription = mView.findViewById(R.id.addInfoDescription);
                 addInfoImageView = mView.findViewById(R.id.addInfoImageView);
                 selectInfoImage = mView.findViewById(R.id.selectInfoImage);
                 addInfo = mView.findViewById(R.id.addInfo);
@@ -225,13 +224,17 @@ public class InformationBulletinActivity extends AppCompatActivity {
                 addInfo.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        newInfo = addInfoEditText.getText().toString();
-                        Log.d("Info",newInfo);
+                        newTitle = addInfoTitle.getText().toString();
+                        Log.d("Info",newTitle);
+                        newDescription = addInfoDescription.getText().toString();
                         String ready = "true";
-                        if(TextUtils.isEmpty(newInfo)){
-                            addInfoEditText.setError(getString(R.string.error_field_required));
+                        if(TextUtils.isEmpty(newTitle)){
+                            addInfoTitle.setError(getString(R.string.error_field_required));
                             ready = "false";
-
+                        }
+                        if(TextUtils.isEmpty(newDescription)){
+                            addInfoDescription.setError(getString(R.string.error_field_required));
+                            ready = "false";
                         }
                         if(ready.equals("true")){
 
@@ -246,7 +249,6 @@ public class InformationBulletinActivity extends AppCompatActivity {
                                     progressDialog.setTitle("Uploading File...");
                                     progressDialog.setProgress(0);
                                     progressDialog.show();progressDialog = new ProgressDialog(InformationBulletinActivity.this);
-
 
                                     final StorageReference storageReference1 = storageReference.child("Info Images").child(System.currentTimeMillis()+"."+getFileExtention(mImageUri));
                                     mUploadTask = storageReference1.putFile(mImageUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -264,7 +266,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
                                                     Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
 
-                                                    UploadInfo uploadInfo = new UploadInfo(newInfo, date, time, task.getResult().toString());
+                                                    UploadInfo uploadInfo = new UploadInfo(newTitle, newDescription, date, time, task.getResult().toString());
 
                                                     databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                         @Override
@@ -323,7 +325,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
                                     Toast.makeText(InformationBulletinActivity.this, date + " " +time ,Toast.LENGTH_SHORT).show();
 
-                                    UploadInfo uploadInfo = new UploadInfo(newInfo, date, time, url);
+                                    UploadInfo uploadInfo = new UploadInfo(newTitle, newDescription, date, time, url);
 
                                     databaseReference.child(infoKey).setValue(uploadInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
@@ -355,7 +357,7 @@ public class InformationBulletinActivity extends AppCompatActivity {
 
     private void sendNotification() {
 
-        String info = addInfoEditText.getText().toString();
+        String info = addInfoTitle.getText().toString();
         Intent activityIntent = new Intent(this, InformationBulletinActivity.class);
         PendingIntent contentIntent = PendingIntent.getActivity(this, 0, activityIntent, 0);
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)

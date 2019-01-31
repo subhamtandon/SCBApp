@@ -25,24 +25,27 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
 
     RecyclerView recyclerView;
     Context context;
-    ArrayList<String> infosArrayList = new ArrayList<>();
+    ArrayList<String> infoTitleArrayList = new ArrayList<>();
+    ArrayList<String> infoDescriptionArrayList = new ArrayList<>();
     ArrayList<String> infoKeys = new ArrayList<>();
     ArrayList<String> infoDates = new ArrayList<>();
     ArrayList<String> infoTimes = new ArrayList<>();
     ArrayList<String> infoImageUris ;
 
-    public AdapterForInfoList(RecyclerView recyclerView, Context context, ArrayList<String> infosArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
+    public AdapterForInfoList(RecyclerView recyclerView, Context context, ArrayList<String> infoTitleArrayList, ArrayList<String> infoDescriptionArrayList, ArrayList<String> infoKeys, ArrayList<String> infoDates, ArrayList<String> infoTimes, ArrayList<String> infoImageUris) {
         this.recyclerView = recyclerView;
         this.context = context;
-        this.infosArrayList = infosArrayList;
+        this.infoTitleArrayList = infoTitleArrayList;
+        this.infoDescriptionArrayList = infoDescriptionArrayList;
         this.infoKeys = infoKeys;
         this.infoDates = infoDates;
         this.infoTimes = infoTimes;
         this.infoImageUris = infoImageUris;
     }
-    public void update(String infoName, String infoKey, String infoDate, String infoTime, String infoImageUri){
+    public void update(String infoTitle, String infoDescription, String infoKey, String infoDate, String infoTime, String infoImageUri){
 
-        infosArrayList.add(infoName);
+        infoTitleArrayList.add(infoTitle);
+        infoDescriptionArrayList.add(infoDescription);
         infoKeys.add(infoKey);
         infoDates.add(infoDate);
         infoTimes.add(infoTime);
@@ -62,7 +65,8 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         final int pos = position;
 
-        holder.infoName.setText(infosArrayList.get(position));
+        holder.infoTitleTextView.setText(infoTitleArrayList.get(position));
+        holder.infoDescriptionTextView.setText(infoDescriptionArrayList.get(position));
         holder.dateAndTimeInfo.setText(infoDates.get(position) + " at " + infoTimes.get(position));
         if(!infoImageUris.get(position).equals("No image selected"))
         {
@@ -89,7 +93,8 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
                         String uploadPDFID = infoKeys.get(pos);
 
                         databaseReference.child(uploadPDFID).removeValue();
-                        infosArrayList.remove(pos);
+                        infoTitleArrayList.remove(pos);
+                        infoDescriptionArrayList.remove(pos);
                         //urls.remove(pos);
                         infoDates.remove(pos);
                         infoTimes.remove(pos);
@@ -112,18 +117,19 @@ public class AdapterForInfoList extends RecyclerView.Adapter<AdapterForInfoList.
 
     @Override
     public int getItemCount() {
-        return infosArrayList.size();
+        return infoTitleArrayList.size();
     }
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView infoName;
+        TextView infoTitleTextView, infoDescriptionTextView;
         TextView dateAndTimeInfo;
         ImageView deleteInfo, infoImageViewAdmin;
 
         public ViewHolder(View itemView){
             super(itemView);
-            infoName = itemView.findViewById(R.id.infoTextView);
+            infoTitleTextView = itemView.findViewById(R.id.infoTitleTextView);
+            infoDescriptionTextView = itemView.findViewById(R.id.infoDescriptionTextView);
             dateAndTimeInfo = itemView.findViewById(R.id.dateAndTimeInfo);
             deleteInfo = itemView.findViewById(R.id.deleteInfo);
             infoImageViewAdmin = itemView.findViewById(R.id.infoImageViewAdmin);

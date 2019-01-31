@@ -57,13 +57,14 @@ public class InformationBulletinFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    String info = ds.child("infoText").getValue(String.class);
+                    String infoTitle = ds.child("infoTitle").getValue(String.class);
+                    String infoDescription = ds.child("infoDescription").getValue(String.class);
                     String infoKey = ds.getKey();
                     String dateOfInfo = ds.child("infoDate").getValue(String.class);
                     String timeOfInfo = ds.child("infoTime").getValue(String.class);
                     String infoImageUri = ds.child("infoImageUri").getValue(String.class);
 
-                    ((AdapterForUserInformationBulletin) recyclerViewInformationBulletinUser.getAdapter()).update(info, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
+                    ((AdapterForUserInformationBulletin) recyclerViewInformationBulletinUser.getAdapter()).update(infoTitle, infoDescription, infoKey, dateOfInfo, timeOfInfo, infoImageUri);
                 }
             }
 
@@ -77,7 +78,7 @@ public class InformationBulletinFragment extends Fragment {
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         recyclerViewInformationBulletinUser.setLayoutManager(mLayoutManager);
-        AdapterForUserInformationBulletin adapterForUserInformationBulletin = new AdapterForUserInformationBulletin(recyclerViewInformationBulletinUser, getContext(),new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
+        AdapterForUserInformationBulletin adapterForUserInformationBulletin = new AdapterForUserInformationBulletin(recyclerViewInformationBulletinUser, getContext(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>());
         recyclerViewInformationBulletinUser.setAdapter(adapterForUserInformationBulletin);
 
         return view;
