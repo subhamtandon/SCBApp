@@ -52,6 +52,7 @@
                     app:cardCornerRadius="8dp"
                     android:clickable="true"
                     android:id="@+id/mcqCard"
+                    android:alpha="0.7"
                     >
 
                     <LinearLayout
@@ -67,7 +68,7 @@
                             android:layout_height="wrap_content"
                             android:textStyle="bold"
                             android:text="Practice MCQ"
-                            android:textColor="#539939"
+                            android:textColor="#993944"
                             android:textSize="30dp"
                             android:textAlignment="center" />
 
@@ -99,34 +100,34 @@
             </android.support.v7.widget.RecyclerView>
 
             <android.support.v7.widget.CardView
+                android:id="@+id/journalCard"
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
-                android:layout_columnWeight="1"
                 android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
                 android:layout_margin="2dp"
-                app:cardBackgroundColor="#69e187"
-                app:cardElevation="8dp"
-                app:cardCornerRadius="8dp"
+                android:alpha="0.7"
                 android:clickable="true"
-                android:id="@+id/journalCard"
-                >
+                app:cardBackgroundColor="#69e187"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:layout_gravity="center_horizontal|center_vertical"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_row="0"
                     android:layout_column="0"
-                    android:layout_row="0">
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
                         android:text="Journal"
-                        android:textColor="#539939"
+                        android:textAlignment="center"
+                        android:textColor="#993944"
                         android:textSize="30dp"
-                        android:textAlignment="center" />
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -143,6 +144,7 @@
                 app:cardCornerRadius="8dp"
                 android:clickable="true"
                 android:id="@+id/paperPresentationCard"
+                android:alpha="0.7"
                 >
 
                 <LinearLayout
@@ -158,7 +160,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="Paper Presentation"
-                        android:textColor="#539939"
+                        android:textColor="#993944"
                         android:textSize="30dp"
                         android:textAlignment="center" />
 
@@ -177,6 +179,7 @@
                 app:cardCornerRadius="8dp"
                 android:clickable="true"
                 android:id="@+id/quizCard"
+                android:alpha="0.7"
                 >
 
                 <LinearLayout
@@ -192,7 +195,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="Quiz"
-                        android:textColor="#539939"
+                        android:textColor="#993944"
                         android:textSize="30dp"
                         android:textAlignment="center" />
 
@@ -211,6 +214,7 @@
                 app:cardCornerRadius="8dp"
                 android:clickable="true"
                 android:id="@+id/mnemonicsCard"
+                android:alpha="0.7"
                 >
 
                 <LinearLayout
@@ -226,7 +230,7 @@
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
                         android:text="Mnemonics"
-                        android:textColor="#539939"
+                        android:textColor="#993944"
                         android:textSize="30dp"
                         android:textAlignment="center" />
 
