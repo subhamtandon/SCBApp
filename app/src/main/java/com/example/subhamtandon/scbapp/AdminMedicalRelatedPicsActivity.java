@@ -38,9 +38,9 @@ public class AdminMedicalRelatedPicsActivity extends AppCompatActivity {
 
 
                     String url = dataSnapshot.getValue(String.class);
-                    //String uploadPDFID = dataSnapshot.getKey();
+                    String picKey = dataSnapshot.getKey();
 
-                    ((AdapterForAdminMedicalRelatedPictures) recyclerViewAdminMedicalRelatedPics.getAdapter()).update(url);
+                    ((AdapterForAdminMedicalRelatedPictures) recyclerViewAdminMedicalRelatedPics.getAdapter()).update(url, picKey);
 
                 }
             }
@@ -67,7 +67,7 @@ public class AdminMedicalRelatedPicsActivity extends AppCompatActivity {
             }
         });
         recyclerViewAdminMedicalRelatedPics.setLayoutManager(new LinearLayoutManager(AdminMedicalRelatedPicsActivity.this));
-        AdapterForAdminMedicalRelatedPictures adapterForAdminMedicalRelatedPictures = new AdapterForAdminMedicalRelatedPictures(recyclerViewAdminMedicalRelatedPics, AdminMedicalRelatedPicsActivity.this,new ArrayList<String>());
+        AdapterForAdminMedicalRelatedPictures adapterForAdminMedicalRelatedPictures = new AdapterForAdminMedicalRelatedPictures(recyclerViewAdminMedicalRelatedPics, AdminMedicalRelatedPicsActivity.this,new ArrayList<String>(), new ArrayList<String>());
         //adapterForRecordsList.notifyDataSetChanged();
         recyclerViewAdminMedicalRelatedPics.setAdapter(adapterForAdminMedicalRelatedPictures);
 
@@ -77,5 +77,11 @@ public class AdminMedicalRelatedPicsActivity extends AppCompatActivity {
                 startActivity( new Intent(AdminMedicalRelatedPicsActivity.this,AddingMedicalRelatedPicAdminActivity.class ));
             }
         });
+    }
+    public void reloadActivity(){
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
     }
 }

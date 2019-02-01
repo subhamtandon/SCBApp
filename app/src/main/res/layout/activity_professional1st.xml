@@ -20,13 +20,12 @@
         android:id="@+id/scrollViewOfSubjects"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/headingSubjects">
-
+        >
+        
         <GridLayout
             android:id="@+id/gdView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/headingSubjects"
             android:layout_marginTop="10dp"
             android:alignmentMode="alignMargins"
             android:columnCount="1"
