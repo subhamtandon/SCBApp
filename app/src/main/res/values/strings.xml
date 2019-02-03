@@ -1096,13 +1096,32 @@ Kolkata</item>
         <item>Abdomen &amp; Pelvis III</item>
         <item>Abdomen &amp; Pelvis IV</item>
         <item>Abdomen &amp; Pelvis V</item>
-        <item>Neuroanatomy I</item>
-        <item>Neuroanatomy II</item>
-        <item>Neuroanatomy III</item>
+        <item>Neuroanatomy</item>.
         <item>Head &amp; Neck I</item>
         <item>Head &amp; Neck II</item>
         <item>Head &amp; Neck III</item>
         <item>Head &amp; Neck IV</item>
+    </string-array>
+
+    <string-array name="anatomyDescription">
+        <item>Introduction, Bone, Joints, Cutaneous nerves, Veins, Lymphatics, Surface marking, Radiology</item>
+        <item>Pectoral Region, Back, Scapular Region</item>
+        <item>Axilla, Arm, Forearm, Hand</item>
+        <item>Introduction, Bones, Joints, Wall of Thorax, Thoracic Cavity, Pleura, Surface Marking and Radiology</item>
+        <item>Lungs, Mediastinum, Pericardium and Heart, Arteries, Ducts(Trachea, Oesophagus and Thoracic Duct)</item>
+        <item>Introduction, Bones, Joints, Cutaneous nerves, Veins, Lymphatics, Surface marking, Radiology</item>
+        <item>Gluteal Region, Front, Medial, Back of Thigh, Popliteal Fossa</item>
+        <item>Front, Lateral, Medial, Back side of Leg, Foot(Dorsum, Sole, Arches)</item>
+        <item>Introduction, Bones, Anterior Abdominal Wall, Posterior Abdominal Wall, Abdominal Cavity, Peritoneum, Large Blood Vessels</item>
+        <item>Stomach, Small and Large Intestine, Spleen, Pancreas, Liver, Extrahepatic Biliary Apparatus</item>
+        <item>Kidney, Ureter, Supra Renal Glands, Diaphragm</item>
+        <item>Perineum, Boundary and Content of Pelvis, Wall of Pelvis, Surface Marking and Radiology of Abdomen and Pelvis</item>
+        <item>Urinary Bladder and Ureter, Female Reproductive Tract, Male Reproductive Tract, Rectum, Anal Canal</item>
+        <item></item>
+        <item>Introduction, Bones, Scalp, Temple, Face, Temporal and Infra-Temporal Regions, Surface marking and Radiology</item>
+        <item>Side of Neck, Anterior Triangle, Parotid, Back of the Neck</item>
+        <item>Cranial Cavity, Prevertebral and paravertebral Regions, Contents of VC</item>
+        <item>Orbit, Mouth, Pharynx, Nose, Paranasal Sinus, Larynx, Tongue, Ear and Eyeball</item>
     </string-array>
 
     <string-array name="physiologyChapters">
@@ -1140,16 +1159,16 @@ Kolkata</item>
 
         <item>Amino acids, Proteins, Carbohydrates, Lipids</item>
         <item>Enzymes</item>
-        <item>General, detoxification, disease</item>
-        <item>Glucose metabolism</item>
-        <item>Lipid metabolism</item>
-        <item>Protein and amino acid metabolism</item>
-        <item>lft, tft, kft, adrenal cortex</item>
+        <item>General, Detoxification, Disease</item>
+        <item>Glucose Metabolism</item>
+        <item>Lipid Metabolism</item>
+        <item>Protein and Amino Acid Metabolism</item>
+        <item>LFT, TFT, KFT, Adrenal Cortex</item>
         <item></item>
         <item></item>
         <item></item>
         <item></item>
-        <item>replication, transcription, translation, gene expression</item>
+        <item>Replication, Transcription, Translation, Gene Expression</item>
         <item></item>
         <item> GFs, Immunochemistry, AIDS, Cancer</item>
 
@@ -1160,17 +1179,33 @@ Kolkata</item>
         <item>Inflammation and Repair, Hemodynamics</item>
         <item>Genetics, Neoplasia</item>
         <item>Immunology</item>
-        <item>Diseases-I </item>
-        <item>Diseases-II</item>
         <item>Blood Vessels and Heart</item>
         <item>WBC, Lymphatic System, RBC and Bleeding Disorders</item>
         <item>Lungs and Kidney</item>
         <item>Head and Neck</item>
-        <item>GIT and Eye</item>
+        <item>GIT</item>
         <item>Liver, GB and Pancreas</item>
         <item>Lower Urinary Tract, Male and Female Genital System</item>
         <item>Breast and Endocrine System</item>
-        <item>Miscellaneous</item>
+        <item>Miscellaneous-I</item>
+        <item>Miscellaneous-II</item>
+    </string-array>
+
+    <string-array name="pathologyDescription">
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item></item>
+        <item>Skin, Bone and Joint, Soft tissue tumour</item>
+        <item>CNS, Musculo-Skeletal system and Eye </item>
     </string-array>
 
     <string-array name="pharmacologyChapters">
@@ -1208,8 +1243,8 @@ Kolkata</item>
         <item>Histamine, Serotonin, PGs</item>
         <item>NSAIDs, Anti-rheumatoid and Anti-gout drugs</item>
         <item></item>
-        <item>Pituitary, Thyroid, Insulin, Glucagon, Corticosteroids</item>
         <item>Androgens, Female Sex Hormones, Contraceptives, Calcium Balance</item>
+        <item>Pituitary, Thyroid, Insulin, Glucagon, Corticosteroids</item>
         <item>Skeletal Muscles Relaxants, Local Anaesthetics</item>
         <item>General Anaesthetics, Alcohols, Sedative-Hypnotics</item>
         <item>Anti-epileptic Drugs, Anti-Parkinsonian Drugs</item>
@@ -1248,8 +1283,7 @@ Kolkata</item>
     <string-array name="microbiologyDescription">
         <item>Sterilisation and Disinfection</item>
         <item>Rest all</item>
-        <item>Till Ag-Ab reaction</item>
-        <item>Complement System- Immunohematology</item>
+        <item></item>
         <item>Staph, Strep, Pneumo, Nisseria, Corynebacterium and Bacillus</item>
         <item>Anaerobic bacteria- I, II, Vibrio, Pseudomonas</item>
         <item>Enterobacteriaceae</item>
@@ -1269,7 +1303,7 @@ Kolkata</item>
         <item>Traumatology</item>
         <item>Mechanical Asphyxia</item>
         <item>Sexual Jurisprudence</item>
-        <item>Miscellaneous</item>
+        <item>Forensic Medicine Miscellaneous</item>
         <item>General Toxicology</item>
         <item>Irritant Poisoning</item>
         <item>Poison acting on Nervous System</item>

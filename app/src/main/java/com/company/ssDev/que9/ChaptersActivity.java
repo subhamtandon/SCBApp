@@ -37,10 +37,12 @@ public class ChaptersActivity extends AppCompatActivity {
         recyclerViewChapters.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
         String[] anatomyChaptersName = getResources().getStringArray(R.array.anatomyChapters);
+        String[] anatomyDescription = getResources().getStringArray(R.array.anatomyDescription);
         String[] physiologyChaptersName = getResources().getStringArray(R.array.physiologyChapters);
         String[] bioChemistryChaptersName = getResources().getStringArray(R.array.bioChemistryChapters);
         String[] bioChemistryDescription = getResources().getStringArray(R.array.bioChemistryDescription);
         String[] pathologyChaptersName = getResources().getStringArray(R.array.pathologyChapters);
+        String[] pathologyDescription = getResources().getStringArray(R.array.pathologyDescription);
         String[] pharmacologyChaptersName = getResources().getStringArray(R.array.pharmacologyChapters);
         String[] pharmacologyDescription = getResources().getStringArray(R.array.pharmacologyDescription);
         String[] microbiologyChaptersName = getResources().getStringArray(R.array.microbiologyChapters);
@@ -63,7 +65,7 @@ public class ChaptersActivity extends AppCompatActivity {
 
         if (subject.equalsIgnoreCase("Anatomy")){
             for(int i =0; i<anatomyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(anatomyChaptersName[i], "");
+                ListItemChapters listItemChapter = new ListItemChapters(anatomyChaptersName[i], anatomyDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
@@ -84,7 +86,7 @@ public class ChaptersActivity extends AppCompatActivity {
 
         if (subject.equalsIgnoreCase("Pathology")){
             for(int i =0; i<pathologyChaptersName.length; i++){
-                ListItemChapters listItemChapter = new ListItemChapters(pathologyChaptersName[i], "");
+                ListItemChapters listItemChapter = new ListItemChapters(pathologyChaptersName[i], pathologyDescription[i]);
                 listItemChapters.add(listItemChapter);
             }
         }
