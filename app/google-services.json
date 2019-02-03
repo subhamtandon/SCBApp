@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:56001763679:android:4b4c5eb21b3b0c4f",
         "android_client_info": {
-          "package_name": "com.example.subhamtandon.scbapp"
+          "package_name": "com.company.ssDev.que9"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "56001763679-vitmujkcjlaebcm9lg29if9efoo5oven.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.subhamtandon.scbapp",
+            "package_name": "com.company.ssDev.que9",
             "certificate_hash": "85d5402ea467091f726065ee1cb90c13ec42084c"
           }
         },
