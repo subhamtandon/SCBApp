@@ -8,17 +8,69 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:56001763679:android:4b4c5eb21b3b0c4f",
+        "mobilesdk_app_id": "1:56001763679:android:ffcef80edb67c8f8",
         "android_client_info": {
           "package_name": "com.company.ssDev.que9"
         }
       },
       "oauth_client": [
         {
-          "client_id": "56001763679-vitmujkcjlaebcm9lg29if9efoo5oven.apps.googleusercontent.com",
+          "client_id": "56001763679-uaqhmuigbqim58g2gvevdsc3au9jsjpd.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.company.ssDev.que9",
+            "certificate_hash": "85d5402ea467091f726065ee1cb90c13ec42084c"
+          }
+        },
+        {
+          "client_id": "56001763679-209khaj6d2itsfbvhllssihic7e11el2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfwai4ySC9X63OGfJ6Ei9mtSklmEDXGJ0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56001763679-209khaj6d2itsfbvhllssihic7e11el2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56001763679:android:4b4c5eb21b3b0c4f",
+        "android_client_info": {
+          "package_name": "com.example.subhamtandon.scbapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56001763679-4dr0odarbt96vd63u1i2q51u7jujn2j4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.subhamtandon.scbapp",
+            "certificate_hash": "bbc500bb619e50dd53102e38ad392d9d34df24b4"
+          }
+        },
+        {
+          "client_id": "56001763679-a4a6loppsvkffkk9ihj0hvcpd7uct152.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.subhamtandon.scbapp",
             "certificate_hash": "85d5402ea467091f726065ee1cb90c13ec42084c"
           }
         },

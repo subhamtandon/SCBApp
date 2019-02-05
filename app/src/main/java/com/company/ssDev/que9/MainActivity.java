@@ -30,6 +30,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //FirebaseApp.initializeApp(getApplicationContext());
         database = FirebaseDatabase.getInstance();
 
         if(!isConnected(MainActivity.this)) buildDialog(MainActivity.this).show();
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("56001763679-uaqhmuigbqim58g2gvevdsc3au9jsjpd.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -204,6 +206,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account);
+                progressDialog.dismiss();
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w("info", "Google sign in failed", e);

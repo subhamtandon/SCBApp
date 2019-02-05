@@ -9,11 +9,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.barteksc.pdfviewer.PDFView;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class AboutSCBFragment extends Fragment {
+
+    PDFView pdfView;
 
 
     public AboutSCBFragment() {
@@ -27,7 +31,14 @@ public class AboutSCBFragment extends Fragment {
         // Inflate the layout for this fragment
         ((UserProfile) getActivity())
                 .setActionBarTitle("About SCB");
-        return inflater.inflate(R.layout.fragment_about_scb, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_about_scb, container, false);
+
+        pdfView = view.findViewById(R.id.pdfViewer);
+
+        pdfView.fromAsset("about_scb.pdf").load();
+
+        return view;
 
     }
     @Override

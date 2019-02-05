@@ -478,7 +478,7 @@ public class UserProfile extends AppCompatActivity
 
         }else if (id == R.id.nav_fromMakersDesk) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.replace(R.id.flMain, new MakersDeskFragment());
             ft.commit();
         }
 

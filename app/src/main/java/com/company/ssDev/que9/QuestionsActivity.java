@@ -622,17 +622,6 @@ public class QuestionsActivity extends AppCompatActivity {
                             } else {
                                 optionBValue = true;
                             }
-
-
-
-
-
-
-
-
-
-
-
                         }
 
                     }
@@ -743,12 +732,20 @@ public class QuestionsActivity extends AppCompatActivity {
 
             TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
             TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
+            TextView wrongQuestions = mView.findViewById(R.id.wrongAnswers);
 
             String count1 = Integer.toString(count);
             String rightAnswer1 = Integer.toString(rightAnswer);
+            Log.d("count", count+ "");
+            Log.d("right", rightAnswer+ "");
+
+            int w = count- rightAnswer;
+            Log.d("wrong", w+ "");
+            String wrongAnswer = Integer.toString(w);
 
             correctAnswers.setText(rightAnswer1);
             totalQuestions.setText(count1);
+            wrongQuestions.setText(wrongAnswer);
             builder.setTitle("SCORECARD")
                     .setCancelable(false)
                     .setView(mView)

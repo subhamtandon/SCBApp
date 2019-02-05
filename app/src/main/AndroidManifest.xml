@@ -159,7 +159,7 @@
             android:label="Question Details" />
         <activity
             android:name=".UserQuestionActivity"
-            android:label="Practise" />
+            android:label="Practice" />
         <activity android:name=".NewListOfPPT" />
         <activity android:name=".NewListOfPPTAdmin" />
         <activity android:name=".NewPPTsAndPDFsTypes" />
