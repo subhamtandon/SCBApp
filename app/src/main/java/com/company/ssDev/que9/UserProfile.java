@@ -461,10 +461,6 @@ public class UserProfile extends AppCompatActivity
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new QuestionBankFragment());
             ft.commit();
-        }else if (id == R.id.nav_shareApp) {
-            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new QuestionBankFragment());
-            ft.commit();
         }else if (id == R.id.nav_feedback) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
             ft.replace(R.id.flMain, new FeedbackFragment());

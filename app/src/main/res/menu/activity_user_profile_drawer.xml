@@ -33,10 +33,6 @@
             android:icon="@drawable/ic_question_answer_black"
             android:title="Submit Question" />
         <item
-            android:id="@+id/nav_shareApp"
-            android:icon="@drawable/ic_question_answer_black"
-            android:title="Share App" />
-        <item
             android:id="@+id/nav_feedback"
             android:icon="@drawable/ic_question_answer_black"
             android:title="Feedback" />
