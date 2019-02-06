@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         builder.setTitle("No Internet Connection");
         builder.setMessage("You need to have Mobile Data or wifi to access this. Press ok to Exit");
+        builder.setCancelable(false);
 
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 
