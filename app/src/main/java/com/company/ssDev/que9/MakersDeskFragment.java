@@ -88,10 +88,10 @@ public class MakersDeskFragment extends Fragment {
                 linearLayout.setVisibility(View.INVISIBLE);
                 makerDeskButton.setVisibility(View.VISIBLE);
                 webViewScbcloud.setVisibility(View.VISIBLE);
+                makersDeskPDF.setVisibility(View.INVISIBLE);
                 webViewScbcloud.setWebViewClient(new WebViewClient());
                 webViewScbcloud.loadUrl("https://scbcloud.blogspot.com/?m=1");
                 WebSettings webSettings = webViewScbcloud.getSettings();
-                makersDeskPDF.setVisibility(View.INVISIBLE);
                 webSettings.setJavaScriptEnabled(true);
             }
         });

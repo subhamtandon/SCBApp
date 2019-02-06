@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +43,13 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         //holder.picImage.setImageURI(Uri.parse(picturesUrls.get(position)));
         Picasso.get().load(picturesUrls.get(position)).into(holder.picImage);
+        holder.picImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //TODO: insert image dialog
+                Toast.makeText(context, "coming soon ...", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

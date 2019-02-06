@@ -467,7 +467,7 @@ public class UserProfile extends AppCompatActivity
             ft.commit();
         }else if (id == R.id.nav_feedback) {
             FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain, new QuestionBankFragment());
+            ft.replace(R.id.flMain, new FeedbackFragment());
             ft.commit();
         }else if (id == R.id.nav_logout) {
 

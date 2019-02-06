@@ -41,54 +41,57 @@
                 android:alignmentMode="alignMargins"
                 android:layout_marginTop="10dp">
 
-                <android.support.v7.widget.CardView
+                <android.support.v7.widget.RecyclerView
+                    android:layout_margin="10dp"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_columnWeight="1"
-                    android:layout_rowWeight="1"
-                    android:layout_margin="2dp"
-                    app:cardBackgroundColor="#69e187"
-                    app:cardElevation="8dp"
-                    app:cardCornerRadius="8dp"
-                    android:clickable="true"
-                    android:id="@+id/mcqCard"
-                    android:alpha="0.7"
-                    >
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/gdView"
+                    android:orientation="horizontal"
+                    android:id="@+id/recyclerViewMedicalRelatedPictures">
 
-                    <LinearLayout
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_column="0"
-                        android:layout_row="0"
-                        android:background="@drawable/mcqtab">
+                </android.support.v7.widget.RecyclerView>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="bold"
-                            android:text=""
-                            android:textColor="#993944"
-                            android:textSize="30dp"
-                            android:textAlignment="center" />
 
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
 
 
             </GridLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_margin="10dp"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/gdView"
-                android:orientation="horizontal"
-                android:id="@+id/recyclerViewMedicalRelatedPictures">
+                android:layout_height="150dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="#69e187"
+                app:cardElevation="8dp"
+                app:cardCornerRadius="8dp"
+                android:clickable="true"
+                android:id="@+id/mcqCard"
+                android:alpha="0.7"
+                >
 
-            </android.support.v7.widget.RecyclerView>
+                <LinearLayout
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:background="@drawable/mcqtab">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text=""
+                        android:textColor="#993944"
+                        android:textSize="30dp"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
@@ -247,5 +250,5 @@
 
         </LinearLayout>
     </ScrollView>
-    
+
 </RelativeLayout>
