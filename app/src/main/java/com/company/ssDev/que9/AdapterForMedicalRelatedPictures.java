@@ -1,7 +1,9 @@
 package com.company.ssDev.que9;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +42,7 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         //holder.picImage.setImageURI(Uri.parse(picturesUrls.get(position)));
         Picasso.get().load(picturesUrls.get(position)).into(holder.picImage);
         holder.picImage.setOnClickListener(new View.OnClickListener() {
@@ -48,6 +50,21 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
             public void onClick(View v) {
                 //TODO: insert image dialog
                 Toast.makeText(context, "coming soon ...", Toast.LENGTH_SHORT).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                View mView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null);
+                ImageView image = mView.findViewById(R.id.medicalRelatedPicImage);
+                Picasso.get().load(picturesUrls.get(position)).into(image);
+                builder.setCancelable(false)
+                        .setView(mView)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
     }
