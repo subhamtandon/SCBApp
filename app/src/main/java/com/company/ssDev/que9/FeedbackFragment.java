@@ -35,7 +35,7 @@ public class FeedbackFragment extends Fragment {
         webView = view.findViewById(R.id.webViewFeedback);
 
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://scbcloud.blogspot.com/?m=1");
+        webView.loadUrl("https://goo.gl/forms/jFBjhmdAZLulzrIJ2");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
