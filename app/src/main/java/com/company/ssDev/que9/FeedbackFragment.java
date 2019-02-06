@@ -32,6 +32,8 @@ public class FeedbackFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_feedback, container, false);
+        ((UserProfile) getActivity())
+                .setActionBarTitle("Feedback");
         webView = view.findViewById(R.id.webViewFeedback);
 
         webView.setWebViewClient(new WebViewClient());

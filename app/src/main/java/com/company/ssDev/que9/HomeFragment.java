@@ -191,7 +191,7 @@ public class HomeFragment extends Fragment {
                 CharSequence options[] = new CharSequence[] {"Clinical", "NonClinical"};
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setCancelable(false);
+                builder.setCancelable(true);
                 builder.setTitle("Select your option:");
                 builder.setItems(options, new DialogInterface.OnClickListener() {
                     @Override
