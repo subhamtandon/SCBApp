@@ -48,21 +48,13 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
         holder.picImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: insert image dialog
-                Toast.makeText(context, "coming soon ...", Toast.LENGTH_SHORT).show();
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 View mView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null);
                 ImageView image = mView.findViewById(R.id.medicalRelatedPicImage);
                 Picasso.get().load(picturesUrls.get(position)).into(image);
-                builder.setCancelable(false)
-                        .setView(mView)
-                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
+                builder.setCancelable(true)
+                        .setView(mView);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
             }
