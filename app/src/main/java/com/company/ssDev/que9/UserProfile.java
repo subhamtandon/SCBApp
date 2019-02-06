@@ -49,6 +49,64 @@ public class UserProfile extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(UserProfile.this);
+        View header=navigationView.getHeaderView(0);
+
+        Menu SCBSection = navigationView.getMenu();
+        SCBSection.findItem(R.id.nav_submitQuestion).setVisible(false);
+
+        textViewUserName = (TextView)header.findViewById(R.id.textViewUserName);
+        textViewUserEmail = (TextView)header.findViewById(R.id.textViewUserEmail);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        final FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        textViewUserName.setText(user.getDisplayName());
+        textViewUserEmail.setText(user.getEmail());
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .child("collegeName");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null){
+                    String collegeName = dataSnapshot.getValue(String.class);
+
+                    Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
+
+                    if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+                        Menu SCBSection = navigationView.getMenu();
+                        SCBSection.findItem(R.id.nav_scbSection).setVisible(false);
+                        Menu infoBulletin = navigationView.getMenu();
+                        infoBulletin.findItem(R.id.nav_scbInfoBulletin).setVisible(false);
+                        Menu docInfo = navigationView.getMenu();
+                        docInfo.findItem(R.id.nav_scbDoctorsInfo).setVisible(false);
+                        Menu scbMap = navigationView.getMenu();
+                        scbMap.findItem(R.id.nav_scbMap).setVisible(false);
+                        Menu aboutSCB = navigationView.getMenu();
+                        aboutSCB.findItem(R.id.nav_scbAboutSCB).setVisible(false);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+        if(!UserProfile.this.isFinishing())
+        {
+            FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain, new HomeFragment());
+            ft.commit();
+        }
+
+        final String alteringValue;
+
         DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
         databaseReference1.addValueEventListener(new ValueEventListener() {
             @Override
@@ -59,116 +117,64 @@ public class UserProfile extends AppCompatActivity
                         if (can.equalsIgnoreCase("false")){
 
 
-                            final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                            navigationView.setNavigationItemSelectedListener(UserProfile.this);
-                            View header=navigationView.getHeaderView(0);
+
 
                             //Menu nav_Menu = navigationView.getMenu();
                             //nav_Menu.findItem(R.id.nav_scbAboutSCB).setVisible(false);
 
-                            Menu SCBSection = navigationView.getMenu();
-                            SCBSection.findItem(R.id.nav_submitQuestion).setVisible(false);
 
-                            textViewUserName = (TextView)header.findViewById(R.id.textViewUserName);
-                            textViewUserEmail = (TextView)header.findViewById(R.id.textViewUserEmail);
-
-                            firebaseAuth = FirebaseAuth.getInstance();
-
-                            final FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                            textViewUserName.setText(user.getDisplayName());
-                            textViewUserEmail.setText(user.getEmail());
-
-                            databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("collegeName");
-
-                            databaseReference.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot != null){
-                                        String collegeName = dataSnapshot.getValue(String.class);
-
-                                        Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
-
-                                        if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
-                                            Menu SCBSection = navigationView.getMenu();
-                                            SCBSection.findItem(R.id.nav_scbSection).setVisible(false);
-                                            Menu infoBulletin = navigationView.getMenu();
-                                            infoBulletin.findItem(R.id.nav_scbInfoBulletin).setVisible(false);
-                                            Menu docInfo = navigationView.getMenu();
-                                            docInfo.findItem(R.id.nav_scbDoctorsInfo).setVisible(false);
-                                            Menu scbMap = navigationView.getMenu();
-                                            scbMap.findItem(R.id.nav_scbMap).setVisible(false);
-                                            Menu aboutSCB = navigationView.getMenu();
-                                            aboutSCB.findItem(R.id.nav_scbAboutSCB).setVisible(false);
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                    Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            if(!UserProfile.this.isFinishing())
-                            {
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.flMain, new HomeFragment());
-                                ft.commit();
-                            }
                         }
                         else{
 
-                            Toast.makeText(UserProfile.this, "You can not access this time :<", Toast.LENGTH_SHORT).show();
-
-
-                            final AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfile.this).setTitle("No access").setMessage("Maintenance is going on. Try again later...:)");
-                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int whichButton) {
-//                                    onStop();
-                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(homeIntent);
-                                }
-                            });
-                            final AlertDialog alert = dialog.create();
-                            if(!UserProfile.this.isFinishing())
-                            {
-                                //show dialog
-                                alert.show();
-                            }
-
-
-// Hide after some seconds
-                            final Handler handler  = new Handler();
-                            final Runnable runnable = new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (alert.isShowing()) {
-                                        alert.dismiss();
-                                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                        homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(homeIntent);
-                                    }
-                                }
-                            };
-
-                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                    handler.removeCallbacks(runnable);
-                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(homeIntent);
-                                }
-                            });
-
-                            handler.postDelayed(runnable, 10000);
+//                            Toast.makeText(UserProfile.this, "You can not access this time :<", Toast.LENGTH_SHORT).show();
+//
+//
+//                            final AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfile.this).setTitle("No access").setMessage("Maintenance is going on. Try again later...:)");
+//                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int whichButton) {
+////                                    onStop();
+//                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(homeIntent);
+//                                }
+//                            });
+//                            final AlertDialog alert = dialog.create();
+//                            if(!UserProfile.this.isFinishing())
+//                            {
+//                                //show dialog
+//                                alert.show();
+//                            }
+//
+//
+//// Hide after some seconds
+//                            final Handler handler  = new Handler();
+//                            final Runnable runnable = new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    if (alert.isShowing()) {
+//                                        alert.dismiss();
+//                                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                        startActivity(homeIntent);
+//                                    }
+//                                }
+//                            };
+//
+//                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                @Override
+//                                public void onDismiss(DialogInterface dialog) {
+//                                    handler.removeCallbacks(runnable);
+//                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(homeIntent);
+//                                }
+//                            });
+//
+//                            handler.postDelayed(runnable, 10000);
                         }
                     }
 
@@ -180,7 +186,6 @@ public class UserProfile extends AppCompatActivity
 
             }
         });
-
 
     }
 
@@ -194,140 +199,140 @@ public class UserProfile extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
-        databaseReference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
-                    if(dataSnapshot1.getKey().equalsIgnoreCase("Altering")){
-                        String can = dataSnapshot1.getValue(String.class);
-                        if (can.equalsIgnoreCase("false")){
-
-
-                            final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-                            navigationView.setNavigationItemSelectedListener(UserProfile.this);
-                            View header=navigationView.getHeaderView(0);
-
-                            //Menu nav_Menu = navigationView.getMenu();
-                            //nav_Menu.findItem(R.id.nav_scbAboutSCB).setVisible(false);
-
-                            Menu SCBSection = navigationView.getMenu();
-                            SCBSection.findItem(R.id.nav_submitQuestion).setVisible(false);
-
-                            textViewUserName = (TextView)header.findViewById(R.id.textViewUserName);
-                            textViewUserEmail = (TextView)header.findViewById(R.id.textViewUserEmail);
-
-                            firebaseAuth = FirebaseAuth.getInstance();
-
-                            final FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                            textViewUserName.setText(user.getDisplayName());
-                            textViewUserEmail.setText(user.getEmail());
-
-                            databaseReference = FirebaseDatabase.getInstance().getReference("Users")
-                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                    .child("collegeName");
-
-                            databaseReference.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    if (dataSnapshot != null){
-                                        String collegeName = dataSnapshot.getValue(String.class);
-
-                                        Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
-
-                                        if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
-                                            Menu SCBSection = navigationView.getMenu();
-                                            SCBSection.findItem(R.id.nav_scbSection).setVisible(false);
-                                            Menu infoBulletin = navigationView.getMenu();
-                                            infoBulletin.findItem(R.id.nav_scbInfoBulletin).setVisible(false);
-                                            Menu docInfo = navigationView.getMenu();
-                                            docInfo.findItem(R.id.nav_scbDoctorsInfo).setVisible(false);
-                                            Menu scbMap = navigationView.getMenu();
-                                            scbMap.findItem(R.id.nav_scbMap).setVisible(false);
-                                            Menu aboutSCB = navigationView.getMenu();
-                                            aboutSCB.findItem(R.id.nav_scbAboutSCB).setVisible(false);
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-                                    Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-
-
-                            if(!UserProfile.this.isFinishing())
-                            {
-                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.flMain, new HomeFragment());
-                                ft.commit();
-                            }
-                        }
-                        else{
-
-                            Toast.makeText(UserProfile.this, "You can not access this time :<", Toast.LENGTH_SHORT).show();
-                            final AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfile.this).setTitle("No access").setMessage("Maintenance is going on. Try again later...:)");
-                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int whichButton) {
-//                                    onStop();
-                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(homeIntent);
-                                }
-                            });
-                            final AlertDialog alert = dialog.create();
-                            if(!UserProfile.this.isFinishing())
-                            {
-                                //show dialog
-                                alert.show();
-                            }
-
-// Hide after some seconds
-                            final Handler handler  = new Handler();
-                            final Runnable runnable = new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (alert.isShowing()) {
-                                        alert.dismiss();
-                                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                        homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                        startActivity(homeIntent);
-                                    }
-                                }
-                            };
-
-                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
-                                @Override
-                                public void onDismiss(DialogInterface dialog) {
-                                    handler.removeCallbacks(runnable);
-                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
-                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                    startActivity(homeIntent);
-                                }
-                            });
-
-                            handler.postDelayed(runnable, 10000);
-                        }
-                    }
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        DatabaseReference databaseReference1 = FirebaseDatabase.getInstance().getReference();
+//        databaseReference1.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+//                    if(dataSnapshot1.getKey().equalsIgnoreCase("Altering")){
+//                        String can = dataSnapshot1.getValue(String.class);
+//                        if (can.equalsIgnoreCase("false")){
+//
+//
+//                            final NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//                            navigationView.setNavigationItemSelectedListener(UserProfile.this);
+//                            View header=navigationView.getHeaderView(0);
+//
+//                            //Menu nav_Menu = navigationView.getMenu();
+//                            //nav_Menu.findItem(R.id.nav_scbAboutSCB).setVisible(false);
+//
+//                            Menu SCBSection = navigationView.getMenu();
+//                            SCBSection.findItem(R.id.nav_submitQuestion).setVisible(false);
+//
+//                            textViewUserName = (TextView)header.findViewById(R.id.textViewUserName);
+//                            textViewUserEmail = (TextView)header.findViewById(R.id.textViewUserEmail);
+//
+//                            firebaseAuth = FirebaseAuth.getInstance();
+//
+//                            final FirebaseUser user = firebaseAuth.getCurrentUser();
+//
+//                            textViewUserName.setText(user.getDisplayName());
+//                            textViewUserEmail.setText(user.getEmail());
+//
+//                            databaseReference = FirebaseDatabase.getInstance().getReference("Users")
+//                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                    .child("collegeName");
+//
+//                            databaseReference.addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(DataSnapshot dataSnapshot) {
+//                                    if (dataSnapshot != null){
+//                                        String collegeName = dataSnapshot.getValue(String.class);
+//
+//                                        Toast.makeText(UserProfile.this, collegeName, Toast.LENGTH_SHORT).show();
+//
+//                                        if (!collegeName.equalsIgnoreCase("SCB Medical College, Cuttack")){
+//                                            Menu SCBSection = navigationView.getMenu();
+//                                            SCBSection.findItem(R.id.nav_scbSection).setVisible(false);
+//                                            Menu infoBulletin = navigationView.getMenu();
+//                                            infoBulletin.findItem(R.id.nav_scbInfoBulletin).setVisible(false);
+//                                            Menu docInfo = navigationView.getMenu();
+//                                            docInfo.findItem(R.id.nav_scbDoctorsInfo).setVisible(false);
+//                                            Menu scbMap = navigationView.getMenu();
+//                                            scbMap.findItem(R.id.nav_scbMap).setVisible(false);
+//                                            Menu aboutSCB = navigationView.getMenu();
+//                                            aboutSCB.findItem(R.id.nav_scbAboutSCB).setVisible(false);
+//                                        }
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(DatabaseError databaseError) {
+//                                    Toast.makeText(UserProfile.this, databaseError + "", Toast.LENGTH_SHORT).show();
+//                                }
+//                            });
+//
+//
+//                            if(!UserProfile.this.isFinishing())
+//                            {
+//                                FragmentTransaction ft= getSupportFragmentManager().beginTransaction();
+//                                ft.replace(R.id.flMain, new HomeFragment());
+//                                ft.commit();
+//                            }
+//                        }
+//                        else{
+//
+//                            Toast.makeText(UserProfile.this, "You can not access this time :<", Toast.LENGTH_SHORT).show();
+//                            final AlertDialog.Builder dialog = new AlertDialog.Builder(UserProfile.this).setTitle("No access").setMessage("Maintenance is going on. Try again later...:)");
+//                            dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int whichButton) {
+////                                    onStop();
+//                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(homeIntent);
+//                                }
+//                            });
+//                            final AlertDialog alert = dialog.create();
+//                            if(!UserProfile.this.isFinishing())
+//                            {
+//                                //show dialog
+//                                alert.show();
+//                            }
+//
+//// Hide after some seconds
+//                            final Handler handler  = new Handler();
+//                            final Runnable runnable = new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    if (alert.isShowing()) {
+//                                        alert.dismiss();
+//                                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                        startActivity(homeIntent);
+//                                    }
+//                                }
+//                            };
+//
+//                            alert.setOnDismissListener(new DialogInterface.OnDismissListener() {
+//                                @Override
+//                                public void onDismiss(DialogInterface dialog) {
+//                                    handler.removeCallbacks(runnable);
+//                                    Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+//                                    homeIntent.addCategory( Intent.CATEGORY_HOME );
+//                                    homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                                    startActivity(homeIntent);
+//                                }
+//                            });
+//
+//                            handler.postDelayed(runnable, 10000);
+//                        }
+//                    }
+//
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
