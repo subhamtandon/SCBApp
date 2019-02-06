@@ -119,12 +119,13 @@
                     android:layout_row="0"
                     android:layout_column="0"
                     android:layout_gravity="center_horizontal|center_vertical"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:background="@drawable/journal">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Journal"
+                        android:text=""
                         android:textAlignment="center"
                         android:textColor="#993944"
                         android:textSize="30dp"
@@ -155,7 +156,7 @@
                     android:orientation="vertical"
                     android:layout_column="0"
                     android:layout_row="0"
-                    android:background="@drawable/paperpresentation">
+                    android:background="@drawable/paper_presentation_final">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -226,13 +227,15 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_column="0"
-                    android:layout_row="0">
+                    android:layout_row="0"
+                    android:background="@drawable/mnemonics_final"
+                    >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="Mnemonics"
+                        android:text=""
                         android:textColor="#993944"
                         android:textSize="30dp"
                         android:textAlignment="center" />
@@ -244,7 +247,5 @@
 
         </LinearLayout>
     </ScrollView>
-
-
-
+    
 </RelativeLayout>
