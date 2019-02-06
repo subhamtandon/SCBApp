@@ -30,13 +30,6 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="SU 17-18"
-            android:id="@+id/button1"
-            android:layout_weight="1"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="SU 18-19"
             android:id="@+id/button2"
             android:layout_weight="1"/>
@@ -44,8 +37,8 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contributors for que9"
-            android:id="@+id/button3"
+            android:text="SU 17-18"
+            android:id="@+id/button1"
             android:layout_weight="1"/>
 
         <Button
@@ -53,6 +46,13 @@
             android:layout_height="wrap_content"
             android:text="scb cloud"
             android:id="@+id/button4"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contributors for que9"
+            android:id="@+id/button3"
             android:layout_weight="1"/>
 
     </LinearLayout>

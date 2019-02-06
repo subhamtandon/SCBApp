@@ -36,11 +36,11 @@ public class MakersDeskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((UserProfile) getActivity())
-                .setActionBarTitle("From Maker's Desk");
+                .setActionBarTitle("From The Maker's Desk");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_makers_desk, container, false);
         makersDeskPDF = view.findViewById(R.id.makersDeskPDF);
-        makersDeskPDF.fromAsset("from_makers_desk.pdf").load();
+        makersDeskPDF.fromAsset("from_the_makers_desk.pdf").load();
 
         button1 = view.findViewById(R.id.button1);
         button2 = view.findViewById(R.id.button2);
@@ -55,7 +55,7 @@ public class MakersDeskFragment extends Fragment {
             public void onClick(View v) {
                 linearLayout.setVisibility(View.VISIBLE);
                 makerDeskButton.setVisibility(View.INVISIBLE);
-                makersDeskPDF.fromAsset("from_makers_desk.pdf").load();
+                makersDeskPDF.fromAsset("from_the_makers_desk.pdf").load();
                 makersDeskPDF.setVisibility(View.VISIBLE);
             }
         });
@@ -65,7 +65,7 @@ public class MakersDeskFragment extends Fragment {
             public void onClick(View v) {
                 linearLayout.setVisibility(View.INVISIBLE);
                 makerDeskButton.setVisibility(View.VISIBLE);
-                makersDeskPDF.fromAsset("su_2017-18.pdf").load();
+                makersDeskPDF.fromAsset("su_17_18.pdf").load();
             }
         });
         button2.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +73,7 @@ public class MakersDeskFragment extends Fragment {
             public void onClick(View v) {
                 linearLayout.setVisibility(View.INVISIBLE);
                 makerDeskButton.setVisibility(View.VISIBLE);
-                makersDeskPDF.fromAsset("su_2018-19.pdf").load();
+                makersDeskPDF.fromAsset("su_18_19.pdf").load();
             }
         });
         button3.setOnClickListener(new View.OnClickListener() {

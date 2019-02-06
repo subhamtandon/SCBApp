@@ -10,23 +10,23 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_scbSection"
-            android:icon="@drawable/ic_home_black"
-            android:title="SCB section" />
+            android:icon="@drawable/ic_book_black"
+            android:title="SCB Study Section" />
         <item
             android:id="@+id/nav_scbInfoBulletin"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_notifications_active_black"
             android:title="Information Bulletin" />
         <item
             android:id="@+id/nav_scbAboutSCB"
-            android:icon="@drawable/ic_book_black"
+            android:icon="@drawable/ic_details_black"
             android:title="About SCB" />
         <item
             android:id="@+id/nav_scbMap"
-            android:icon="@drawable/ic_question_answer_black"
+            android:icon="@drawable/ic_location_on_black"
             android:title="Map" />
         <item
             android:id="@+id/nav_scbDoctorsInfo"
-            android:icon="@drawable/ic_question_answer_black"
+            android:icon="@drawable/ic_healing_black"
             android:title="Doctor's Information" />
         <item
             android:id="@+id/nav_submitQuestion"
@@ -34,16 +34,16 @@
             android:title="Submit Question" />
         <item
             android:id="@+id/nav_feedback"
-            android:icon="@drawable/ic_question_answer_black"
+            android:icon="@drawable/ic_feedback_black"
             android:title="Feedback" />
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_question_answer_black"
+            android:icon="@drawable/ic_exit_to_app_black"
             android:title="Logout" />
         <item
             android:id="@+id/nav_fromMakersDesk"
-            android:icon="@drawable/ic_question_answer_black"
-            android:title="From maker's Desk" />
+            android:icon="@drawable/ic_developer_mode_black"
+            android:title="From The Maker's Desk" />
     </group>
 
 </menu>

@@ -32,7 +32,9 @@
                         android:id="@+id/path"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:layout_toLeftOf="@+id/exitQuestions"
+                        android:layout_alignParentLeft="true">
 
                         <TextView
                             android:id="@+id/pathChap"
