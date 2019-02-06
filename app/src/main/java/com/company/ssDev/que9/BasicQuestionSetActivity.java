@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -48,6 +49,8 @@ public class BasicQuestionSetActivity extends AppCompatActivity {
                 .child("Chapters")
                 .child(chapter)
                 .child("Sets");
+
+        Log.d("biochem", databaseReference+" ");
 
         databaseReference.addChildEventListener(new ChildEventListener() {
             @Override

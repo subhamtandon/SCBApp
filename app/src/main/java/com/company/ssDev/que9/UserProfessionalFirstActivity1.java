@@ -70,7 +70,7 @@ public class UserProfessionalFirstActivity1 extends AppCompatActivity {
                 //TODO: Link new fragment
                 Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
                 intent.putExtra("PROFESSIONAL", professional);
-                intent.putExtra("SUBJECT", "Biochemistry");
+                intent.putExtra("SUBJECT", "BioChemistry");
                 startActivity(intent);
             }
         });
