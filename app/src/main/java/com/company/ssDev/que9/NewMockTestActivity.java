@@ -99,7 +99,7 @@ public class NewMockTestActivity extends AppCompatActivity {
 
         final Spinner mSpinner = (Spinner) mView.findViewById(R.id.spinner);
 
-        adapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, getResources().getStringArray(R.array.numberOfQuestions));
+        adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.autocomplete_custom, getResources().getStringArray(R.array.numberOfQuestions));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         mSpinner.setAdapter(adapter);

@@ -3,6 +3,7 @@ package com.company.ssDev.que9;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -56,7 +57,7 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
         final int pos = position;
 
         holder.setName.setText(setsArrayList.get(position));
-        holder.setName.setOnClickListener(new View.OnClickListener() {
+        holder.setNameCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -155,11 +156,13 @@ public class AdapterForBasicSets extends RecyclerView.Adapter<AdapterForBasicSet
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
+        CardView setNameCardView;
         TextView setName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             setName = itemView.findViewById(R.id.textViewSetName);
+            setNameCardView = itemView.findViewById(R.id.setNameCardView);
         }
     }
 }

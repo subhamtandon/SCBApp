@@ -143,7 +143,7 @@ public class AdminStudyActivity extends AppCompatActivity {
     };
 
     private static final String[] SubjectsProfThird2 = new String[]{
-            "Medicine","Surgery","Pediatrics","Orthopedics","Skin & VD","Anaesthesiology","Radiology","O & G"
+            "Medicine","Surgery","Paediatrics","Orthopaedics","Skin & VD","Anaesthesiology","Radiology","O & G"
     };
 
     private static final String[] Type = new String[]{

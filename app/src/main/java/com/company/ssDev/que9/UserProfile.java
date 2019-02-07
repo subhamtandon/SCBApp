@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -42,6 +43,8 @@ public class UserProfile extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
 
         if(!isConnected(UserProfile.this)) buildDialog(UserProfile.this).show();
         else {

@@ -20,6 +20,14 @@
         android:id="@+id/recyclerViewInformationBulletinAdmin">
 
     </android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="More information coming soon..."
+        android:layout_below="@+id/recyclerViewInformationBulletinAdmin"
+        android:gravity="center"
+        android:layout_marginTop="20dp"/>
     <!--
 
     <TextView

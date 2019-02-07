@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
 
-    CardView medicineCard, surgeryCard, pediatricsCard, orthopedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard, thirdProfessionalPartTwoMockTestCard;
+    CardView medicineCard, surgeryCard, paediatricsCard, orthopaedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard, thirdProfessionalPartTwoMockTestCard;
     DatabaseReference databaseReferenceRandom;
     String uniqueId;
     String subjectName;
@@ -41,8 +41,8 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
 
         medicineCard = findViewById(R.id.medicineCard);
         surgeryCard = findViewById(R.id.surgeryCard);
-        pediatricsCard = findViewById(R.id.pediatricsCard);
-        orthopedicsCard = findViewById(R.id.orthopedicsCard);
+        paediatricsCard = findViewById(R.id.paediatricsCard);
+        orthopaedicsCard = findViewById(R.id.orthopaedicsCard);
         skinVDCard = findViewById(R.id.skinVDCard);
         anaesthesiologyCard = findViewById(R.id.anaesthesiologyCard);
         radiologyCard = findViewById(R.id.radiologyCard);
@@ -69,22 +69,22 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
             }
         });
 
-        pediatricsCard.setOnClickListener(new View.OnClickListener() {
+        paediatricsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
                 intent.putExtra("PROFESSIONAL", professional);
-                intent.putExtra("SUBJECT", "Pediatrics");
+                intent.putExtra("SUBJECT", "paediatrics");
                 startActivity(intent);
             }
         });
 
-        orthopedicsCard.setOnClickListener(new View.OnClickListener() {
+        orthopaedicsCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
                 intent.putExtra("PROFESSIONAL", professional);
-                intent.putExtra("SUBJECT", "Orthopedics");
+                intent.putExtra("SUBJECT", "orthopaedics");
                 startActivity(intent);
             }
         });

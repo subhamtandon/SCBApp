@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".RegisterActivity"
     android:padding="15dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <ImageView
         android:layout_width="200dp"
@@ -23,15 +30,6 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
-
-        <TextView
-            android:id="@+id/textView"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="User Registration"
-            android:textSize="30sp"
-            android:visibility="gone"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -73,8 +71,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_height="wrap_content">
 
             <AutoCompleteTextView
                 android:id="@+id/collegeNameAutoCompleteTextView"
@@ -151,5 +148,8 @@
             android:layout_height="wrap_content" />
 
     </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
 
 </RelativeLayout>

@@ -7,21 +7,10 @@
     tools:context=".BasicQuestionSetActivity"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sets"
-        android:gravity="center_horizontal"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:textAppearance="@style/Theme.AppCompat"
-        android:id="@+id/headingSets" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerViewSets"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/headingSets"
         android:layout_marginTop="10dp">
     </android.support.v7.widget.RecyclerView>
 
