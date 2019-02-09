@@ -358,6 +358,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             } else {
 
                                 Log.w("fail", "signInWithEmail:failure", task.getException());
+                                Toast.makeText(MainActivity.this, "Login Failed! Wrong username or password", Toast.LENGTH_SHORT).show();
 
                             }
 

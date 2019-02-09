@@ -545,7 +545,7 @@ public class UserProfile extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        return true;
+        return false;
     }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
