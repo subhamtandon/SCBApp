@@ -108,7 +108,12 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(getContext(), databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        recyclerViewMedicalRelatedPictures.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+
+
+        LinearLayoutManager linearLayoutManager1 = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManager1.setReverseLayout(true);
+        linearLayoutManager1.setStackFromEnd(true);
+        recyclerViewMedicalRelatedPictures.setLayoutManager(linearLayoutManager1);
         AdapterForMedicalRelatedPictures adapterForMedicalRelatedPictures = new AdapterForMedicalRelatedPictures(recyclerViewMedicalRelatedPictures, getContext(),new ArrayList<String>());
         //adapterForRecordsList.notifyDataSetChanged();
         recyclerViewMedicalRelatedPictures.setAdapter(adapterForMedicalRelatedPictures);
