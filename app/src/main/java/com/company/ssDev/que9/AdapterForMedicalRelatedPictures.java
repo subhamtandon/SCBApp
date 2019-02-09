@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class AdapterForMedicalRelatedPictures extends RecyclerView.Adapter<Adapt
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 View mView = LayoutInflater.from(context).inflate(R.layout.image_dialog, null);
-                ImageView image = mView.findViewById(R.id.medicalRelatedPicImage);
+                PhotoView image = mView.findViewById(R.id.medicalRelatedPicImage);
                 Picasso.get().load(picturesUrls.get(position)).into(image);
                 builder.setCancelable(true)
                         .setView(mView);
