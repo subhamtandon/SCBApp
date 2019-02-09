@@ -50,6 +50,7 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
     implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
 }
 
 
