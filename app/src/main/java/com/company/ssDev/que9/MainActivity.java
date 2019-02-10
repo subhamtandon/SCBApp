@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextEmail;
     private EditText editTextPassword;
     private Button buttonLogin;
-    private TextView textViewSignup;
+    private TextView textViewSignup, textViewResetPassword;
     private ProgressDialog progressDialog;
     private SignInButton buttonGoogle;
 
@@ -122,6 +122,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         textViewSignup = (TextView) findViewById(R.id.textViewSignUp);
 
+        textViewResetPassword = findViewById(R.id.textViewResetPassword);
+
         progressDialog = new ProgressDialog(this);
 
         buttonGoogle = (SignInButton) findViewById(R.id.buttonGoogle);
@@ -146,6 +148,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        textViewResetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, PasswordResetActivity.class));
+            }
+        });
 
     }
 
@@ -319,7 +328,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ready = "false";
 
         }else if (!isEmailValid(email)) {
-            editTextPassword.setError(getString(R.string.error_invalid_email));
+            editTextEmail.setError(getString(R.string.error_invalid_email));
             ready = "false";
         }
 

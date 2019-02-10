@@ -32,7 +32,7 @@
             android:columnCount="1"
             android:columnOrderPreserved="false"
             android:padding="14dp"
-            android:rowCount="9"
+            android:rowCount="10"
             android:rowOrderPreserved="true">
 
             <android.support.v7.widget.CardView
@@ -308,13 +308,47 @@
             </android.support.v7.widget.CardView>
 
             <android.support.v7.widget.CardView
-                android:id="@+id/thirdProfessionalPartTwoMockTestCard"
+                android:id="@+id/psychiatryCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_margin="16dp"
                 android:layout_row="8"
+                android:layout_rowWeight="1"
+                android:clickable="true"
+                app:cardBackgroundColor="#4c97e7"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Psychiatry"
+                        android:textAlignment="center"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/thirdProfessionalPartTwoMockTestCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_margin="16dp"
+                android:layout_row="9"
                 android:layout_rowWeight="1"
                 android:clickable="true"
                 app:cardBackgroundColor="#4c97e7"

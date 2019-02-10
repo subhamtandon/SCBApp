@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
 
-    CardView medicineCard, surgeryCard, paediatricsCard, orthopaedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard, thirdProfessionalPartTwoMockTestCard;
+    CardView medicineCard, surgeryCard, paediatricsCard, orthopaedicsCard, skinVDCard, anaesthesiologyCard, radiologyCard, ogCard, psychiatryCard, thirdProfessionalPartTwoMockTestCard;
     DatabaseReference databaseReferenceRandom;
     String uniqueId;
     String subjectName;
@@ -47,6 +47,7 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
         anaesthesiologyCard = findViewById(R.id.anaesthesiologyCard);
         radiologyCard = findViewById(R.id.radiologyCard);
         ogCard = findViewById(R.id.ogCard);
+        psychiatryCard = findViewById(R.id.psychiatryCard);
         thirdProfessionalPartTwoMockTestCard = findViewById(R.id.thirdProfessionalPartTwoMockTestCard);
 
         medicineCard.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +127,17 @@ public class UserProfessionalThirdTwoActivity extends AppCompatActivity {
                 intent.putExtra("PROFESSIONAL", professional);
                 intent.putExtra("SUBJECT", "O & G");
                 startActivity(intent);
+            }
+        });
+
+        psychiatryCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent = new Intent(getApplicationContext(),ChaptersActivity.class);
+                intent.putExtra("PROFESSIONAL", professional);
+                intent.putExtra("SUBJECT", "Psychiatry");
+                startActivity(intent);*/
+                Toast.makeText(UserProfessionalThirdTwoActivity.this, "To be updated soon", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="70dp"
-        android:visibility="invisible"></WebView>
+        android:visibility="invisible">
+    </WebView>
 
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/makersDeskPDF"
@@ -53,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Contributors for que9" />
+            android:text="team que9" />
 
     </LinearLayout>
 
