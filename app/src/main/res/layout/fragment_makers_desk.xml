@@ -7,63 +7,63 @@
     tools:context=".MakersDeskFragment">
 
     <WebView
+        android:id="@+id/webViewScbcloud"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="invisible"
-        android:id="@+id/webViewScbcloud"
-        android:layout_marginBottom="70dp">
-    </WebView>
+        android:layout_marginBottom="70dp"
+        android:visibility="invisible"></WebView>
 
     <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/makersDeskPDF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/makersDeskPDF"
-        android:layout_marginBottom="70dp"
-        />
+        android:layout_marginBottom="70dp" />
+
     <LinearLayout
+        android:id="@+id/linearLayoutMakersDesk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/linearLayoutMakersDesk"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
 
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SU 18-19"
-            android:id="@+id/button2"
-            android:layout_weight="1"/>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SU 17-18"
             android:id="@+id/button1"
-            android:layout_weight="1"/>
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="scb cloud"
+            android:layout_weight="1"
+            android:text="SU 17-18" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="SU 18-19" />
+
+        <Button
             android:id="@+id/button4"
-            android:layout_weight="1"/>
-
-        <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contributors for que9"
+            android:layout_weight="1"
+            android:text="scb cloud" />
+
+        <Button
             android:id="@+id/button3"
-            android:layout_weight="1"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Contributors for que9" />
 
     </LinearLayout>
 
     <Button
+        android:id="@+id/makersDeskButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="maker's desk"
-        android:id="@+id/makersDeskButton"
-        android:visibility="invisible"/>
+        android:visibility="invisible" />
 
     <!--<ScrollView
         android:layout_width="match_parent"
