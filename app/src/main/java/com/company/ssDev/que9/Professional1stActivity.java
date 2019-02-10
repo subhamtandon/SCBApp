@@ -123,7 +123,7 @@ public class Professional1stActivity extends AppCompatActivity {
                 //TODO: Link new fragment
                 Intent intent = new Intent(getApplicationContext(),DifferentMaterialsActivity.class);
                 intent.putExtra("PROFESSIONAL", professional);
-                intent.putExtra("SUBJECT", "Biochemistry");
+                intent.putExtra("SUBJECT", "BioChemistry");
                 startActivity(intent);
                 //startActivity(new Intent(getApplicationContext(),DifferentMaterialsActivity.class));
                 //Toast.makeText(getActivity(), "Will be available soon", Toast.LENGTH_SHORT).show();
