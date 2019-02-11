@@ -63,7 +63,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         professional = getIntent().getStringExtra("PROFESSIONAL");
         listsArrayList = (ArrayList<Lists>)getIntent().getSerializableExtra("LISTSLIST");
 
-        Toast.makeText(this, "original size" + listsArrayList.size() + "", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "original size" + listsArrayList.size() + "", Toast.LENGTH_SHORT).show();
         Log.d("originalListsList", listsArrayList + "");
 
         questionCount = findViewById(R.id.questionCount);
@@ -107,7 +107,7 @@ public class NewMockTestActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                     n= Integer.parseInt(mSpinner.getSelectedItem().toString());
-                    Toast.makeText(NewMockTestActivity.this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(NewMockTestActivity.this, "No of questions: " + n, Toast.LENGTH_SHORT).show();
                     loadingProgressBar.setVisibility(View.VISIBLE);
                     dialog.cancel();
                     generateRandomShowQuestion();
@@ -234,7 +234,7 @@ public class NewMockTestActivity extends AppCompatActivity {
         Collections.shuffle(listsArrayList);
         for (int i = listsArrayList.size() - 1; i >= n; --i)
             listsArrayList.remove(i);
-        Toast.makeText(this, "newsize" + listsArrayList.size(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "newsize" + listsArrayList.size(), Toast.LENGTH_SHORT).show();
         Log.d("newListsList", listsArrayList + "");
         showQuestion();
     }
@@ -369,12 +369,17 @@ public class NewMockTestActivity extends AppCompatActivity {
 
             TextView correctAnswers = mView.findViewById(R.id.correctAnswers);
             TextView totalQuestions = mView.findViewById(R.id.totalQuestions);
+            TextView wrongQuestions = mView.findViewById(R.id.wrongAnswers);
 
             String count1 = Integer.toString(n);
             String rightAnswer1 = Integer.toString(rightAnswer);
+            int w = count- rightAnswer;
+            Log.d("wrong", w+ "");
+            String wrongAnswer = Integer.toString(w);
 
             correctAnswers.setText(rightAnswer1);
             totalQuestions.setText(count1);
+            wrongQuestions.setText(wrongAnswer);
             builder.setTitle("SCORECARD")
                     .setCancelable(false)
                     .setView(mView)
