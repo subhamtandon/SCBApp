@@ -22,7 +22,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".OfflinePDFViewerActivity"></activity>
+        <activity android:name=".OfflinePDFViewerActivity"
+            android:label="PDF View"></activity>
         <activity android:name=".PasswordResetActivity" />
         <activity
             android:name=".SplashScreenActivity"

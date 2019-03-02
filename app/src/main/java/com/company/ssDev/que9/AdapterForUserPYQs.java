@@ -164,12 +164,20 @@ public class AdapterForUserPYQs extends RecyclerView.Adapter<AdapterForUserPYQs.
             protected void onPostExecute(Boolean aBoolean) {
                 super.onPostExecute(aBoolean);
                 if (aBoolean){
+                    Toast.makeText(context, "Download done successfully", Toast.LENGTH_SHORT).show();
                     hold.seekBar.setVisibility(View.GONE);
                     hold.textView.setVisibility(View.GONE);
                     hold.downloadPdf.setVisibility(View.GONE);
                     openPdf(subject + "PYQ" + s);
                 }else {
+                    hold.seekBar.setVisibility(View.GONE);
+                    hold.textView.setVisibility(View.GONE);
+                    hold.downloadPdf.setVisibility(View.VISIBLE);
+                    File dir = context.getFilesDir();
+                    File file = new File(dir, subject + "PYQ" + s);
+                    boolean deleted = file.delete();
                     Toast.makeText(context, "Unable to download this Pdf", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context, "ye lo ho gaya " + deleted, Toast.LENGTH_SHORT).show();
                 }
             }
         }.execute();
